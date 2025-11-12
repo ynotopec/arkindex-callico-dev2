@@ -48,6 +48,7 @@ fi
 SUPERUSER="${DJANGO_SUPERUSER_USERNAME:-admin}"
 EMAIL="${DJANGO_SUPERUSER_EMAIL:-admin@example.com}"
 PASSWORD="${DJANGO_SUPERUSER_PASSWORD:-}"
+DISPLAY_NAME="${DJANGO_SUPERUSER_DISPLAY_NAME:-}" # Optional custom display name
 
 if [ -z "$PASSWORD" ]; then
     read -rsp "Password for Django superuser '$SUPERUSER': " PASSWORD
@@ -57,11 +58,13 @@ fi
 export DJANGO_SUPERUSER_USERNAME="$SUPERUSER"
 export DJANGO_SUPERUSER_EMAIL="$EMAIL"
 export DJANGO_SUPERUSER_PASSWORD="$PASSWORD"
+export DJANGO_SUPERUSER_DISPLAY_NAME="$DISPLAY_NAME"
 
 "${COMPOSE_CMD[@]}" "${COMPOSE_FILE[@]}" run --rm \
     -e DJANGO_SUPERUSER_USERNAME \
     -e DJANGO_SUPERUSER_EMAIL \
     -e DJANGO_SUPERUSER_PASSWORD \
+    -e DJANGO_SUPERUSER_DISPLAY_NAME \
     callico python - <<'PY'
 import os
 import django
@@ -87,6 +90,10 @@ if not identifier:
 
 email = os.environ.get("DJANGO_SUPERUSER_EMAIL", "")
 password = os.environ["DJANGO_SUPERUSER_PASSWORD"]
+display_name = os.environ.get("DJANGO_SUPERUSER_DISPLAY_NAME")
+if not display_name:
+    display_name = identifier
+user_fields = {field.name for field in User._meta.get_fields()}
 
 lookup = {username_field: identifier}
 
@@ -98,6 +105,8 @@ else:
     create_kwargs = {**lookup, "password": password}
     if username_field != "email" and email:
         create_kwargs["email"] = email
+    if "display_name" in user_fields:
+        create_kwargs.setdefault("display_name", display_name)
     User.objects.create_superuser(**create_kwargs)
     print(f"Superuser with {username_field!r} '{identifier}' created.")
 PY
