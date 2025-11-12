@@ -8,10 +8,6 @@ logLevel = "DEBUG"
     watch = true
     exposedByDefault = false
 
-  [providers.file]
-    directory = "/certs"
-    watch = true
-
 [accessLog]
 
 [api]
