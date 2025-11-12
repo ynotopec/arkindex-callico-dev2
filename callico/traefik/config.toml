@@ -23,13 +23,3 @@ logLevel = "DEBUG"
 
   [entryPoints.websecure]
     address = ":443"
-
-[certificatesResolvers]
-  [certificatesResolvers.le]
-    [certificatesResolvers.le.acme]
-      email = "admin@example.com"
-      storage = "/letsencrypt/acme.json"
-      caServer = "https://acme-v02.api.letsencrypt.org/directory"
-
-      [certificatesResolvers.le.acme.httpChallenge]
-        entryPoint = "web"
