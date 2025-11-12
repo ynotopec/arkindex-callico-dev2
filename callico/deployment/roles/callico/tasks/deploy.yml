@@ -63,6 +63,9 @@
       {
         'traefik.enable': 'true',
         'traefik.http.routers.callico-' + git_branch_name + '.rule': 'Host(`{{ public_hostname }}`)',
+        'traefik.http.routers.callico-' + git_branch_name + '.entrypoints': 'websecure',
+        'traefik.http.routers.callico-' + git_branch_name + '.tls': 'true',
+        'traefik.http.routers.callico-' + git_branch_name + '.tls.certresolver': 'le',
         'traefik.http.services.callico-' + git_branch_name + '.loadbalancer.server.port': '80'
       }
     }}"
