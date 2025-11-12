@@ -13,10 +13,6 @@ DEFAULT_CALICO_DOMAIN="callico.company.com"
 DEFAULT_MINIO_DOMAIN="minio-callico.company.com"
 DEFAULT_MINIO_CONSOLE_DOMAIN="minio-console-callico.company.com"
 DEFAULT_BASE_DOMAIN="company.com"
-DEFAULT_DB_USER="callico"
-DEFAULT_SHARED_PASSWORD="changeme"
-DEFAULT_MINIO_ROOT_USER="callico-app"
-DEFAULT_STORAGE_ACCESS_KEY="callico-app"
 
 if [[ ! -d "$DEPLOY_DIR" ]]; then
   echo "Error: deployment directory '$DEPLOY_DIR' not found." >&2
@@ -94,22 +90,12 @@ MINIO_DOMAIN=$3
 MINIO_CONSOLE_DOMAIN=$4
 LETSENCRYPT_EMAIL=$5
 LETSENCRYPT_USE_STAGING=$6
-CALICO_DB_USER=$7
-CALICO_DB_PASSWORD=$8
-MINIO_ROOT_USER=$9
-MINIO_ROOT_PASSWORD=${10}
-CALICO_STORAGE_ACCESS_KEY=${11}
-CALICO_STORAGE_SECRET_KEY=${12}
 EOF
 }
 
 load_domain_configuration() {
   local base_domain_input="${BASE_DOMAIN:-}" calico_domain_input="${CALICO_DOMAIN:-}" minio_domain_input="${MINIO_DOMAIN:-}" minio_console_domain_input="${MINIO_CONSOLE_DOMAIN:-}"
   local letsencrypt_email_input="${LETSENCRYPT_EMAIL:-}" letsencrypt_staging_input="${LETSENCRYPT_USE_STAGING:-}"
-  local db_user_input="${CALICO_DB_USER:-}"
-  local minio_root_user_input="${MINIO_ROOT_USER:-}"
-  local storage_access_key_input="${CALICO_STORAGE_ACCESS_KEY:-}"
-  local shared_password_input="${CALICO_INSTALL_PASSWORD:-}"
   local reconfigure=0
 
   while [[ $# -gt 0 ]]; do
@@ -160,38 +146,6 @@ load_domain_configuration() {
       --letsencrypt-production)
         letsencrypt_staging_input="false"
         ;;
-      --db-user)
-        if [[ $# -lt 2 ]]; then
-          echo "Error: --db-user requires a value." >&2
-          exit 1
-        fi
-        shift
-        db_user_input="$1"
-        ;;
-      --minio-root-user)
-        if [[ $# -lt 2 ]]; then
-          echo "Error: --minio-root-user requires a value." >&2
-          exit 1
-        fi
-        shift
-        minio_root_user_input="$1"
-        ;;
-      --storage-access-key)
-        if [[ $# -lt 2 ]]; then
-          echo "Error: --storage-access-key requires a value." >&2
-          exit 1
-        fi
-        shift
-        storage_access_key_input="$1"
-        ;;
-      --password)
-        if [[ $# -lt 2 ]]; then
-          echo "Error: --password requires a value." >&2
-          exit 1
-        fi
-        shift
-        shared_password_input="$1"
-        ;;
       --reconfigure)
         reconfigure=1
         ;;
@@ -207,10 +161,6 @@ Options:
   --letsencrypt-email EMAIL       Email used for Let's Encrypt certificate notifications (default: admin@<callico-domain>)
   --letsencrypt-staging           Use Let's Encrypt staging environment for certificate requests
   --letsencrypt-production        Use Let's Encrypt production environment for certificate requests (default)
-  --db-user USER                  Database login for the Callico Postgres instance (default: callico)
-  --minio-root-user USER          MinIO root user (default: callico-app)
-  --storage-access-key KEY        Access key ID used by Callico to reach MinIO (default: callico-app)
-  --password PASSWORD             Shared password applied to the database, MinIO root, and storage secret
   --reconfigure                   Prompt again for domain values even if a saved configuration exists
   -h, --help                      Show this help message
 USAGE
@@ -224,7 +174,7 @@ USAGE
     shift
   done
 
-  if [[ -n "$base_domain_input" || -n "$calico_domain_input" || -n "$minio_domain_input" || -n "$minio_console_domain_input" || -n "$letsencrypt_email_input" || -n "$letsencrypt_staging_input" || -n "$db_user_input" || -n "$minio_root_user_input" || -n "$storage_access_key_input" || -n "$shared_password_input" ]]; then
+  if [[ -n "$base_domain_input" || -n "$calico_domain_input" || -n "$minio_domain_input" || -n "$minio_console_domain_input" || -n "$letsencrypt_email_input" || -n "$letsencrypt_staging_input" ]]; then
     reconfigure=1
   fi
 
@@ -235,15 +185,8 @@ USAGE
   current_le_email="$(load_env_value LETSENCRYPT_EMAIL || true)"
   current_le_staging="$(load_env_value LETSENCRYPT_USE_STAGING || true)"
   current_base="$(load_env_value BASE_DOMAIN || true)"
-  local current_db_user current_db_password current_minio_root_user current_minio_root_password current_storage_access_key current_storage_secret_key
-  current_db_user="$(load_env_value CALICO_DB_USER || true)"
-  current_db_password="$(load_env_value CALICO_DB_PASSWORD || true)"
-  current_minio_root_user="$(load_env_value MINIO_ROOT_USER || true)"
-  current_minio_root_password="$(load_env_value MINIO_ROOT_PASSWORD || true)"
-  current_storage_access_key="$(load_env_value CALICO_STORAGE_ACCESS_KEY || true)"
-  current_storage_secret_key="$(load_env_value CALICO_STORAGE_SECRET_KEY || true)"
 
-  if [[ -f "$ENV_FILE" && $reconfigure -eq 0 && -z "$calico_domain_input" && -z "$minio_domain_input" && -z "$minio_console_domain_input" && -z "$letsencrypt_email_input" && -z "$letsencrypt_staging_input" && -z "$db_user_input" && -z "$minio_root_user_input" && -z "$storage_access_key_input" && -z "$shared_password_input" ]]; then
+  if [[ -f "$ENV_FILE" && $reconfigure -eq 0 && -z "$calico_domain_input" && -z "$minio_domain_input" && -z "$minio_console_domain_input" && -z "$letsencrypt_email_input" && -z "$letsencrypt_staging_input" ]]; then
     echo "Using existing domain configuration from '$ENV_FILE'."
     export CALICO_DOMAIN="${current_calico:-$DEFAULT_CALICO_DOMAIN}"
     export MINIO_DOMAIN="${current_minio:-$DEFAULT_MINIO_DOMAIN}"
@@ -256,17 +199,10 @@ USAGE
     elif [[ "$CALICO_DOMAIN" == callico.* ]]; then
       export BASE_DOMAIN="${CALICO_DOMAIN#callico.}"
     fi
-    export CALICO_DB_USER="${current_db_user:-$DEFAULT_DB_USER}"
-    export CALICO_DB_PASSWORD="${current_db_password:-$DEFAULT_SHARED_PASSWORD}"
-    export MINIO_ROOT_USER="${current_minio_root_user:-$DEFAULT_MINIO_ROOT_USER}"
-    export MINIO_ROOT_PASSWORD="${current_minio_root_password:-$DEFAULT_SHARED_PASSWORD}"
-    export CALICO_STORAGE_ACCESS_KEY="${current_storage_access_key:-$DEFAULT_STORAGE_ACCESS_KEY}"
-    export CALICO_STORAGE_SECRET_KEY="${current_storage_secret_key:-$DEFAULT_SHARED_PASSWORD}"
     return
   fi
 
   local base_domain calico_domain minio_domain minio_console_domain letsencrypt_email letsencrypt_use_staging
-  local calico_db_user minio_root_user storage_access_key storage_secret_key shared_password
   if [[ -n "$base_domain_input" ]]; then
     base_domain="$base_domain_input"
   elif [[ -n "${current_base:-}" ]]; then
@@ -283,21 +219,6 @@ USAGE
   minio_domain="${minio_domain_input:-${current_minio:-minio-callico.${base_domain}}}"
   minio_console_domain="${minio_console_domain_input:-${current_minio_console:-minio-console-callico.${base_domain}}}"
   letsencrypt_email="${letsencrypt_email_input:-${current_le_email:-admin@${calico_domain}}}"
-  calico_db_user="${db_user_input:-${current_db_user:-$DEFAULT_DB_USER}}"
-  minio_root_user="${minio_root_user_input:-${current_minio_root_user:-$DEFAULT_MINIO_ROOT_USER}}"
-  storage_access_key="${storage_access_key_input:-${current_storage_access_key:-$DEFAULT_STORAGE_ACCESS_KEY}}"
-
-  if [[ -n "$shared_password_input" ]]; then
-    shared_password="$shared_password_input"
-  elif [[ -n "${current_db_password:-}" ]]; then
-    shared_password="$current_db_password"
-  elif [[ -n "${current_minio_root_password:-}" ]]; then
-    shared_password="$current_minio_root_password"
-  elif [[ -n "${current_storage_secret_key:-}" ]]; then
-    shared_password="$current_storage_secret_key"
-  else
-    shared_password="$DEFAULT_SHARED_PASSWORD"
-  fi
 
   if [[ -n "$letsencrypt_staging_input" ]]; then
     if ! letsencrypt_use_staging="$(normalize_boolean "$letsencrypt_staging_input")"; then
@@ -335,26 +256,6 @@ USAGE
     letsencrypt_email="$(prompt_for_value "Let's Encrypt email [$letsencrypt_email]: " "$letsencrypt_email")"
   fi
 
-  if [[ -z "$db_user_input" ]]; then
-    calico_db_user="$(prompt_for_value "Database login [$calico_db_user]: " "$calico_db_user")"
-  fi
-
-  if [[ -z "$minio_root_user_input" ]]; then
-    minio_root_user="$(prompt_for_value "MinIO root user [$minio_root_user]: " "$minio_root_user")"
-  fi
-
-  if [[ -z "$storage_access_key_input" ]]; then
-    storage_access_key="$(prompt_for_value "Storage access key [$storage_access_key]: " "$storage_access_key")"
-  fi
-
-  if [[ -z "$shared_password_input" ]]; then
-    shared_password="$(prompt_for_value "Password for Callico services [$shared_password]: " "$shared_password")"
-  fi
-
-  local calico_db_password="$shared_password"
-  local minio_root_password="$shared_password"
-  local storage_secret_key="$shared_password"
-
   if [[ -z "$letsencrypt_staging_input" ]]; then
     local staging_response
     staging_response="$(prompt_for_value "Use Let's Encrypt staging environment? [$letsencrypt_use_staging]: " "$letsencrypt_use_staging")"
@@ -369,24 +270,13 @@ USAGE
     exit 1
   fi
 
-  for value in "$base_domain" "$calico_domain" "$minio_domain" "$minio_console_domain" "$calico_db_user" "$minio_root_user" "$storage_access_key"; do
+  for value in "$base_domain" "$calico_domain" "$minio_domain" "$minio_console_domain"; do
     if [[ -z "$value" ]]; then
-      echo "Error: configuration values cannot be empty." >&2
+      echo "Error: domain values cannot be empty." >&2
       exit 1
     fi
     if [[ "$value" =~ [[:space:]] ]]; then
-      echo "Error: configuration values cannot contain whitespace: '$value'" >&2
-      exit 1
-    fi
-  done
-
-  for value in "$calico_db_password" "$minio_root_password" "$storage_secret_key"; do
-    if [[ -z "$value" ]]; then
-      echo "Error: secret values cannot be empty." >&2
-      exit 1
-    fi
-    if [[ "$value" =~ [[:space:]] ]]; then
-      echo "Error: secret values cannot contain whitespace: '$value'" >&2
+      echo "Error: domain values cannot contain whitespace: '$value'" >&2
       exit 1
     fi
   done
@@ -400,7 +290,7 @@ USAGE
     exit 1
   fi
 
-  write_env_file "$base_domain" "$calico_domain" "$minio_domain" "$minio_console_domain" "$letsencrypt_email" "$letsencrypt_use_staging" "$calico_db_user" "$calico_db_password" "$minio_root_user" "$minio_root_password" "$storage_access_key" "$storage_secret_key"
+  write_env_file "$base_domain" "$calico_domain" "$minio_domain" "$minio_console_domain" "$letsencrypt_email" "$letsencrypt_use_staging"
 
   export BASE_DOMAIN="$base_domain"
   export CALICO_DOMAIN="$calico_domain"
@@ -408,12 +298,6 @@ USAGE
   export MINIO_CONSOLE_DOMAIN="$minio_console_domain"
   export LETSENCRYPT_EMAIL="$letsencrypt_email"
   export LETSENCRYPT_USE_STAGING="$letsencrypt_use_staging"
-  export CALICO_DB_USER="$calico_db_user"
-  export CALICO_DB_PASSWORD="$calico_db_password"
-  export MINIO_ROOT_USER="$minio_root_user"
-  export MINIO_ROOT_PASSWORD="$minio_root_password"
-  export CALICO_STORAGE_ACCESS_KEY="$storage_access_key"
-  export CALICO_STORAGE_SECRET_KEY="$storage_secret_key"
 
   echo "Saved domain configuration to '$ENV_FILE'."
 }
