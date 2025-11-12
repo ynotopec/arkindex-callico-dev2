@@ -70,15 +70,36 @@ from django.contrib.auth import get_user_model
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "callico.settings")
 django.setup()
 User = get_user_model()
-username = os.environ["DJANGO_SUPERUSER_USERNAME"]
+username_field = getattr(User, "USERNAME_FIELD", "username")
+identifier_env = f"DJANGO_SUPERUSER_{username_field.upper()}"
+identifier = os.environ.get(identifier_env)
+
+if not identifier:
+    if username_field == "username":
+        identifier = os.environ["DJANGO_SUPERUSER_USERNAME"]
+    elif username_field == "email":
+        identifier = os.environ["DJANGO_SUPERUSER_EMAIL"]
+    else:
+        raise RuntimeError(
+            "Cannot determine superuser identifier. Set the environment variable "
+            f"{identifier_env}."
+        )
+
 email = os.environ.get("DJANGO_SUPERUSER_EMAIL", "")
 password = os.environ["DJANGO_SUPERUSER_PASSWORD"]
 
-if User.objects.filter(username=username).exists():
-    print(f"Superuser '{username}' already exists, skipping creation.")
+lookup = {username_field: identifier}
+
+if User.objects.filter(**lookup).exists():
+    print(
+        f"Superuser with {username_field!r} '{identifier}' already exists, skipping creation."
+    )
 else:
-    User.objects.create_superuser(username=username, email=email, password=password)
-    print(f"Superuser '{username}' created.")
+    create_kwargs = {**lookup, "password": password}
+    if username_field != "email" and email:
+        create_kwargs["email"] = email
+    User.objects.create_superuser(**create_kwargs)
+    print(f"Superuser with {username_field!r} '{identifier}' created.")
 PY
 
 popd >/dev/null
