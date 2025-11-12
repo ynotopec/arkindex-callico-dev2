@@ -5,6 +5,11 @@ services:
   lb:
     container_name: callico-lb
     image: traefik:2.5
+    environment:
+      TRAEFIK_CERTIFICATESRESOLVERS_le_ACME_EMAIL: "${LETSENCRYPT_EMAIL:-}"
+      TRAEFIK_CERTIFICATESRESOLVERS_le_ACME_STORAGE: "/letsencrypt/acme.json"
+      TRAEFIK_CERTIFICATESRESOLVERS_le_ACME_HTTPCHALLENGE_ENTRYPOINT: "web"
+      TRAEFIK_CERTIFICATESRESOLVERS_le_ACME_CASERVER: "${LETSENCRYPT_CA_SERVER:-}"
     ports:
       # No need to expose on 0.0.0.0 as other users would not resolve
       # the .localhost domain on an external IP
@@ -13,7 +18,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik/config.toml:/traefik.toml
-      - ./traefik/certs:/certs
+      - ./traefik/letsencrypt:/letsencrypt
     networks:
       callico:
         aliases:
@@ -40,8 +45,6 @@ services:
     ports:
       # For prometheus metrics only
       - 3000:3000
-    volumes:
-      - ./traefik/certs/ca.pem:/usr/share/teklia/ca.pem:ro
     networks:
       - callico
 
@@ -49,6 +52,7 @@ services:
       traefik.enable: true
       traefik.http.routers.callico.rule: Host(`callico.dev.localhost`)
       traefik.http.routers.callico.tls: true
+      traefik.http.routers.callico.tls.certresolver: le
 
   postgres:
     container_name: callico-database
@@ -81,8 +85,6 @@ services:
       - docker.env
     depends_on:
       - redis
-    volumes:
-      - ./traefik/certs/ca.pem:/usr/share/teklia/ca.pem:ro
     networks:
       - callico
 
@@ -101,6 +103,7 @@ services:
       traefik.enable: true
       traefik.http.routers.tasks.rule: Host(`flower.dev.localhost`)
       traefik.http.routers.tasks.tls: true
+      traefik.http.routers.tasks.tls.certresolver: le
 
   # Minio, for media files storage
   minio:
@@ -121,10 +124,12 @@ services:
       traefik.enable: true
       traefik.http.routers.minio.rule: Host(`minio.dev.localhost`)
       traefik.http.routers.minio.tls: true
+      traefik.http.routers.minio.tls.certresolver: le
       traefik.http.routers.minio.service:  minio-service
       traefik.http.services.minio-service.loadbalancer.server.port: 9000
       traefik.http.routers.minio-console.rule: Host(`minio-console.dev.localhost`)
       traefik.http.routers.minio-console.tls: true
+      traefik.http.routers.minio-console.tls.certresolver: le
       traefik.http.routers.minio-console.service:  minio-console-service
       traefik.http.services.minio-console-service.loadbalancer.server.port: 9001
     depends_on:

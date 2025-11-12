@@ -197,7 +197,7 @@ docker compose run callico django-admin createsuperuser
 
 On a first run, you will also need to first log onto the https://minio-console.dev.localhost[local MinIO instance] (user/password are both `minio1234`) and create the bucket `callico-dev`. Thanks to MinIO, media files will be stored on an online bucket instead of a local folder.
 
-You can then access your application exposed through Traefik (with Teklia self-signed SSL cert) as `+https://callico.dev.localhost+`.
+You can then access your application exposed through Traefik as `+https://callico.dev.localhost+`. Traefik automatically requests TLS certificates from Let's Encrypt for publicly reachable domains; when using the default `*.dev.localhost` hosts it falls back to its self-signed development certificate.
 
 [#debugging-tools]
 == Debugging tools

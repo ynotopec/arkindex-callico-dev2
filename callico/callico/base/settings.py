@@ -30,7 +30,7 @@ env = environ.Env(
     PROJECT_CREATION_ALLOWED=(bool, False),
     STORAGE_ENDPOINT_URL=(str, None),
     STORAGE_BUCKET_NAME=(str, None),
-    STORAGE_SSL_CA_PATH=(str, True),
+    STORAGE_SSL_CA_PATH=(str, None),
     STORAGE_LOCATION=(str, ""),
 )
 environ.Env.read_env()
@@ -342,7 +342,8 @@ if env("STORAGE_ENDPOINT_URL") is not None:
     AWS_STORAGE_BUCKET_NAME = env("STORAGE_BUCKET_NAME")
 
     # Use a provided CA to check minio SSL cert
-    AWS_S3_VERIFY = env("STORAGE_SSL_CA_PATH")
+    storage_ssl_ca_path = env("STORAGE_SSL_CA_PATH")
+    AWS_S3_VERIFY = storage_ssl_ca_path if storage_ssl_ca_path else True
 
     # Path prefix to prepend all uploads
     AWS_LOCATION = env("STORAGE_LOCATION")
