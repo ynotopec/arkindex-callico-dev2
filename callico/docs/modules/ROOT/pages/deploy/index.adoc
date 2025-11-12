@@ -71,6 +71,7 @@ Once you are familiar with these files, you can follow the steps below to deploy
  ** Domain names references, basically changing `callico.company.com`, `minio.callico.company.com` and `minio-console.callico.company.com` to your own domains
  ** The passwords for the PostgreSQL database and the Min.IO default user
  ** Min.IO or AWS S3-compatible connection information
+ ** A valid contact email for Let's Encrypt by setting the `LETSENCRYPT_EMAIL` environment variable (or editing `traefik.toml`)
 . Start the platform by running: `docker compose up`
 . Run the initial database migrations with the command: `docker compose run callico django-admin migrate`
 . Create an administrator account so you can later connect through the web interface: `docker compose run callico django-admin createsuperuser`
