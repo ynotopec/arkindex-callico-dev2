@@ -1,0 +1,32 @@
+[#configure-an-element-group-campaign]
+= Configure an *Element group* campaign
+
+You can create *Element group* campaigns in order to group elements together on your documents. For example, an *Element group* campaign can be used to group together text lines into paragraphs.
+
+[#configuration-parameters]
+== Configuration parameters
+
+After having filled out the xref:./index.adoc[generic configuration parameters], you need to pick two element types: a *Carousel type* and a *Group type*.
+
+image::campaigns/configure/element_group/element_types.png[Types configuration]
+
+The *Element type to display in a carousel* is the type of the elements to be grouped's parent, which is displayed in a carousel and is how contributors can navigate between elements to annotate. In the example below, the *Carousel type* is `page`: when annotating, contributors see page elements displayed in the carousel. They can navigate between pages using the carousel, and on these pages they can group text lines together into paragraphs.
+
+When selecting the type of the elements that are displayed in the carousel, *you indirectly choose which elements are the elements to-be-grouped*: they are all the direct children of the carousel elements. In our example, this means that all the elements that are present on a `page` element can be grouped together to create `paragraph` elements.
+
+The *Element type to use to publish the grouped elements* is the type of the elements that are to be created by the grouped elements. In the example configuration above, if the contributors are tasked with grouping text lines, then the groups created from these text lines will be `paragraph` elements.
+
+image::campaigns/configure/element_group/carousel.png[Carousel in action]
+
+Available types are retrieved from the object your Callico project is linked to on its xref:projects/edit.adoc[external provider]. If your campaign's Callico project is linked to an Arkindex project, the available types to select from are all the element types available on that Arkindex project.
+
+[#task-creation-details]
+== Task creation details
+
+When configuring an *Element group* campaign, you select the type of the elements that are displayed in the carousel, and the type of the elements created by the element grouping. The elements to-be-grouped depend on the carousel element type, which means that when you xref:tasks/create.adoc#special-case-element-group-campaign[create annotation tasks] for your campaign, the *Element type* that you select is not the type of the elements to be grouped. Rather, it is the type of the elements at the level of which the annotation tasks are created.
+
+image::campaigns/configure/element_group/task.png[Paragraph grouping task]
+
+In the example above, the *Element type to use to publish the grouped elements* is `paragraph` and the *Element type to display in a carousel* is `page`: the elements to-be-grouped are the children of those `page` elements. By using the *Element type* field from the task creation form, the tasks have been created on `folder` elements: each user has to annotate `page` elements which are inside a `folder` element, and can navigate through the different pages contained in that folder using the carousel.
+
+Once your campaign is configured, you can xref:tasks/create.adoc[create tasks] to start gathering annotations on your documents.

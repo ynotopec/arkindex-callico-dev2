@@ -1,0 +1,11 @@
+[#language-specifics]
+= Language specifics
+
+[#bidi-text]
+== BiDi text
+
+Fields with *right-to-left text* support bidirectional text. This means that you can write annotations with text that mixes languages and can be read in both directions. In this case, Latin words will be inserted on the right by default. To force the text to be inserted on the left, you can use the shortcut `ctrl+left`. This will append an invisible https://unicode-explorer.com/c/200F[Right-to-Left Mark] and allow you to insert the next word on the left, even if the previous letters are in Latin. Inserting a `space` character will reset the insertion order to the default orientation of the field.
+
+Below is an example of how to use the keyboard shortcut:
+
+image:BiDi.png[Example of the use of the keyboard shortcut]

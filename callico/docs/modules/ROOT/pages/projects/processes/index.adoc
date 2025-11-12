@@ -1,0 +1,6 @@
+[#processes]
+= Processes
+
+In Callico, processes are tasks that can take several seconds, minutes or even hours to complete. To avoid paralysing users for long periods of time, they are *asynchronous* and can be executed in parallel with each other, at the same time as users use the web interface.
+
+Such processes are mainly used when importing data and elements from third-parties but also when exporting annotation results.

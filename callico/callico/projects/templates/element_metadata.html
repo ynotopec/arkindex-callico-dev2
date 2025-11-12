@@ -1,0 +1,14 @@
+{% load i18n %}
+
+<div class="control">
+  {% for key, value in user_task.task.element.metadata.items %}
+    <div class="is-flex mr-3">
+      <p class="truncate-long-words" title="{{ value }}">
+      {% comment %}We translate the colon punctuation since it should be preceded by a space in French unlike in English{% endcomment %}
+        <span class="has-text-weight-bold">{{ key }}</span><span>{% translate ": " %}</span>
+        <span class="metadata-value">{{ value }}</span>
+      </p>
+      <i class="copy-to-clipboard fas fa-clipboard is-clickable has-text-grey" title="{% translate 'Copy the metadata value to your clipboard' %}"></i>
+    </div>
+  {% endfor %}
+</div>

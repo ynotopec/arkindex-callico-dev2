@@ -1,0 +1,170 @@
+{
+    "name": "HORAE no users",
+    "arkindex_project_id": "bf70b718-285a-4c87-b6d9-b314fdb1f055",
+    "public": true,
+    "users": false,
+    "element_types": [
+        {
+            "name": "folder",
+            "id": "b4b68a5f-26cc-4e0a-874e-e7faadc8576e"
+        },
+        {
+            "name": "page",
+            "id": "70b88d31-fd3a-42f4-8c42-f001a42e9ac9"
+        },
+        {
+            "name": "text_line",
+            "id": "10e9b9ec-9284-4c1a-8e7b-128b13afec9d"
+        },
+        {
+            "name": "text_zone",
+            "id": "382dda1a-3c88-414e-8ebf-d504195095ad"
+        },
+        {
+            "name": "word",
+            "id": "d7095ea2-45e3-402f-aa3c-24e85e388bb6"
+        },
+        {
+            "name": "paragraph",
+            "id": "a6648c2e-fc4d-4251-bfe6-8fe0b170cb64"
+        }
+    ],
+    "ml_classes": [],
+    "folders": [
+        {
+            "id": "b24fb50c-1a3e-4aa2-a88d-68e36c5cb4c5",
+            "name": "\u00c9tats-Unis, Cambridge, Harvard College Library, Typ 958",
+            "type": "folder",
+            "pages": [
+                {
+                    "id": "b2fe9639-0509-4b48-9ca4-163c38edc729",
+                    "name": "(seq. 1)",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://ids.lib.harvard.edu/ids/iiif/6522978",
+                        "width": 3312,
+                        "height": 3739
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3739
+                        ],
+                        [
+                            3312,
+                            3739
+                        ],
+                        [
+                            3312,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "id": "6ddfc280-9941-459c-a675-30314768b5bf",
+                    "name": "(seq. 2)",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://ids.lib.harvard.edu/ids/iiif/6522979",
+                        "width": 3333,
+                        "height": 3747
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3747
+                        ],
+                        [
+                            3333,
+                            3747
+                        ],
+                        [
+                            3333,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "id": "03a5c0be-1bc8-4ec5-a5a4-93345bd05716",
+                    "name": "(seq. 3)",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://ids.lib.harvard.edu/ids/iiif/6522980",
+                        "width": 3288,
+                        "height": 3755
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3755
+                        ],
+                        [
+                            3288,
+                            3755
+                        ],
+                        [
+                            3288,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "id": "3656084f-760a-4345-88d0-54b9991f4c78",
+                    "name": "(seq. 4)",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://ids.lib.harvard.edu/ids/iiif/6522981",
+                        "width": 3279,
+                        "height": 3727
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3727
+                        ],
+                        [
+                            3279,
+                            3727
+                        ],
+                        [
+                            3279,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}

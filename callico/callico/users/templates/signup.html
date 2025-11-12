@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n bulma_tags %}
+
+{% block title %}
+  {% translate "Register" %}
+{% endblock title %}
+
+{% block content %}
+  <h1 class="title">{% translate "Register on Callico" %}</h1>
+  <h1 class="subtitle">{% translate "To participate in collaborative annotation projects" %}</h1>
+
+  <form method="post">
+    {% csrf_token %}
+
+    {{ form | bulma }}
+
+    <button class="button is-info" type="submit">{% translate "Register" %}</button>
+    <div class="is-inline-block">
+      <span class="ml-3 has-text-right is-flex is-align-items-center">
+        {% translate "Already have an account?" %}
+        <a class="button is-ghost pl-1" href="{% url 'login' %}">{% translate "Sign in" %}</a>
+      </span>
+    </div>
+  </form>
+{% endblock %}

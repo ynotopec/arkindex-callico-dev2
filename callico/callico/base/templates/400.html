@@ -1,0 +1,14 @@
+{% extends "error_page.html" %}
+{% load i18n %}
+
+{% block title %}
+  {% translate "Bad request" %}
+{% endblock title %}
+
+{% block error_title %}
+  400 - {% translate "Bad request" %}
+{% endblock %}
+
+{% block error_subtitle %}
+  {{ error_message }}
+{% endblock %}

@@ -1,0 +1,18 @@
+# Allow lines to be as long as 120.
+line-length = 120
+
+[lint]
+select = [
+    # pycodestyle
+    "E", "W",
+    # pyflakes
+    "F",
+    # isort
+    "I",
+    # flake8-debugger
+    "T10"
+]
+ignore = ["E501"]
+
+[lint.isort]
+known-third-party = ["django","environ","pytest","setuptools"]

@@ -1,0 +1,15 @@
+[#campaigns]
+= Campaigns
+
+The collection of annotations in Callico is organized in campaigns. You can create multiple annotation campaigns in a xref:projects/index.adoc[project], and populate them with xref:tasks/index.adoc[tasks] for users to annotate.
+
+The following campaign modes are available, allowing you to collect different kinds of annotations on various types of documents:
+
+* A *transcription campaign* can be used to transcribe documents. The elements to transcribe can be whole pages, paragraphs, text lines, etc.
+* An *entity annotation campaign* can be used to annotate entities on documents that have existing transcriptions.
+* An *entity form campaign* can be used to annotate entities on documents that do not have existing transcriptions, by displaying a form, corresponding to the entities you want annotated, next to your document images.
+* An *elements creation campaign* can be used to create objects on documents. For example, you could create an *Elements* campaign to draw text line elements on the pages of your documents.
+* An *elements grouping campaign* can be used to create new elements by building groups of existing elements on your documents. For example, you could create an *Element group* campaign to create paragraph elements from existing text line elements.
+* A *classification campaign* can be used to classify documents, or elements in these documents. For example, you could create a *Classification* campaign to assign classes such as `blank`, `text`, `illustration` or `cover` to the pages of digitized books.
+
+To create an annotation campaign, see the xref:./create.adoc[campaign creation documentation].

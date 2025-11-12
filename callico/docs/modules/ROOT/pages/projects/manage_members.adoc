@@ -1,0 +1,54 @@
+[#manage-members-in-a-project]
+= Manage members in a project
+
+[WARNING]
+====
+You must be a manager of the project to manage its members.
+====
+
+If you are a member with manager role, the `Manage members` action is displayed in the section named *Project* from the menu on the left of the project details page.
+
+image::projects/details.png[Project details page]
+
+From this page, you can add or remove members, as well as update their role manually. If you want to add many users or people who do not yet have a Callico account as contributors, you can use the project invitation link. For more information, please see the xref:./invite_users.adoc[dedicated page].
+
+Members in a project can have three different roles:
+
+* *Contributors* annotate the documents,
+* *Moderators* validate or invalidate the collected annotations,
+* *Managers* manage the project by creating and coordinating campaigns and tasks.
+
+image::projects/members/list.png[Project members list]
+
+[#add-a-member]
+== Add a member
+
+To add a member, you can click on the `Add a new member` button displayed just below the members table.
+
+You will be redirected to a page where you will have to input the email address of an existing Callico user and pick a role to assign them.
+
+image::projects/members/create.png[Member creation form]
+
+After clicking on the `Add` button, you will be redirected to the list of your project's members. If you want to create multiple memberships at once, you can rather click on the `Add and create another` button which will refresh the current form to enter new values.
+
+[#edit-a-member]
+== Edit a member
+
+To edit a member's role, you can click on the blue `pencil` button displayed in the members table.
+
+image::projects/members/edit.png[Member edition form]
+
+[#delete-a-member]
+== Delete a member
+
+To remove a member from your project, you can click on the red `trash` button displayed in the members table. You will be redirected to a page asking you to confirm the membership deletion.
+
+image::projects/members/delete.png[Member deletion form]
+
+[NOTE]
+====
+
+* If a user with the contributor role is removed from the project, or promoted to another role within the project, then all their draft and pending tasks will be automatically deleted. Their completed tasks will be preserved.
+* If a user with the manager role is removed from the project, or demoted to another role within the project, then all their xref:tasks/create.adoc#preview-a-single-task[preview tasks] will be automatically deleted.
+* For security reasons, you are not allowed to update or delete your own membership.
+====

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n bulma_tags basefilters %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=campaign.project campaign=campaign %}
+{% endblock breadcrumb %}
+
+{% block title %}
+  {% blocktranslate with action=action object=obj %}{{ action }} a {{ object }}{% endblocktranslate %}
+{% endblock title %}
+
+{% block content %}
+  <a href="{% url 'campaign-update' pk=campaign.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+  <h1 class="title">{% blocktranslate with action=action object=obj %}{{ action }} a form {{ object }} on this campaign{% endblocktranslate %}</h1>
+
+  <form method="post">
+    {% csrf_token %}
+
+    {{ form | bulma }}
+
+    <button class="button is-success" type="submit">{{ action }}</button>
+    {% if extra_action %}
+      <input class="button is-success is-light ml-2" type="submit" name="{{ extra_action }}" value="{{ extra_action }}" />
+    {% endif %}
+  </form>
+
+  {% if not is_field_group %}
+    <datalist id="entity-type-list">
+      {% for entity_type in campaign.project.provider_extra_information.entity_types %}
+        <option value="{{ entity_type.name }}"></option>
+      {% endfor %}
+    </datalist>
+  {% endif %}
+{% endblock %}
+
+{% block script %}
+  {% if not is_field_group %}
+    {% translate "OR" as or_span_text %}
+    <script type="text/javascript">
+      window.addEventListener('DOMContentLoaded', () => {
+        callico.bootEntityFormFieldForm({{ or_span_text|jsonify }})
+      })
+    </script>
+  {% endif %}
+{% endblock script %}

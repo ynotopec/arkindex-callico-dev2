@@ -1,0 +1,563 @@
+[#releases]
+= Releases
+
+[#0-6-6]
+== 0.6.6
+
+Released on *6 June 2025* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.6.6[GitLab]
+
+* Annotators can filter the entity types by using a search field
+* Annotators can create fully overlapping entities in `Entity` campaigns
+* Fix a bug to remove extra `?` in some URLs on the website
+
+[#0-6-5]
+== 0.6.5
+
+Released on *26 February 2025* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.6.5[GitLab]
+
+* More precise IIIF ratio algorithm in elements thumbnails, using the `max` image size feature instead of `full`
+* Upgrade Django to 5.1
+* Increase `IMAGE_QUALITY` constant in `InteractiveImage` to provide a deeper zoom level for large images
+* Allow users to set the entity colors in entity type campaigns
+* Support full word selection on entity campaigns
+* During Arkindex export, do not log an error when an `Elements` or `ElementGroup` annotation is empty
+* Remove the beta mode `Transcription on the image` from `Entity` campaigns
+
+[#0-6-4]
+== 0.6.4
+
+Released on *31 May 2024* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.6.4[GitLab]
+
+* The IIIF image and the element thumbnail URLs are included in new columns in CSV and XLSX exports.
+* Initial annotations for *Elements* campaigns are now pre-filled with imported elements, if they match xref:./campaigns/configure/elements.adoc#configuration-parameters[the configured *Element types to use to annotate*]. This allows users to validate or correct Machine Learning predictions.
+
+image:releases/064-pre-filled-segmentation.png[Pre-filled segmentation task]
+
+* As for *Entity Form* campaigns, to facilitate the validation of imported transcriptions during *Transcription* annotations, there is a new configuration option to define a confidence threshold below which the imported data should be corrected by contributors. Such data is highlighted in red during annotation.
+* Thumbnail height has been restricted across the application to prevent very tall images from breaking Callico's display.
+* To cleanup a project, managers can xref:./campaigns/close_reopen_archive.adoc#archive-a-campaign[archive campaigns] from their details page, making them completely inaccessible.
+* Project creation, a feature originally available only to staff users, can now be enabled for all users by adding the `PROJECT_CREATION_ALLOWED` Django setting to the instance.
+* *Entity Form* campaign fields can be configured using a list of authority values, such fields will be displayed as `<input/>` elements, linked to a filterable dropdown listing allowed annotations. Authority records can be ingested by an instance administrator using a new Django command.
+* *_For developers:_* Various linting tools (`flake8`, `isort` and `black`) have been replaced by https://docs.astral.sh/ruff/[Ruff].
+
+[discrete#django-commands-064]
+==== Django commands
+
+* `ingest-authority` allows to ingest authority values (along with an optional identifier and metadata) from a CSV file.
+
+[#0-6-3]
+== 0.6.3
+
+Released on *25 March 2024* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.6.3[GitLab]
+
+* The number of comments is included in a new column in CSV and XLSX exports.
+* Worker runs replace worker versions when filtering elements to import from Arkindex, this change is transparent for users.
+* Campaign progress percentage displayed on the project details and task lists pages is now better approximated.
+* Elements from datasets can be easily imported, and filtered by set(s), thanks to xref:./projects/elements/import/arkindex.adoc#element-or-dataset[a new feature on the Arkindex import page].
+* *_For developers:_* Frontend stack has been migrated to use https://v3.vuejs.org/[Vue 3] rather than https://v2.vuejs.org/[Vue 2] which is no longer actively maintained.
+
+[#0-6-2]
+== 0.6.2
+
+Released on *14 February 2024* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.6.2[GitLab]
+
+* Users are now able to define a display name from their preferences, which will be displayed in several places.
+
+image:releases/062-user-preferences.png[User preferences page]
+
+* CSV and XLSX exports have been extended to support all campaign modes. *Elements*, *Element group* and *Entity* annotations offer a minimal export allowing to acknowledge how many objects are annotated for each assigned task.
+* Project' members management has been redesigned and now features xref:./projects/manage_members.adoc[its own dedicated pages], as well as xref:./projects/invite_users.adoc[the project invitation link generation].
+* *Add and create another* buttons are displayed when adding new members to a project or a form field/group to an *Entity form* campaign configuration.
+* A bunch of small features were implemented:
+ ** The number of results for each list displayed in Callico is always visible, even when they are not paginated.
+ ** It is possible to easily copy the displayed metadata from the annotation and moderation pages.
+ ** Images can be opened in a new tab to better visualize large document that may get pixelated when zoomed in.
+
+image:releases/062-open-new-tab-icon.png[Icon to open the image in a new tab]
+
+* *_For developers:_* Arkindex provider related code has been moved to a dedicated module.
+
+[#0-6-1]
+== 0.6.1
+
+Released on *14 December 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.6.1[GitLab]
+
+* Following https://teklia.com/blog/open-sourcing-callico/[Callico's Open Sourcing], a new documentation page detailing xref:./contributing/index.adoc[how to contribute to its source code] is available.
+* It is now possible to group *EntityForm* campaign fields into sections for clearer display during annotation, moderation, etc. A documentation section explaining xref:./campaigns/configure/entity_form.adoc#configuration-parameters-field-groups[how these groups work] is also included.
+
+image:releases/061-form-fields-table.png[Form fields table with a group]
+
+* A bug preventing administrators from deleting projects directly via the Django administration panel is fixed.
+* *_For developers:_* `Python` version, `NodeJS` version and `pre-commit` linting suite were upgraded.
+
+[#0-6-0]
+== 0.6.0
+
+Released on *8 November 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.6.0[GitLab]
+
+* To easily communicate between users while working on a task, xref:./tasks/discuss.adoc[a new commenting system] is added in this release. Contributors, moderators and managers can post comments about a task and share information to provide the most precise annotations possible.
+
+image:releases/060-task-discussion.png[Task discussion]
+
+* Consequently to the new commenting system feature, the task reporting functionality has been removed and replaced by it.
+* To facilitate annotation and moderation on oriented images, it is now possible to use arrow icons to rotate the image users are working on by 90° to the left or right.
+
+image:releases/060-rotation-icons.png[Rotation icons on the image]
+
+[#0-5-9]
+== 0.5.9
+
+Released on *21 September 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.5.9[GitLab]
+
+* The recently released version of Arkindex (https://teklia.com/our-solutions/arkindex/releases/1-5-1/[1.5.1]) is correctly supported while fetching extra information on projects linked to an Arkindex project.
+* The fields configuration for *Entity form* campaigns has been redesigned, allowing you to use xref:./campaigns/configure/entity_form.adoc#configuration-parameters-fields[a new, simpler and more attractive interface].
+* Children of non-folder elements without an image are now displayed in a scrollable carousel to improve the user experience.
+
+[#0-5-8]
+== 0.5.8
+
+Released on *11 September 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.5.8[GitLab]
+
+* An encoding bug, appearing in the mail that managers receive when a user reports a problem, has been fixed.
+* Before starting an Arkindex export on an *Entity form* campaign, you can also choose to export entities to a specific parent type using xref:./campaigns/export/arkindex.adoc#also-export-entities-on-a-parent-extra-field-for-entity-form-campaigns[a new dedicated field].
+* Calls to the Arkindex API which fail due to a server error are now retried a few times during data import and export.
+* *_For developers:_* Tests execution time is greatly reduced.
+
+[#0-5-7]
+== 0.5.7
+
+Released on *21 July 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.5.7[GitLab]
+
+* Killing a running process is now easily achievable from xref:./projects/processes/view_details.adoc[its details page].
+* If you submit Arkindex import and export forms using the `Enter` key, a confirmation modal will appear to make sure your action was intentional.
+* Before starting an Arkindex export on an *Entity form* campaign, you can re-order the entities to publish using xref:./campaigns/export/arkindex.adoc#sort-the-entities-to-export-extra-field-for-entity-form-campaigns[a new dedicated field]. By default, the entities order from your campaign configuration will be used during publication.
+
+[#0-5-6]
+== 0.5.6
+
+Released on *3 July 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.5.6[GitLab]
+
+* Callico has been released as *Open Source* software under the *AGPL-v3 license*.
+* Preview tasks are correctly deleted when downgrading or removing a `Manager` membership from a project.
+* Following the addition of new statistics on the campaign details page in the link:./#055[version 0.5.5], a bug has been fixed to improve performances on this page for campaigns with a large number of tasks.
+* Annotations on a campaign can now also be exported in a XLSX file.
+* Several new sections have been added to the online documentation:
+ ** xref:./campaigns/export/xlsx.adoc[Export campaign results as XLSX],
+ ** xref:./get_started.adoc[Get started with Callico],
+ ** xref:./deploy/index.adoc[Self-host your own instance].
+
+[#0-5-5]
+== 0.5.5
+
+Released on *6 June 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.5.5[GitLab]
+
+* The overall progress of each campaign is now displayed to all users on the project details page.
+* The campaign details page, accessible by moderators and managers, is enhanced with more statistics about tasks and assignments.
+
+image:releases/055-campaign-dashboard.png[Campaign dashboard]
+
+* Several new sections have been added to the online documentation:
+ ** xref:./projects/elements/index.adoc[Elements] browsing and how to import them,
+ ** xref:./projects/processes/index.adoc[Processes] listing and details,
+ ** xref:./campaigns/index.adoc[Campaigns] creation, configuration and how to export their results.
+* During the publication to Arkindex, empty *Entity form* and *Transcription* annotations are now exported using the https://www.compart.com/en/unicode/U+2205[*∅*] character to better target elements with no content.
+
+[#0-5-4]
+== 0.5.4
+
+Released on *24 May 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.5.4[GitLab]
+
+* It is now possible to configure fields on *Entity form* campaigns with a regular expression that will be used to validate the contributor input during annotation.
+* The previous status filter on the task list for managers and moderators has been split into two separate filters. One that allows you to filter by actual task status (e.g. `Pending`, `Annotated`, `Validated`) and another that provides information on the user feedback (reported, marked as uncertain).
+
+image:releases/054-admin-task-list-filters.png[State/user feedback filters on the admin task list]
+
+* Managers can close and reopen campaigns from their details page. Several actions, like annotation and moderation for example, will no longer be available once a campaign is closed.
+* Following the addition of the moderation feature, a new selector on the Arkindex export page allows to specify which tasks to process during the publication, `Annotated` ones, `Validated` ones or both at the same time.
+* Ongoing annotations and corrections are now saved in the `localStorage` of the browser to prevent users from losing their work when a page is unintentionally reloaded, closed, badly submitted, etc.
+
+image:releases/054-ongoing-in-localstorage.png[Ongoing annotation saved in local storage]
+
+[#0-5-3]
+== 0.5.3
+
+Released on *4 May 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.5.3[GitLab]
+
+* The numerous actions available from the project and campaign details pages are now grouped by theme in a dedicated menu displayed on the left side of these pages for moderators and managers.
+
+image:releases/053-project-details-menu.png[Project details menu]
+
+image:releases/053-campaign-details-menu.png[Campaign details menu]
+
+* Users' language preference is saved and properly used when Callico emails are sent to them.
+* The filters applied on task lists for all users are now propagated to annotation and moderation pages. Redirection and navigation on these pages are done according to the filtered list, the actual content of the list is reminded to users via a small icon in the upper right corner.
+
+image:releases/053-task-list-filters-icon.png[New icon to remind users about applied filters]
+
+* To facilitate the validation of imported transcription entities during *Entity form* annotations, there is a new configuration option per field to define a confidence threshold below which the imported data should be corrected by contributors. Such data is highlighted in red during annotation.
+
+image:releases/053-entity-confidence.png[Displayed entity confidence]
+
+* *_For developers:_* Staging instances used to deploy work in progress are now populated with testing data.
+
+[discrete#django-commands-053]
+==== Django commands
+
+* *_For developers:_* Staging fixtures generation is available using the new `build-fixtures` command.
+
+[#0-5-2]
+== 0.5.2
+
+Released on *18 April 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.5.2[GitLab]
+
+* Preview tasks no longer interfere with available task counts.
+* The moderation of assigned tasks, by moderators and managers, has been added and allows to easily reject invalid annotations, correct imperfect ones and validate satisfying ones. Unannotated tasks can also be completed during the moderation phase to facilitate the completion of campaigns. Read xref:./tasks/moderate.adoc[the dedicated documentation page] to learn more about this new feature.
+
+[#0-5-1]
+== 0.5.1
+
+Released on *13 April 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.5.1[GitLab]
+
+* Managers can generate and share invitation links to their projects from the edition page. Upon clicking, users will be able to choose whether or not to join the project as a contributor.
+
+image:releases/051-invitation_page.png[Invitation to a project]
+
+* The CSV export is slightly improved:
+ ** It outputs a new column holding a potential user's comment.
+ ** Transcriptions are now properly joined by following the annotated elements order.
+* Reported and uncertain tasks visualization is now added for all users on the various task lists.
+
+'''
+
+image:releases/051-reported_uncertain_admin_list.png[Reported/uncertain icons on the admin task list]
+
+'''
+
+image:releases/051-reported_uncertain_contrib_list.png[Reported/uncertain icons on the contributor task list]
+
+'''
+
+* The order in which elements are selected during *Element group* annotations is now saved and properly restored during publication.
+* Bidirectional text annotations _(e.g. mixing Arab & English)_ can be easily created using a new keyboard shortcut, see xref:./languages.adoc#bidi-text[the dedicated documentation page] for more information.
+* An email containing statistics about the campaigns activity is now sent to managers on a daily basis.
+* The Arkindex import form allows you to specify whether or not to import transcription entities that can be prioritized by sorting multiple sources (`manual`/`WorkerVersion ID`) on elements.
+* The Arkindex export form supports two new options:
+ .. One to force the republication of annotations marked as `published`.
+ .. Another to disable the grouping of multiple annotations before publication and publish them as is instead.
+
+image:releases/051-publication_options.png[New publication options]
+
+* xref:./projects/index.adoc[New documentation pages] are available to detail the projects' management (create/edit/invite).
+
+[discrete#django-commands-051]
+==== Django commands
+
+* `import-arkindex-elements` now supports importing transcription entities on elements.
+* `publish-arkindex-annotations` also supports the two new options to force the republication and publish ungrouped annotations.
+
+[#0-5-0]
+== 0.5.0
+
+Released on *23 March 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.5.0[GitLab]
+
+* The homepage has a new design that will make it clearer, prettier and above all faster! All the information that was previously available on the homepage has been moved to the details page of each project.
+
+image:releases/050-homepage_new_design.png[New design for the homepage]
+
+image:releases/050-project_details_page.png[Project details page]
+
+* New projects can now be created by staff users and are easily manageable by managers who can edit such objects and manage members and their rights from dedicated pages.
+
+image:releases/050-project_edit_page.png[Project edit page]
+
+* Non-folder elements without an image are properly displayed and handled throughout the whole application.
+* Managers and moderators have access to a new page to view existing annotations on *Element group* campaigns.
+* The mail alerting that a user has completed all their tasks has been removed to avoid spamming managers who have access to campaigns with available tasks.
+* Process logs are displayed in a new dedicated page.
+* It is possible to export a campaign annotations to Arkindex using a new frontend form.
+* *_For developers:_* Each work in progress is always deployed on a staging instance to simplify the review process.
+
+[discrete#django-commands-050]
+==== Django commands
+
+* `publish-arkindex-annotations` is now run asynchronously.
+
+[#0-4-3]
+== 0.4.3
+
+Released on *1 March 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.4.3[GitLab]
+
+* The performance of the homepage is improved, the page will be much faster for users with many projects.
+* Tasks can now be annotated by several volunteers and contributors based on a new campaign configuration setting.
+* Users can choose which available tasks they want to work on through a new tab named *Available* in their task list.
+
+[#0-4-2]
+== 0.4.2
+
+Released on *22 February 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.4.2[GitLab]
+
+* xref:./campaigns/configure/element_group.adoc[*Element group* campaign mode] is now available:
+ ** managers can create and configure such campaigns,
+ ** contributors can annotate such tasks,
+ ** the feature that will allow managers and moderators to view existing annotations will be included in a future release.
+* xref:./tasks/index.adoc[New documentation pages] are available to detail the tasks management (create/list/publish/unassign tasks) on a campaign.
+* The *Request tasks* button is replaced by clearer notification messages when disabled.
+* Users can navigate between their tasks directly from the annotation page using navigation arrows.
+* Managers can now:
+ ** see the last login and last annotation dates for each user on the page to unassign tasks,
+ ** visualize the number of available tasks on a campaign through the progress bar,
+ ** receive an alert by mail when there are no more available tasks on a campaign with volunteers.
+* Various fixes related to the *Elements* campaigns are provided:
+ ** Patch a regression that allowed to configure and draw `folder` elements,
+ ** Drawn polygon points are better displayed and easier to focus,
+ ** The polygon being edited is now highlighted in the polygon list on the right.
+* *_For developers:_* A new clearer and more efficient JS/CSS build is introduced.
+
+[discrete#django-commands-042]
+==== Django commands
+
+* Support *Element group* annotations publication to Arkindex in the `publish-arkindex-annotations` command.
+* The `publish-arkindex-annotations` command is updated to support a couple breaking changes from https://teklia.com/solutions/arkindex/releases/1-4-0/[Arkindex 1.4.0].
+
+[#0-4-1]
+== 0.4.1
+
+Released on *16 January 2023* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.4.1[GitLab]
+
+* A lot of preliminary work for the *Element group* annotation has been added, including:
+ ** allowing to create tasks on `folder` elements,
+ ** a new *Vue* component to display a carousel of elements,
+ ** a new *Vue* component to manage (create/delete/update) groups of selected elements.
+* Anonymous users now have access to the homepage listing public projects.
+* To help managers during the tasks creation, the informative message, displayed on submit, is updated with the number of created tasks.
+* The breadcrumb navigation is extended to campaign management pages.
+* Tasks are rendered as cards instead of table rows in the contributor task list.
+* Contributors are warned before leaving an annotation page with unsaved changes.
+* All missing filters from the Arkindex import command are now supported in the frontend form.
+
+[#0-4-0]
+== 0.4.0
+
+Released on *19 December 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.4.0[GitLab]
+
+* Managers can list processes (asynchronous tasks launched with Celery) on a project.
+* It is possible to import elements from Arkindex through a new frontend form, only a few of the original command (`import-arkindex-elements`) filters are usable, missing ones will be added in the next release.
+
+image:releases/040-arkindex_import_form.png[ArkindexImport frontend form]
+
+* Annotations on a campaign can be exported in a CSV file.
+* Created tasks are published as `Draft` at first to allow managers to validate their display before making them available to contributors.
+* Managers can create and configure xref:./campaigns/configure/element_group.adoc[*Element group* campaigns].
+* Contributors can quickly annotate *Classification* tasks using keyboard shortcuts.
+* Time spent on an annotation task is stored to identify problematic elements.
+* Build and expose a *Django REST Framework* API; an unique endpoint, to retrieve an element's details, is available for now.
+
+[discrete#django-commands-040]
+==== Django commands
+
+* `import-arkindex-elements` is now run asynchronously.
+
+[#0-3-6]
+== 0.3.6
+
+Released on *14 November 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.3.6[GitLab]
+
+* Annotated values on *Entity form* and *Transcription* tasks can now be marked as uncertain.
+* Metadata linked to the involved element are displayed to the user to provide some context during the annotation.
+* Callico's homepage features a new lighter display that separates private and public projects.
+
+[discrete#django-commands-036]
+==== Django commands
+
+* `import-arkindex-elements` now supports importing metadata on elements.
+* Transcriptions to import can be prioritized by sorting multiple sources (`manual`/`WorkerVersion ID`) when using the `import-arkindex-elements` command.
+
+[#0-3-5]
+== 0.3.5
+
+Released on *21 October 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.3.5[GitLab]
+
+* Tasks can still be skipped after being annotated, that was not possible before.
+* Contributors can report a problem on a task they are annotating by clicking on the new 🚩 button.
+
+image:releases/035-annotation_report_problem.png[Report a problem during an annotation]
+
+* *Entity form* campaign fields can be configured with an extra help text that will be displayed to guide the user during the annotation.
+
+[discrete#django-commands-035]
+==== Django commands
+
+* Requirements to publish annotations using the `publish-arkindex-annotations` command are relaxed to prevent big errors when encountering invalid values.
+
+[#0-3-4]
+== 0.3.4
+
+Released on *10 October 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.3.4[GitLab]
+
+* A confirmation email is now sent to the user on sign up.
+* Improve the contributor task list page with another listing order and status tabs instead of filters.
+* Overall improvements for the zoom feature in the `InteractiveImage` library.
+* Unassigned tasks for campaign volunteers are now available:
+ ** Managers can create such tasks through the tasks creation form,
+ ** Volunteers can request such tasks from the homepage and contribute to public projects.
+
+[discrete#django-commands-034]
+==== Django commands
+
+* `import-arkindex-elements` now supports filtering elements to import by their `WorkerVersion`.
+
+[#0-3-3]
+== 0.3.3
+
+Released on *21 September 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.3.3[GitLab]
+
+* *Entity form* campaign fields can be configured using a list of allowed values, such fields will be displayed as `<select/>` elements listing predefined options.
+* Drawing polygons is now supported on *Elements* tasks.
+
+image:releases/033-elements_draw_polygon.png[Draw polygons on Elements annotations]
+
+* Sign up on Callico is available through a new form and can be activated using the `SIGNUP_ENABLED` Django setting.
+
+[#0-3-2]
+== 0.3.2
+
+Released on *1 September 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.3.2[GitLab]
+
+* Lighten the *Transcription* annotation page by building a new customized display (selectable in the campaign configuration).
+* Breadcrumb navigation is available on annotation pages.
+* Add custom and pretty error pages.
+* Managers have a new option to create a preview task (through the tasks creation form) and validate their campaign configuration before assigning contributors.
+
+[#0-3-1]
+== 0.3.1
+
+Released on *22 August 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.3.1[GitLab]
+
+* xref:./campaigns/configure/elements.adoc[*Elements* campaign mode] is now available:
+ ** managers can create and configure such campaigns,
+ ** contributors can annotate such tasks (only drawing rectangles is supported for now),
+ ** managers and moderators can view existing annotations.
+* Support right to left transcriptions and annotations for various campaign modes.
+
+[discrete#django-commands-031]
+==== Django commands
+
+* Support *Elements* annotations publication to Arkindex in the `publish-arkindex-annotations` command.
+
+[#0-3-0]
+== 0.3.0
+
+Released on *10 August 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.3.0[GitLab]
+
+* xref:./campaigns/configure/entity.adoc[*Entity* campaign mode] is now available:
+ ** managers can create and configure such campaigns,
+ ** contributors can annotate such tasks,
+ ** managers and moderators can view existing annotations,
+ ** three annotation displays are usable, transcription only, transcription next to the image, image only.
+* *Classification*, *Entity* and *Entity form* tasks can be contextualized using a new xref:./campaigns/configure/index.adoc#context-ancestor-type[configuration option] allowing to display the element to be annotated in one of its ancestor's context.
+
+[discrete#django-commands-030]
+==== Django commands
+
+* Support *Entity* annotations publication to Arkindex in the `publish-arkindex-annotations` command.
+
+[#0-2-3]
+== 0.2.3
+
+Released on *22 July 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.2.3[GitLab]
+
+* Setup and publish xref:./index.adoc[Callico's online documentation].
+* xref:./campaigns/configure/classification.adoc[*Classification* campaign mode] is now available:
+ ** managers can create and configure such campaigns,
+ ** contributors can annotate such tasks,
+ ** managers and moderators can view existing annotations.
+
+[discrete#django-commands-023]
+==== Django commands
+
+* The `publish-annotations` command is renamed to `publish-arkindex-annotations`.
+* Support *Classification* annotations publication to Arkindex in the `publish-arkindex-annotations` command.
+
+[#0-2-2]
+== 0.2.2
+
+Released on *21 June 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.2.2[GitLab]
+
+* Show the campaigns progression to users on the homepage and above the task list.
+
+[discrete#django-commands-022]
+==== Django commands
+
+* `import-arkindex-elements` now supports importing manual transcriptions too.
+
+[#0-2-1]
+== 0.2.1
+
+Released on *15 June 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.2.1[GitLab]
+
+* Mailing is configured and allows to notify:
+ ** users, when their account is created,
+ ** contributors, when new tasks are assigned to them,
+ ** managers, when a user has completed all their tasks.
+
+[discrete#django-commands-021]
+==== Django commands
+
+* Enhance the `import-arkindex-elements` command to import transcriptions on elements.
+
+[#0-2-0]
+== 0.2.0
+
+Released on *2 June 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.2.0[GitLab]
+
+* Allow contributors to annotate *Entity form* tasks.
+* Existing annotations can be corrected.
+* Managers and moderators have access to a new page displaying the contributor's annotations for a task.
+* The tasks assignment form supports a couple more options:
+ ** filtering elements to assign,
+ ** limiting the number of tasks to assign per user.
+
+[discrete#django-commands-020]
+==== Django commands
+
+* Enhance the `import-arkindex-elements` command to support filtering elements by their class name.
+* Support *Entity form* annotations publication to Arkindex in the `publish-annotations` command.
+
+[#0-1-2]
+== 0.1.2
+
+Released on *19 May 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.1.2[GitLab]
+
+* Child elements on transcription tasks are now displayed using the `InteractiveImage` library.
+* Managers can create and configure xref:./campaigns/configure/entity_form.adoc[*Entity form* campaigns]. Annotation support for this mode will be added in the next release, it will allow the contributors to answer questions that are displayed to them through a form.
+
+[discrete#django-commands-012]
+==== Django commands
+
+* Annotations publication to Arkindex is now available through the new `publish-annotations` command.
+
+[#0-1-1]
+== 0.1.1
+
+Released on *27 April 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.1.1[GitLab]
+
+* Allow contributors to:
+ ** annotate *Transcription* tasks,
+ ** skip an annotation,
+ ** list their campaigns,
+ ** list their assigned tasks.
+* *Transcription* tasks now support the annotation of filtered child elements in parallel to the assigned one.
+
+[discrete#django-commands-011]
+==== Django commands
+
+* Improve the command to import Arkindex elements, `import-arkindex-elements`, to support specifying a parent folder to import.
+
+[#0-1-0]
+== 0.1.0
+
+Released on *14 April 2022* &bull; View on https://gitlab.teklia.com/callico/callico/-/releases/0.1.0[GitLab]
+
+Initial release, allowing to create a project, import Arkindex elements, and assign simple xref:./campaigns/configure/transcription.adoc[text *Transcription* tasks] to users.
+
+Managers can also list projects, elements, campaigns, tasks and unassign pending tasks.

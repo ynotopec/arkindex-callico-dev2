@@ -1,0 +1,83 @@
+[#self-hosting-callico]
+= Self-Hosting Callico
+
+It is possible to run the Callico platform on your own servers, using the following instructions.
+
+[#requirements]
+== Requirements
+
+To deploy your own Callico instance, you need:
+
+* An online server using a GNU/Linux distribution as operating system, we recommend using either https://ubuntu.com[Ubuntu] or https://debian.org[Debian].
+* This online server must have https://docs.docker.com/desktop/install/linux-install/[Docker] installed.
+* And must be reachable with a public domain name.
+
+[NOTE]
+====
+In this document, we will assume your server is available at `callico.company.com`.
+====
+
+[#file-storage]
+=== File storage
+
+The Callico platform requires an Amazon S3-compatible bucket to store media files (thumbnails, file exports, etc). You can either:
+
+. use a cloud provider to create a bucket: you will not need to self-host this service but your data will reside on that cloud,
+. or self-host this service using https://min.io/[Min.IO] on your own server. If you choose this option, you will need 2 additional public domain names to expose the file API and the administration panel.
+
+[NOTE]
+====
+We will use `minio.callico.company.com` (file API) and `minio-console.callico.company.com` (administration panel) as domain name examples in this document.
+====
+
+[#architecture]
+== Architecture
+
+[mermaid]
+....
+graph TD
+	traefik[Traefik] --> backend[Backend]
+	backend --> postgres[PostgreSQL]
+	backend --> redis[Redis]
+	worker[Worker] --> postgres
+	worker --> redis
+	backend --> minio[Min.IO]
+	worker --> minio
+....
+
+We use exclusively open-source software for the whole architecture powering Callico:
+
+* https://traefik.io/traefik/[Traefik] is a load-balancer, capable of managing SSL certificates using https://letsencrypt.org/[Let's encrypt],
+* https://www.postgresql.org/[PostgreSQL] is the leading relational database: it stores all of Callico data,
+* https://redis.io/[Redis] is a fast data store which we use to communicate with asynchronous workers,
+* https://min.io/[Min.IO] is a file storage server, similar to Amazon S3 service.
+
+Finally, the same Docker image will be used to run our *Backend* (handling every user interaction), and our *Worker* (used for xref:projects/processes/index.adoc[long-running tasks] like data import & export).
+
+[#deployment-with-docker-compose]
+== Deployment with docker-compose
+
+The following files are necessary to deploy Callico on your online server:
+
+* https://gitlab.teklia.com/callico/callico/-/blob/master/deployment/docker-compose.yml[docker-compose.yml]: this is the main file describing all the services to run with Docker,
+* https://gitlab.teklia.com/callico/callico/-/blob/master/deployment/callico.env[callico.env]: this is the file configuring Callico through environment variables,
+ ** a full description of xref:./settings.adoc[these settings is available].
+* https://gitlab.teklia.com/callico/callico/-/blob/master/deployment/traefik.toml[traefik.toml]: this is the file to configure Traefik (managing an SSL certificate for your application through Let's encrypt)
+
+Once you are familiar with these files, you can follow the steps below to deploy your own Callico instance:
+
+. Copy them on your server
+. Edit all 3 of them to update:
+ ** Domain names references, basically changing `callico.company.com`, `minio.callico.company.com` and `minio-console.callico.company.com` to your own domains
+ ** The passwords for the PostgreSQL database and the Min.IO default user
+ ** Min.IO or AWS S3-compatible connection information
+. Start the platform by running: `docker compose up`
+. Run the initial database migrations with the command: `docker compose run callico django-admin migrate`
+. Create an administrator account so you can later connect through the web interface: `docker compose run callico django-admin createsuperuser`
+. Connect on your Min.IO instance (if you chose to link:./#file-storage[self-host this service]) and create a new `callico` bucket
+. Finally, you can use your web browser to connect to your instance using your administrator account and xref:get_started.adoc[get started] with Callico!
+
+[#going-further]
+== Going further
+
+We can provide technical support if you need help to go further with Callico on your servers (using a cluster of servers, adding monitoring and backups, deploying with orchestration tools, etc). You can reach us through our https://teklia.com/contact[contact form] to start a discussion.

@@ -1,0 +1,125 @@
+---
+- name: Set facts for callico deployment
+  set_fact:
+    POSTGRES_ROOT_PASSWORD: "{{ lookup('env','POSTGRES_ROOT_PASSWORD') }}"
+
+- name: Create Postgres databases
+  postgresql_db:
+    login_host: "{{ callico.db.host }}"
+    port: "{{ callico.db.port }}"
+    login_user: "{{ callico.db.user }}"
+    login_password: "{{ POSTGRES_ROOT_PASSWORD }}"
+    name: "{{ callico.db.name }}-{{ git_branch_name }}"
+    owner: "{{ callico.db.user }}"
+
+- name: Login to gitlab docker registry
+  docker_login:
+    registry: registry.gitlab.teklia.com
+    username: "{{ callico.registry_username }}"
+    password: "{{ callico.registry_password }}"
+
+- name: "Pull callico docker image {{ callico.version }}"
+  docker_image:
+    name: "registry.gitlab.teklia.com/callico/callico:{{ callico.version }}"
+    source: pull
+    state: present
+
+- name: Run redis
+  docker_swarm_service:
+    image: redis:alpine
+    replicas: 1
+    name: "callico-redis-{{ git_branch_name }}"
+    mounts:
+      - source: "callico_redis_{{ git_branch_name }}"
+        target: "/data"
+        type: volume
+    networks:
+      - "{{ docker.swarm.network_services }}"
+    placement:
+      constraints:
+        - "node.hostname == {{ hostname }}"
+
+- name: Setup callico conf
+  set_fact:
+    callico_env:
+      DEBUG: "true"
+      EMAIL_URL: "smtp+tls://{{ callico.email.user }}:{{ callico.email.password }}@{{ callico.email.host }}:{{ callico.email.port }}"
+      DEFAULT_FROM_EMAIL: "{{ callico.email.user }}"
+      DATABASE_URL: "psql://{{ callico.db.user }}:{{ POSTGRES_ROOT_PASSWORD }}@{{ callico.db.host }}:{{ callico.db.port }}/{{ callico.db.name }}-{{ git_branch_name }}"
+      CSRF_TRUSTED_ORIGINS: "https://{{ public_hostname }}"
+      ALLOWED_HOSTS: "{{ public_hostname }}"
+      REDIS_URL: "redis://callico-redis-{{ git_branch_name }}:6379/0"
+      INSTANCE_URL: "https://{{ public_hostname }}"
+      SIGNUP_ENABLED: "{% if callico.signups %}true{% else %}false{% endif %}"
+      STORAGE_ENDPOINT_URL: "{{ callico.storage.endpoint }}"
+      STORAGE_BUCKET_NAME: "{{ callico.storage.bucket }}"
+      AWS_ACCESS_KEY_ID: "{{ callico.storage.access_key }}"
+      AWS_SECRET_ACCESS_KEY: "{{ callico.storage.secret_key }}"
+      STORAGE_LOCATION: "{{ git_branch_name }}/"
+      DATA_UPLOAD_MAX_NUMBER_FIELDS: "5000"
+      DJANGO_SUPERUSER_EMAIL: "{{ callico.admin.email }}"
+      DJANGO_SUPERUSER_PASSWORD: "{{ callico.admin.password }}"
+    callico_labels: "{{
+      {
+        'traefik.enable': 'true',
+        'traefik.http.routers.callico-' + git_branch_name + '.rule': 'Host(`{{ public_hostname }}`)',
+        'traefik.http.services.callico-' + git_branch_name + '.loadbalancer.server.port': '80'
+      }
+    }}"
+
+- name: "Run callico backend {{ callico.version }}"
+  docker_swarm_service:
+    name: "callico-backend-{{ git_branch_name }}"
+    image: "registry.gitlab.teklia.com/callico/callico:{{ callico.version }}"
+    replicas: 1
+    env: "{{ callico_env }}"
+    networks:
+      - "{{ docker.swarm.network_services }}"
+    labels: "{{ callico_labels }}"
+
+- name: Run callico celery worker
+  docker_swarm_service:
+    name: "callico-worker-{{ git_branch_name }}"
+    image: "registry.gitlab.teklia.com/callico/callico:{{ callico.version }}"
+    replicas: 1
+    command: "celery -A callico.base worker -B -l INFO"
+    env: "{{ callico_env }}"
+    networks:
+      - "{{ docker.swarm.network_services }}"
+
+- name: Run callico migration
+  docker_swarm_service:
+    name: "callico-db-migrate-{{ git_branch_name }}"
+    replicas: 1
+    image: "registry.gitlab.teklia.com/callico/callico:{{ callico.version }}"
+    command: "django-admin migrate"
+    env: "{{ callico_env }}"
+    networks:
+      - "{{ docker.swarm.network_services }}"
+    restart_config:
+      condition: on-failure
+  when: "callico.run_db_migrations|default(true)"
+
+- name: "Create admin account {{ callico.admin.email }}"
+  docker_swarm_service:
+    name: "callico-admin-{{ git_branch_name }}"
+    replicas: 1
+    image: "registry.gitlab.teklia.com/callico/callico:{{ callico.version }}"
+    command: "django-admin createsuperuser --noinput"
+    env: "{{ callico_env }}"
+    networks:
+      - "{{ docker.swarm.network_services }}"
+    restart_config:
+      condition: on-failure
+
+- name: "Populate the database with default data"
+  docker_swarm_service:
+    name: "callico-fixtures-{{ git_branch_name }}"
+    replicas: 1
+    image: "registry.gitlab.teklia.com/callico/callico:{{ callico.version }}"
+    command: "django-admin build_fixtures"
+    env: "{{ callico_env }}"
+    networks:
+      - "{{ docker.swarm.network_services }}"
+    restart_config:
+      condition: on-failure

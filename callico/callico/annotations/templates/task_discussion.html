@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load i18n humanize basefilters bulma_tags markdownify %}
+
+{% block title %}
+  {% translate "Task discussion" %}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=task.campaign.project campaign=task.campaign can_admin=can_admin tasks=True has_pending_tasks=add_pending_filter %}
+{% endblock breadcrumb %}
+
+{% block content %}
+  {% if request.GET.from and request.GET.from == "list" %}
+    <a href="{% url 'admin-campaign-task-list' pk=task.campaign.id %}{% querystring %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+  {% else %}
+    <button onclick="window.close()" class="button is-pulled-right">{% translate "Close this tab" %}</button>
+  {% endif %}
+  <h1 class="title">{% translate "Discussion on this task" %}</h1>
+
+  <div class="columns">
+    <div class="column is-two-fifths has-text-centered">
+      {% if display_carousel %}
+        <element-carousel
+          element-ids="{{ carousel_element_ids }}"
+          {% if carousel_type %}
+            type="{{ carousel_type }}"
+          {% endif %}
+          mode="display"
+        ></element-carousel>
+      {% elif not task.element.image_id %}
+        {% for child in task.element.children.all %}
+          {% if child.image_id %}
+            <img class="restrict-medium-thumbnail-height" src="{{ child.medium_thumbnail }}">
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <img class="restrict-medium-thumbnail-height" src="{{ task.element.medium_thumbnail }}">
+      {% endif %}
+    </div>
+
+    <div class="column">
+      {% for comment in task.comments.all %}
+        <article class="media">
+          <div class="media-content">
+            <div class="content">
+              <p class="mb-2">
+                <strong title="{{ comment.user.email }}">{{ comment.user }}</strong>
+                {% if comment.user == request.user %}
+                  <span class="mx-1 is-small is-rounded is-light tag">{% translate "You" %}</span>
+                {% endif %}
+                {% if comment.user in managers %}
+                  <span class="mx-1 is-small is-rounded is-success tag">{% translate "Manager" %}</span>
+                {% elif comment.user in moderators %}
+                  <span class="mx-1 is-small is-rounded is-info tag">{% translate "Moderator" %}</span>
+                {% endif %}
+                − <small>{{ comment.created|naturaltime|capfirst }}</small>
+              </p>
+              <div class="ml-4">
+                {{ comment.content|markdownify }}
+              </div>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+
+      <article class="media">
+        <div class="media-content">
+          <form method="post">
+            {% csrf_token %}
+
+            {{ form | bulma }}
+
+            <button class="button is-info" type="submit">{% translate "Comment" context "verb" %}</button>
+          </form>
+        </div>
+      </article>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block script %}
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      {% if display_carousel %}
+        callico.bootVueComponents()
+      {% endif %}
+    })
+  </script>
+{% endblock script %}

@@ -1,0 +1,22 @@
+[#publish-tasks]
+= Publish tasks
+
+[WARNING]
+====
+
+* You must be a manager of the project to publish tasks.
+* You cannot publish tasks in a campaign if that campaign is in a xref:campaigns/close_reopen_archive.adoc[`Closed` or `Archived` state].
+====
+
+Created and assigned tasks are in a `Draft` state by default. Draft tasks are not visible or available for contributors.
+
+When you want to make these tasks available to users, you can publish them. Their status will be updated from `Draft` to `Pending`.
+
+A `Publish all draft tasks` button appears in the top right corner on the page listing all tasks when the *Status* filter is set to `Draft`, and there are draft tasks to be displayed on this list. This allows you to publish all draft tasks at once.
+
+image::tasks/publish.png[List of tasks with the draft button]
+
+[NOTE]
+====
+Contributors will automatically receive an email to inform them that they have been assigned new tasks.
+====

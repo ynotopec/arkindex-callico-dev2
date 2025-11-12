@@ -1,0 +1,116 @@
+// There are links to this page in the application code (task creation form), so be careful to update them if you move the page or rename sections of it.
+[#create-tasks]
+= Create tasks
+
+[WARNING]
+====
+
+* You must be a manager of the project to create tasks.
+* You cannot create tasks in a campaign if that campaign is in a xref:campaigns/close_reopen_archive.adoc[`Closed` or `Archived` state].
+====
+
+Once the campaign is xref:campaigns/create.adoc[created] and xref:campaigns/configure/index.adoc[configured], you can create tasks. To create these tasks, you need to fill in a form providing the following information.
+
+image::tasks/create.png[Form for the creation of tasks]
+
+[#element-type]
+== Element type
+
+First, you need to select the type of elements to be annotated. For each element of this type within the project (provided it meets the other criteria set in the form), a task will be created.
+
+The element type you have to select for task creation is the type of the elements on which the task (classification, entity annotation, etc) will be performed.
+
+For example, if you have a campaign in which contributors must classify table columns, you would select `column` as the task element type. Or if you have created a campaign in which contributors must create `text line` elements on pages, then `page` would be the task element type: for each task, the user would be presented with a page on which to draw lines.
+
+The element type you select in this form, for the creation of the annotation tasks, must not be confused with other element types you may have selected when configuring the campaign.
+
+[#special-case-element-group-campaign]
+=== Special case - *Element group* campaign
+
+The element type selected to create the annotation tasks is different from the element types that were selected during the campaign configuration. It is not the type of the elements to be displayed in the carousel, or the type of the elements to be grouped together by the contributors.
+
+For example, if you are creating tasks for a campaign in which users must group together pieces of the same articles on various pages then you might choose to create tasks from `folder` elements which contain those pages. The contributors would then be assigned tasks in which they have to group together all the article pieces on the pages that are inside a given folder.
+
+For more information and examples please refer to the xref:campaigns/configure/element_group.adoc#configuration-parameters[dedicated page].
+
+[#special-case-transcription-campaign]
+=== Special case - *Transcription* campaign
+
+The element type selected to create the annotation tasks is not the same as the type of the elements to transcribe that was selected during the campaign configuration.
+
+You can choose an element type that will contain multiple elements to transcribe. For example, in a campaign for the transcription of `text line` elements, you might set the task element type to `page`. The users will then be assigned tasks in which they have to transcribe all the text lines present on a given page.
+
+For more information and examples please refer to the xref:campaigns/configure/transcription.adoc#configuration-parameters[dedicated page].
+
+[#special-case-contextualized-campaign]
+=== Special case - Contextualized campaign
+
+For all campaign modes, except *Element group*, *Elements* and *Transcription*, you can select an element type that will be used to display context to help the contributors.
+
+The element type selected to create tasks is not the same one as this optional context element type you may have selected when configuring the campaign.
+
+For example, if you have a campaign in which contributors must classify table `columns`, then you might select `table` as the context element type: when annotating one column, a user will not see that column only, but also the table around it.
+
+For more information and examples please refer to the xref:campaigns/configure/index.adoc#context-ancestor-type[dedicated page].
+
+[#users]
+== Users
+
+You will be asked to select contributors to whom the created tasks will be assigned. Each task created will be assigned to *one* of the chosen contributors.
+
+It is also possible to create tasks without selecting any contributors. The created tasks will then be *unassigned*, and available for volunteers as well as for project contributors who can assign themselves to available unassigned tasks. In this case you will have to check the <<create-unassigned-tasks,*Create unassigned tasks*>> field.
+
+[#attribution-algorithm]
+== Attribution algorithm
+
+You will need to select an attribution algorithm, for the distribution of elements among the created tasks:
+
+* `Sequential`: The order of the tasks will follow that of the elements; so if you have for example selected `page` as the task element type, then the first task will use the first page in the project, the second task the second page, and so on.
+* `Random`: The elements of the selected element type will be used to create tasks in a random order, so the order of the tasks will not be the same as the order of these elements in the project.
+
+[#elements-to-use]
+== Elements to use
+
+You will be asked to choose the elements to use among the following choices:
+
+* `All elements`: Tasks will be created for all the elements that meet the criteria set in the form, even if they already have associated tasks.
+* `Only unused elements`: Tasks will be created only for elements that do not have any.
+
+If no contributors have been link:./#users[previously selected], then this field will be ignored and unassigned tasks will be created using the unused elements.
+
+[#maximum-number-of-tasks-per-user]
+== Maximum number of tasks per user
+
+You will be asked to set the maximum number of tasks that can be assigned to a contributor. This is the maximum number of tasks, among the ones that will be created, that can be assigned to one selected contributor at the same time.
+
+This number is different and unrelated to the *Number of tasks to assign per volunteer* that is set when configuring the campaign, which concerns the number of unassigned tasks one volunteer user gets assigned when they request tasks. For more information please refer to the xref:campaigns/configure/index.adoc#number-of-tasks-to-assign-per-volunteer[dedicated page].
+
+If no contributors have been link:./#users[previously selected], then this field will be ignored.
+
+If contributors have been selected to be assigned the created tasks, then:
+
+* If a maximum number of tasks per user is set, tasks will be created within this limit (max number of tasks * number of selected contributors). If there are more elements available for task creation, then these elements will be ignored unless the creation of link:./#create-unassigned-tasks[unassigned tasks] is enabled.
+* If this field is left empty, tasks will be created and assigned to the selected contributors for *all elements* that meet the criteria set in the form.
+
+[#create-unassigned-tasks]
+== Create unassigned tasks
+
+You will need to allow or disallow the creation of unassigned tasks. If this field is checked then tasks will be created for all elements that meet the criteria set in the form, regardless of the number of selected contributors or the maximum number of tasks per user.
+
+If the <<maximum-number-of-tasks-per-user,*Maximum number of tasks per contributor*>> has not been set and at least one link:./#users[user] has been selected, then this field will be ignored and tasks will be created (and assigned) for *all elements*.
+
+If link:./#users[no contributors have been selected], then this field is mandatory, as all created tasks will be unassigned.
+
+[#preview-a-single-task]
+== Preview a single task
+
+Once the task creation form has been filled, you can generate a preview task to *validate your parameters*. Generating a preview task will create and redirect you to a task, assigned to you, configured according to the settings you defined in the task creation form and the information provided in the campaign configuration.
+
+If you are not satisfied with the result, you can update the parameters and/or the campaign configuration and refresh the preview task to visualize these changes. Once everything is correct, you can create the tasks.
+
+[#create]
+== Create
+
+Once the tasks are created, you will be redirected to the list of created tasks.
+
+Unassigned tasks will be immediately available to volunteers. Assigned tasks (assigned to the link:./#users[selected contributors]) will be in a `Draft` state. You will need to xref:./publish.adoc[publish] these tasks to make them available (and visible) for annotation.

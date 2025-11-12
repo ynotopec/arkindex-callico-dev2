@@ -1,0 +1,55 @@
+[#cloning-the-source-code]
+= Cloning the source code
+
+As Callico is open-source, you do not need any authentication to retrieve its source code. However, if you wish to work on Callico source code and submit patches, you will need to authenticate yourself, and register on https://gitlab.teklia.com/[Teklia's GitLab instance].
+
+[#gitlab-setup]
+== GitLab setup
+
+We assume you already have:
+
+* A working https://git-scm.com/[git] client installation on your computer;
+* An SSH key to authenticate yourself on a GitLab instance.
+
+You can find more information https://docs.gitlab.com/ee/user/ssh.html[in the official GitLab documentation].
+
+[#sign-up-on-teklias-gitlab-instance]
+=== Sign up on Teklia's GitLab instance
+
+At Teklia, we use https://gitlab.teklia.com/[GitLab] to host all our source code, work as a team, build and ship our projects, etc.
+
+You can sign up on Teklia's GitLab instance https://gitlab.teklia.com/users/sign_up[here].
+
+Please note that your account will need to be approved by an administrator which could take up to one business day.
+
+[#add-your-ssh-key]
+=== Add your SSH key
+
+Once you are logged into https://gitlab.teklia.com/[gitlab.teklia.com], you need to add your *SSH public key* to your user account on Teklia's GitLab instance. To do so, you can follow https://docs.gitlab.com/ee/user/ssh.html#add-an-ssh-key-to-your-gitlab-account[the official GitLab instructions].
+
+[WARNING]
+.Security warning
+====
+*Do not* use HTTPS to clone a repository, it will require you to type your GitLab password when cloning/pushing.
+====
+
+[#activate-2fa]
+=== Activate 2FA
+
+To gain and keep access on Callico's GitLab repository as a contributor, your GitLab account must be protected with Multiple Factor Authentication (generally using one time passwords generated from your phone).
+
+You will need to setup an app like https://support.google.com/accounts/answer/1066447?hl=fr&co=GENIE.Platform%3DAndroid[Google Authenticator] or https://duo.com/product/multi-factor-authentication-mfa/duo-mobile-app[Duo Mobile] on your phone, and https://docs.gitlab.com/ee/user/profile/account/two_factor_authentication.html#enabling-2fa[then follow these steps].
+
+WARNING: - If you do not complete the 2FA initial activation within 48 hours of creating your account, it will be automatically disabled.
+
+[#cloning-the-repository]
+== Cloning the repository
+
+To clone Callico's source code, which allows you to run a local instance of Callico, develop and test your own code, simply run the following command:
+
+[,bash]
+----
+git clone git@gitlab.teklia.com:callico/callico.git
+----
+
+You can now follow the xref:./develop.adoc[developer mode documentation] to find out how to get a working local instance of Callico, and start writing your own code.

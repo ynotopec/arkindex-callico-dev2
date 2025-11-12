@@ -1,0 +1,8 @@
+[#projects]
+= Projects
+
+In Callico, projects allow you to collect various annotations on a given set of documents. Each project is accessible by its own xref:./manage_members.adoc[members], contains its own xref:./elements/index.adoc[elements] and has its own xref:campaigns/index.adoc[campaigns]. Each campaign, in turn, contains its own xref:tasks/index.adoc[tasks] that can be annotated by contributors.
+
+If your project is linked to an external provider, then all the elements in your project come from the same object from that provider. For example, if your project is linked to an Arkindex provider, all elements will come from a single Arkindex project.
+
+To create a project, see the xref:./create.adoc[project creation documentation].

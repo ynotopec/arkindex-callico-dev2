@@ -1,0 +1,13 @@
+[#contributing-to-callico]
+= Contributing to Callico
+
+We welcome every contribution possible to improve Callico. Whether it is Python code, translations, design suggestions, small fixes, etc.
+
+If you want to discuss some ideas, send us an email at `callico (at) teklia.com`!
+
+If you want to contribute code, please read our documentation to learn how to:
+
+* xref:./clone.adoc[Clone Callico's source code]
+* xref:./develop.adoc[Get Callico running in developer mode]
+* xref:./validate.adoc[Ensure your contributions can be integrated into Callico's source code]
+* xref:./submit.adoc[Submit your patches on GitLab]

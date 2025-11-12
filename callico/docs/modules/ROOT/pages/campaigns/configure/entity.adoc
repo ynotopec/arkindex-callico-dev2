@@ -1,0 +1,44 @@
+[#configure-an-entity-campaign]
+= Configure an *Entity* campaign
+
+You can create *Entity* campaigns in order to annotate entities in documents that have transcriptions, or to correct existing entities that were xref:../../projects/elements/import/arkindex.adoc#filter-the-transcription-entities-to-import[imported from the project's provider].
+
+[#configuration-parameters]
+== Configuration parameters
+
+After having filled out the xref:./index.adoc[generic configuration parameters], including the optional xref:./index.adoc#context-ancestor-type[*Context ancestor type*] parameter, you need to choose how the transcription will be displayed to the contributors, and specify the entities to annotate.
+
+image::campaigns/configure/entity/configuration.png[Entity campaign configuration]
+
+There are two available options for the transcription *Display*:
+
+* `Transcription only`: the corresponding image is not shown, and the transcription text is on the right. The contributors annotate entities on the transcription text.
+* `Transcription next to the image`: the corresponding image is shown, along with the transcription text on the right. The contributors annotate entities on the transcription text.
+
+To create an entity, you only need to specify its *Type*: `First name`, `Last name`, `Occupation`, etc. If your campaign's parent project is linked to an object from an xref:projects/edit.adoc[external provider], and entity types were imported from that object, then these entity types will appear as hints when you fill the *Entity type* field. You can use these existing types and/or add new ones.
+
+[WARNING]
+.Correction of imported entities
+====
+If the purpose of your campaign is to correct existing imported entities (see the dedicated section in the xref:projects/elements/import/arkindex.adoc#filter-the-transcription-entities-to-import[import documentation]) then you need to use the imported entity types. Only the imported entities for which the corresponding type has been added in the campaign configuration will be available to be corrected by the contributors.
+====
+
+[NOTE]
+====
+You can drag the entity creation forms up and down to *re-order* them, using the icon on their left. The order in which they are arranged in the campaign configuration is the order in which the entity tags will be displayed to the contributors in the annotation tasks.
+====
+
+[#example-annotation-tasks]
+== Example annotation tasks
+
+The following examples showcase the different display options:
+
+* An *Entity* task when the campaign is configured with the `Transcription only` *Display* option.
+
+image::campaigns/configure/entity/text_only.png[Transcription text only]
+
+* An *Entity* task when the campaign is configured with the `Transcription next to the image` *Display* option.
+
+image::campaigns/configure/entity/image_and_text.png[Transcription next to the image]
+
+Once your campaign is configured, you can xref:tasks/create.adoc[create tasks] to start gathering annotations on your documents.

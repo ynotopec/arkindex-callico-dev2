@@ -1,0 +1,27 @@
+[#edit-a-project]
+= Edit a project
+
+[WARNING]
+====
+You must be a manager of the project to edit it.
+====
+
+If you are a member with manager role, the `Edit` action is displayed in the section named *Project* from the menu on the left of the project details page.
+
+image::projects/details.png[Project details page]
+
+You can at any time change the name, description and illustration of your project.
+
+You can also change the *Provider* and the *Object identifier in provider* if your project is linked to an external provider. For example, if your project is linked to an Arkindex instance, the *Object identifier in provider* must be the ID of an Arkindex project.
+
+image::projects/edit.png[Project edition form]
+
+Once the project is edited, you will be automatically redirected back to its details page.
+
+[NOTE]
+====
+
+* The project description supports https://www.markdownguide.org/[Markdown]. If you want to enhance your description by attaching images, you can easily do so by uploading them to an online hosting service like https://imgur.com/[imgur] and then https://www.markdownguide.org/basic-syntax/#images-1[including their link] in the description.
+* The project illustration is automatically resized to 600px*600px. It is better to avoid using very large images in order not to lose quality.
+* You cannot make a project public or private from this page. If you wish to make a project public or private, please contact an instance administrator.
+====

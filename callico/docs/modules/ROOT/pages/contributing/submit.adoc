@@ -1,0 +1,131 @@
+[#submitting-your-code]
+= Submitting your code
+
+[NOTE]
+.GitLab setup
+====
+
+* In order to submit a patch to Callico's source code, you need to have a working GitLab setup and account on Teklia's GitLab instance, as explained in xref:./clone.adoc[the "Clone the source code" section] of the documentation.
+====
+
+[#submitting-a-patch-to-callicos-source-code]
+== Submitting a patch to Callico's source code
+
+[#find-issues]
+=== Find issues
+
+We use GitLab to track issues (either bugs, or new features).
+
+You can look at Callico's issues from different views:
+
+* through the current https://gitlab.teklia.com/callico/callico/-/milestones[milestone], the most important issues are listed there, as they are the most time-sensitive
+* through the https://gitlab.teklia.com/callico/callico/-/issues[full issue list]
+
+NOTE: Please ask first if you can work on an issue, by simply commenting on it. Be aware that some issues may be way more complex than others.
+
+[#priorities]
+==== Priorities
+
+Issues should have a priority label:
+
+* *P1* are high priority, usually bugs badly affecting users experience,
+* *P2* are at the normal priority level
+* *P3* are low priority
+
+If nothing is set, assume *P2* by default.
+
+[#work-on-a-branch]
+=== Work on a branch
+
+To start working on a patch, you must first create a *git branch*, based on the current `master` branch:
+
+[,bash]
+----
+# Start from master
+git checkout master
+
+# Update master to latest available revision
+git pull origin master
+
+# Create a new branch
+git checkout -b my-new-branch
+----
+
+Each new commit will then be stored on that new branch named `my-new-branch`.
+
+:white_check_mark: To name your branch, use a name:
+
+. in English,
+. in lowercase,
+. without spaces, use dashes `-` to link words,
+. explicit and related to your current work.
+
+Here are some examples of suitable branch names:
+
+* `remove-model-x` when the goal is to remove a Django model named `X`
+* `fix-invalid-chars-search` when the patch fixes a *bug* related to search
+* `bump-dependency-y`
+* `add-super-feature`
+* `feature-z`
+
+:x: Please avoid:
+
+* naming your branch with the issue ID, we prefer explicit naming here,
+* using another language than English,
+* spaces, camelCase, underscores, etc.
+
+[#publish-your-work]
+=== Publish your work
+
+You are allowed to push directly on Callico's repository, except for the `master` branch. The goal is for your code to reach `master` once the following steps are completed:
+
+. Unit tests are all OK, meaning that all jobs in the CI stage named `test` ended in success. See the dedicated documentation xref:./validate.adoc#tests[here].
+. Formatting has been validated by a tool, meaning that all jobs in the CI stage named `checks` ended in success. See the dedicated documentation xref:./validate.adoc#linting[here].
+. The code itself has been approved by a human reviewer.
+
+To get approvals, you need to https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html[create a Merge Request (also called MR)] on GitLab.
+
+When pushing https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html#when-you-use-git-commands-locally[your code from your local branch], you will notice some output in the console with a link towards `gitlab.teklia.com`: it will allow you to create a Merge Request (or view the previously created one) in 2 clicks.
+
+Once your work is ready, configure your Merge Request as follows:
+
+* Assign yourself as the *Assignee*.
+* Assign https://gitlab.teklia.com/babadie[@babadie] as the *Reviewer*, he will either review or re-assign to another reviewer when needed.
+* Set an explicit *Title*, in English, properly formatted.
+* Add a reference to the issue you are working on in the *Description*:
+ ** `Closes #XYZ` if you fully solve the mentioned issue,
+ ** `Ref #XYZ` if you only want to link your Merge Request to the issue.
+* Fill in the *Description* with an explanation of the changes you made.
+* If the related issue has a milestone set, set the same *Milestone* on this Merge Request.
+
+If you are not confident the work being published is yet ready for review, you can prefix your Merge Request title with `Draft:`; that will tell the reviewer to wait a bit before diving into your code. Do not forget to remove that prefix once your code is ready.
+
+The reviewer may leave some comments directly on the Merge Request, asking you for updates. Please resolve all of them (or discuss them if you disagree), publish some commits fixing the issues, and then https://docs.gitlab.com/ee/user/project/merge_requests/reviews/#request-a-new-review[ask for a new review]. Rinse and repeat until the reviewer approves and merges your code!
+
+[#update-your-branch]
+=== Update your branch
+
+As other developers are working on Callico, sometimes features/bugfixes/etc will land on `master` while your Merge Request touches the same parts. You may get conflicts here and will need to solve them using a *rebase*.
+
+NOTE: It is your responsibility, as a developer, to maintain your code in a *mergeable state*: no conflicts and up to date with the latest `master`.
+
+To update using *rebase*, while working on your branch:
+
+[,bash]
+----
+# Retrieve the latest updates from master
+git fetch origin master
+
+# Now the remote reference to origin/master has been updated, you can rebase on top of it
+# Be aware that the local reference to master is not yet updated, it is only updated with git pull
+git rebase origin/master
+----
+
+The `git rebase` operation will ask you to solve manually conflicts (if any). Please https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase[follow this guide] or ask us for help if you are lost.
+
+[#landing-your-code]
+=== Landing your code
+
+If you have reached this step, congratulations and many thanks! Your code has been approved and should already be merged, as that is the responsibility of the reviewer.
+
+Your work will be shipped in https://doc.callico.eu/releases/[the next Callico release] along with latest features, bugfixes and other contributions.

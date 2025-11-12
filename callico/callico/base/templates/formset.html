@@ -1,0 +1,63 @@
+{% load bulma_tags %}
+
+{% if formset %}
+  <div class="formset">
+    {{ formset.management_form | bulma }}
+
+    {# Empty form to copy to add fields #}
+    <fieldset class="is-hidden">
+      <hr />
+
+      <div class="columns">
+        {% if sortable_formset %}
+          <div class="column is-narrow m-auto">
+            <span class="icon is-grabbable">
+              <i class="fas fa-grip-vertical"></i>
+            </span>
+          </div>
+        {% endif %}
+
+        <div class="column">
+          {{ formset.empty_form | bulma }}
+        </div>
+
+        <div class="column is-narrow m-auto">
+          <span class="icon has-text-danger is-clickable">
+            <i class="fas fa-trash"></i>
+          </span>
+        </div>
+      </div>
+    </fieldset>
+
+    {# Existing fields #}
+    {% for subform in formset %}
+      <fieldset>
+        <hr />
+
+        <div class="columns">
+          {% if sortable_formset %}
+            <div class="column is-narrow m-auto">
+              <span class="icon is-grabbable">
+                <i class="fas fa-grip-vertical"></i>
+              </span>
+            </div>
+          {% endif %}
+
+          <div class="column">
+            {{ subform | bulma }}
+          </div>
+
+          <div class="column is-narrow m-auto">
+            <span class="icon has-text-danger is-clickable">
+              <i class="fas fa-trash"></i>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    {% endfor %}
+
+    <hr />
+
+    <button class="button is-success is-light" type="button">{{ title }}</button>
+  </div>
+{% endif %}

@@ -1,0 +1,18 @@
+{% extends 'user_task_details_base.html' %}
+{% load i18n %}
+
+{% block annotation %}
+  <div class="answer-field mb-5" group="{{ answer.group }}">
+    {{ block.super }}
+  </div>
+{% endblock annotation %}
+
+{% block script %}
+  {{ block.super }}
+
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootEntityFormUserTaskDetails()
+    })
+  </script>
+{% endblock script %}

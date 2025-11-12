@@ -1,0 +1,109 @@
+[#application-settings]
+= Application settings
+
+Here is a detailed list of all the environment variables which can be used to configure your Callico instance.
+
+[cols=">,,^,"]
+|===
+| *Setting name* | *Description* | *Required* | *Values*
+
+| DEBUG
+| Set the platform in *production* or *development* mode. It is insecure to run a public instance in *development* mode.
+| ✅
+| `true` or `false`
+
+| DATABASE_URL
+| Credentials to connect to the PostgreSQL database.
+| ✅
+| `postgres://user:password@host:port/dbname`
+
+| SECRET_KEY
+| Random string used to build securely authentication cookies. Must be unique per instance.
+| ✅
+| `randomString1234`
+
+| ALLOWED_HOSTS
+| List of public hostnames where HTTP requests come from. Any request received from an hostname not listed here will be rejected. When using multiple values, use a comma to separate them.
+| ✅
+| `callico.company.com`
+
+| CORS_ALLOWED_ORIGINS
+| List of public hostnames where Javascript requests come from. Beware this list must have http(s) scheme before the hostname. When using multiple values, use a comma to separate them.
+| ✅
+| `+https://callico.company.com+`
+
+| CSRF_TRUSTED_ORIGINS
+| List of public hostnames where form publication requests come from. Beware this list must have http(s) scheme before the hostname. When using multiple values, use a comma to separate them.
+| ✅
+| `+https://callico.company.com+`
+
+| REDIS_URL
+| URL used to reach the Redis server for asynchronous tasks.
+| ✅
+| `redis://host:port/dbname`
+
+| INSTANCE_URL
+| Public hostname used to host the instance. It is mainly used to build urls in emails.
+| ✅
+| `callico.company.com`
+
+| SIGNUP_ENABLED
+| Specify if guests are allowed to create an account on the Callico instance. By default, signups are disabled.
+|
+| `true` or `false`
+
+| EMAIL_URL
+| Credentials to send emails with the application. An SMTP email account is required to send Callico emails such as "Forget password", "Daily statistics", etc.
+|
+| `smtp://user:password@host:port`
+
+| DEFAULT_FROM_EMAIL
+| The email address which will be used to send the emails.
+|
+| `noreply-callico@company.com`
+
+| SENTRY_DSN
+| https://sentry.io[Sentry] private DSN used to publish Python exceptions.
+|
+| `+https://sentry.io/...+`
+
+| SENTRY_FRONTEND_DSN
+| https://sentry.io[Sentry] private DSN used to publish Javascript exceptions.
+|
+| `+https://sentry.io/...+`
+
+| STORAGE_BUCKET_NAME
+| AWS S3-compatible bucket name where the media files will be stored.
+| ✅
+| `callico-bucket`
+
+| AWS_ACCESS_KEY_ID
+| AWS S3-compatible access key to read and write on the media files bucket.
+| ✅
+| `accessKey`
+
+| AWS_SECRET_ACCESS_KEY
+| AWS S3-compatible secret access key to read and write on the media files bucket.
+| ✅
+| `secretKey1234`
+
+| STORAGE_ENDPOINT_URL
+| AWS S3-compatible endpoint url. By default, official Amazon S3 service will be used.
+|
+| `+https://storage.company.com+`
+
+| STORAGE_SSL_CA_PATH
+| AWS S3-compatible SSL Certificate Authority to validate the endpoint. Only used if the provider use self-signed certificates.
+|
+| `/path/to/ca.crt`
+
+| STORAGE_LOCATION
+| AWS S3-compatible optional prefix for every file that will be managed by Callico. Only useful if the bucket is shared with other applications.
+|
+| `company/project`
+
+| PROJECT_CREATION_ALLOWED
+| Specify if all authenticated users are allowed to create projects on the Callico instance. By default, project creation is reserved to staff users.
+|
+| `true` or `false`
+|===

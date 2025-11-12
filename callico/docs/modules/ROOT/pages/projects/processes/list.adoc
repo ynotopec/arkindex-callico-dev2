@@ -1,0 +1,25 @@
+[#list-processes-on-a-project]
+= List processes on a project
+
+[WARNING]
+====
+You must be a manager of the project to list its processes.
+====
+
+If you are a member with manager role, the `List` action is displayed in the section named *Processes* from the menu on the left of the project details page.
+
+image::projects/details.png[Project details page]
+
+Project managers can list all the processes that are linked to a project.
+
+For each process, it is possible to see:
+
+* its unique identifier,
+* its name,
+* its mode,
+* its status,
+* the user who created it,
+* the date it ended or started if it is still running or an indication that it has not started yet,
+* xref:./view_details.adoc[its details], using the `View details` button.
+
+image::projects/processes/list.png[List of processes]

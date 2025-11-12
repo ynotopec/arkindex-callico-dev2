@@ -1,0 +1,11 @@
+{# fmt:off #}{% autoescape off %}{% load i18n %}
+{% translate "Hello," %}
+
+{% translate "New annotation tasks have just been assigned to you on Callico." %}
+
+{% blocktranslate with url=my_tasks_url %}You can view them and start annotating by following this link: {{ url }}.{% endblocktranslate %}
+
+{% translate "Thank you for your help," %}
+
+--
+{% translate "The Callico team" %}{% endautoescape %}{# fmt:on #}

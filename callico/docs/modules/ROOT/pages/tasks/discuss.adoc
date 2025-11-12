@@ -1,0 +1,41 @@
+[#discuss-tasks]
+= Discuss tasks
+
+[WARNING]
+====
+
+* To discuss a task, you must either be assigned to it or be a moderator or manager of the project.
+* You cannot discuss tasks in a campaign if that campaign is in a xref:campaigns/close_reopen_archive.adoc[`Closed` or `Archived` state].
+====
+
+If you are a contributor assigned to the task, a moderator or a manager member, the `comments` icon button is displayed, in the upper right corner in various locations such as:
+
+* the task annotation page,
+* the xref:./moderate.adoc[task moderation page],
+* the task details page.
+
+image::tasks/discuss_icon_button.png[Comments icon button displayed on various pages]
+
+For managers and moderators, you can also find a link to access the task discussion on the xref:./list.adoc#moderators-managers[task list page].
+
+image::tasks/list_admin.png[List of tasks for moderators or managers]
+
+When annotating, moderating or even simply viewing a task, some questions and remarks may arise. The task discussion page is useful to communicate between contributors, moderators and managers and *closely collaborate on your documents*.
+
+One can use the dedicated input indicated by the `+Type your comment here...+` placeholder and the `Comment` button to start or participate in the task discussion.
+
+This is the right place to:
+
+* report any problem occurring during the annotation,
+* ask questions to power users about the campaign instructions,
+* provide feedback to contributors during the moderation phase,
+* etc.
+
+image::tasks/discuss.png[Task discussion]
+
+[NOTE]
+====
+
+* Participants will automatically receive an email to inform them of a new comment in a discussion they are part of.
+* If the commenting user is a contributor, all project managers, even the ones which are not part of the discussion, will also receive an email.
+====

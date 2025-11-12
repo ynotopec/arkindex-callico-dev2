@@ -1,0 +1,19 @@
+{% extends 'user_task_manage_base.html' %}
+{% load i18n basefilters %}
+
+{% block script %}
+  {{ block.super }}
+
+  {% translate "No authority value matches your input" as warning_text %}
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootEntityFormAnnotate(
+        {{ user_task.id|stringformat:"s"|jsonify }},
+        {{ parent_id|stringformat:"s"|jsonify }},
+        {{ warning_text|jsonify }},
+      )
+      callico.bootTextareaSizes()
+      callico.bootBidiText()
+    })
+  </script>
+{% endblock script %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load i18n markdownify %}
+
+{% block title %}
+  {% translate "Campaign instructions" %}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=campaign.project campaign=campaign can_admin=can_admin tasks=can_admin|yesno:",True" %}
+{% endblock breadcrumb %}
+
+{% block content %}
+  <button onclick="window.close()" class="button is-pulled-right">{% translate "Close this tab" %}</button>
+  <h1 class="title truncate-long-words pr-4" title="{{ campaign.name }}">
+    {% blocktranslate with name=campaign.name %}Instructions for the campaign "{{ name }}"{% endblocktranslate %}
+  </h1>
+
+  <hr class="ml-6 mr-6">
+
+  <div class="content indented-block">
+    {{ campaign.description|markdownify }}
+  </div>
+{% endblock content %}

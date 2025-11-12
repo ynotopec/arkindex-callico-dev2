@@ -1,0 +1,22 @@
+defaultEntryPoints = ["websecure"]
+logLevel = "INFO"
+
+[providers]
+  [providers.docker]
+    endpoint = "unix:///var/run/docker.sock"
+    defaultRule = "Host(`callico.company.com`)"
+    watch = true
+    exposedByDefault = false
+
+[accessLog]
+
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+
+    [entryPoints.web.http.redirections.entryPoint]
+      to = "websecure"
+      scheme = "https"
+
+  [entryPoints.websecure]
+    address = ":443"

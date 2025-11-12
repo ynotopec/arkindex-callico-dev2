@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load i18n basefilters bulma_tags %}
+
+{% block title %}
+  {% translate "Invite link management" %}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=project %}
+{% endblock breadcrumb %}
+
+{% block content %}
+  <a href="{% url 'project-update' pk=project.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+  <h1 class="title">{% translate "Manage the invite link for this project" %}</h1>
+
+  <div class="field has-addons">
+    <div class="control is-expanded">
+      <input class="input" type="text" value="{{ project.invite_link }}" disabled>
+    </div>
+    <div class="control">
+      <a class="button copy-to-clipboard">
+        {% translate "Copy" %}
+      </a>
+    </div>
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="mt-5">
+      <button class="button is-info" type="submit">{% translate "Regenerate" %}</button>
+    </div>
+  </form>
+{% endblock content %}
+
+{% block script %}
+  {% translate "The invite link has been copied to your clipboard" as success_notification %}
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootCopyToClipboardButtons({{ success_notification|jsonify }}, false, {{ project.invite_link|jsonify }})
+    })
+  </script>
+{% endblock script %}

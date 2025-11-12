@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load basefilters i18n %}
+
+{% block title %}
+  {% translate "Campaign details" %}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=campaign.project campaign=campaign %}
+{% endblock breadcrumb %}
+
+{% block content %}
+  <div class="columns">
+    {% if not can_manage %}
+      {% comment %}Moderator menu - List tasks only{% endcomment %}
+      <div class="column is-2">
+        <aside class="menu">
+          <p class="menu-label">
+            {% translate "Tasks" %}
+          </p>
+          <ul class="menu-list">
+            <li><a href="{% url 'admin-campaign-task-list' pk=campaign.id %}">{% translate "List" %}</a></li>
+          </ul>
+        </aside>
+      </div>
+    {% else %}
+      {% comment %}Manager menu{% endcomment %}
+      <div class="column is-2">
+        <aside class="menu">
+          <p class="menu-label">
+            {% translate "Campaign" %}
+          </p>
+          <ul class="menu-list">
+            <li>
+              <a {% if campaign.is_closed %}
+                   disabled
+                   title="{% blocktranslate with state=campaign.get_state_display %}You cannot configure a campaign marked as {{ state }}{% endblocktranslate %}"
+                 {% else %}
+                   href="{% url 'campaign-update' pk=campaign.id %}"
+                 {% endif %}
+              >{% translate "Configure" %}</a>
+            </li>
+            <li>
+              <form method="post" action="{% url 'campaign-update-state' pk=campaign.id %}">
+                {% csrf_token %}
+                {% if campaign.state == 'closed' %}
+                  <button class="button is-inverted pl-3 is-fullwidth is-justify-content-left is-dark has-text-grey-dark" type="submit" name="reopen">{% translate "Reopen" %}</button>
+                {% else %}
+                  <button class="button is-inverted pl-3 is-fullwidth is-justify-content-left is-dark has-text-grey-dark" type="submit" name="close">{% translate "Close" %}</button>
+                {% endif %}
+                <button id="archive-button" class="button is-inverted pl-3 is-fullwidth is-justify-content-left is-dark has-text-grey-dark" type="submit" name="archive">{% translate "Archive" context "verb" %}</button>
+              </form>
+            </li>
+          </ul>
+          <p class="menu-label">
+            {% translate "Tasks" %}
+          </p>
+          <ul class="menu-list">
+            <li><a href="{% url 'admin-campaign-task-list' pk=campaign.id %}">{% translate "List" %}</a></li>
+            <li>
+              <a {% if campaign.is_closed %}
+                   disabled
+                   title="{% blocktranslate with state=campaign.get_state_display %}You cannot create tasks for a campaign marked as {{ state }}{% endblocktranslate %}"
+                 {% else %}
+                   href="{% url 'tasks-create' pk=campaign.id %}"
+                 {% endif %}
+              >{% translate "Create" %}</a>
+            </li>
+            <li><a href="{% url 'tasks-unassign' pk=campaign.id %}">{% translate "Unassign" %}</a></li>
+          </ul>
+          {% if is_exportable_as_csv or is_exportable_as_xlsx or is_exportable_to_arkindex %}
+            <p class="menu-label">
+              {% translate "Export results" %}
+            </p>
+            <ul class="menu-list">
+              {% if is_exportable_as_csv %}
+                <li>
+                  <p class="is-italic px-3">{% translate "As CSV" %}</p>
+                  <ul>
+                    <li>
+                      <form method="post" action="{% url 'csv-export-create' pk=campaign.id %}">
+                        {% csrf_token %}
+                        <button class="button is-inverted pl-3 is-fullwidth is-justify-content-left is-dark has-text-grey-dark" type="submit">{% translate "Generate" %}</button>
+                      </form>
+                    </li>
+                    {% if campaign.csv_export %}
+                      <li><a href="{{ campaign.csv_export.url }}" target="_blank">{% translate "Download" %}</a></li>
+                    {% endif %}
+                  </ul>
+                </li>
+              {% endif %}
+              {% if is_exportable_as_xlsx %}
+                <li>
+                  <p class="is-italic px-3">{% translate "As XLSX" %}</p>
+                  <ul>
+                    <li>
+                      <form method="post" action="{% url 'xlsx-export-create' pk=campaign.id %}">
+                        {% csrf_token %}
+                        <button class="button is-inverted pl-3 is-fullwidth is-justify-content-left is-dark has-text-grey-dark" type="submit">{% translate "Generate" %}</button>
+                      </form>
+                    </li>
+                    {% if campaign.xlsx_export %}
+                      <li><a href="{{ campaign.xlsx_export.url }}" target="_blank">{% translate "Download" %}</a></li>
+                    {% endif %}
+                  </ul>
+                </li>
+              {% endif %}
+              {% if is_exportable_to_arkindex %}
+                <li><a href="{% url 'arkindex-export-create' pk=campaign.id %}">{% translate "To Arkindex" %}</a></li>
+              {% endif %}
+            </ul>
+          {% endif %}
+        </aside>
+      </div>
+    {% endif %}
+
+    <div class="column is-10">
+      <a href="{% url 'project-details' project_id=campaign.project.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+
+      <h1 class="title mb-2 truncate-long-words pr-4" title="{{ campaign.name }}">
+        {% blocktranslate with name=campaign.name %}Campaign "{{ name }}"{% endblocktranslate %}
+      </h1>
+
+      {% if campaign.description %}
+        {% include "collapsable_description.html" with description=campaign.description extra_campaign_link=True %}
+      {% endif %}
+
+      <hr />
+
+      <div class="columns">
+        <div class="column is-one-quarter">
+          <label class="label">{% translate "Creator" %}</label>
+          <p class="truncate-long-words" {% if campaign.creator %}title="{{ campaign.creator.email }}"{% endif %}>
+            {{ campaign.creator|default:"−" }}
+          </p>
+        </div>
+        <div class="column">
+          <label class="label">{% translate "Mode" %}</label>
+          <p>{{ campaign.get_mode_display }}</p>
+        </div>
+        <div class="column">
+          <label class="label">{% translate "Status" %}</label>
+          <span class="is-light tag {{ campaign | campaign_class }}">{{ campaign.get_state_display }}</span>
+        </div>
+        <div class="column">
+          <label class="label">{% translate "Median time spent on a task" %}</label>
+          {% if tracked_median %}
+            <p>{{ tracked_median|humanize_timedelta }}</p>
+          {% else %}
+            —
+          {% endif %}
+        </div>
+      </div>
+
+      <hr />
+
+      <h2 class="title is-5 mb-3">{% translate "Tasks" %}</h2>
+
+      <nav class="level mt-4 mb-3">
+        {% for label, count in task_counts.items %}
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="title">{{ count }}</p>
+              <p class="heading break-lines">{{ label }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </nav>
+
+      <p class="mb-5">
+        {% blocktranslate with nb_assignments=campaign.max_user_tasks %}Your campaign is configured to allow <strong>{{ nb_assignments }}</strong> assignment(s) per task.{% endblocktranslate %}
+
+        <br />
+
+        {% if available_assignments %}
+          {% blocktranslate %}In total, there are currently <strong>{{ available_assignments }}</strong> assignment(s) <strong>available</strong> on your campaign.{% endblocktranslate %}
+        {% else %}
+          {% translate "There are no available assignments on your campaign." %}
+        {% endif %}
+      </p>
+
+      <h2 class="title is-5 mb-3">{% translate "Assignments" %}</h2>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>{% translate "Status" %}</th>
+            <th>{% translate "Number" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for state, count in state_counts.items %}
+            <tr>
+              <td><span class="is-small is-light tag {{ state | task_class }}">{{ state.label }}</span></td>
+              <td>{{ count }}</td>
+              <td>
+                <a href="{% url 'admin-campaign-task-list' pk=campaign.id %}{% querystring state=state %}" title="{% translate 'View the filtered task list' %}" class="has-text-dark"><i class="fas fa-list"></i></a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block script %}
+  {% translate "Are you sure you want to archive this campaign? Archived campaigns can no longer be accessed, and can only be unarchived by an instance administrator." as confirm_archive %}
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootConfirmCampaignArchive({{ confirm_archive|jsonify }})
+    })
+  </script>
+{% endblock script %}

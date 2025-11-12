@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="has-text-centered">
+    <h1 class="title">{% block error_title %}{% endblock %}</h1>
+    <h2 class="subtitle mt-1">{% block error_subtitle %}{% endblock %}</h2>
+
+    <span class="sad-cat mb-5">😿</span>
+
+    <a href="{% url 'home' %}" class="button is-secondary">{% translate "Go to homepage" %}</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,2749 @@
+{
+    "name": "Socface with users",
+    "arkindex_project_id": "33ce4ddb-023c-498d-991a-d3bca3ff0316",
+    "public": true,
+    "users": true,
+    "element_types": [
+        {
+            "name": "folder",
+            "id": "54a9025e-b1e4-4669-b3f3-dadaf430e2d9"
+        },
+        {
+            "name": "page",
+            "id": "495fb997-a68a-4a0d-8dab-eb85d16ff7ca"
+        },
+        {
+            "name": "text_line",
+            "id": "d63ec267-5b73-45fb-a624-5b02c809d253"
+        },
+        {
+            "name": "word",
+            "id": "2f9b2491-9251-4b9a-a56a-12616ffc602d"
+        },
+        {
+            "name": "paragraph",
+            "id": "dc636c82-aa1e-45db-8c7e-cfc46cc2e270"
+        },
+        {
+            "name": "table",
+            "id": "95903509-d463-443d-a510-4e3102267f28"
+        },
+        {
+            "name": "row",
+            "id": "f764fdf2-8f16-4a83-8f99-f59f9859270f"
+        },
+        {
+            "name": "text_zone",
+            "id": "7d3cc924-aed6-49f8-89c7-def49dc7e077"
+        }
+    ],
+    "ml_classes": [
+        {
+            "id": "a1403ca1-a8a3-46a8-8961-20caeb2583e7",
+            "name": "Left margin"
+        },
+        {
+            "id": "4af96325-f573-4a57-8f24-dd577ffce682",
+            "name": "Right margin"
+        },
+        {
+            "id": "28ab1958-322e-4e2d-acac-ff4c13ff0b65",
+            "name": "Row"
+        },
+        {
+            "id": "99e9ab15-7052-47d3-a0a9-548c9a85875c",
+            "name": "Table footer"
+        },
+        {
+            "id": "284f2750-c6a3-4593-86c6-27349131760c",
+            "name": "Table header"
+        }
+    ],
+    "folders": [
+        {
+            "id": "c1e1eee8-f215-45b6-9f38-5441e5cd4f2f",
+            "name": "IIIF import",
+            "type": "folder",
+            "pages": [
+                {
+                    "id": "1ec443ea-6f9e-4478-8c98-7ec5cf6df348",
+                    "name": "6MI006_0427_D",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0427_D.jpg",
+                        "width": 4608,
+                        "height": 3768
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3768
+                        ],
+                        [
+                            4608,
+                            3768
+                        ],
+                        [
+                            4608,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "id": "2ede82a9-9b1e-4d05-8e56-46662db5f320",
+                    "name": "6MI006_0428_D",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0428_D.jpg",
+                        "width": 4608,
+                        "height": 3776
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3776
+                        ],
+                        [
+                            4608,
+                            3776
+                        ],
+                        [
+                            4608,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "id": "63ee4efb-f165-45c6-a4ba-2bf74ca8fbac",
+                    "name": "6MI006_0429_D",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0429_D.jpg",
+                        "width": 4608,
+                        "height": 3752
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3752
+                        ],
+                        [
+                            4608,
+                            3752
+                        ],
+                        [
+                            4608,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "id": "fb510215-605c-4af0-ba0b-296e9b39ee33",
+                    "name": "6MI006_0430_D",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                        "width": 4608,
+                        "height": 3784
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3784
+                        ],
+                        [
+                            4608,
+                            3784
+                        ],
+                        [
+                            4608,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ],
+                    "children": [
+                        {
+                            "id": "9aea20a9-78c9-4ba7-a31c-50711860c9c0",
+                            "name": "1",
+                            "type": "table",
+                            "image": {
+                                "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                "width": 4608,
+                                "height": 3784
+                            },
+                            "polygon": [
+                                [
+                                    446,
+                                    313
+                                ],
+                                [
+                                    446,
+                                    3414
+                                ],
+                                [
+                                    2269,
+                                    3414
+                                ],
+                                [
+                                    2269,
+                                    313
+                                ],
+                                [
+                                    446,
+                                    313
+                                ]
+                            ],
+                            "children": [
+                                {
+                                    "id": "030f35b3-c88a-45ef-ad82-bf15dcb91680",
+                                    "name": "1",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            437,
+                                            624
+                                        ],
+                                        [
+                                            437,
+                                            741
+                                        ],
+                                        [
+                                            2264,
+                                            741
+                                        ],
+                                        [
+                                            2264,
+                                            624
+                                        ],
+                                        [
+                                            437,
+                                            624
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "Fait et Pagner un courrier pour",
+                                        "id": "9272bb57-2768-4a2b-9250-154760586438"
+                                    }
+                                },
+                                {
+                                    "id": "f9882b1d-6726-4359-a310-6ef6245ba65b",
+                                    "name": "2",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            446,
+                                            724
+                                        ],
+                                        [
+                                            446,
+                                            812
+                                        ],
+                                        [
+                                            2275,
+                                            812
+                                        ],
+                                        [
+                                            2275,
+                                            724
+                                        ],
+                                        [
+                                            446,
+                                            724
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "92  .  Bugnot grand Chartier sous",
+                                        "id": "377bfbc8-e93a-4d2a-890b-a550e7fd3eef"
+                                    }
+                                },
+                                {
+                                    "id": "19b3408c-a4fb-43eb-8ebe-c57fecbb9e7e",
+                                    "name": "3",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            446,
+                                            809
+                                        ],
+                                        [
+                                            446,
+                                            892
+                                        ],
+                                        [
+                                            2278,
+                                            892
+                                        ],
+                                        [
+                                            2278,
+                                            809
+                                        ],
+                                        [
+                                            446,
+                                            809
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "59 2\u00b0 Charton pierre journalier",
+                                        "id": "a4a63221-b8fe-4541-b553-139fb8de311e"
+                                    }
+                                },
+                                {
+                                    "id": "691efe27-7489-42ae-957e-abda36164bb3",
+                                    "name": "4",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            437,
+                                            895
+                                        ],
+                                        [
+                                            437,
+                                            986
+                                        ],
+                                        [
+                                            2261,
+                                            986
+                                        ],
+                                        [
+                                            2261,
+                                            895
+                                        ],
+                                        [
+                                            437,
+                                            895
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "94 28 .  Carrippe J .  Croton framme ,  journation Eaux",
+                                        "id": "1d28e026-bd73-4ef2-8e4d-24af13fe7431"
+                                    }
+                                },
+                                {
+                                    "id": "a627cd30-17b5-4883-a3d8-719fcdd6344b",
+                                    "name": "5",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            434,
+                                            977
+                                        ],
+                                        [
+                                            434,
+                                            1071
+                                        ],
+                                        [
+                                            2261,
+                                            1071
+                                        ],
+                                        [
+                                            2261,
+                                            977
+                                        ],
+                                        [
+                                            434,
+                                            977
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "of old Belot asp\u00e9rant en fournir mission pour van mois",
+                                        "id": "9a0f5e11-6c86-4376-91ac-e3375e29090a"
+                                    }
+                                },
+                                {
+                                    "id": "d38f4667-ee7c-4a40-9a91-2bc3ffa5ddd0",
+                                    "name": "6",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            437,
+                                            1068
+                                        ],
+                                        [
+                                            437,
+                                            1174
+                                        ],
+                                        [
+                                            2272,
+                                            1174
+                                        ],
+                                        [
+                                            2272,
+                                            1068
+                                        ],
+                                        [
+                                            437,
+                                            1068
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "4\u00b0 et gendarent  .  Imagictoire journalier from",
+                                        "id": "4d0750ad-404e-4373-9f5d-3ec425cb6d88"
+                                    }
+                                },
+                                {
+                                    "id": "a3f23798-26f3-4e68-9e7d-b4245692a42e",
+                                    "name": "7",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            426,
+                                            1165
+                                        ],
+                                        [
+                                            426,
+                                            1274
+                                        ],
+                                        [
+                                            2269,
+                                            1274
+                                        ],
+                                        [
+                                            2269,
+                                            1165
+                                        ],
+                                        [
+                                            426,
+                                            1165
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "of his Gagn\u00e9 jean massured sous",
+                                        "id": "1d50c048-b5f9-408a-9740-dcc2050b0b97"
+                                    }
+                                },
+                                {
+                                    "id": "c95497de-0e55-4cd5-8043-fc529b6da559",
+                                    "name": "8",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            431,
+                                            1262
+                                        ],
+                                        [
+                                            431,
+                                            1331
+                                        ],
+                                        [
+                                            2275,
+                                            1331
+                                        ],
+                                        [
+                                            2275,
+                                            1262
+                                        ],
+                                        [
+                                            431,
+                                            1262
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "98 24 Amandier  -  Gaque ann\u00e9e 26 av .",
+                                        "id": "4e402a7f-7bb3-4ea1-a4bd-08aa6f6f0a6d"
+                                    }
+                                },
+                                {
+                                    "id": "c7ac74f7-1318-4202-9c10-ba6b8769a0c2",
+                                    "name": "9",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            429,
+                                            1342
+                                        ],
+                                        [
+                                            429,
+                                            1422
+                                        ],
+                                        [
+                                            2255,
+                                            1422
+                                        ],
+                                        [
+                                            2255,
+                                            1342
+                                        ],
+                                        [
+                                            429,
+                                            1342
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "9 et Gagn\u00e9 Nazarrette Laws  .",
+                                        "id": "4602a287-e8a2-4b2b-bd71-7a70a95f86ae"
+                                    }
+                                },
+                                {
+                                    "id": "f98c27f2-f7f0-4357-adf4-5f1f9ea8f7d4",
+                                    "name": "10",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            437,
+                                            1428
+                                        ],
+                                        [
+                                            437,
+                                            1519
+                                        ],
+                                        [
+                                            2267,
+                                            1519
+                                        ],
+                                        [
+                                            2267,
+                                            1428
+                                        ],
+                                        [
+                                            437,
+                                            1428
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "goo eig .  Gagn\u00e9 pierre  (  as",
+                                        "id": "ad3c17a7-54f8-4047-887f-9e73a0d9b51b"
+                                    }
+                                },
+                                {
+                                    "id": "7eed3623-ea56-4cd9-bbc4-41e11c7abaa9",
+                                    "name": "11",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            437,
+                                            1522
+                                        ],
+                                        [
+                                            437,
+                                            1590
+                                        ],
+                                        [
+                                            2252,
+                                            1590
+                                        ],
+                                        [
+                                            2252,
+                                            1522
+                                        ],
+                                        [
+                                            437,
+                                            1522
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "Nos et Marlod philippe journalier as ans .",
+                                        "id": "55fb41e5-b0ee-470c-8453-926db638bf29"
+                                    }
+                                },
+                                {
+                                    "id": "364098a0-515c-4158-a797-4b934c8f7c08",
+                                    "name": "12",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            451,
+                                            1593
+                                        ],
+                                        [
+                                            451,
+                                            1698
+                                        ],
+                                        [
+                                            2261,
+                                            1698
+                                        ],
+                                        [
+                                            2261,
+                                            1593
+                                        ],
+                                        [
+                                            451,
+                                            1593
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "soit if they practit grand Fears",
+                                        "id": "b7ace029-3c2d-4ca7-a284-a90781b6b7e3"
+                                    }
+                                },
+                                {
+                                    "id": "2ffcc0fa-b36c-4cd3-80bc-ffa49b611e64",
+                                    "name": "13",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            434,
+                                            1701
+                                        ],
+                                        [
+                                            434,
+                                            1769
+                                        ],
+                                        [
+                                            2258,
+                                            1769
+                                        ],
+                                        [
+                                            2258,
+                                            1701
+                                        ],
+                                        [
+                                            434,
+                                            1701
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "19 Marlos .  Jeanne ans .",
+                                        "id": "3ce484bf-ee0d-4457-a56e-cd1557bdf5f6"
+                                    }
+                                },
+                                {
+                                    "id": "c91f659b-a59a-4cf3-88c2-cee769fd8c3e",
+                                    "name": "14",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            443,
+                                            1775
+                                        ],
+                                        [
+                                            443,
+                                            1881
+                                        ],
+                                        [
+                                            2258,
+                                            1881
+                                        ],
+                                        [
+                                            2258,
+                                            1775
+                                        ],
+                                        [
+                                            443,
+                                            1775
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "son of Harted int\u00e9gard ,  frais",
+                                        "id": "cca3d231-a677-4a6f-bcc4-5447c5bfb4e3"
+                                    }
+                                },
+                                {
+                                    "id": "6b11f073-dcd3-4024-ad5c-3d07320fcb8e",
+                                    "name": "15",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            429,
+                                            1875
+                                        ],
+                                        [
+                                            429,
+                                            1949
+                                        ],
+                                        [
+                                            2255,
+                                            1949
+                                        ],
+                                        [
+                                            2255,
+                                            1875
+                                        ],
+                                        [
+                                            429,
+                                            1875
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "of 26 Dubois Lazard machinit\u00e9 sans",
+                                        "id": "94ac75e9-cd49-47c0-92fc-4a3dc15df02a"
+                                    }
+                                },
+                                {
+                                    "id": "fffcdd3c-1ac0-45dc-9d5a-20bdcc8cffeb",
+                                    "name": "16",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            431,
+                                            1943
+                                        ],
+                                        [
+                                            431,
+                                            2049
+                                        ],
+                                        [
+                                            2264,
+                                            2049
+                                        ],
+                                        [
+                                            2264,
+                                            1943
+                                        ],
+                                        [
+                                            431,
+                                            1943
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "16 av George de tr\u00e8s grand Villers",
+                                        "id": "90d96c81-0cd6-44a8-9870-fcd7f72845b3"
+                                    }
+                                },
+                                {
+                                    "id": "6094658a-ecde-4f56-abac-c89603b958cb",
+                                    "name": "17",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            431,
+                                            2052
+                                        ],
+                                        [
+                                            431,
+                                            2143
+                                        ],
+                                        [
+                                            2258,
+                                            2143
+                                        ],
+                                        [
+                                            2258,
+                                            2052
+                                        ],
+                                        [
+                                            431,
+                                            2052
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "togy of Dubois Jeanne nars",
+                                        "id": "4594b975-841b-44ed-b83a-ca8026089fac"
+                                    }
+                                },
+                                {
+                                    "id": "4ca8abcb-9a34-431c-af54-a5ed41ece8d0",
+                                    "name": "18",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            423,
+                                            2129
+                                        ],
+                                        [
+                                            423,
+                                            2228
+                                        ],
+                                        [
+                                            2261,
+                                            2228
+                                        ],
+                                        [
+                                            2261,
+                                            2129
+                                        ],
+                                        [
+                                            423,
+                                            2129
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "18 av .  Dubois fran\u00e7oise par",
+                                        "id": "3c447d3a-3fd6-42bd-87dd-4ad4a207cc2c"
+                                    }
+                                },
+                                {
+                                    "id": "c0885d0b-dfdc-4142-9478-3ff2526cb123",
+                                    "name": "19",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            431,
+                                            2231
+                                        ],
+                                        [
+                                            431,
+                                            2314
+                                        ],
+                                        [
+                                            2261,
+                                            2314
+                                        ],
+                                        [
+                                            2261,
+                                            2231
+                                        ],
+                                        [
+                                            431,
+                                            2231
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "1000 of Bobin Jean Emaitreinte Craud",
+                                        "id": "f5ac8296-b132-4362-86a8-44900e5d8aa5"
+                                    }
+                                },
+                                {
+                                    "id": "748ea086-c8b4-4f27-b215-4c7bd2521f6a",
+                                    "name": "20",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            435,
+                                            2305
+                                        ],
+                                        [
+                                            435,
+                                            2404
+                                        ],
+                                        [
+                                            2261,
+                                            2404
+                                        ],
+                                        [
+                                            2261,
+                                            2305
+                                        ],
+                                        [
+                                            435,
+                                            2305
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "son of Chaution of the married it as",
+                                        "id": "4c849110-f774-4580-9142-15fc56975d60"
+                                    }
+                                },
+                                {
+                                    "id": "25bcb38c-b340-4f70-82a6-d52157953f8c",
+                                    "name": "21",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            429,
+                                            2393
+                                        ],
+                                        [
+                                            429,
+                                            2493
+                                        ],
+                                        [
+                                            2247,
+                                            2493
+                                        ],
+                                        [
+                                            2247,
+                                            2393
+                                        ],
+                                        [
+                                            429,
+                                            2393
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "in of Robin Fran\u00e7ois francs  .",
+                                        "id": "2aa1121d-d44c-43f0-9575-be9ddd6fddd1"
+                                    }
+                                },
+                                {
+                                    "id": "e60837f8-67a9-4064-8225-b8a63d7eb905",
+                                    "name": "22",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            426,
+                                            2481
+                                        ],
+                                        [
+                                            426,
+                                            2575
+                                        ],
+                                        [
+                                            2259,
+                                            2575
+                                        ],
+                                        [
+                                            2259,
+                                            2481
+                                        ],
+                                        [
+                                            426,
+                                            2481
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "1\u00b0 en sobin Marie son",
+                                        "id": "dfa4744e-8094-4c3c-b225-6238b179031c"
+                                    }
+                                },
+                                {
+                                    "id": "0b23f15c-6707-4bc7-ba6b-ecb0a4092ed1",
+                                    "name": "23",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            423,
+                                            2590
+                                        ],
+                                        [
+                                            423,
+                                            2669
+                                        ],
+                                        [
+                                            2239,
+                                            2669
+                                        ],
+                                        [
+                                            2239,
+                                            2590
+                                        ],
+                                        [
+                                            423,
+                                            2590
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "15/28 Xavier L\u00e9onard  ( maribal Joans .",
+                                        "id": "12fd42b3-ab90-479a-93b1-f1e60f19c1d6"
+                                    }
+                                },
+                                {
+                                    "id": "5e9af0a3-2c91-42a1-b7ed-42269e69e365",
+                                    "name": "24",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            423,
+                                            2655
+                                        ],
+                                        [
+                                            423,
+                                            2761
+                                        ],
+                                        [
+                                            2261,
+                                            2761
+                                        ],
+                                        [
+                                            2261,
+                                            2655
+                                        ],
+                                        [
+                                            423,
+                                            2655
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "such is fewing  :  abit lagoute tois ans",
+                                        "id": "ce097cc8-7673-46df-b84b-8be5264fa829"
+                                    }
+                                },
+                                {
+                                    "id": "c7cdf95f-36ca-476b-8471-bfe0b03671ef",
+                                    "name": "25",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            423,
+                                            2755
+                                        ],
+                                        [
+                                            423,
+                                            2829
+                                        ],
+                                        [
+                                            2256,
+                                            2829
+                                        ],
+                                        [
+                                            2256,
+                                            2755
+                                        ],
+                                        [
+                                            423,
+                                            2755
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "sign\u00e9 et Cartier Claudine Blans .",
+                                        "id": "74ceb3a5-16da-4610-9df3-acc2d490a644"
+                                    }
+                                },
+                                {
+                                    "id": "7b7bd04a-0af8-4399-ac6a-14c65736eab1",
+                                    "name": "26",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            426,
+                                            2846
+                                        ],
+                                        [
+                                            426,
+                                            2929
+                                        ],
+                                        [
+                                            2250,
+                                            2929
+                                        ],
+                                        [
+                                            2250,
+                                            2846
+                                        ],
+                                        [
+                                            426,
+                                            2846
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "Tu as actier ennuitand  .  Heans",
+                                        "id": "84bfa88a-b622-486c-945b-3c48a92bd5e5"
+                                    }
+                                },
+                                {
+                                    "id": "13bd67d5-a64e-40c5-8978-617fb7c3f7e6",
+                                    "name": "27",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            426,
+                                            2943
+                                        ],
+                                        [
+                                            426,
+                                            3011
+                                        ],
+                                        [
+                                            2253,
+                                            3011
+                                        ],
+                                        [
+                                            2253,
+                                            2943
+                                        ],
+                                        [
+                                            426,
+                                            2943
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "47 29 Camain Benoit manoeux Eaux .",
+                                        "id": "6eb3d96e-d887-4b51-b0d9-eecbe4494c2d"
+                                    }
+                                },
+                                {
+                                    "id": "c65483e7-59aa-4fb3-8252-e1c75606cbbf",
+                                    "name": "28",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            429,
+                                            3006
+                                        ],
+                                        [
+                                            429,
+                                            3114
+                                        ],
+                                        [
+                                            2250,
+                                            3114
+                                        ],
+                                        [
+                                            2250,
+                                            3006
+                                        ],
+                                        [
+                                            429,
+                                            3006
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "4\u00b0 et Camain reste sans",
+                                        "id": "e9000028-b580-4858-8795-8b51fc6b64b2"
+                                    }
+                                },
+                                {
+                                    "id": "7c14c92c-1a8e-4cf7-94ba-23269832b416",
+                                    "name": "29",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            423,
+                                            3123
+                                        ],
+                                        [
+                                            423,
+                                            3194
+                                        ],
+                                        [
+                                            2242,
+                                            3194
+                                        ],
+                                        [
+                                            2242,
+                                            3123
+                                        ],
+                                        [
+                                            423,
+                                            3123
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "19 rue Gamaine Marie Mars",
+                                        "id": "0bf520c7-5fff-4202-9fca-77d274b05b7e"
+                                    }
+                                },
+                                {
+                                    "id": "25a735ae-c93a-495f-b132-596bad8d87c8",
+                                    "name": "30",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            418,
+                                            3180
+                                        ],
+                                        [
+                                            418,
+                                            3285
+                                        ],
+                                        [
+                                            2256,
+                                            3285
+                                        ],
+                                        [
+                                            2256,
+                                            3180
+                                        ],
+                                        [
+                                            418,
+                                            3180
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "F .  Hug .  Gamam Jean Rivard",
+                                        "id": "0edb13ba-3b06-4ab9-b4a4-f13fe886cce3"
+                                    }
+                                },
+                                {
+                                    "id": "7c8c610d-d630-48ac-a0ac-01738b8df4c6",
+                                    "name": "1",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            446,
+                                            308
+                                        ],
+                                        [
+                                            446,
+                                            621
+                                        ],
+                                        [
+                                            2275,
+                                            633
+                                        ],
+                                        [
+                                            2275,
+                                            319
+                                        ],
+                                        [
+                                            446,
+                                            308
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "id": "f7028198-a852-482b-bdca-191c68fa958f",
+                                    "name": "3",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            423,
+                                            3254
+                                        ],
+                                        [
+                                            423,
+                                            3397
+                                        ],
+                                        [
+                                            2235,
+                                            3408
+                                        ],
+                                        [
+                                            2241,
+                                            3277
+                                        ],
+                                        [
+                                            423,
+                                            3254
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "29cdd241-e1b8-47f6-addc-c88c30409074",
+                            "name": "2",
+                            "type": "table",
+                            "image": {
+                                "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                "width": 4608,
+                                "height": 3784
+                            },
+                            "polygon": [
+                                [
+                                    2435,
+                                    319
+                                ],
+                                [
+                                    2435,
+                                    3436
+                                ],
+                                [
+                                    4224,
+                                    3436
+                                ],
+                                [
+                                    4224,
+                                    319
+                                ],
+                                [
+                                    2435,
+                                    319
+                                ]
+                            ],
+                            "children": [
+                                {
+                                    "id": "4095dcbc-e38a-4561-ad04-8916da9a4e63",
+                                    "name": "31",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2417,
+                                            658
+                                        ],
+                                        [
+                                            2417,
+                                            727
+                                        ],
+                                        [
+                                            4229,
+                                            727
+                                        ],
+                                        [
+                                            4229,
+                                            658
+                                        ],
+                                        [
+                                            2417,
+                                            658
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "121 29 janvain Charles out missieurs ,  nous .",
+                                        "id": "cec33c2e-568d-47cd-af0b-e4fe18ca3ee6"
+                                    }
+                                },
+                                {
+                                    "id": "f586b13c-a8e9-4dd8-89d9-2ebf654cc732",
+                                    "name": "32",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2417,
+                                            736
+                                        ],
+                                        [
+                                            2417,
+                                            834
+                                        ],
+                                        [
+                                            4234,
+                                            834
+                                        ],
+                                        [
+                                            4234,
+                                            736
+                                        ],
+                                        [
+                                            2417,
+                                            736
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "18 A .  Depterchet tofortre - Domatiques jours",
+                                        "id": "63530625-053f-4be2-b867-6624507ddb64"
+                                    }
+                                },
+                                {
+                                    "id": "48600474-28a9-4048-8d56-76141fc49b50",
+                                    "name": "33",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2428,
+                                            841
+                                        ],
+                                        [
+                                            2428,
+                                            909
+                                        ],
+                                        [
+                                            4222,
+                                            909
+                                        ],
+                                        [
+                                            4222,
+                                            841
+                                        ],
+                                        [
+                                            2428,
+                                            841
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "1230 Beal Fran\u00e7ois journalier fears  .",
+                                        "id": "13d23cad-d9de-46a5-8010-826d81f2ccd4"
+                                    }
+                                },
+                                {
+                                    "id": "7d8c40fd-d18e-4a59-98d4-1cfd6cd7e995",
+                                    "name": "34",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2419,
+                                            895
+                                        ],
+                                        [
+                                            2419,
+                                            1021
+                                        ],
+                                        [
+                                            4225,
+                                            1021
+                                        ],
+                                        [
+                                            4225,
+                                            895
+                                        ],
+                                        [
+                                            2419,
+                                            895
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "vous so effect wither - in -",
+                                        "id": "0dcdb58a-7229-4d9e-9c16-2154520bf51a"
+                                    }
+                                },
+                                {
+                                    "id": "ddeb7d97-d84d-4683-9498-7843c7f88e75",
+                                    "name": "35",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2422,
+                                            1011
+                                        ],
+                                        [
+                                            2422,
+                                            1078
+                                        ],
+                                        [
+                                            4218,
+                                            1078
+                                        ],
+                                        [
+                                            4218,
+                                            1011
+                                        ],
+                                        [
+                                            2422,
+                                            1011
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "17 530 Beal Claudine your mati\u00e8re  ( sans  .",
+                                        "id": "10fe4471-6e48-446c-af19-846d63919665"
+                                    }
+                                },
+                                {
+                                    "id": "cc7e8aef-753d-44be-8bb5-54b5dc057f0b",
+                                    "name": "36",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2410,
+                                            1080
+                                        ],
+                                        [
+                                            2410,
+                                            1189
+                                        ],
+                                        [
+                                            4232,
+                                            1189
+                                        ],
+                                        [
+                                            4232,
+                                            1080
+                                        ],
+                                        [
+                                            2410,
+                                            1080
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "nom et sonor\u00e9 Joseph nomisier toom",
+                                        "id": "78c1458d-11e0-4ac1-83d0-2b29ac8f66a1"
+                                    }
+                                },
+                                {
+                                    "id": "2c821e4e-e160-41c7-aea4-1abb899f5270",
+                                    "name": "37",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2428,
+                                            1176
+                                        ],
+                                        [
+                                            2428,
+                                            1251
+                                        ],
+                                        [
+                                            4202,
+                                            1251
+                                        ],
+                                        [
+                                            4202,
+                                            1176
+                                        ],
+                                        [
+                                            2428,
+                                            1176
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "17 31 Matthing  .  Witot marie  .  45 ans",
+                                        "id": "da05e2bd-e3b1-41e2-9b2b-a0a65dca5c83"
+                                    }
+                                },
+                                {
+                                    "id": "f2407486-4feb-4d87-97a6-d0e4fc9b0fe7",
+                                    "name": "38",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2431,
+                                            1265
+                                        ],
+                                        [
+                                            2431,
+                                            1367
+                                        ],
+                                        [
+                                            4225,
+                                            1367
+                                        ],
+                                        [
+                                            4225,
+                                            1265
+                                        ],
+                                        [
+                                            2431,
+                                            1265
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "et sonot jacque Berenuisier twom",
+                                        "id": "3062c4c5-49ba-42eb-ad6e-ad5b4747af5b"
+                                    }
+                                },
+                                {
+                                    "id": "41dd930d-1adc-4a5c-9f5b-4bdb945061a3",
+                                    "name": "39",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2424,
+                                            1438
+                                        ],
+                                        [
+                                            4229,
+                                            1461
+                                        ],
+                                        [
+                                            4216,
+                                            1349
+                                        ],
+                                        [
+                                            2428,
+                                            1342
+                                        ],
+                                        [
+                                            2424,
+                                            1438
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "et tout joseph it was",
+                                        "id": "e0d6626e-8920-4c45-9ce2-152d1f2548cc"
+                                    }
+                                },
+                                {
+                                    "id": "233ee2ab-5599-43c0-8c64-396461abe72c",
+                                    "name": "40",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2422,
+                                            1527
+                                        ],
+                                        [
+                                            4222,
+                                            1554
+                                        ],
+                                        [
+                                            4216,
+                                            1451
+                                        ],
+                                        [
+                                            2424,
+                                            1438
+                                        ],
+                                        [
+                                            2422,
+                                            1527
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "To en Ford parfait - il",
+                                        "id": "40817e67-d128-422b-92e8-f78c5ae5acb9"
+                                    }
+                                },
+                                {
+                                    "id": "05a10067-22c0-42ee-8b54-a8dc3f453027",
+                                    "name": "41",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2426,
+                                            1522
+                                        ],
+                                        [
+                                            2428,
+                                            1618
+                                        ],
+                                        [
+                                            4222,
+                                            1634
+                                        ],
+                                        [
+                                            4220,
+                                            1540
+                                        ],
+                                        [
+                                            2426,
+                                            1522
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "toi et tood fromond pas",
+                                        "id": "e4316ecd-89f5-4939-9234-a4a5118e07b2"
+                                    }
+                                },
+                                {
+                                    "id": "0485a103-d4d3-4586-94fe-257abb171b20",
+                                    "name": "42",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2424,
+                                            1693
+                                        ],
+                                        [
+                                            4220,
+                                            1714
+                                        ],
+                                        [
+                                            4209,
+                                            1634
+                                        ],
+                                        [
+                                            2428,
+                                            1604
+                                        ],
+                                        [
+                                            2424,
+                                            1693
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "18 Si tout claudine Rivard",
+                                        "id": "c8b59c39-6691-4be9-a250-c34fbc32777c"
+                                    }
+                                },
+                                {
+                                    "id": "df0dcfd7-8c7c-4eaa-82bc-a9ed1f6f713b",
+                                    "name": "43",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2422,
+                                            1787
+                                        ],
+                                        [
+                                            4213,
+                                            1807
+                                        ],
+                                        [
+                                            4222,
+                                            1720
+                                        ],
+                                        [
+                                            2424,
+                                            1691
+                                        ],
+                                        [
+                                            2422,
+                                            1787
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "From or tous pierre fews  .",
+                                        "id": "50032cf5-5a32-4a36-ae64-8c10e22a748f"
+                                    }
+                                },
+                                {
+                                    "id": "301da4bc-a8e8-4afa-ba75-b01e45411b71",
+                                    "name": "44",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2424,
+                                            1880
+                                        ],
+                                        [
+                                            4229,
+                                            1898
+                                        ],
+                                        [
+                                            4225,
+                                            1818
+                                        ],
+                                        [
+                                            2433,
+                                            1784
+                                        ],
+                                        [
+                                            2424,
+                                            1880
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "It so said in Michel ,  journalier husband",
+                                        "id": "488ef1c2-2801-4fa9-be8b-b9186e02cd05"
+                                    }
+                                },
+                                {
+                                    "id": "98b0d7ea-aa25-4e3e-b1a9-6e3061b068d4",
+                                    "name": "45",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2424,
+                                            1885
+                                        ],
+                                        [
+                                            2424,
+                                            1971
+                                        ],
+                                        [
+                                            4227,
+                                            1983
+                                        ],
+                                        [
+                                            4225,
+                                            1891
+                                        ],
+                                        [
+                                            2424,
+                                            1885
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "of st Benoyant offender sond Eigars",
+                                        "id": "569df1fb-3c12-4901-bcdd-c74067fe73c2"
+                                    }
+                                },
+                                {
+                                    "id": "7d1a10d3-0c06-4884-a8f3-4be435af3c9e",
+                                    "name": "46",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2410,
+                                            1955
+                                        ],
+                                        [
+                                            2412,
+                                            2044
+                                        ],
+                                        [
+                                            4199,
+                                            2069
+                                        ],
+                                        [
+                                            4208,
+                                            1975
+                                        ],
+                                        [
+                                            2410,
+                                            1955
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "1\u00b0 de Faudine marie few",
+                                        "id": "84affece-4699-49a9-a712-a018d245c093"
+                                    }
+                                },
+                                {
+                                    "id": "02beaf3d-2456-4b3b-9251-4f5346ee47f1",
+                                    "name": "47",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2431,
+                                            2124
+                                        ],
+                                        [
+                                            4216,
+                                            2163
+                                        ],
+                                        [
+                                            4216,
+                                            2074
+                                        ],
+                                        [
+                                            2438,
+                                            2044
+                                        ],
+                                        [
+                                            2431,
+                                            2124
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "Fay Sa Gaudin fran\u00e7ois Grand",
+                                        "id": "759c79b4-f069-4977-b5c0-e2ead5854518"
+                                    }
+                                },
+                                {
+                                    "id": "df6e3f83-1fa5-4ecb-bb6e-7346c31607c6",
+                                    "name": "48",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2419,
+                                            2213
+                                        ],
+                                        [
+                                            4229,
+                                            2259
+                                        ],
+                                        [
+                                            4224,
+                                            2172
+                                        ],
+                                        [
+                                            2424,
+                                            2127
+                                        ],
+                                        [
+                                            2419,
+                                            2213
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "Frs et Benoin tioned  .  I fous .",
+                                        "id": "f2607045-da7c-4e48-ac7e-65ec46a6b96f"
+                                    }
+                                },
+                                {
+                                    "id": "bac8b68e-a46a-458d-9009-fbf6f68f2f38",
+                                    "name": "49",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2421,
+                                            2227
+                                        ],
+                                        [
+                                            2424,
+                                            2305
+                                        ],
+                                        [
+                                            4220,
+                                            2337
+                                        ],
+                                        [
+                                            4220,
+                                            2259
+                                        ],
+                                        [
+                                            2421,
+                                            2227
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "19 sept septante fran\u00e7ois journalier few",
+                                        "id": "8ee91377-b1be-4d4e-9fb8-0a337ae4e2e3"
+                                    }
+                                },
+                                {
+                                    "id": "54d4bd4a-bd4e-405a-b32b-03b1a155df71",
+                                    "name": "50",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2426,
+                                            2391
+                                        ],
+                                        [
+                                            4215,
+                                            2430
+                                        ],
+                                        [
+                                            4218,
+                                            2346
+                                        ],
+                                        [
+                                            2430,
+                                            2307
+                                        ],
+                                        [
+                                            2426,
+                                            2391
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "Iso so that of comptants habitants pour",
+                                        "id": "7bf9ff4d-a8a0-4d1c-a8da-2acc3d41bc92"
+                                    }
+                                },
+                                {
+                                    "id": "d99e2a9d-bd10-485d-a09a-23e70847bb9a",
+                                    "name": "51",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2421,
+                                            2405
+                                        ],
+                                        [
+                                            2426,
+                                            2487
+                                        ],
+                                        [
+                                            4220,
+                                            2514
+                                        ],
+                                        [
+                                            4220,
+                                            2430
+                                        ],
+                                        [
+                                            2421,
+                                            2405
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "Ins of septembre .  Tolph  .  Trons",
+                                        "id": "b95c7803-8187-4f99-bec2-82408c911ea4"
+                                    }
+                                },
+                                {
+                                    "id": "dd7a70c6-5745-42aa-af20-b6e1ac829781",
+                                    "name": "52",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2414,
+                                            2571
+                                        ],
+                                        [
+                                            4224,
+                                            2606
+                                        ],
+                                        [
+                                            4224,
+                                            2526
+                                        ],
+                                        [
+                                            2419,
+                                            2503
+                                        ],
+                                        [
+                                            2414,
+                                            2571
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "the Dupt autre jean tous",
+                                        "id": "8c20fafd-99a4-466e-8837-c1879b42c159"
+                                    }
+                                },
+                                {
+                                    "id": "ed2d3070-f020-4772-8318-002cc1486b02",
+                                    "name": "53",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2421,
+                                            2665
+                                        ],
+                                        [
+                                            4218,
+                                            2699
+                                        ],
+                                        [
+                                            4224,
+                                            2608
+                                        ],
+                                        [
+                                            2424,
+                                            2578
+                                        ],
+                                        [
+                                            2421,
+                                            2665
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "We of september year Emi",
+                                        "id": "c6a34d92-c894-4def-ace7-1e171e490a11"
+                                    }
+                                },
+                                {
+                                    "id": "45a0048a-b2e1-4eec-b5c0-4fd56cf7d596",
+                                    "name": "54",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2424,
+                                            2667
+                                        ],
+                                        [
+                                            2426,
+                                            2754
+                                        ],
+                                        [
+                                            4218,
+                                            2783
+                                        ],
+                                        [
+                                            4213,
+                                            2699
+                                        ],
+                                        [
+                                            2424,
+                                            2667
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "from she Ephine Joseph ournirmed from",
+                                        "id": "67f5a00b-d95d-461a-a1a5-30fb6d2a7c7a"
+                                    }
+                                },
+                                {
+                                    "id": "90fcb93b-df8f-437c-b6cd-83386837c1c3",
+                                    "name": "55",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2421,
+                                            2745
+                                        ],
+                                        [
+                                            2426,
+                                            2840
+                                        ],
+                                        [
+                                            4215,
+                                            2877
+                                        ],
+                                        [
+                                            4220,
+                                            2790
+                                        ],
+                                        [
+                                            2421,
+                                            2745
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "it is catam  ,  that them from",
+                                        "id": "bd5598b2-15b3-4427-b7ba-bae84c89c24b"
+                                    }
+                                },
+                                {
+                                    "id": "f26f5967-0867-48d2-ba21-1ab027ebebcf",
+                                    "name": "56",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2419,
+                                            2927
+                                        ],
+                                        [
+                                            4211,
+                                            2959
+                                        ],
+                                        [
+                                            4218,
+                                            2877
+                                        ],
+                                        [
+                                            2426,
+                                            2836
+                                        ],
+                                        [
+                                            2419,
+                                            2927
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "Hind of Enfined from if nous ,  film",
+                                        "id": "c5fd2084-75ae-403b-990a-8623f78d9bc5"
+                                    }
+                                },
+                                {
+                                    "id": "dc8659eb-4704-4b56-ba26-92f4ff1269e4",
+                                    "name": "57",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2414,
+                                            3016
+                                        ],
+                                        [
+                                            4215,
+                                            3048
+                                        ],
+                                        [
+                                            4220,
+                                            2966
+                                        ],
+                                        [
+                                            2417,
+                                            2938
+                                        ],
+                                        [
+                                            2414,
+                                            3016
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "Ily et Emel Grame your",
+                                        "id": "dc3251b4-32a4-487a-8b88-7a3d3171c0a3"
+                                    }
+                                },
+                                {
+                                    "id": "6f759dbc-fe28-49b2-aa54-60a66af5ad10",
+                                    "name": "58",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2421,
+                                            3027
+                                        ],
+                                        [
+                                            2421,
+                                            3114
+                                        ],
+                                        [
+                                            4222,
+                                            3137
+                                        ],
+                                        [
+                                            4213,
+                                            3064
+                                        ],
+                                        [
+                                            2421,
+                                            3027
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "18 av .  Emeld  -  it was",
+                                        "id": "68b649eb-f139-49b7-bf3f-a571aaf93f63"
+                                    }
+                                },
+                                {
+                                    "id": "ceea390b-8e66-4895-96ff-de55f24ac46e",
+                                    "name": "59",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2421,
+                                            3112
+                                        ],
+                                        [
+                                            2424,
+                                            3201
+                                        ],
+                                        [
+                                            4211,
+                                            3221
+                                        ],
+                                        [
+                                            4224,
+                                            3137
+                                        ],
+                                        [
+                                            2421,
+                                            3112
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "- ing she Ephine Philiberte  -  Cows",
+                                        "id": "271af16e-a169-4ad8-b701-97ca6b6ccb7d"
+                                    }
+                                },
+                                {
+                                    "id": "9d0bee3b-2f1e-4a4b-be5f-88aa7a405d58",
+                                    "name": "60",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2414,
+                                            3285
+                                        ],
+                                        [
+                                            4202,
+                                            3317
+                                        ],
+                                        [
+                                            4206,
+                                            3235
+                                        ],
+                                        [
+                                            2428,
+                                            3194
+                                        ],
+                                        [
+                                            2414,
+                                            3285
+                                        ]
+                                    ],
+                                    "transcription": {
+                                        "text": "to beast year Jamester Pears",
+                                        "id": "369ce145-b3fe-4086-b142-970d4ccb90f8"
+                                    }
+                                },
+                                {
+                                    "id": "775819cb-fee6-46e9-a49d-c5bbb0b16a80",
+                                    "name": "4",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2423,
+                                            3283
+                                        ],
+                                        [
+                                            2423,
+                                            3403
+                                        ],
+                                        [
+                                            4213,
+                                            3437
+                                        ],
+                                        [
+                                            4218,
+                                            3329
+                                        ],
+                                        [
+                                            2423,
+                                            3283
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "id": "aa977db8-0709-4b12-98e0-9b06684d247b",
+                                    "name": "2",
+                                    "type": "row",
+                                    "image": {
+                                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0430_D.jpg",
+                                        "width": 4608,
+                                        "height": 3784
+                                    },
+                                    "polygon": [
+                                        [
+                                            2435,
+                                            639
+                                        ],
+                                        [
+                                            4218,
+                                            644
+                                        ],
+                                        [
+                                            4230,
+                                            337
+                                        ],
+                                        [
+                                            2440,
+                                            325
+                                        ],
+                                        [
+                                            2435,
+                                            639
+                                        ]
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "50a3d289-77bf-457d-9d36-9b832a783086",
+                    "name": "6MI006_0431_D",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0431_D.jpg",
+                        "width": 4608,
+                        "height": 3792
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3792
+                        ],
+                        [
+                            4608,
+                            3792
+                        ],
+                        [
+                            4608,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "id": "710e7fd2-f61b-4849-b0e7-19b609e1bf89",
+                    "name": "6MI006_0432_D",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0432_D.jpg",
+                        "width": 4608,
+                        "height": 3792
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3792
+                        ],
+                        [
+                            4608,
+                            3792
+                        ],
+                        [
+                            4608,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "id": "0e747655-fccd-4711-9478-6a4cc3aebbd6",
+                    "name": "6MI006_0433_D",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0433_D.jpg",
+                        "width": 4608,
+                        "height": 3768
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3768
+                        ],
+                        [
+                            4608,
+                            3768
+                        ],
+                        [
+                            4608,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "id": "26108a67-82eb-4bef-8068-1771d25f61f9",
+                    "name": "6MI006_0434_D",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0434_D.jpg",
+                        "width": 4608,
+                        "height": 3792
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3792
+                        ],
+                        [
+                            4608,
+                            3792
+                        ],
+                        [
+                            4608,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "id": "c7b79876-864f-4959-a1d2-aa9c4702092f",
+                    "name": "6MI006_0435_D",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0435_D.jpg",
+                        "width": 4608,
+                        "height": 3800
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3800
+                        ],
+                        [
+                            4608,
+                            3800
+                        ],
+                        [
+                            4608,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "id": "dcb108ce-f35b-4f7f-97b1-a104721e74a5",
+                    "name": "6MI006_0436_D",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://europe-gamma.iiif.teklia.com/iiif/2/kesztenbaum%2FLeCreusot%2FAD071_6MI006%2F6MI006_0436_D.jpg",
+                        "width": 4608,
+                        "height": 3784
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3784
+                        ],
+                        [
+                            4608,
+                            3784
+                        ],
+                        [
+                            4608,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}

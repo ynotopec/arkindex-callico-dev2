@@ -1,0 +1,33 @@
+[#configure-a-classification-campaign]
+= Configure a *Classification* campaign
+
+You can create a *Classification* campaign in order to classify documents or elements on these documents.
+
+[WARNING]
+====
+You can only create *Classification* campaigns on projects that have classes. Whether or not a project has classes depends on the information retrieved from the project's provider which can be set when xref:projects/create.adoc[creating a project] or later from its xref:projects/edit.adoc[edition] page.
+====
+
+[#configuration-parameters]
+== Configuration parameters
+
+After having filled out the xref:./index.adoc[generic configuration parameters], including the optional xref:./index.adoc#context-ancestor-type[*Context ancestor type*] parameter, you need to select the classes that will be available to annotate items in your campaign.
+
+image::campaigns/configure/classification/available_classes.png[Available classes]
+
+Available classes are retrieved from the object your Callico project is linked to on its xref:projects/edit.adoc[external provider]. If your campaign's Callico project is linked to an Arkindex project, the classes to select from are all the classes available on that Arkindex project.
+
+[#example-annotation-task]
+== Example annotation task
+
+When contributors annotate a task, the selected classes are displayed in alphabetical order.
+
+image::campaigns/configure/classification/task.png[A classification task]
+
+[NOTE]
+.Keyboard shortcuts
+====
+In the screenshot above, the numbers next to the classes correspond to keyboard shortcuts the contributor can use to annotate. For example, to annotate the displayed text line as a `Row`, the contributor can hit the `3` key instead of clicking on the class name.
+====
+
+Once your campaign is configured, you can xref:tasks/create.adoc[create tasks] to start gathering annotations on your documents.

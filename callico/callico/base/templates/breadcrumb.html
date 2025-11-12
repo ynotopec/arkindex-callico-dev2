@@ -1,0 +1,102 @@
+{% load i18n %}
+
+<nav class="navbar-item breadcrumb pl-1 mb-0">
+  <span class="has-text-grey-light">/</span>
+  <ul>
+    {% if project %}
+      <li {% if request.resolver_match.view_name == 'project-details' %}class="is-active"{% endif %}>
+        <a
+          class="pl-3 truncate-long-words breadcrumb-link"
+          href="{% url 'project-details' project_id=project.id %}"
+          title="{{ project }}"
+        >
+          {{ project }}
+        </a>
+      </li>
+      {% if members %}
+        <li {% if request.resolver_match.view_name == 'members' %}class="is-active"{% endif %}>
+          <a
+            class="pl-3 breadcrumb-link"
+            href="{% url 'members' project_id=project.id %}"
+          >
+            {% translate "Members" %}
+          </a>
+        </li>
+      {% endif %}
+    {% endif %}
+
+    {% comment %} "can_admin" can be "True" or "None" {% endcomment %}
+    {% if campaign and can_admin is not False %}
+      <li {% if request.resolver_match.view_name == 'campaign-details' %}class="is-active"{% endif %}>
+        <span class="pl-3">{% translate "Campaign" %}</span>
+        <a
+          class="pl-1 truncate-long-words breadcrumb-link"
+          href="{% url 'campaign-details' pk=campaign.id %}"
+          title="{{ campaign }}"
+        >
+          {{ campaign }}
+        </a>
+      </li>
+      {% if display_configuration %}
+        <li>
+          <a
+            class="pl-3 breadcrumb-link"
+            href="{% url 'campaign-update' pk=campaign.id %}"
+          >
+            {% translate "Configuration" %}
+          </a>
+        </li>
+      {% endif %}
+    {% endif %}
+
+    {% if tasks %}
+      {% comment %} "can_admin" can be "True" or "None" {% endcomment %}
+      {% if can_admin is False %}
+        {% firstof has_pending_tasks|yesno:'pending,' has_available_tasks|yesno:'available,' as state %}
+        <li {% if request.resolver_match.view_name == 'contributor-campaign-task-list' %}class="is-active"{% endif %}>
+          <span class="pl-3">{% translate "Tasks" %}</span>
+          <a
+            class="pl-1 truncate-long-words breadcrumb-link"
+            href="{% url 'contributor-campaign-task-list' pk=campaign.id %}{% querystring state=state %}"
+            title="{{ campaign }}"
+          >
+            {{ campaign }}
+          </a>
+        </li>
+      {% else %}
+        {% comment %} Do not repeat the name of the campaign as it is already displayed {% endcomment %}
+        <li {% if request.resolver_match.view_name == 'admin-campaign-task-list' %}class="is-active"{% endif %}>
+          <a
+            class="pl-3 breadcrumb-link"
+            href="{% url 'admin-campaign-task-list' pk=campaign.id %}"
+          >
+            {% translate "Tasks" %}
+          </a>
+        </li>
+      {% endif %}
+    {% endif %}
+
+    {% if processes %}
+      <li {% if request.resolver_match.view_name == 'processes' %}class="is-active"{% endif %}>
+        <a
+          class="pl-3 breadcrumb-link"
+          href="{% url 'processes' pk=project.id %}"
+        >
+          {% translate "Processes" %}
+        </a>
+      </li>
+    {% endif %}
+
+    {% if extra_breadcrumb %}
+      <li class="is-active">
+        <span class="pl-3">{{ extra_breadcrumb.title }}</span>
+        <a
+          class="pl-1 truncate-long-words breadcrumb-link"
+          title="{{ extra_breadcrumb.link_title }}"
+        >
+          {{ extra_breadcrumb.link_title }}
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>

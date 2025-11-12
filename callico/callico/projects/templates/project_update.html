@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n basefilters bulma_tags %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=project %}
+{% endblock breadcrumb %}
+
+{% block title %}
+  {% translate "Project edition" %}
+{% endblock title %}
+
+{% block content %}
+  <a href="{% url 'project-details' project_id=project.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+
+  <h1 class="title">{% translate "Edit this project" %}</h1>
+
+  <form method="post" enctype="multipart/form-data" class="is-relative">
+    {% csrf_token %}
+
+    {{ form | bulma }}
+
+    <button class="button is-success" type="submit">{% translate "Save" %}</button>
+  </form>
+{% endblock %}
+
+{% block script %}
+  {% translate "Choose a file..." as CTA_label %}
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootBulmaFileFields({{ CTA_label|jsonify }})
+    })
+  </script>
+{% endblock script %}

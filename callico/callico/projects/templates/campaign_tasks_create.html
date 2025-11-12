@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load i18n bulma_tags %}
+
+{% block title %}
+  {% translate "Campaign tasks creation" %}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=campaign.project campaign=campaign %}
+{% endblock breadcrumb %}
+
+{% block content %}
+  <a href="{% url 'campaign-details' pk=campaign.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+  <h1 class="title truncate-long-words pr-4" title="{{ campaign.name }}">
+    {% blocktranslate with name=campaign.name %}Create tasks on campaign "{{ name }}"{% endblocktranslate %}
+  </h1>
+
+  <div class="columns">
+    <div class="column is-one-third pb-0">
+      <label class="label">{% translate "Mode" %}</label>
+      <p>{{ campaign.get_mode_display }}</p>
+    </div>
+    {% if campaign.mode == "transcription" %}
+      <div class="column pb-0">
+        <label class="label">{% translate "Configuration - Element types to annotate" %}</label>
+        <p>
+          {{ children_types|join:" · "}}
+        </p>
+      </div>
+    {% endif %}
+  </div>
+  <hr />
+
+  <form id="create-tasks-form" method="post">
+    {% csrf_token %}
+
+    {{ form | bulma }}
+
+    <input id="preview-button" class="button is-info" type="submit" name="preview" value="{% translate 'Preview a single task' %}" />
+
+    <button id="create-tasks-button" class="button is-success" type="submit">{% translate "Create" %}</button>
+  </form>
+{% endblock %}
+
+{% block script %}
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootCreateTasksForm()
+    })
+  </script>
+{% endblock script %}

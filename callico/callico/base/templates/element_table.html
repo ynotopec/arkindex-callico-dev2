@@ -1,0 +1,17 @@
+{% load i18n %}
+
+<table class="table is-fullwidth element-table">
+  <thead>
+    <tr>
+      <th>{% translate "Type" %}</th>
+      <th class="is-narrow"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="empty-row">
+      <td colspan="2">
+        <div class="notification is-info is-light">{% translate "No element annotated on this image" %}</div>
+      </td>
+    </tr>
+  </tbody>
+</table>

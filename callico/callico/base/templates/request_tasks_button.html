@@ -1,0 +1,25 @@
+{% load i18n %}
+
+{% if has_available_tasks %}
+  {% if campaign.is_closed %}
+    <span class="notification is-light">
+      {% blocktranslate with state=campaign.get_state_display %}Campaign is marked as {{ state }}{% endblocktranslate %}
+    </span>
+  {% elif request.user.is_anonymous %}
+    <span class="notification is-warning is-light">
+      {% translate "Log in to request tasks" %}
+    </span>
+  {% elif has_pending_tasks %}
+    <span class="notification is-info is-light">
+      {% translate "You already have tasks to annotate" %}
+    </span>
+  {% else %}
+    <button class="button mr-1 {{ class }}" type="submit">
+      {{ title }}
+    </button>
+  {% endif %}
+{% else %}
+  <span class="notification is-light is-success">
+    {% translate "No more available tasks" %}
+  </span>
+{% endif %}

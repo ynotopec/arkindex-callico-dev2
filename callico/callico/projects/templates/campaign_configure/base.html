@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n basefilters bulma_tags %}
+
+{% block title %}
+  {% translate "Campaign configuration" %}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=campaign.project campaign=campaign %}
+{% endblock breadcrumb %}
+
+{% block content %}
+  <a href="{% url 'campaign-details' pk=campaign.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+  <h1 class="title">{% translate "Configure this campaign" %}</h1>
+
+  <form id="update-campaign-form" method="post">
+    {% csrf_token %}
+
+    {{ form | bulma }}
+
+    {% translate "Add a new entity" as title %}
+    {% include "formset.html" with sortable_formset=True %}
+
+    {% if campaign.mode == "entity form" %}
+      {% include "campaign_configure/entity_form_table.html" %}
+    {% endif %}
+
+    <button class="button is-success is-absolute-right" type="submit">{% translate "Configure" %}</button>
+  </form>
+
+  <datalist id="entity-type-list">
+    {% for entity_type in campaign.project.provider_extra_information.entity_types %}
+      <option value="{{ entity_type.name }}"></option>
+    {% endfor %}
+  </datalist>
+{% endblock %}
+
+{% block script %}
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootUpdateCampaignForm({{ campaign.mode|jsonify }})
+    })
+  </script>
+{% endblock script %}

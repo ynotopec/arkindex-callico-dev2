@@ -1,0 +1,27 @@
+{% extends 'user_task_details_base.html' %}
+{% load i18n %}
+
+{% block context %}
+  <div class="is-hidden">
+    {% for element_type in element_types %}
+      <span type-id="{{ element_type.id }}">{{ element_type.name }}</span>
+    {% endfor %}
+  </div>
+{% endblock context %}
+
+{% block answer %}
+  <div answer-elements="{{ answer.value }}">
+    <button class="button m-2">{% translate "Display this version" %}</button>
+    {% include "element_table.html" %}
+  </div>
+{% endblock answer %}
+
+{% block script %}
+  {{ block.super }}
+
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootElementsUserTaskDetails()
+    })
+  </script>
+{% endblock script %}

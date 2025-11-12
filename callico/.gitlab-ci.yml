@@ -1,0 +1,353 @@
+stages:
+  - checks
+  - test
+  - build
+  - deploy
+  - release
+  - cleanup
+
+.backend-setup:
+  image: python:3.11-slim
+
+  cache:
+    paths:
+      - .cache/pip
+
+  except:
+    - schedules
+
+  before_script:
+    - pip install setuptools --upgrade
+    - pip install -e .
+
+  variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+    DATABASE_URL: "postgres://callico:callicopwd@postgres:5432/callico"
+    # Required by PostgreSQL
+    POSTGRES_DB: callico
+    POSTGRES_USER: callico
+    POSTGRES_PASSWORD: callicopwd
+
+.selenium:
+  extends: .backend-setup
+
+  dependencies:
+    - frontend-build
+
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - nosetests.xml
+
+  before_script:
+    - pip install tox
+    - export FRONTEND_DIR=$CI_PROJECT_DIR/front/dist
+
+  variables:
+    # The main job container is always aliased as `build`
+    # https://gitlab.com/gitlab-org/gitlab-runner/-/blob/main/executors/docker/docker.go#L522
+    DJANGO_LIVE_TEST_SERVER_ADDRESS: build
+    # Use a docker network to make Selenium grid services able to reach the live server from the build container
+    # https://docs.gitlab.com/runner/executors/docker.html#networking
+    FF_NETWORK_PER_BUILD: 1
+    SELENIUM_HOST: webdriver
+
+  script:
+    - tox -e selenium
+
+  # Selenium jobs are complex to maintain in the long run
+  allow_failure: true
+
+lint:
+  image: nikolaik/python-nodejs:python3.11-nodejs20-slim
+  stage: checks
+
+  cache:
+    paths:
+      - .cache/pre-commit
+
+  except:
+    - schedules
+
+  variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+    PRE_COMMIT_HOME: "$CI_PROJECT_DIR/.cache/pre-commit"
+
+  before_script:
+    # Install git
+    - apt-get update -q -y && apt-get install -q -y --no-install-recommends git
+
+    - pip install pre-commit
+    # Install frontend dependencies
+    - cd front
+    - npm ci
+
+  script:
+    - pre-commit run -a
+
+migrations:
+  extends: .backend-setup
+  stage: checks
+
+  services:
+    - name: postgres:13-alpine
+      alias: postgres
+
+  except:
+    - schedules
+
+  script:
+    - callico/manage.py makemigrations --check --noinput --dry-run -v 3
+
+translations:
+  extends: .backend-setup
+  stage: checks
+
+  except:
+    - schedules
+
+  before_script:
+    # Install git and gettext (required to run makemessages command)
+    - apt-get update -q -y && apt-get install -q -y --no-install-recommends git gettext
+
+    - pip install -e .
+
+  script:
+    - callico/manage.py compilemessages
+    # Fail if the .mo file isn't up to date
+    - git diff --exit-code
+    - callico/manage.py makemessages -l fr --no-location
+    # Fail if there is more than one insertion/one deletion
+    # (POT-Creation-Date changes each time we run makemessages)
+    - git diff --numstat | awk '{if ($1>1 || $2>1) { exit 1 } else { exit 0 }}'
+
+unit:
+  extends: .backend-setup
+  stage: test
+
+  services:
+    - name: postgres:13-alpine
+      alias: postgres
+
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - nosetests.xml
+
+  before_script:
+    - pip install tox
+
+  script:
+    - tox -e unit -- --durations=50
+
+selenium-chrome:
+  extends: .selenium
+  stage: test
+
+  services:
+    - name: postgres:13-alpine
+      alias: postgres
+    - name: selenium/standalone-chrome:4.6.0
+      alias: webdriver
+
+  variables:
+    SELENIUM_BROWSER: chrome
+
+selenium-firefox:
+  extends: .selenium
+  stage: test
+
+  services:
+    - name: postgres:13-alpine
+      alias: postgres
+    - name: selenium/standalone-firefox:4.6.0
+      alias: webdriver
+
+  variables:
+    SELENIUM_BROWSER: firefox
+
+docker-build:
+  stage: build
+  image: docker:24.0.6
+  services:
+    - docker:dind
+
+  except:
+    - schedules
+
+  script:
+    - ci/build.sh
+
+frontend-build:
+  stage: checks  # We need it to run Selenium tests
+  image: node:20-slim
+
+  except:
+    - schedules
+
+  before_script:
+    - cd front
+    - npm ci
+
+  script:
+    - npm run production
+
+  artifacts:
+    paths:
+      - front/dist
+    expire_in: 2 weeks
+
+docs-build:
+  image: node:20
+  stage: build
+
+  before_script:
+    - npm ci
+
+  script:
+    - npx antora antora-playbook.yml --html-url-extension-style=indexify --fetch --clean --log-level=info
+
+  artifacts:
+    paths:
+      - public
+
+  # Test job outside of tags to ensure the docs still can build before merging
+  # Does not use the `pages` name, therefore will be ignored by GitLab Pages
+  except:
+    - tags
+    - schedules
+
+pages:
+  image: registry.gitlab.teklia.com/doc/html-redirections:latest
+  stage: release
+
+  script:
+    - teklia-redirections build
+
+  only:
+    - master
+    - tags
+
+  except:
+    - schedules
+
+docs-deploy:
+  image: node:20
+  stage: release
+
+  dependencies:
+    - docs-build
+
+  before_script:
+    - npm install -g surge
+
+  except:
+    - master
+    - tags
+    - schedules
+
+  environment:
+    name: ${CI_COMMIT_REF_SLUG}
+    url: https://${CI_COMMIT_REF_SLUG}-callico-teklia.surge.sh
+    on_stop: docs-stop-surge
+
+  script:
+    - surge public ${CI_ENVIRONMENT_URL}
+
+docs-stop-surge:
+  image: node:20
+  stage: release
+  when: manual
+
+  # Do not try to checkout the branch if it was deleted
+  variables:
+    GIT_STRATEGY: none
+
+  except:
+    - master
+    - tags
+    - schedules
+
+  environment:
+    name: ${CI_COMMIT_REF_SLUG}
+    url: https://${CI_COMMIT_REF_SLUG}-callico-teklia.surge.sh
+    action: stop
+
+  before_script:
+    - npm install -g surge
+
+  script:
+    - surge teardown ${CI_ENVIRONMENT_URL}
+
+bump-python-deps:
+  stage: release
+  image: registry.gitlab.teklia.com/infra/devops:latest
+
+  only:
+    - schedules
+
+  script:
+    - devops python-deps requirements.txt requirements-docker.txt tests-requirements.txt
+
+release-notes:
+  stage: release
+  image: registry.gitlab.teklia.com/infra/devops:latest
+
+  rules:
+    - if: '$CI_COMMIT_TAG'
+      when: on_success
+    - when: never
+
+  script:
+    - devops release-notes
+
+deploy-staging:
+  stage: deploy
+  image: registry.gitlab.teklia.com/infra/playbook/deploy:latest
+  tags:
+    - staging
+  script:
+    - cd deployment
+    - ansible-playbook playbook.yml -i hosts -t deploy --limit=staging-01 --extra-vars="git_branch_name=$CI_COMMIT_REF_SLUG git_commit_sha=$CI_COMMIT_SHORT_SHA"
+
+  artifacts:
+    paths:
+      - deployment/
+    expire_in: 1 week
+
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    url: https://$CI_COMMIT_REF_SLUG.callico.dev.teklia.com
+    on_stop: cleanup-staging
+
+  # Only for merge requests
+  # Deployment is allowed to fail because external contributors may not have access to deployment image
+  rules:
+    - if: '$CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH != "master"'
+      allow_failure: true
+    - when: never
+
+cleanup-staging:
+  stage: cleanup
+  image: registry.gitlab.teklia.com/infra/playbook/deploy:latest
+  tags:
+    - staging
+  script:
+    - cd deployment
+    - ansible-playbook playbook.yml -i hosts -t cleanup --limit=staging-01 --extra-vars="git_branch_name=$CI_COMMIT_BRANCH git_commit_sha=$CI_COMMIT_SHORT_SHA"
+
+  variables:
+    GIT_STRATEGY: none
+
+  # Only for merge requests, manually run
+  rules:
+    - if: '$CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH != "master"'
+      when: manual
+      allow_failure: true
+    - when: never
+
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    action: stop

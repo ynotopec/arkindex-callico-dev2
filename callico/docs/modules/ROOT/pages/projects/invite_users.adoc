@@ -1,0 +1,30 @@
+[#invite-users-to-join-a-project]
+= Invite users to join a project
+
+[WARNING]
+====
+You must be a manager of the project to invite people.
+====
+
+If you are a member with manager role, the `Invite users` action is displayed in the section named *Project* from the menu on the left of the project details page.
+
+image::projects/details.png[Project details page]
+
+[#manage-the-link]
+== Manage the link
+
+To invite users to join your project, you can share the project invitation link.
+
+image::projects/invite.png[Project invitation link]
+
+[NOTE]
+====
+Each time you refresh the invitation token by clicking on the `Regenerate` button, all previous invitation links become obsolete.
+====
+
+[#use-the-link]
+== Use the link
+
+By clicking on this link, users will be asked to accept or decline the invitation. If the user accepts the invitation, they will be added to the project as a contributor.
+
+image::projects/invitation.png[Project invitation]

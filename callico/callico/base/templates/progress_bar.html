@@ -1,0 +1,27 @@
+{% load basefilters i18n %}
+
+{% if progression and progression.total %}
+  <div class="columns mt-1">
+    <div class="column">
+      <div class="progress-bar has-background-grey-lighter is-flex">
+        {% for state_progress in progression.details %}
+          {% if state_progress.nb_tasks and state_progress.display %}
+            {% widthratio state_progress.nb_tasks progression.total 100 as percentage %}
+            <div class="progress-bar-section {{ state_progress.state | progress_bar_colors }} is-flex-grow-1 is-flex-shrink-1"
+                 style="width: {{ percentage }}%"
+                 title="{{ state_progress.state.label }} {% blocktranslate with nb_tasks=state_progress.nb_tasks %}{{ percentage }}% - {{ nb_tasks }} tasks{% endblocktranslate %}">
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="is-pulled-right pt-2">
+      <strong>
+        {% widthratio progression.completed progression.total 100 as completed_percentage %}
+        {% blocktranslate context "feminine" with percentage=completed_percentage completed=progression.completed total=progression.total %}{{ percentage }}% completed ({{ completed }}/{{ total }}){% endblocktranslate %}
+      </strong>
+    </div>
+  </div>
+
+  <hr />
+{% endif %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load i18n bulma_tags %}
+
+{% block title %}
+  {% translate "Join a project" %}
+{% endblock title %}
+
+{% block content %}
+  <div class="columns mt-3">
+    <div class="column is-half is-offset-one-quarter">
+      <div class="box">
+        <h2 class="is-4 subtitle">{% blocktranslate with project_name=project.name %}You have been invited to join the project <strong>{{ project_name }}</strong>.{% endblocktranslate %}</h2>
+        <p class="is-5 subtitle">{% translate "You can choose to accept this invitation and join the project as a contributor, or simply decline." %}</p>
+
+        <hr />
+        <form method="post">
+          {% csrf_token %}
+
+          {{ form | bulma }}
+          <a class="button is-danger" href="{% url 'projects' %}">{% translate "Decline" %}</a>
+          <button class="button is-success is-pulled-right" type="submit">{% translate "Accept" %}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

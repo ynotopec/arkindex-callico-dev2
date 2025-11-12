@@ -1,0 +1,60 @@
+[#close-and-reopen-or-archive-a-campaign]
+= Close and reopen or archive a campaign
+
+[WARNING]
+====
+
+* To close, reopen or archive a campaign, you must be a manager of its parent project.
+====
+
+Once your contributors and moderators have finished and validated their work, it can be beneficial to close your campaign to prevent further changes from being made to the collected annotations, and to let your users know that the campaign is coming to an end. You can also archive a campaign, which will hide it from everyone, if it is no longer useful for anyone to have access to that campaign.
+
+[#close-a-campaign]
+== Close a campaign
+
+If you are a member with manager role, the `Close` action is displayed in the section named *Campaign* from the menu on the left of the campaign details page.
+
+image::campaigns/details.png[Campaign details page]
+
+Closing your campaign changes its status to `Closed` and deactivates the following features:
+
+* annotation by contributors,
+* moderation by moderators,
+* campaign configuration,
+* task creation and publication.
+
+However, the following features remain available:
+
+* task list,
+* `Draft`, `Pending` and unassigned task suppression,
+* result export in all modes.
+
+[#reopen-a-closed-campaign]
+== Reopen a closed campaign
+
+If you inadvertently closed your campaign, this action is easily reversible by using the `Reopen` action displayed in the section named *Campaign* from the menu on the left of the campaign details page which will appear in place of the previously shown `Close` action.
+
+Reopening a campaign will restore all the deactivated features and bring it back to a `Running` state.
+
+[#archive-a-campaign]
+== Archive a campaign
+
+[WARNING]
+====
+
+* Once a campaign is archived, it is hidden from everyone, including managers on its parent project. Only instance administrators can unarchive a campaign from the Django administration panel.
+====
+
+If you are a member with manager role, the `Archive` action is displayed in the section named *Campaign* from the menu on the left of the campaign details page.
+
+image::campaigns/details.png[Campaign details page]
+
+Archiving your campaign changes its status to `Archived` and completely hides it from all members. It deactivates all features:
+
+* annotation by contributors,
+* moderation by moderators,
+* campaign configuration,
+* task creation and publication,
+* task list,
+* `Draft`, `Pending` and unassigned task suppression,
+* result export in all modes.

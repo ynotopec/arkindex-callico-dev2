@@ -1,0 +1,57 @@
+{% extends 'user_task_manage_base.html' %}
+{% load i18n basefilters bulma_tags %}
+
+{% block form %}
+  {{ form | bulma }}
+
+  <fieldset class="is-hidden">
+    {{ form.empty_form }}
+  </fieldset>
+
+  {% if not element_types %}
+    <div class="message is-warning">
+      <div class="message-body">
+        {% translate "No element type was found in the configuration. Please contact a manager of this project." %}
+      </div>
+    </div>
+  {% else %}
+
+    {% if element_types|length == 1 %}
+      <div class="message is-info">
+        <div class="message-body break-word">
+          {% with element_type=element_types|first %}
+            {% blocktranslate with type=element_type.name|lower %}You have to annotate all <strong>{{ type }}</strong> elements on this image.{% endblocktranslate %}
+          {% endwith %}
+        </div>
+      </div>
+    {% else %}
+      <label class="label">{% translate "Element type" %}</label>
+    {% endif %}
+
+    <div class="select {% if element_types|length == 1 %}is-hidden{% endif %}">
+      <select id="element-type-selector" class="truncate-long-words restricted-max-width-100">
+        {% for element_type in element_types %}
+          <option value="{{ element_type.id }}" type-id="{{ element_type.id }}">{{ element_type.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  {% endif %}
+
+  <div class="mt-4 mb-4">
+    {% include "element_table.html" %}
+  </div>
+{% endblock form %}
+
+{% block script %}
+  {{ block.super }}
+
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootElementsAnnotate(
+        {{ user_task.id|stringformat:"s"|jsonify }},
+        {{ parent_id|stringformat:"s"|jsonify }},
+        {{ previous_elements|jsonify }},
+      )
+    })
+  </script>
+{% endblock script %}

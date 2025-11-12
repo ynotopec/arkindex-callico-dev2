@@ -1,0 +1,44 @@
+{% load i18n %}
+
+{% if annotation_mode %}
+  <div class="field mr-2">
+    <div class="control has-icons-right">
+      <input
+        id="entityFilter"
+        class="input is-small"
+        placeholder="{% translate "Filter entities…" %}"
+      />
+      <span
+        class="icon is-small is-right has-text-grey is-clickable"
+        title="{% translate "Clear filters" %}"
+      >
+        <i class="fas fa-times fa-xs"></i>
+      </span>
+    </div>
+  </div>
+{% endif %}
+
+{% for label, color in labels.items %}
+  <div
+    class="tags has-addons mb-1 mr-2 {% if annotation_mode %}is-clickable{% endif %}"
+    entity-type="{{ label }}"
+    entity-color="{{ color }}"
+  >
+    <span
+      class="tag is-small truncate-long-words"
+      style="background-color: {{ color }};"
+      title="{{ label }}"
+    >
+      <p class="truncate-long-words">{{ label }}</p></span>
+  </div>
+{% empty %}
+  <div class="message is-warning">
+    <div class="message-body">
+      {% if annotation_mode %}
+        {% translate "No entity type was found in the configuration. Please contact a manager of this project." %}
+      {% else %}
+        {% translate "No entity type was found in the configuration." %}
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}

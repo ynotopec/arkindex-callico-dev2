@@ -1,0 +1,51 @@
+{% load i18n bulma_tags %}
+
+<div>
+  <hr>
+
+  <h5 class="title is-size-5 mb-3">{% translate "Form fields" %}</h5>
+
+  <table id="entity-form-objects-table" class="table is-fullwidth">
+    <thead>
+      <tr>
+        <th class="is-narrow"></th>
+        <th>{% translate "Type" %}</th>
+        <th>{% translate "Label" %}</th>
+        <th>{% translate "Authority record" %}</th>
+        <th>{% translate "Custom choices" %}</th>
+        <th class="is-narrow"></th>
+      </tr>
+    </thead>
+    {% for field in campaign.configuration.fields %}
+      <tbody>
+        {% if field.mode == "group" %}
+          {% include "campaign_configure/entity_form_group_row.html" with current_group=field %}
+
+          {% with group_idx=forloop.counter0 %}
+            {% for group_field in field.fields %}
+              {% include "campaign_configure/entity_form_field_row.html" with group=group_idx group_legend=field.legend current_field=group_field %}
+            {% endfor %}
+          {% endwith %}
+        {% else %}
+          {% include "campaign_configure/entity_form_field_row.html" with group=-1 current_field=field %}
+        {% endif %}
+      </tbody>
+    {% empty %}
+      <tbody>
+        <tr>
+          <td colspan="5">
+            <div class="notification is-info is-light">{% translate "No form field configured on this campaign" %}</div>
+          </td>
+        </tr>
+      </tbody>
+    {% endfor %}
+  </table>
+
+  <hr>
+
+  {% translate "Add" as action %}
+  {% translate "field group" as group_obj %}
+  <a href="{% url 'entity-form-object-create' pk=campaign.id %}{% querystring mode='group' %}" class="button is-success is-light">{% blocktranslate with action=action object=group_obj %}{{ action }} a {{ object }}{% endblocktranslate %}</a>
+  {% translate "field" as field_obj %}
+  <a href="{% url 'entity-form-object-create' pk=campaign.id %}{% querystring mode='field' %}" class="button is-success is-light">{% blocktranslate with action=action object=field_obj %}{{ action }} a {{ object }}{% endblocktranslate %}</a>
+</div>

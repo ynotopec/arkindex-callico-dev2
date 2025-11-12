@@ -1,0 +1,18 @@
+[#callico]
+= Callico
+
+[#collaborative-document-annotation-made-easy]
+== Collaborative Document Annotation Made Easy
+
+Welcome to Callico, https://teklia.com[TEKLIA]'s intuitive web-based application designed to streamline your collaborative document annotation experience.
+
+Using Callico, you can efficiently gather training data to develop advanced Machine Learning models, fostering collaboration and simplifying data collection across your projects.
+
+[#key-features]
+=== Key Features
+
+* *Effortless Collaboration:* Callico's user-friendly interface enables seamless teamwork and distribution of tasks among contributors.
+* *Flexible Campaign Modes:* Choose from a diverse range of campaign modes, tailored to meet your project's unique requirements.
+* *Comprehensive Project Management:* Take full control of your projects' campaigns, while effortlessly overseeing and validating the collected annotations.
+
+xref:./get_started.adoc[Get started with Callico] today and revolutionize your document annotation process.

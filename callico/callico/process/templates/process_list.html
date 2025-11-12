@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load basefilters i18n humanize %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=project processes=True %}
+{% endblock breadcrumb %}
+
+{% block title %}
+  {% translate "Processes" %}
+{% endblock title %}
+
+{% block content %}
+  <a href="{% url 'project-details' project_id=project.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+
+  <h1 class="title mb-5 truncate-long-words pr-4" title="{{ project.name }}">
+    {% blocktranslate with name=project.name %}Processes for project "{{ name }}"{% endblocktranslate %}
+  </h1>
+
+  {% include "pagination.html" %}
+  <table class="table is-fullwidth is-hoverable">
+    <thead>
+      <tr>
+        <th>{% translate "ID" %}</th>
+        <th>{% translate "Name" %}</th>
+        <th>{% translate "Mode" %}</th>
+        <th>{% translate "Status" %}</th>
+        <th>{% translate "Creator" %}</th>
+        <th>{% translate "Date" %}</th>
+        <th class="is-narrow"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for process in processes %}
+        <tr>
+          <td>{{ process.id }}</td>
+          <td class="truncate-long-words restricted-max-width-20" title="{{ process.name }}">
+            {{ process.name }}
+          </td>
+          <td>{{ process.get_mode_display }}</td>
+          <td>
+            <span class="is-small is-light tag {{ process | process_class }}">{{ process.get_state_display }}</span>
+          </td>
+          <td class="truncate-long-words restricted-max-width-20" title="{{ process.creator.email }}">
+            {{ process.creator|default:"−" }}
+          </td>
+          <td>
+            {% if process.ended %}
+              <strong>{% translate "Ended:" %}</strong>
+              <abbr title="{{ process.ended }}">{{ process.ended|naturaltime|capfirst }}</abbr>
+            {% elif process.started %}
+              <strong>{% translate "Started:" %}</strong>
+              <abbr title="{{ process.started }}">{{ process.started|naturaltime|capfirst }}</abbr>
+            {% else %}
+              {% translate "Not started yet" %}
+            {% endif %}
+          </td>
+          <td>
+            <a class="button" href="{% url 'process-details' pk=process.id %}">{% translate "View details" %}</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="7">
+            <div class="notification is-info is-light">{% translate "No process available" %}</div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}

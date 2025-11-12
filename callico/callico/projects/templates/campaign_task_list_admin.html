@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load basefilters i18n humanize bulma_tags %}
+
+{% block title %}
+  {% translate "Campaign tasks list" %}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=campaign.project campaign=campaign can_admin=True tasks=True %}
+{% endblock breadcrumb %}
+
+{% block content %}
+  <a href="{% url 'campaign-details' pk=campaign.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+
+  <h1 class="title">{% translate "List tasks on this campaign" %}</h1>
+
+  {% include "progress_bar.html" %}
+
+  {% if request.GET.state == "draft" and request.GET.user_id != "no_user" and tasks %}
+    <form action="{% url 'tasks-publish' pk=campaign.id %}" method="post">
+      {% csrf_token %}
+      <button
+        class="button is-pulled-right is-success"
+        {% if campaign.is_closed %}
+          disabled
+          title="{% blocktranslate with state=campaign.get_state_display %}You cannot publish draft tasks for a campaign marked as {{ state }}{% endblocktranslate %}"
+        {% endif %}
+      >
+        {% translate "Publish all draft tasks" %}
+      </button>
+    </form>
+  {% endif %}
+
+  <form method="get" class="is-flex is-align-items-end tasks-list-form mb-2">
+    {% for field in form %}
+      {{ field | bulma_horizontal }}
+    {% endfor %}
+    <div class="field is-horizontal">
+      <button class="button is-info mb-3" type="submit">{% translate "Filter" %}</button>
+    </div>
+  </form>
+
+  {% include "pagination.html" %}
+
+  <table class="table is-fullwidth">
+    <thead>
+      <tr>
+        <th>{% translate "Element" %}</th>
+        <th>{% translate "Created" context "feminine" %}</th>
+        <th>{% translate "Comments" %}</th>
+        <th>{% translate "User" %}</th>
+        <th class="is-narrow">{% translate "Status" %}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+        {% with last_task=forloop.last %}
+          {% for user_task in task.user_tasks.all %}
+            <tr>
+              {% if forloop.first %}
+                <td
+                  class="truncate-long-words restricted-max-width-20 {% if last_task %}no-bottom-border{% endif %}"
+                  rowspan="{{ task.user_tasks.count }}"
+                  title="{{ task.element }}"
+                >
+                  <a href="
+                           {% if not task.element.type.folder %}
+                             {% url 'element-details' pk=task.element.id %}
+                           {% else %}
+                             {% url 'project-browse' project_id=task.element.project_id element_id=task.element.id %}
+                           {% endif %}
+                          ">{{ task.element|title }}</a>
+                </td>
+                <td
+                  class="{% if last_task %}no-bottom-border{% endif %}"
+                  rowspan="{{ task.user_tasks.count }}"
+                >
+                  <abbr title="{{ task.created }}">{{ task.created|naturaltime|capfirst }}</abbr>
+                </td>
+                <td
+                  class="{% if last_task %}no-bottom-border{% endif %}"
+                  rowspan="{{ task.user_tasks.count }}"
+                >
+                  <a
+                    href="{% url 'task-discussion' pk=task.id %}{% querystring from='list' %}"
+                    {% if task.nb_comments %}
+                      title="{% blocktranslate with last=task.last_comment|naturaltime %}Last comment {{ last }}{% endblocktranslate %}"
+                    {% endif %}
+                  >{{ task.nb_comments|default:"−" }}</a>
+                </td>
+              {% endif %}
+              <td class="truncate-long-words restricted-max-width-30" title="{{ user_task.user.email }}">
+                {{ user_task.user }}
+                {% if user_task.is_preview %}
+                  {% include "preview_task_button.html" %}
+                {% endif %}
+              </td>
+              <td>
+                <div class="is-flex">
+                  <span class="is-small is-light tag {{ user_task.state | task_class }} mr-3">{{ user_task.get_state_display }}</span>
+                  {% if user_task.has_uncertain_value %}
+                    <span class="icon has-background-warning fa-xs mr-1" title="{% translate 'The user marked this task as uncertain' %}">
+                      <i class="fas fa-exclamation"></i>
+                    </span>
+                  {% endif %}
+                </div>
+              </td>
+              <td>
+                <div class="buttons is-justify-content-flex-end">
+                  <a
+                    class="button"
+                    {% if not user_task.details_url %}
+                      disabled
+                      title="{% translate 'User task details for this campaign mode is not yet implemented' %}"
+                    {% else %}
+                      href="{{ user_task.details_url }}"
+                    {% endif %}
+                  >
+                    {% translate "View details" %}
+                  </a>
+                  <a
+                    class="button"
+                    {% if user_task.task.campaign.is_closed %}
+                      disabled
+                      {% translate "Moderate" as action %}
+                      title="{% blocktranslate with action=action|lower state=user_task.task.campaign.get_state_display %}You cannot {{ action }} a task for a campaign marked as {{ state }}{% endblocktranslate %}"
+                    {% elif user_task.state == "draft" %}
+                      disabled
+                      title="{% blocktranslate with state=user_task.get_state_display|lower %}You cannot moderate a {{ state }} annotation{% endblocktranslate %}"
+                    {% elif not user_task.moderate_url %}
+                      disabled
+                      title="{% translate 'Moderation for this campaign mode is not yet implemented' %}"
+                    {% else %}
+                      href="{{ user_task.moderate_url }}{% querystring %}"
+                    {% endif %}
+                  >
+                    {% translate "Moderate" %}
+                  </a>
+                </div>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td class="truncate-long-words restricted-max-width-20" title="{{ task.element }}">
+                <a href="
+                         {% if not task.element.type.folder %}
+                           {% url 'element-details' pk=task.element.id %}
+                         {% else %}
+                           {% url 'project-browse' project_id=task.element.project_id element_id=task.element.id %}
+                         {% endif %}
+                        ">{{ task.element|title }}</a>
+              </td>
+              <td>
+                <abbr title="{{ task.created }}">{{ task.created|naturaltime|capfirst }}</abbr>
+              </td>
+              <td>
+                <a
+                  href="{% url 'task-discussion' pk=task.id %}{% querystring from='list' %}"
+                  {% if task.nb_comments %}
+                    title="{% blocktranslate with last=task.last_comment|naturaltime %}Last comment {{ last }}{% endblocktranslate %}"
+                  {% endif %}
+                >{{ task.nb_comments|default:"−" }}</a>
+              </td>
+              <td colspan="3">
+                <div class="notification is-info is-light">{% translate "No user is assigned to this task" %}</div>
+              </td>
+            </tr>
+          {% endfor %}
+        {% endwith %}
+      {% empty %}
+        <tr>
+          <td colspan="6">
+            <div class="notification is-info is-light">{% translate "No task available" %}</div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
+
+{% block script %}
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.cleanUserTaskAnnotationStorage()
+    })
+  </script>
+{% endblock script %}

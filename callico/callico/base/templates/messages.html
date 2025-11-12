@@ -1,0 +1,9 @@
+{% load basefilters %}
+
+{% if messages %}
+  {% for message in messages %}
+    <p class="notification {{ message | message_class }} {% if message.tags %}{{ message.tags }}{% endif %}">
+      {{ message.message }}
+    </p>
+  {% endfor %}
+{% endif %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n bulma_tags %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=project members=True %}
+{% endblock breadcrumb %}
+
+{% block title %}
+  {% blocktranslate with action=action %}{{ action }} a member{% endblocktranslate %}
+{% endblock title %}
+
+{% block content %}
+  <a href="{% url 'members' project_id=project.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+  <h1 class="title">{{ title }}</h1>
+
+  <form method="post">
+    {% csrf_token %}
+
+    {% if object.role in "Contributor,Manager" %}
+      {% translate "by updating their role" as warning_text %}
+      <div class="mb-3">
+        <span class="has-text-warning-darker"><i class="fas fa-exclamation-triangle"></i></span>
+        {% if object.role == "Contributor" %}
+          {% blocktranslate with action=warning_text %}This member is a <strong>contributor</strong> on this project, {{ action }}, you will <strong>automatically delete their draft and pending tasks</strong> as well.{% endblocktranslate %}
+        {% elif object.role == "Manager" %}
+          {% blocktranslate with action=warning_text %}This member is a <strong>manager</strong> on this project, {{ action }}, you will <strong>automatically delete their preview tasks</strong> as well.{% endblocktranslate %}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {{ form | bulma }}
+
+    <button class="button is-success" type="submit">{{ action }}</button>
+    {% if extra_action %}
+      <input class="button is-success is-light ml-2" type="submit" name="{{ extra_action }}" value="{{ extra_action }}" />
+    {% endif %}
+  </form>
+{% endblock %}

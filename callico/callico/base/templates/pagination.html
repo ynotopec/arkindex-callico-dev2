@@ -1,0 +1,53 @@
+{% load i18n basefilters %}
+
+{% if page_obj and page_obj.paginator and page_obj.paginator.count %}
+  <nav class="pagination is-right px-4 my-1" role="navigation" aria-label="pagination">
+    {% if page_obj and page_obj.has_other_pages %}
+      <ul class="pagination-list control">
+        {% if page_obj.has_previous %}
+          {% if page_obj.number > 2 %}
+            <li>
+              <a class="pagination-link" aria-label="Go to page 1"
+                 title="{% blocktranslate with page=1 %}Go to page {{ page }}{% endblocktranslate %}"
+                 href="{% querystring page=1 %}">1
+              </a>
+            </li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+          {% endif %}
+          <li>
+            <a class="pagination-link" aria-label="Go to page {{ page_obj.previous_page_number }}"
+               title="{% blocktranslate with page=page_obj.previous_page_number %}Go to page {{ page }}{% endblocktranslate %}"
+               href="{% querystring page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
+          </li>
+        {% endif %}
+        <li>
+          <a class="pagination-link is-current" aria-label="Page {{ page_obj.number }}"
+             title="{% blocktranslate with number=page_obj.number %}Page {{ number }}{% endblocktranslate %}"
+             aria-current="page">{{ page_obj.number }}</a>
+        </li>
+        {% if page_obj.has_next %}
+          <li>
+            <a class="pagination-link" aria-label="Go to page {{ page_obj.next_page_number }}"
+               title="{% blocktranslate with page=page_obj.next_page_number %}Go to page {{ page }}{% endblocktranslate %}"
+               href="{% querystring page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+          </li>
+          {% if page_obj.next_page_number < page_obj.paginator.num_pages %}
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li>
+              <a class="pagination-link" aria-label="Go to page {{ page_obj.paginator.num_pages }}"
+                 title="{% blocktranslate with page=page_obj.paginator.num_pages %}Go to page {{ page }}{% endblocktranslate %}"
+                 href="{% querystring page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
+            </li>
+          {% endif %}
+        {% endif %}
+      </ul>
+    {% endif %}
+    <ul class="control">
+      <span>
+        {% blocktranslate trimmed with start=page_obj.start_index end=page_obj.end_index total=page_obj.paginator.count %}
+          Showing items {{ start }} - {{ end }} of {{ total }}
+        {% endblocktranslate %}
+      </span>
+    </ul>
+  </nav>
+{% endif %}

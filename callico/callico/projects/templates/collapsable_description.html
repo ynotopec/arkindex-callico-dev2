@@ -1,0 +1,38 @@
+{% load i18n markdownify %}
+
+<div class="description-container mb-6">
+  <input id="description-checkbox" type="checkbox">
+  <label
+    for="description-checkbox"
+    class="button is-inverted is-info is-small is-rounded"
+    title="{% translate 'Click here to expand/collapse the description' %}"
+  ></label>
+  <div class="object-description content indented-block">
+    {{ description|markdownify }}
+  </div>
+
+  {% if extra_campaign_link %}
+    <a
+      href="{% url 'campaign-instructions' pk=campaign.id %}"
+      target="_blank"
+      class="is-size-7"
+      id="open-instructions"
+    >
+      {% translate "Open instructions in a new tab" %}
+      <span class="icon is-small">
+        <i class="fas fa-external-link-alt"></i>
+      </span>
+    </a>
+  {% endif %}
+</div>
+
+{% comment %}Only (easy) way to display a translatable dynamic text with our CSS-only expandable <div></div>{% endcomment %}
+<style>
+  #description-checkbox:not(checked) + label:after {
+    content: "{% translate 'See more' %}";
+  }
+
+  #description-checkbox:checked + label:after {
+    content: "{% translate 'See less' %}";
+  }
+</style>

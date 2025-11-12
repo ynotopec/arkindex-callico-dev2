@@ -1,0 +1,10 @@
+{% load i18n %}
+
+<footer class="footer is-flex is-justify-content-space-between p-3 mt-3">
+  <div>{% blocktranslate with version=VERSION %}Version {{ version }}{% endblocktranslate %}</div>
+  <div>
+    {% translate "Built by" %} <a href="https://teklia.com/" target="_blank">Teklia</a>
+    -
+    <a href="https://doc.callico.eu" target="_blank">{% translate "Documentation" %}</a>
+  </div>
+</footer>

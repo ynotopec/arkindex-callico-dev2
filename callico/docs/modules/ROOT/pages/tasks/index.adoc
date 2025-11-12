@@ -1,0 +1,6 @@
+[#tasks]
+= Tasks
+
+To annotate elements in Callico, you must create annotation tasks. Each task concerns *a single xref:projects/elements/index.adoc[element]* of a certain type, which is selected when creating those tasks. Depending on the mode of the xref:campaigns/index.adoc[campaign] and its configuration, contributors may be able to annotate multiple items on one element.
+
+To create tasks, refer to the xref:./create.adoc[task creation documentation].

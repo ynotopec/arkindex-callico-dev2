@@ -1,0 +1,61 @@
+[#export-results-as-xlsx]
+= Export results as XLSX
+
+[WARNING]
+====
+
+* The campaign must have started and no longer be in a `Created` state.
+* Results cannot be exported from a campaign in the `Archived` state.
+* You must be a manager of the campaign's parent project to export results as XLSX.
+====
+
+The XLSX export mode is very useful to check the trend of your annotation campaign and easily assess the progress of your contributors, as it is quick to create and generate again.
+
+[#generate-the-export]
+== Generate the export
+
+If you are a member with manager role, the `Generate` action is displayed in the section named *Export results/As XLSX* from the menu on the left of the campaign details page.
+
+image::campaigns/details.png[Campaign details page]
+
+Upon clicking, a new asynchronous process will be created to export your campaign results and you will be redirected to the xref:projects/processes/view_details.adoc[process details page].
+
+[WARNING]
+====
+As soon as a new XLSX export is generated, any previous export will be replaced (and deleted) without being recoverable.
+====
+
+[#download-the-export]
+== Download the export
+
+Once the export process is completed, you will have to go back to the campaign details page to see a new action named `Download` just under the one you clicked previously. This will download the XLSX file that was just generated, within your browser.
+
+This file contains the following information, with one line per task:
+
+* its unique identifier,
+* its state,
+* the email address of the assigned contributor,
+* its creation date,
+* how long the user spent to complete the task in seconds,
+* the number of comments on it,
+* the URL to the task annotation page,
+* the URL to the element on the third-party provider,
+* the URL to the IIIF image,
+* the URL to the element thumbnail.
+
+The remaining columns depend on the mode of the exported campaign:
+
+* *for Classification campaigns:* the class that was annotated,
+* *for Element campaigns:* the number of annotated elements,
+* *for Element group campaigns:* the number of annotated element groups,
+* *for Entity campaigns:* the number of annotated entities,
+* *for Entity form campaigns:* the answer that was provided for each field of the configured form,
+* *for Transcription campaigns:* the joined transcription of all elements (assigned element and/or children) that were transcribed.
+
+[NOTE]
+====
+
+* Only annotations that come from `Annotated` and `Validated` tasks will be exported.
+* Annotations from the xref:tasks/create.adoc#preview-a-single-task[preview tasks] used by managers will be ignored.
+* The latest XLSX export on your campaign can be downloaded on demand by all managers.
+====

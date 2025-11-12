@@ -1,0 +1,165 @@
+[#import-arkindex-elements-in-a-project]
+= Import Arkindex elements in a project
+
+[WARNING]
+====
+
+* The project must be xref:projects/edit.adoc[linked to an Arkindex provider].
+* You must be a manager of the project to import Arkindex elements.
+====
+
+If you are a member with manager role, the `Import from Arkindex` action is displayed in the section named *Elements* from the menu on the left of the project details page.
+
+If this button does not appear and you wish to import elements from Arkindex, check that the project is correctly linked to an Arkindex provider.
+
+image::projects/details.png[Project details page]
+
+After xref:projects/create.adoc[creating your project], you may want to populate it with elements from Arkindex. In order to do so, you need to fill a form providing the following information.
+
+image::projects/elements/import/arkindex.png[Form to import elements from Arkindex]
+
+[#process-name]
+== Process name
+
+image::projects/elements/import/process_name.png["Process name" form field]
+
+First, you need to name your import process, which will be created upon link:./#start-the-import[form submission]. Naming the process makes it easily identifiable in the xref:projects/processes/list.adoc[process list] after its creation.
+
+[#element-or-dataset]
+== Element or Dataset
+
+image::projects/elements/import/element_or_dataset.png["Element or Dataset" form field]
+
+You can restrict the import of elements from the Arkindex project that is linked to your Callico project to a certain subset, either an element or a dataset.
+
+If you wish to only import a given element and its children, then you can input that element's Arkindex identifier (UUID) in the *Element* field. If you wish to import elements belonging to a specific dataset, then you can input this dataset's Arkindex identifier (UUID) in the *Dataset* field. You can further restrict the import by specifying the names of one or more sets within that dataset, in the *Filter sets to import* field.
+
+The *Element* and *Dataset* fields are mutually exclusive.
+
+If you specify an element UUID, only that element and its children will be imported. If you specify a dataset UUID (and, optionally, one or more set names) only the elements belonging to that dataset (and eventual sets) and their children will be imported.
+
+Otherwise, the entirety of the linked Arkindex project will be imported to Callico, according to your import's configuration.
+
+[#filter-types-to-import]
+== Filter types to import
+
+image::projects/elements/import/filter_the_types_to_import.png["Filter types to import" form field]
+
+You can choose to import only elements of certain types. By selecting one or more types, only the elements that are of the selected types will be imported to Callico.
+
+You can select multiple types by holding the `CTRL` key of your keyboard while selecting.
+
+[NOTE]
+====
+Children elements that are of one of the selected types will be imported even if their parent element is not.
+====
+
+Otherwise, all elements will be imported regardless of type.
+
+[#filter-the-class-to-import]
+== Filter the class to import
+
+image::projects/elements/import/filter_the_class_to_import.png["Filter the class to import" form field]
+
+You can choose to import only elements of a certain class. By selecting one class, only the elements that are linked to the selected class will be imported to Callico.
+
+[NOTE]
+====
+Children elements that are linked to the selected class will be imported even if their parent element is not.
+====
+
+Otherwise, all elements will be imported regardless of class.
+
+[#filter-the-transcriptions-to-import]
+== Filter the transcriptions to import
+
+image::projects/elements/import/filter_the_transcriptions_to_import.png["Filter the transcriptions to import" form field]
+
+In this field, you can select the source(s) of the transcriptions that can be imported along with the elements. If you select multiple sources, you should pick them from the most to the least preferable option: only *one* transcription per element will ever be imported, and if an element has transcriptions from multiple sources, then this order will define which one to target.
+
+For example, if an element is linked to two `Manual` transcriptions: "Hi, this is Stan!" and "Hi, this is Stanley!"; and one transcription produced by the source named `Doc-UFCN`: "Hi, this s Staniey!", then:
+
+* By selecting sources in this order, `Doc-UFCN` then `Manual`, you will import "Hi, this s Staniey!" as the element transcription.
+* By selecting sources in this order, `Manual` then `Doc-UFCN`, you will randomly import either "Hi, this is Stan!" or "Hi, this is Stanley!" as the element transcription. This is why it is preferable to clean up the Arkindex project before importing elements into Callico.
+
+If no source is selected, no transcriptions will be imported at all.
+
+[WARNING]
+====
+Importing transcriptions is mandatory if you want to create *Entity* campaigns, as the entities are annotated on the imported transcription text.
+====
+
+[NOTE]
+====
+If you want to annotate on top of, or correct existing data when working on *Transcription* campaigns, you need to import transcriptions.
+====
+
+[#filter-the-transcription-entities-to-import]
+== Filter the transcription entities to import
+
+image::projects/elements/import/filter_the_transcription_entities_to_import.png["Filter the transcription entities to import" form field]
+
+This field works exactly like the *Filter the transcriptions to import* field above, except that it allows you to select sources to import transcription entities for each element that will be processed during this import. You should also sort the sources by relevance by selecting them from the most to the least suitable.
+
+As *you can only import transcription entities if transcriptions are being imported as well*, this field is only active when the above *Filter the transcriptions to import* field has been filled in.
+
+If no source is selected, no transcription entities will be imported at all.
+
+[NOTE]
+====
+If you want to annotate on top of, or correct existing data when working on *Entity* and *Entity form* campaigns, you need to import entities.
+====
+
+[#filter-the-worker-results-to-import]
+== Filter the worker results to import
+
+image::projects/elements/import/filter_the_worker_results_to_import.png["Filter the worker results to import" form field]
+
+This field allows you to filter the elements to import by the worker run that produced them on Arkindex.
+
+For each element type to be imported, you can select one associated worker run as source.
+
+[NOTE]
+====
+If you have selected some element types in the *Filter types to import* field, and select a source in this field for element types that were *not* selected, then the corresponding elements will not be imported.
+====
+
+For example, if you wish to import only folder and page elements regardless of worker run, and only line elements that were produced by the worker run `French/English`, you should:
+
+* first select *Folder*, *Page* and *Line* types in the <<filter-types-to-import,*Filter types to import*>> field,
+* and then in the *Filter the worker results to import* field, (1) select the *Line* type along with (2) the `French/English` worker run and (3) hit the save button to add this filter.
+
+If nothing is entered, elements will be imported regardless of the source that produced them.
+
+[#filter-the-metadata-to-import]
+== Filter the metadata to import
+
+image::projects/elements/import/filter_the_metadata_to_import.png["Filter the metadata to import" form field]
+
+This field allows you to input multiple metadata names to be imported along with the elements.
+
+The imported metadata will be displayed to contributors above the annotation form and to moderators and managers above the moderation form to provide context about the element they are currently working on.
+
+If this field is left empty, no metadata will be imported at all.
+
+[#start-the-import]
+== Start the import
+
+You can start the import of Arkindex elements by clicking on the `Start the import` button located at the bottom of the form. Upon clicking, a new asynchronous process will be created and you will be redirected to the xref:projects/processes/view_details.adoc[details page] of the associated process.
+
+From this page, you will be able to follow the completion of your import and its logs. Be aware that it may take a while to complete, depending on the number of elements to be processed.
+
+Once the process is marked as `Completed`, you can access the xref:projects/elements/browse.adoc[navigation page] to view the elements that have been added to your project.
+
+[WARNING]
+====
+The import filters are cumulative, meaning that they are combined with each other to narrow the import. For example, if you select *Page* in *Filter types to import* and *First page* in *Filter the class to import*:
+
+* ✅ You will import the elements of type *Page* which are also linked to the class *First page*.
+* ❌ You will not import all elements of type *Page* plus all elements linked to the class *First page*.
+====
+
+[NOTE]
+====
+The options (types, classes, worker runs) that populate some of the form fields are automatically fetched from Arkindex whenever you create or update your project if it is correctly linked to an external Arkindex project. If this data is outdated, you can hit the `Save` button on your project xref:projects/edit.adoc[edition page] to recover more recent data. Please consider that the retrieval is launched in an asynchronous task, so you have to wait for its completion before coming back to the import page; it usually takes only a few seconds.
+====

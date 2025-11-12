@@ -1,0 +1,2793 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-03 14:52+0000\n"
+"PO-Revision-Date: 2025-06-03 16:53+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#, python-format
+msgid "  - User %(display_name)s (%(email)s) %(activity)s: %(url)s"
+msgstr "  - L'utilisateur %(display_name)s (%(email)s) %(activity)s : %(url)s"
+
+#, python-format
+msgid "  - access the discussion: %(discuss_url)s"
+msgstr "  - accéder à la discussion : %(discuss_url)s"
+
+#, python-format
+msgid "  - view their task by following this link: %(moderate_url)s"
+msgstr "  - consulter sa tâche en suivant ce lien : %(moderate_url)s"
+
+#, python-format
+msgid "  - view your task by following this link: %(annotate_url)s"
+msgstr "  - consulter votre tâche en suivant ce lien : %(annotate_url)s"
+
+msgid " and"
+msgstr " et"
+
+msgid " and "
+msgstr " et "
+
+msgid ""
+" and to the managers of this campaign. Please, go back to the previous tab "
+"to pursue your annotation"
+msgstr ""
+" et aux responsables de cette campagne. Veuillez retourner à l'onglet "
+"précédent pour poursuivre votre annotation"
+
+#, python-format
+msgctxt "plural"
+msgid " assigned to %(user)s"
+msgstr " assignées à %(user)s"
+
+#. Translators: This translation concerns the text of the task filter. It is followed by a status
+#. of the task (pending, annotated...) and therefore does not need to be translated into French.
+msgid " which are "
+msgstr " "
+
+#, python-format
+msgid "%(action)s a %(object)s"
+msgstr "%(action)s un %(object)s"
+
+#, python-format
+msgid "%(action)s a form %(object)s on this campaign"
+msgstr "%(action)s un %(object)s de formulaire sur cette campagne"
+
+#, python-format
+msgid "%(action)s a member"
+msgstr "%(action)s un membre"
+
+#, python-format
+msgid "%(action)s a member from this project"
+msgstr "%(action)s un membre de ce projet"
+
+#, python-format
+msgid "%(action)s a member to this project"
+msgstr "%(action)s un membre à ce projet"
+
+#, python-format
+msgid "%(annotation)s is not one of the allowed authority values."
+msgstr "%(annotation)s ne fait pas partie des valeurs d'autorité autorisées."
+
+#, python-format
+msgid "%(count)s contributor(s)"
+msgstr "%(count)s contributeur(s)"
+
+#, python-format
+msgid ""
+"%(count)s tasks assigned to the selected users were created or already "
+"existing"
+msgstr ""
+"%(count)s tâches assignées aux utilisateurs sélectionnés ont été créées ou "
+"existent déjà"
+
+#, python-format
+msgid "%(count)s tasks have been assigned to you."
+msgstr "%(count)s tâches vous ont été assignées."
+
+#, python-format
+msgid "%(count)s tasks have been unassigned from user %(user)s."
+msgstr "%(count)s tâches ont été désassignées de l'utilisateur %(user)s."
+
+#, python-format
+msgid "%(count)s tasks were created or already existing"
+msgstr "%(count)s tâches ont été créées ou existent déjà"
+
+#, python-format
+msgid "%(count)s unassigned tasks have been deleted."
+msgstr "%(count)s tâches non assignées ont été supprimées."
+
+#, python-format
+msgid "%(percentage)s%% - %(nb_tasks)s tasks"
+msgstr "%(percentage)s%% - %(nb_tasks)s tâches"
+
+#, python-format
+msgctxt "feminine"
+msgid "%(percentage)s%% completed (%(completed)s/%(total)s)"
+msgstr "%(percentage)s%% complétées (%(completed)s/%(total)s)"
+
+#, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minute"
+msgstr[1] "%d minutes"
+
+#, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d seconde"
+msgstr[1] "%d secondes"
+
+msgid ", "
+msgstr ", "
+
+msgid "---- End of their comment ----"
+msgstr "---- Fin de son commentaire ----"
+
+msgid "---- Start of their comment ----"
+msgstr "---- Début de son commentaire ----"
+
+msgid "1) Select a type"
+msgstr "1) Sélectionner un type"
+
+msgid "2) Select a worker run"
+msgstr "2) Sélectionner une worker run"
+
+msgid "3) Save"
+msgstr "3) Enregistrer"
+
+msgid ": "
+msgstr " : "
+
+msgid ""
+"A manager is trying to access an annotation page, redirect them to the "
+"concerned element details page instead."
+msgstr ""
+"Un manager tente d'accéder à une page d'annotation, redirigez-le plutôt vers "
+"la page de détails de l'élément concerné."
+
+msgid ""
+"A polygon constituted of couples of points: [[x1, y1], [x2, y2], [x3, y3]]."
+msgstr ""
+"Un polygone constitué de couples de points: [[x1, y1], [x2, y2], [x3, y3]]"
+
+msgid ""
+"A provider must be specified if you provide an identifier and vice versa"
+msgstr ""
+"Un fournisseur doit être spécifié si vous renseignez un identifiant et vice "
+"versa"
+
+msgid ""
+"A user account has been created with your email address on Callico, TEKLIA's "
+"innovative collaborative platform."
+msgstr ""
+"Un compte utilisateur a été créé avec votre adresse mail sur Callico, la "
+"plateforme collaborative innovante de TEKLIA."
+
+#, python-format
+msgid "A user commented on a task discussion from %(campaign)s - Callico"
+msgstr ""
+"Un utilisateur a commenté sur la discussion d'une tâche provenant de la "
+"campagne %(campaign)s - Callico"
+
+msgid "API URL"
+msgstr "URL d'API"
+
+msgid "API token"
+msgstr "Token d'API"
+
+msgid "Abandon my changes"
+msgstr "Abandonner mes changements"
+
+msgid "Accept"
+msgstr "Accepter"
+
+msgid "Access forbidden"
+msgstr "Accès refusé"
+
+msgid "Add"
+msgstr "Ajouter"
+
+msgid "Add a new entity"
+msgstr "Ajouter une nouvelle entité"
+
+msgid "Add a new member"
+msgstr "Ajouter un nouveau membre"
+
+msgid "Add and create another"
+msgstr "Ajouter et créer un nouveau"
+
+msgid "Admin panel"
+msgstr "Panneau d'administration"
+
+#, python-format
+msgid ""
+"All available tasks on the campaign %(campaign)s have been requested - "
+"Callico"
+msgstr ""
+"Toutes les tâches disponibles sur la campagne %(campaign)s ont été demandées "
+"- Callico"
+
+msgid "All classes"
+msgstr "Toutes les classes"
+
+msgid "All elements"
+msgstr "Tous les éléments"
+
+msgid "All logs"
+msgstr "Tous les logs"
+
+msgid ""
+"All remaining elements that aren't yet used or to use with this form, will "
+"be made available for open annotation by volunteering contributors"
+msgstr ""
+"Tous les éléments restants, qui n'ont pas encore été utilisés et ne le "
+"seront pas avec ce formulaire, seront mis à disposition pour une annotation "
+"libre par des contributeurs volontaires"
+
+msgid "All status"
+msgstr "Tous les états"
+
+#, python-format
+msgid ""
+"All tasks created for volunteers on campaign %(campaign)s for project "
+"%(project)s have been assigned."
+msgstr ""
+"Toutes les tâches créées pour les volontaires sur la campagne %(campaign)s "
+"pour le projet %(project)s ont été assignées."
+
+msgid "All tasks on this campaign are already assigned"
+msgstr "Toutes les tâches de cette campagne ont déjà été assignées"
+
+msgid "All users"
+msgstr "Tous les utilisateurs"
+
+msgid ""
+"Allow to import metadata matching the given names on each imported element. "
+"Metadata can either be retrieved from the element or its parents."
+msgstr ""
+"Autoriser l'import des métadonnées correspondant aux noms saisis pour chaque "
+"élément à importer. Les métadonnées peuvent provenir de l'élément en "
+"question ou de ses parents."
+
+msgid ""
+"Allow to import one transcription (if available) per element that was either "
+"manually annotated or produced by one of the listed worker runs"
+msgstr ""
+"Autoriser l'import d'une transcription (si disponible) par élément qui a été "
+"annotée manuellement ou produite par l'une des worker runs listées"
+
+msgid ""
+"Allow to import transcription entities from one source (if available) per "
+"element that was either manually annotated or produced by one of the listed "
+"worker runs"
+msgstr ""
+"Autoriser l'import des entités de transcription depuis une source (si "
+"disponible) par élément qui a été annotée manuellement ou produite par l'une "
+"des worker runs listées"
+
+msgid ""
+"Allows to display context surrounding the element to annotate if an ancestor "
+"of the selected type exists"
+msgstr ""
+"Permet d'afficher du contexte autour de l'élément à annoter si un ancêtre du "
+"type sélectionné existe"
+
+msgid "Already have an account?"
+msgstr "Vous avez déjà un compte ?"
+
+msgid "Also export entities on a parent"
+msgstr "Exporter également les entités sur un parent"
+
+msgid "An annotation cannot be its own parent"
+msgstr "Une annotation ne peut pas être son propre parent"
+
+msgid "An element cannot be its own parent"
+msgstr "Un élément ne peut pas être son propre parent"
+
+msgid "An element cannot have polygon without image"
+msgstr "Un élément ne peut pas avoir de polygone sans image"
+
+msgid "An identifier must be provided if you specify a provider and vice versa"
+msgstr ""
+"Un identifiant doit être renseigné si vous spécifiez un fournisseur et vice "
+"versa"
+
+msgid "Annotate"
+msgstr "Annoter"
+
+msgid "Annotate elements:"
+msgstr "Annoter les éléments :"
+
+msgctxt "feminine"
+msgid "Annotated"
+msgstr "Annotée"
+
+msgid "Annotation"
+msgstr "Annotation"
+
+msgid "Annotation created:"
+msgstr "Annotation créée :"
+
+msgid "Annotation for this campaign mode is not yet implemented"
+msgstr "L'annotation pour ce mode de campagne n'est pas encore implémentée"
+
+#, python-format
+msgid "Annotation on element \"%(element)s\""
+msgstr "Annotation de l'élément  \"%(element)s\""
+
+msgid "Annotations"
+msgstr "Annotations"
+
+msgid ""
+"Annotations will also be exported in a concatenated transcription on a "
+"parent matching the chosen type"
+msgstr ""
+"Les annotations seront également exportées dans une transcription concaténée "
+"sur un parent correspondant au type choisi"
+
+msgid ""
+"Annotations will not be grouped before publication even if they have the "
+"same value"
+msgstr ""
+"Les annotations ne seront pas regroupées avant la publication même si elles "
+"ont la même valeur"
+
+msgid "Answer marked as uncertain"
+msgstr "Réponse marquée comme incertaine"
+
+msgctxt "verb"
+msgid "Archive"
+msgstr "Archiver"
+
+msgctxt "feminine"
+msgid "Archived"
+msgstr "Archivée"
+
+msgid ""
+"Are you sure you want to archive this campaign? Archived campaigns can no "
+"longer be accessed, and can only be unarchived by an instance administrator."
+msgstr ""
+"Êtes-vous sûr de vouloir archiver cette campagne ? Les campagnes archivées "
+"ne sont plus accessibles, et ne peuvent être désarchivées que par un "
+"administrateur d'instance."
+
+#, python-format
+msgid ""
+"Are you sure you want to delete the form %(object)s <strong>%(name)s</"
+"strong>?"
+msgstr ""
+"Êtes-vous sûr de vouloir supprimer le %(object)s de formulaire "
+"<strong>%(name)s</strong> ?"
+
+#, python-format
+msgid ""
+"Are you sure you want to delete the member <strong "
+"title=\"%(email)s\">%(name)s</strong>?"
+msgstr ""
+"Êtes-vous sûr de vouloir supprimer le membre <strong "
+"title=\"%(email)s\">%(name)s</strong> ?"
+
+msgid "Arkindex"
+msgstr "Arkindex"
+
+msgid "Arkindex elements import"
+msgstr "Import d'éléments Arkindex"
+
+msgid "Arkindex export"
+msgstr "Export Arkindex"
+
+msgid "Arkindex import"
+msgstr "Import Arkindex"
+
+msgid "As CSV"
+msgstr "En CSV"
+
+msgid ""
+"As Callico is currently in development, you are one of our earliest users. "
+"We greatly appreciate your feedback, so feel free to reach out to us at "
+"callico@teklia.com to report any issues or share ideas for improvement."
+msgstr ""
+"Callico étant en cours de développement, vous êtes l'un de nos premiers "
+"utilisateurs. Nous apprécions grandement vos retours, alors n'hésitez pas à "
+"nous contacter à l'adresse callico@teklia.com pour nous faire part de tout "
+"problème ou partager vos idées d'amélioration."
+
+msgid "As XLSX"
+msgstr "En XLSX"
+
+msgid "Assigned to:"
+msgstr "Assignée à :"
+
+msgid "Assignments"
+msgstr "Assignations"
+
+msgid "Attached campaigns"
+msgstr "Campagnes rattachées"
+
+msgid "Attribution algorithm"
+msgstr "Algorithme d'attribution"
+
+msgid "Authorities"
+msgstr "Autorités"
+
+msgid "Authority"
+msgstr "Autorité"
+
+msgid "Authority record"
+msgstr "Notice d'autorité"
+
+msgid "Authority record to restrict allowed annotations"
+msgstr "Notice d'autorité pour restreindre les annotations possibles"
+
+msgid "Authority value"
+msgstr "Valeur d'autorité"
+
+msgid "Authority values"
+msgstr "Valeurs d'autorité"
+
+msgid "Available"
+msgstr "Disponible"
+
+msgid "Back to parent"
+msgstr "Retour au parent"
+
+msgid "Bad request"
+msgstr "Mauvaise requête"
+
+msgid "Browse"
+msgstr "Parcourir"
+
+msgid "Browse elements"
+msgstr "Parcourir les éléments"
+
+#, python-format
+msgid "Browse elements in %(name)s"
+msgstr "Parcourir les éléments dans %(name)s"
+
+msgid "Built by"
+msgstr "Construit par"
+
+msgid ""
+"By default, available tasks will be requestable by only 1 annotator at a "
+"time, if you want to gather double inputs from various annotators, you can "
+"increase this number to 2 and so on"
+msgstr ""
+"Par défaut, les tâches disponibles ne pourront être demandées que par 1 seul "
+"annotateur à la fois, si vous souhaitez recueillir des double-saisies "
+"produites par plusieurs annotateurs, vous pouvez augmenter ce nombre à 2 et "
+"ainsi de suite"
+
+msgid "CSV"
+msgstr "CSV"
+
+msgid "CSV export"
+msgstr "Export CSV"
+
+msgid "Callico Administration panel"
+msgstr "Panneau d'administration de Callico"
+
+msgid "Campaign"
+msgstr "Campagne"
+
+#, python-format
+msgid "Campaign \"%(name)s\""
+msgstr "Campagne \"%(name)s\""
+
+msgid "Campaign configuration"
+msgstr "Configuration d'une campagne"
+
+msgid "Campaign creation"
+msgstr "Création d'une campagne"
+
+msgid "Campaign details"
+msgstr "Détails de la campagne"
+
+msgid "Campaign instructions"
+msgstr "Instructions de la campagne"
+
+#, python-format
+msgid "Campaign is marked as %(state)s"
+msgstr "La campagne est marquée comme %(state)s"
+
+msgid "Campaign tasks creation"
+msgstr "Création des tâches de la campagne"
+
+msgid "Campaign tasks list"
+msgstr "Liste des tâches de la campagne"
+
+msgid "Campaign tasks unassignment"
+msgstr "Désassignation des tâches de la campagne"
+
+msgid "Campaigns"
+msgstr "Campagnes"
+
+msgid "Can't annotate a validated preview task."
+msgstr "Impossible d'annoter une tâche de prévisualisation validée."
+
+msgid "Carousel and group types cannot be the same"
+msgstr "Les types de carrousel et de groupe ne peuvent pas être les mêmes"
+
+msgid "Change annotation"
+msgstr "Changer l'annotation"
+
+msgid "Choose a file..."
+msgstr "Choisir un fichier..."
+
+msgid "Class"
+msgstr "Classe"
+
+msgid "Classes"
+msgstr "Classes"
+
+msgid "Classes to use to annotate"
+msgstr "Classes à utiliser pour annoter"
+
+msgid "Classification"
+msgstr "Classification"
+
+msgid "Clear filters"
+msgstr "Supprimer les filtres"
+
+msgid "Clear the current image"
+msgstr "Effacer l'image actuelle"
+
+msgid "Click here to expand/collapse the description"
+msgstr "Cliquez ici pour étendre/réduire la description"
+
+msgid "Click to expand"
+msgstr "Cliquez pour développer"
+
+msgid "Click to go to this preview task annotation page."
+msgstr ""
+"Cliquez pour accéder à la page d'annotation de cette tâche de "
+"prévisualisation."
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Close this tab"
+msgstr "Fermer cet onglet"
+
+msgctxt "feminine"
+msgid "Closed"
+msgstr "Fermée"
+
+msgid "Color"
+msgstr "Couleur"
+
+msgid "Color should be a hexadecimal color code"
+msgstr "La couleur doit être un code hexadécimal"
+
+msgid "Comment"
+msgstr "Commentaire"
+
+msgctxt "verb"
+msgid "Comment"
+msgstr "Commenter"
+
+msgid "Comments"
+msgstr "Commentaires"
+
+msgid "Completed"
+msgstr "Terminé"
+
+msgid "Completion time"
+msgstr "Temps de complétion"
+
+msgid ""
+"Confidence threshold (between 0 and 1) to highlight imported entities "
+"needing validation"
+msgstr ""
+"Seuil de confiance (entre 0 et 1) pour mettre en évidence les entités "
+"importées nécessitant une validation"
+
+msgid ""
+"Confidence threshold (between 0 and 1) to highlight imported transcriptions "
+"needing validation"
+msgstr ""
+"Seuil de confiance (entre 0 et 1) pour mettre en évidence les transcriptions "
+"importées nécessitant une validation"
+
+msgid "Configuration"
+msgstr "Configuration"
+
+msgid "Configuration - Element types to annotate"
+msgstr "Configuration - Types d'élément à annoter"
+
+msgid "Configure"
+msgstr "Configurer"
+
+msgid "Configure this campaign"
+msgstr "Configurer cette campagne"
+
+msgid ""
+"Congratulations on successfully creating your account on Callico, TEKLIA's "
+"innovative collaborative platform."
+msgstr ""
+"Félicitations pour avoir créé avec succès votre compte sur Callico, la "
+"plateforme collaborative innovante de TEKLIA."
+
+msgid "Content"
+msgstr "Contenu"
+
+msgid "Context ancestor type"
+msgstr "Type de l'ancêtre pour le contexte"
+
+msgid "Contributor"
+msgstr "Contributeur"
+
+msgid "Copy"
+msgstr "Copier"
+
+msgid "Copy the metadata value to your clipboard"
+msgstr "Copier la valeur de la métadonnée dans le presse-papiers"
+
+msgid "Create"
+msgstr "Créer"
+
+msgid "Create a new campaign"
+msgstr "Créer une nouvelle campagne"
+
+msgid "Create a new project"
+msgstr "Créer un nouveau projet"
+
+msgid "Create a project"
+msgstr "Créer un projet"
+
+#, python-format
+msgid "Create tasks on campaign \"%(name)s\""
+msgstr "Créer des tâches pour la campagne \"%(name)s\""
+
+msgid "Create unassigned tasks"
+msgstr "Créer des tâches non assignées"
+
+msgid "Created"
+msgstr "Créé"
+
+msgctxt "feminine"
+msgid "Created"
+msgstr "Créée"
+
+msgid "Creator"
+msgstr "Créateur"
+
+msgid "Custom choices"
+msgstr "Choix personnalisés"
+
+msgid "Customize allowed annotations for this field"
+msgstr "Personnaliser les annotations possibles pour ce champ"
+
+msgid "Daily campaigns activity summary for managers - Callico"
+msgstr ""
+"Résumé quotidien de l'activité des campagnes pour les managers - Callico"
+
+msgid "Dataset"
+msgstr "Dataset"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Dear new Callico user,"
+msgstr "Cher nouvel utilisateur de Callico,"
+
+msgid "Decline"
+msgstr "Refuser"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+#, python-format
+msgid "Delete %(count)s unassigned tasks"
+msgstr "Supprimer %(count)s tâches non assignées"
+
+msgid "Description"
+msgstr "Description"
+
+msgid ""
+"Designed for simplicity and ease of use, Callico empowers you to annotate "
+"document images, allowing the creation of training data for AI models."
+msgstr ""
+"Conçu pour être simple et facile à utiliser, Callico vous offre la "
+"possibilité d'annoter des images de documents, permettant ainsi de créer des "
+"données d'entraînement pour les modèles d'IA."
+
+msgid "Discuss this task"
+msgstr "Discuter de cette tâche"
+
+msgid "Discussion"
+msgstr "Discussion"
+
+msgid "Discussion on this task"
+msgstr "Discussion sur cette tâche"
+
+msgid "Display"
+msgstr "Affichage"
+
+msgid "Display color for the entity"
+msgstr "Couleur d'affichage de l'entité"
+
+msgid "Display name"
+msgstr "Nom d'affichage"
+
+msgid "Display this version"
+msgstr "Afficher cette version"
+
+msgid "Documentation"
+msgstr "Documentation"
+
+msgid "Don't have an account?"
+msgstr "Vous n'avez pas de compte ?"
+
+msgid "Download"
+msgstr "Télécharger"
+
+msgid "Draft"
+msgstr "En ébauche"
+
+msgid "Draft tasks"
+msgstr "Tâches en ébauche"
+
+msgid "Edit"
+msgstr "Éditer"
+
+msgid "Edit this project"
+msgstr "Éditer ce projet"
+
+msgid "Edit your profile"
+msgstr "Éditer votre profil"
+
+msgid "Element"
+msgstr "Élément"
+
+#, python-format
+msgid "Element %(name)s"
+msgstr "Élément %(name)s"
+
+msgid "Element details"
+msgstr "Détails de l'élément"
+
+msgid "Element group"
+msgstr "Regroupement d'éléments"
+
+#, python-format
+msgid ""
+"Element is part of project %(element_project)s while campaign is for project "
+"%(campaign_project)s"
+msgstr ""
+"L'élément fait partie du projet %(element_project)s tandis que la campagne "
+"est pour le projet %(campaign_project)s"
+
+msgid "Element type"
+msgstr "Type d'élément"
+
+msgid "Element type to display in a carousel"
+msgstr "Type d'élément à afficher dans un carrousel"
+
+msgid "Element type to use and display to the user"
+msgstr "Type d'élément à utiliser et à afficher à l'utilisateur"
+
+msgid "Element type to use for the user"
+msgstr "Type d'élément à utiliser pour l'utilisateur"
+
+msgid "Element type to use to publish the grouped elements"
+msgstr "Type d'élément à utiliser pour publier les éléments regroupés"
+
+msgid "Element types to annotate"
+msgstr "Types d'élément à annoter"
+
+msgid "Element types to use to annotate"
+msgstr "Types d'élément à utiliser pour annoter"
+
+msgid "Elements"
+msgstr "Éléments"
+
+msgid "Elements to use"
+msgstr "Éléments à utiliser"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Email validated"
+msgstr "Email validé"
+
+msgid "Ended"
+msgstr "Terminé"
+
+msgid "Ended:"
+msgstr "Terminé :"
+
+msgid "English"
+msgstr "Anglais"
+
+msgid ""
+"Enter a valid regular expression that will be used to validate the inputs of "
+"less than 100 characters for this field. You can find help on <a "
+"href=\"https://regex101.com/\" target=\"_blank\">https://regex101.com/</a> "
+"to write regular expressions."
+msgstr ""
+"Saisissez une expression régulière valide qui sera utilisée pour valider les "
+"saisies de moins de 100 caractères pour ce champ. Vous pouvez trouver de "
+"l'aide sur <a href=\"https://regex101.com/\" target=\"_blank\">https://"
+"regex101.com/</a> pour écrire des expressions régulières."
+
+msgid "Entities"
+msgstr "Entités"
+
+msgid "Entity"
+msgstr "Entité"
+
+msgid "Entity form"
+msgstr "Formulaire d'entité"
+
+msgid "Entity type"
+msgstr "Type d'entité"
+
+msgid "Error"
+msgstr "Erreur"
+
+msgid ""
+"Existing <code>WorkerResults</code> produced by Callico should be deleted "
+"from Arkindex before using this option if an export was previously made"
+msgstr ""
+"Les <code>WorkerResults</code> existants produits par Callico doivent être "
+"supprimés d'Arkindex avant d'utiliser cette option si un export a été fait "
+"précédemment"
+
+msgid "Export annotations to Arkindex"
+msgstr "Exporter les annotations vers Arkindex"
+
+msgid "Export results"
+msgstr "Exporter les résultats"
+
+msgid "Extra information"
+msgstr "Informations supplémentaires"
+
+msgid "Extra information from the provider"
+msgstr "Informations supplémentaires venant du fournisseur"
+
+msgid "Filter"
+msgstr "Filtrer"
+
+msgid "Filter entities…"
+msgstr "Filtrer les entités…"
+
+msgid "Filter sets to import"
+msgstr "Filtrer les sets à importer"
+
+msgid "Filter the class to import"
+msgstr "Filtrer la classe à importer"
+
+msgid "Filter the metadata to import"
+msgstr "Filtrer les métadonnées à importer"
+
+msgid ""
+"Filter the transcription entities to import (sort from most to least "
+"suitable)"
+msgstr ""
+"Filtrer les entités de transcription à importer (trier de la plus à la moins "
+"pertinente)"
+
+msgid "Filter the transcriptions to import (sort from most to least suitable)"
+msgstr ""
+"Filtrer les transcriptions à importer (trier de la plus à la moins "
+"pertinente)"
+
+msgid "Filter the worker results to import"
+msgstr "Filtrer les résultats de worker à importer"
+
+msgid "Filter types to import"
+msgstr "Filtrer les types à importer"
+
+msgid "Folder"
+msgstr "Dossier"
+
+msgid "For security reasons, you are not allowed to delete your own membership"
+msgstr ""
+"Pour des raisons de sécurité, vous n'avez pas la possibilité de supprimer "
+"vos propres droits d'accès"
+
+msgid "For security reasons, you are not allowed to edit your own membership"
+msgstr ""
+"Pour des raisons de sécurité, vous n'avez pas la possibilité d'éditer vos "
+"propres droits d'accès"
+
+msgid "Force the republication of annotations"
+msgstr "Forcer la republication des annotations"
+
+msgid ""
+"Forgotten your password? Enter your email address below, and we’ll email "
+"instructions for setting a new one."
+msgstr ""
+"Vous avez oublié votre mot de passe ? Saisissez votre adresse mail ci-"
+"dessous, et nous vous enverrons les instructions pour en définir un nouveau."
+
+msgid "Form fields"
+msgstr "Champs de formulaire"
+
+msgid "French"
+msgstr "Français"
+
+msgid ""
+"Further instructions to help the contributor, hidden behind an icon during "
+"the annotation"
+msgstr ""
+"Des instructions supplémentaires pour aider le contributeur, cachées "
+"derrière une icône pendant l'annotation"
+
+msgid "Generate"
+msgstr "Générer"
+
+msgid "Go back"
+msgstr "Retour"
+
+msgid "Go to homepage"
+msgstr "Aller à la page d'accueil"
+
+msgid "Go to next task"
+msgstr "Aller à la tâche suivante"
+
+#, python-format
+msgid "Go to page %(page)s"
+msgstr "Aller à la page %(page)s"
+
+msgid "Go to previous task"
+msgstr "Aller à la tâche précédente"
+
+msgid "Group"
+msgstr "Groupe"
+
+msgid ""
+"Group the transcription inputs for a lighter display during annotation "
+"(recommended when only one element type is picked)"
+msgstr ""
+"Regrouper les champs de saisie pour obtenir un affichage plus sobre lors de "
+"l'annotation (recommandé lorsqu'un seul type d'élément est sélectionné)."
+
+msgid "Has uncertain value"
+msgstr "A une valeur incertaine"
+
+msgid "Height"
+msgstr "Hauteur"
+
+msgid "Hello,"
+msgstr "Bonjour,"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "IIIF"
+msgstr "IIIF"
+
+msgid "IIIF URL"
+msgstr "URL IIIF"
+
+msgid "If the input is empty, all elements will be used"
+msgstr "Si le champ est vide, tous les éléments seront utilisés"
+
+msgid ""
+"If your account exists, an email with password reset instructions has been "
+"sent."
+msgstr ""
+"Si votre compte existe, un email contenant les instructions de "
+"réinitialisation du mot de passe a été envoyé."
+
+msgid "Illustration"
+msgstr "Illustration"
+
+msgid "Image"
+msgstr "Image"
+
+msgid "Image height"
+msgstr "Hauteur de l'image"
+
+msgid "Image width"
+msgstr "Largeur de l'image"
+
+msgid "Images"
+msgstr "Images"
+
+msgid "Import elements from Arkindex"
+msgstr "Importer des éléments d'Arkindex"
+
+msgid "Import from Arkindex"
+msgstr "Importer depuis Arkindex"
+
+msgid ""
+"Imported entities associated to a confidence level below this threshold will "
+"be highlighted in red during annotation. If this value is unset, the "
+"confidence will be ignored."
+msgstr ""
+"Les entités importées associées à un niveau de confiance inférieur à ce "
+"seuil seront mises en évidence en rouge lors de l'annotation. Si cette "
+"valeur n'est pas définie, le niveau de confiance sera ignoré."
+
+msgid ""
+"Imported transcriptions associated to a confidence level below this "
+"threshold will be highlighted in red during annotation. If this value is "
+"unset, the confidence will be ignored."
+msgstr ""
+"Les transcriptions importées associées à un niveau de confiance inférieur à "
+"ce seuil seront mises en évidence en rouge lors de l'annotation. Si cette "
+"valeur n'est pas définie, le niveau de confiance sera ignoré."
+
+#, python-format
+msgid ""
+"In total, there are currently <strong>%(available_assignments)s</strong> "
+"assignment(s) <strong>available</strong> on your campaign."
+msgstr ""
+"Au total, il y a actuellement <strong>%(available_assignments)s</strong> "
+"assignation(s) <strong>disponible(s)</strong> sur votre campagne."
+
+msgid "Input a metadata name and hit the \"Enter\" key"
+msgstr "Saisissez le nom d'une métadonnée et appuyez sur la touche \"Entrée\""
+
+msgid "Input a set name and hit the \"Enter\" key"
+msgstr "Saisissez le nom d'un set et appuyez sur la touche \"Entrée\""
+
+msgid "Instruction for the contributor to annotate"
+msgstr "Instruction pour le contributeur pour annoter"
+
+#, python-format
+msgid "Instructions for the campaign \"%(name)s\""
+msgstr "Instructions pour la campagne \"%(name)s\""
+
+msgid "Invalid format, please refer to the instructions."
+msgstr "Format invalide, veuillez vous référer aux instructions."
+
+msgid "Invite link management"
+msgstr "Gestion du lien d'invitation"
+
+msgid "Invite token"
+msgstr "Token d'invitation"
+
+msgid "Invite users"
+msgstr "Inviter des utilisateurs"
+
+msgid "Is active"
+msgstr "Est actif"
+
+msgid "Is administrator"
+msgstr "Est administrateur"
+
+msgid "Is preview"
+msgstr "Est un aperçu"
+
+msgid "Is staff"
+msgstr "Est staff"
+
+msgid ""
+"It is not possible to import entities without also importing transcriptions"
+msgstr ""
+"Il n'est pas possible d'importer des entités sans importer également des "
+"transcriptions"
+
+msgid "It is the direct children of these elements that will be grouped"
+msgstr "Ce sont les enfants directs de ces éléments qui seront regroupés"
+
+msgid "Join a project"
+msgstr "Rejoindre un projet"
+
+msgid "Label"
+msgstr "Label"
+
+msgid "Last annotation"
+msgstr "Dernière annotation"
+
+#, python-format
+msgid "Last comment %(last)s"
+msgstr "Dernier commentaire %(last)s"
+
+msgid "Last login"
+msgstr "Dernière connexion"
+
+msgid "Left to right"
+msgstr "Gauche à droite"
+
+msgid "Legend of the field group"
+msgstr "Légende du groupe de champs"
+
+msgid "List"
+msgstr "Lister"
+
+msgid "List of custom annotations for this field, separated by \",\""
+msgstr "Liste des annotations personnalisées pour ce champ, séparées par \",\""
+
+msgid "List tasks on this campaign"
+msgstr "Lister les tâches de cette campagne"
+
+msgid "Log in to request tasks"
+msgstr "Connectez-vous pour demander des tâches"
+
+msgid "Login"
+msgstr "Se connecter"
+
+msgid "Logout"
+msgstr "Se déconnecter"
+
+msgid "Logs"
+msgstr "Logs"
+
+msgid "Lost password?"
+msgstr "Mot de passe oublié ?"
+
+msgid "Manage members"
+msgstr "Gérer les membres"
+
+msgid "Manage members in this project"
+msgstr "Gérer les membres de ce projet"
+
+msgid "Manage the invite link for this project"
+msgstr "Gérer le lien d'invitation pour ce projet"
+
+msgid "Manager"
+msgstr "Manager"
+
+msgid "Manual"
+msgstr "Manuelle"
+
+msgid "Mark as uncertain"
+msgstr "Marquer comme incertain"
+
+msgid "Marked as uncertain by the user"
+msgstr "Marquée comme incertaine par l'utilisateur"
+
+msgid "Maximum number of tasks per user"
+msgstr "Nombre maximum de tâches par utilisateur"
+
+msgid "Median time spent on a task"
+msgstr "Médiane du temps passé sur une tâche"
+
+msgid "Members"
+msgstr "Membres"
+
+msgid "Members management"
+msgstr "Gestion des membres"
+
+msgid "Membership"
+msgstr "Adhésion"
+
+msgid "Memberships"
+msgstr "Adhésions"
+
+msgctxt "plural"
+msgid "Metadata"
+msgstr "Métadonnées"
+
+msgid "Mode"
+msgstr "Mode"
+
+msgid "Moderate"
+msgstr "Modérer"
+
+msgid "Moderated by:"
+msgstr "Modérée par :"
+
+msgid "Moderation"
+msgstr "Modération"
+
+msgid "Moderation for this campaign mode is not yet implemented"
+msgstr "La modération pour ce mode de campagne n'est pas encore implémentée"
+
+msgid "Moderator"
+msgstr "Modérateur"
+
+msgid "My projects"
+msgstr "Mes projets"
+
+msgid "My tasks"
+msgstr "Mes tâches"
+
+#, python-format
+msgid "My tasks on campaign \"%(name)s\""
+msgstr "Mes tâches sur la campagne \"%(name)s\""
+
+msgid "Name"
+msgstr "Nom"
+
+#, python-format
+msgid "New annotation tasks for the project %(project)s - Callico"
+msgstr "Nouvelles tâches d'annotation pour le projet %(project)s - Callico"
+
+msgid "New annotation tasks have just been assigned to you on Callico."
+msgstr ""
+"De nouvelles tâches d'annotation viennent de vous être assignées sur Callico."
+
+#, python-format
+msgid "No %(object)s matching this position exists in your campaign"
+msgstr ""
+"Aucun %(object)s correspondant à cette position n'existe dans votre campagne"
+
+msgid "No EntityForm campaign matching this ID exists"
+msgstr "Aucune campagne EntityForm correspondant à cet ID n'existe"
+
+msgid "No authority value matches your input"
+msgstr "Aucune valeur d'autorité ne correspond à votre saisie"
+
+msgid "No campaign available"
+msgstr "Aucune campagne disponible"
+
+msgid "No campaign matching this ID exists"
+msgstr "Aucune campagne correspondant à cet ID n'existe"
+
+msgid ""
+"No carousel element was found from the configuration. Please contact a "
+"manager of this project."
+msgstr ""
+"Aucun élément de carrousel n'a été trouvé depuis la configuration. Veuillez "
+"contacter un manager de ce projet."
+
+msgid ""
+"No class was found for this project, it means that an error might have "
+"occurred during the retrieval of extra information from Arkindex. Therefore "
+"this filter is disabled, please contact an administrator if you wish to use "
+"it."
+msgstr ""
+"Aucune classe n'a été trouvée pour ce projet, cela signifie qu'une erreur a "
+"pu se produire lors de la récupération des informations supplémentaires "
+"venant d'Arkindex. Ce filtre est donc désactivé, veuillez contacter un "
+"administrateur si vous souhaitez l'utiliser."
+
+msgid ""
+"No contributor is available in this project, you can still create unassigned "
+"tasks that could be assigned to volunteering contributors"
+msgstr ""
+"Aucun contributeur n'est présent dans ce projet, vous pouvez toujours créer "
+"des tâches non assignées qui pourraient être attribuées à des contributeurs "
+"volontaires"
+
+msgid "No element annotated on this image"
+msgstr "Aucun élément annoté sur cette image"
+
+msgid "No element available"
+msgstr "Aucun élément disponible"
+
+msgid "No element matching this ID exists"
+msgstr "Aucun élément correspondant à cet ID n'existe"
+
+msgid "No element matching this ID exists on this project"
+msgstr "Aucun élément correspondant à cet ID n'existe dans ce projet"
+
+msgid ""
+"No element type was found in the configuration. Please contact a manager of "
+"this project."
+msgstr ""
+"Aucun type d'élément n'a été trouvé dans la configuration. Veuillez "
+"contacter un manager de ce projet."
+
+msgid "No elements were found."
+msgstr "Aucun élément n'a été trouvé."
+
+msgid "No entity type was found in the configuration."
+msgstr "Aucun type d'entité n'a été trouvé dans la configuration."
+
+msgid ""
+"No entity type was found in the configuration. Please contact a manager of "
+"this project."
+msgstr ""
+"Aucun type d'entité n'a été trouvé dans la configuration. Veuillez contacter "
+"un manager de ce projet."
+
+msgid "No feedback"
+msgstr "Pas de retour"
+
+msgid "No form field configured on this campaign"
+msgstr "Aucun champ de formulaire n'est configuré sur cette campagne"
+
+msgid "No log registered for this process"
+msgstr "Aucun log enregistré pour ce processus"
+
+msgid "No member available in this project"
+msgstr "Aucun membre disponible dans ce projet"
+
+msgid "No membership matching this ID exists"
+msgstr "Aucune adhésion correspondant à cet ID n'existe"
+
+msgid "No more available tasks"
+msgstr "Plus aucune tâche disponible"
+
+msgid "No preview"
+msgstr "Pas d'aperçu"
+
+msgid "No process available"
+msgstr "Aucun processus disponible"
+
+msgid "No process matching this ID exists"
+msgstr "Aucun processus correspondant à cet ID n'existe"
+
+msgid "No project available"
+msgstr "Aucun projet disponible"
+
+msgid "No project matching this ID exists"
+msgstr "Aucun projet correspondant à cet ID n'existe"
+
+msgid "No task available"
+msgstr "Aucune tâche disponible"
+
+msgid "No task matching this ID exists"
+msgstr "Aucune tâche correspondant à cet ID n'existe"
+
+msgid "No transcription was found for this element."
+msgstr "Aucune transcription n'a été trouvée pour cet élément."
+
+msgid ""
+"No type and/or worker run was found for this project, it means that an error "
+"might have occurred during the retrieval of extra information from Arkindex. "
+"Therefore this filter is disabled, please contact an administrator if you "
+"wish to use it."
+msgstr ""
+"Aucun type et/ou worker run n'a été trouvé pour ce projet, cela signifie "
+"qu'une erreur a pu se produire lors de la récupération des informations "
+"supplémentaires venant d'Arkindex. Ce filtre est donc désactivé, veuillez "
+"contacter un administrateur si vous souhaitez l'utiliser."
+
+msgid ""
+"No type was found for this project, it means that an error might have "
+"occurred during the retrieval of extra information from Arkindex. Therefore "
+"this filter is disabled, please contact an administrator if you wish to use "
+"it."
+msgstr ""
+"Aucun type n'a été trouvé pour ce projet, cela signifie qu'une erreur a pu "
+"se produire lors de la récupération des informations supplémentaires venant "
+"d'Arkindex. Ce filtre est donc désactivé, veuillez contacter un "
+"administrateur si vous souhaitez l'utiliser."
+
+msgid "No user has draft or pending tasks for this campaign"
+msgstr ""
+"Aucun utilisateur n'a de tâches en ébauche ou en attente pour cette campagne"
+
+msgid "No user is assigned to this task"
+msgstr "Aucun utilisateur n'est assigné à cette tâche"
+
+msgid "No user matching this ID has draft or pending tasks on this campaign"
+msgstr ""
+"Aucun utilisateur correspondant à cet ID n'a de tâches en ébauche ou en "
+"attente pour cette campagne"
+
+msgid "No user task matching this ID exists"
+msgstr "Aucune tâche utilisateur correspondant à cet ID n'existe"
+
+msgctxt "feminine"
+msgid "Not published"
+msgstr "Non publiée"
+
+msgid "Not started yet"
+msgstr "Pas encore démarré"
+
+msgid "Number"
+msgstr "Nombre"
+
+msgid "Number of allowed assignments for available tasks"
+msgstr "Nombre d'assignations autorisées pour les tâches disponibles"
+
+msgid "Number of draft tasks"
+msgstr "Nombre de tâches en ébauche"
+
+msgid "Number of pending tasks"
+msgstr "Nombre de tâches en attente"
+
+msgid "Number of tasks to assign per volunteer"
+msgstr "Nombre de tâches à assigner par volontaire"
+
+msgid "OR"
+msgstr "OU"
+
+msgid "Object identifier in provider"
+msgstr "Identifiant de l'objet chez le fournisseur"
+
+msgid "Only contributors can request tasks"
+msgstr "Seuls les contributeurs peuvent demander des tâches"
+
+msgid "Only unused elements"
+msgstr "Seuls les éléments non utilisés"
+
+msgid "Open in a new tab"
+msgstr "Ouvrir dans un nouvel onglet"
+
+msgid "Open instructions in a new tab"
+msgstr "Ouvrir les instructions dans un nouvel onglet"
+
+msgid "Order"
+msgstr "Ordre"
+
+#, python-format
+msgid "Page %(number)s"
+msgstr "Page %(number)s"
+
+msgid "Page not found"
+msgstr "Page non trouvée"
+
+msgid "Parent"
+msgstr "Parent"
+
+#, python-format
+msgid "Parent is not part of the project %(project)s"
+msgstr "Le parent ne fait pas partie du projet %(project)s"
+
+msgid "Parent is not part of the same user task"
+msgstr "Le parent ne fait pas partie de la même tâche utilisateur"
+
+msgid "Parent version"
+msgstr "Version du parent"
+
+msgid "Pending"
+msgstr "En attente"
+
+msgid "Pending tasks"
+msgstr "Tâches en attente"
+
+msgid "Permissions"
+msgstr "Permissions"
+
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+"Veuillez saisir votre nouveau mot de passe deux fois afin que nous puissions "
+"vérifier que vous l'avez correctement écrit."
+
+msgid "Please login to see this page."
+msgstr "Veuillez vous connecter pour accéder à cette page."
+
+msgid "Polygon"
+msgstr "Polygone"
+
+msgid "Polygon field must be a list of at least 3 positive integer couples"
+msgstr ""
+"Le champ polygone doit être une liste d'au moins 3 couples d'entiers positifs"
+
+msgid "Preferences"
+msgstr "Préférences"
+
+msgid "Preferred language"
+msgstr "Langue préférée"
+
+#, python-format
+msgid "Press this key to annotate using class %(value)s"
+msgstr "Appuyez sur cette touche pour annoter avec %(value)s"
+
+msgid "Prevents contributors from partially selecting words when annotating"
+msgstr ""
+"Empêche les contributeurs de sélectionner partiellement des mots lors de "
+"l'annotation"
+
+msgid "Preview a single task"
+msgstr "Prévisualiser une tâche unique"
+
+msgid "Preview task"
+msgstr "Tâche de prévisualisation"
+
+msgid "Process"
+msgstr "Processus"
+
+#, python-format
+msgid "Process \"%(name)s\""
+msgstr "Processus \"%(name)s\""
+
+msgid "Process details"
+msgstr "Détails du processus"
+
+msgid "Process name"
+msgstr "Nom du processus"
+
+msgid "Processes"
+msgstr "Processus"
+
+#, python-format
+msgid "Processes for project \"%(name)s\""
+msgstr "Processus pour le projet \"%(name)s\""
+
+msgid "Progress"
+msgstr "Progression"
+
+msgid "Project"
+msgstr "Projet"
+
+#, python-format
+msgid "Project \"%(name)s\""
+msgstr "Projet \"%(name)s\""
+
+#, python-format
+msgid "Project \"%(project)s\" - Campaign \"%(campaign)s\""
+msgstr "Projet \"%(project)s\" - Campagne \"%(campaign)s\""
+
+msgid "Project creation"
+msgstr "Création d'un projet"
+
+msgid "Project details"
+msgstr "Détails du projet"
+
+msgid "Project edition"
+msgstr "Édition d'un projet"
+
+msgid "Projects"
+msgstr "Projets"
+
+msgid "Provider"
+msgstr "Fournisseur"
+
+msgid "Provider API"
+msgstr "API du fournisseur"
+
+msgid "Provider URL"
+msgstr "URL sur le fournisseur"
+
+msgid "Provider relationship"
+msgstr "Relation avec le fournisseur"
+
+msgid "Providers"
+msgstr "Fournisseurs"
+
+msgid "Public"
+msgstr "Public"
+
+msgid "Public projects"
+msgstr "Projets publics"
+
+msgid "Publish all draft tasks"
+msgstr "Publier toutes les tâches en ébauche"
+
+msgid "Publish each annotation separately"
+msgstr "Publier chaque annotation séparément"
+
+msgctxt "feminine"
+msgid "Published"
+msgstr "Publiée"
+
+msgid "Random"
+msgstr "Aléatoire"
+
+msgid "Regenerate"
+msgstr "Regénérer"
+
+msgid "Register"
+msgstr "S'inscrire"
+
+msgid "Register on Callico"
+msgstr "Inscrivez-vous sur Callico"
+
+msgid "Regular expression to use to validate the input"
+msgstr "Expression régulière à utiliser pour valider la saisie"
+
+msgid "Reject"
+msgstr "Rejeter"
+
+msgctxt "feminine"
+msgid "Rejected"
+msgstr "Rejetée"
+
+msgid "Remove the uncertainty marker"
+msgstr "Retirer le marqueur d'incertitude"
+
+msgid "Reopen"
+msgstr "Rouvrir"
+
+msgid "Request tasks"
+msgstr "Demander des tâches"
+
+msgid "Reset password"
+msgstr "Réinitialiser le mot de passse"
+
+msgid ""
+"Restrict to elements from the specified sets, by default all sets will be "
+"imported"
+msgstr ""
+"Restreindre aux éléments des sets sélectionnés, par défaut tous les sets "
+"seront importés"
+
+msgid "Restrict to elements produced by the given worker run for their type"
+msgstr ""
+"Restreindre aux éléments produits par la worker run donnée pour leur type"
+
+msgid ""
+"Restrict to elements with the given class name, by default all elements will "
+"be imported"
+msgstr ""
+"Restreindre aux éléments associés au nom de classe sélectionné, par défaut "
+"tous les éléments seront importés"
+
+msgid ""
+"Restrict to elements with the given type slugs, by default all elements will "
+"be imported"
+msgstr ""
+"Restreindre aux éléments des types sélectionnés, par défaut tous les "
+"éléments seront importés"
+
+msgid "Right to left"
+msgstr "Droite à gauche"
+
+msgid "Role"
+msgstr "Rôle"
+
+msgid "Running"
+msgstr "En cours"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "See less"
+msgstr "Voir moins"
+
+msgid "See more"
+msgstr "Voir plus"
+
+msgid "See tasks"
+msgstr "Voir les tâches"
+
+msgid "See you tomorrow for another daily summary,"
+msgstr "Rendez-vous demain pour un nouveau résumé quotidien,"
+
+msgid ""
+"Selected filters will appear here once you've clicked on the \"Save\" button"
+msgstr ""
+"Les filtres sélectionnés apparaîtront ici une fois que vous aurez cliqué sur "
+"le bouton \"Enregistrer\""
+
+msgid "Sequential"
+msgstr "Séquentiel"
+
+msgid "Server error"
+msgstr "Erreur du serveur"
+
+msgid "Set language to English"
+msgstr "Définir la langue sur Anglais"
+
+msgid "Set language to French"
+msgstr "Définir la langue sur Français"
+
+#, python-format
+msgid "Showing items %(start)s - %(end)s of %(total)s"
+msgstr "Affichage des éléments %(start)s - %(end)s sur %(total)s"
+
+msgid "Sign in"
+msgstr "Connectez-vous"
+
+msgid "Sign up"
+msgstr "Inscrivez-vous"
+
+msgid "Sign up feature is deactivated on this instance"
+msgstr "L'inscription est désactivée sur cette instance"
+
+msgid "Skip task"
+msgstr "Ignorer la tâche"
+
+msgctxt "feminine"
+msgid "Skipped"
+msgstr "Ignorée"
+
+msgid ""
+"Sort the entities to export, by default the order from the configuration "
+"will be used"
+msgstr ""
+"Trier les entités à exporter, par défaut l'ordre de la configuration sera "
+"utilisé"
+
+msgid "Start the export"
+msgstr "Commencer l'export"
+
+msgid "Start the import"
+msgstr "Commencer l'import"
+
+msgid "Started"
+msgstr "Démarré"
+
+msgid "Started:"
+msgstr "Démarré :"
+
+msgid "State"
+msgstr "État"
+
+msgid "Status"
+msgstr "État"
+
+msgid "Status of tasks to be exported"
+msgstr "État des tâches à exporter"
+
+msgid "Stop"
+msgstr "Arrêter"
+
+msgid "Submit"
+msgstr "Soumettre"
+
+msgid "Task"
+msgstr "Tâche"
+
+msgid "Task annotation"
+msgstr "Annotation de tâche"
+
+msgid "Task discussion"
+msgstr "Discussion sur la tâche"
+
+#, python-format
+msgid ""
+"Task has been %(action)s, you have been redirected to %(article)s next task "
+"for the campaign %(campaign)s"
+msgstr ""
+"La tâche a été %(action)s, vous avez été redirigé vers %(article)s prochaine "
+"tâche pour la campagne %(campaign)s"
+
+msgid "Task moderation"
+msgstr "Modération de tâche"
+
+msgid "Tasks"
+msgstr "Tâches"
+
+msgid "Text orientation"
+msgstr "Orientation du texte"
+
+msgid "Thank you for your help,"
+msgstr "Merci pour votre aide,"
+
+msgid "Thank you for your support,"
+msgstr "Merci pour votre soutien,"
+
+msgid "The Callico team"
+msgstr "L'équipe Callico"
+
+msgid ""
+"The UUID of an Arkindex dataset to import, by default the entire corpus will "
+"be imported"
+msgstr ""
+"L'UUID d'un dataset Arkindex à importer, par défaut le corpus entier sera "
+"importé"
+
+msgid ""
+"The UUID of an Arkindex element to import, by default the entire corpus will "
+"be imported"
+msgstr ""
+"L'UUID d'un élément Arkindex à importer, par défaut le corpus entier sera "
+"importé"
+
+#, python-format
+msgid ""
+"The annotated element is highlighted in green, currently displayed in the "
+"context of its first ancestor of type \"%(type)s\"."
+msgstr ""
+"L'élément annoté est surligné en vert, actuellement affiché dans le contexte "
+"de son premier ancêtre de type \"%(type)s\"."
+
+msgid ""
+"The annotation for the campaign mode of the preview task is not yet "
+"implemented."
+msgstr ""
+"L'annotation pour le mode de campagne de la tâche de prévisualisation n'est "
+"pas encore implémentée."
+
+msgid "The campaign does not allow to request tasks"
+msgstr "La campagne ne permet pas de demander des tâches"
+
+msgid "The campaign has been archived."
+msgstr "La campagne a été archivée."
+
+msgid "The campaign has been closed and marked as completed."
+msgstr "La campagne a été fermée et marquée comme terminée."
+
+msgid "The campaign has been configured."
+msgstr "La campagne a été configurée."
+
+msgid "The campaign has been created."
+msgstr "La campagne a été créée."
+
+msgid "The campaign has been reopened and marked as running."
+msgstr "La campagne a été rouverte et marquée comme étant en cours."
+
+msgid ""
+"The confirmation link was invalid, possibly because it has already been used."
+msgstr ""
+"Le lien de confirmation n'est plus valide, probablement parce qu'il a déjà "
+"été utilisé."
+
+msgid "The dataset and element fields are mutually exclusive"
+msgstr "Les champs dataset et élément sont mutuellement exclusifs"
+
+msgid "The dataset field must be filled in order to select sets"
+msgstr "Le champ dataset doit être renseigné pour sélectionner des sets"
+
+#, python-format
+msgid ""
+"The element to annotate is highlighted in green, currently displayed in the "
+"context of its first ancestor of type \"%(type)s\"."
+msgstr ""
+"L'élément à annoter est surligné en vert, actuellement affiché dans le "
+"contexte de son premier ancêtre de type \"%(type)s\"."
+
+msgid "The entity is not part of the transcription"
+msgstr "L'entité ne fait pas partie de la transcription"
+
+msgid ""
+"The entity type/instruction combination must be unique across configured "
+"fields."
+msgstr ""
+"La combinaison type d'entité/instruction doit être unique pour tous les "
+"champs configurés."
+
+msgid ""
+"The fields to limit allowed annotations, either from an authority or a "
+"custom list, are mutually exclusive"
+msgstr ""
+"Les champs permettant de limiter les annotations possibles, qu'elles "
+"proviennent d'une autorité ou d'une liste personnalisée, sont mutuellement "
+"exclusifs"
+
+#, python-format
+msgid "The form %(object)s has been added."
+msgstr "Le %(object)s de formulaire a été ajouté."
+
+#, python-format
+msgid "The form %(object)s has been deleted."
+msgstr "Le %(object)s de formulaire a été supprimé."
+
+#, python-format
+msgid "The form %(object)s has been edited."
+msgstr "Le %(object)s de formulaire a été modifié."
+
+msgid "The group to search your field in does not exist in your campaign"
+msgstr "Le groupe où chercher votre champ n'existe pas dans votre campagne"
+
+msgid "The identifier must be an UUID when an Arkindex provider is specified"
+msgstr ""
+"L'identifiant doit être un UUID lorsqu'un fournisseur Arkindex est spécifié"
+
+msgid "The invite link has been copied to your clipboard"
+msgstr "Le lien d'invitation a été copié dans votre presse-papiers"
+
+msgid ""
+"The invite link you followed doesn't match any registered project, it might "
+"be expired, please contact the manager who provided it."
+msgstr ""
+"Le lien d'invitation que vous avez suivi ne correspond à aucun projet "
+"enregistré, il se peut qu'il ait expiré, veuillez contacter le manager qui "
+"l'a fourni."
+
+msgid "The legend must be unique across configured field groups."
+msgstr ""
+"La légende doit être unique pour tous les groupes de champs configurés."
+
+msgid "The member has been added to this project."
+msgstr "Le membre a été ajouté à ce projet."
+
+msgid "The member has been deleted from this project."
+msgstr "Le membre a été supprimé de ce projet."
+
+msgid "The member has been edited."
+msgstr "Le membre a été modifié."
+
+msgid "The metadata value has been copied to your clipboard"
+msgstr "La valeur de la métadonnée a été copiée dans votre presse-papiers"
+
+msgid ""
+"The number of tasks that could be assigned per volunteering contributor if "
+"you have available tasks. If this number is equal to zero then the \"Request "
+"tasks\" button will not appear."
+msgstr ""
+"Le nombre de tâches qui pourraient être assignées à chaque contributeur "
+"volontaire si vous avez des tâches disponibles. Si ce nombre est égal à "
+"zéro, le bouton \"Demander des tâches\" n'apparaîtra pas."
+
+msgid "The ongoing annotation has not been submitted."
+msgstr "L'annotation en cours n'a pas été soumise."
+
+msgid "The ongoing correction has not been validated."
+msgstr "La correction en cours n'a pas été validée."
+
+msgid "The preview task can only be annotated by the manager who created it."
+msgstr ""
+"La tâche de prévisualisation ne peut être annotée que par le manager qui l'a "
+"créée."
+
+msgid "The process to export annotations to Arkindex has been started."
+msgstr "Le processus d'export des annotations vers Arkindex a été démarré."
+
+#, python-format
+msgid ""
+"The process to export the campaign results as %(format)s has been started."
+msgstr ""
+"Le processus d'export en %(format)s des résultats de la campagne a été "
+"démarré."
+
+msgid "The process to import elements from Arkindex has been started."
+msgstr "Le processus d'import des éléments Arkindex a été démarré."
+
+msgid "The project has been created."
+msgstr "Le projet a été créé."
+
+msgid "The project has been edited."
+msgstr "Le projet a été édité."
+
+#, python-format
+msgid "The provider type '%(type)s' isn't supported for now"
+msgstr "Le type du fournisseur '%(type)s' n'est pas supporté pour le moment"
+
+msgid "The regular expression is invalid."
+msgstr "L'expression régulière n'est pas valide."
+
+msgid ""
+"The server encountered an internal error and was unable to complete your "
+"request"
+msgstr ""
+"Le serveur a rencontré une erreur interne et n'a pas pu répondre à votre "
+"requête"
+
+msgid "The tasks"
+msgstr "Les tâches"
+
+#, python-format
+msgid "The tasks on campaign \"%(name)s\""
+msgstr "Les tâches sur la campagne \"%(name)s\""
+
+#, python-format
+msgid ""
+"The user %(user)s just commented on a task discussion from the campaign "
+"%(campaign)s for project %(project)s."
+msgstr ""
+"L'utilisateur %(user)s vient de commenter sur la discussion d'une tâche "
+"provenant de la campagne %(campaign)s pour le projet %(project)s."
+
+msgid "The user is already a member of this project."
+msgstr "L'utilisateur est déjà un membre de ce projet."
+
+msgid "The user marked this task as uncertain"
+msgstr "L'utilisateur a marqué cette tâche comme incertaine"
+
+msgid "The value of this field is malformed and impossible to parse."
+msgstr "La valeur de ce champ est malformée et impossible à interpréter."
+
+msgid "There are no available assignments on your campaign."
+msgstr "Il n'y a pas d'assignation disponible sur votre campagne."
+
+msgid "There are no classes available for this project"
+msgstr "Il n'y a pas de classes disponibles pour ce projet"
+
+msgid "There are no element types available for this project"
+msgstr "Il n'y a pas de types d'élément disponibles pour ce projet"
+
+msgid "There are no non-folder element types available for this project"
+msgstr "Il n'y a pas de types d'élément non-dossier disponibles pour ce projet"
+
+msgid "There are no users with this email."
+msgstr "Il n'y a pas d'utilisateurs avec cette adresse mail."
+
+msgid "There are several forms with these values"
+msgstr "Il y a plusieurs formulaires avec ces valeurs"
+
+#, python-format
+msgid "There is no unused %(element_type)s elements on this campaign"
+msgstr ""
+"Il n'existe pas d'élément %(element_type)s non utilisé sur cette campagne"
+
+msgid ""
+"This element type is not the same as the carousel type to display defined in "
+"the campaign configuration. See the <a href=\"https://doc.callico.eu/tasks/"
+"create/#special-case-element-group-campaign\" "
+"target=\"_blank\">documentation</a>."
+msgstr ""
+"Ce type d'élément diffère du type de carrousel à afficher défini dans la "
+"configuration de la campagne. Voir la <a href=\"https://doc.callico.eu/tasks/"
+"create/#special-case-element-group-campaign\" "
+"target=\"_blank\">documentation</a>."
+
+msgid ""
+"This element type is not the same as the element types to annotate defined "
+"in the campaign configuration. See the <a href=\"https://doc.callico.eu/"
+"tasks/create/#special-case-transcription-campaign\" "
+"target=\"_blank\">documentation</a>."
+msgstr ""
+"Ce type d'élément diffère des types d'éléments à annoter définis dans la "
+"configuration de la campagne. Voir la <a href=\"https://doc.callico.eu/tasks/"
+"create/#special-case-transcription-campaign\" "
+"target=\"_blank\">documentation</a>."
+
+msgid ""
+"This email contains a summary of the daily activity on the campaigns you "
+"manage."
+msgstr ""
+"Cet email contient un résumé de l'activité quotidienne des campagnes que "
+"vous gérez."
+
+msgid "This field must be a dictionary containing simple key:value strings."
+msgstr ""
+"Ce champ doit être un dictionnaire contenant de simples chaînes de "
+"caractères sous la forme clé:valeur."
+
+msgid "This field must be a list containing dictionaries."
+msgstr "Ce champ doit être une liste contenant des dictionnaires."
+
+#, python-format
+msgid ""
+"This member is a <strong>contributor</strong> on this project, %(action)s, "
+"you will <strong>automatically delete their draft and pending tasks</strong> "
+"as well."
+msgstr ""
+"Ce membre est <strong>contributeur</strong> sur ce projet, %(action)s, vous "
+"<strong>supprimerez automatiquement ses tâches en ébauche et en attente</"
+"strong>."
+
+#, python-format
+msgid ""
+"This member is a <strong>manager</strong> on this project, %(action)s, you "
+"will <strong>automatically delete their preview tasks</strong> as well."
+msgstr ""
+"Ce membre est <strong>manager</strong> sur ce projet, %(action)s, vous "
+"<strong>supprimerez automatiquement ses tâches de prévisualisation</strong>."
+
+msgid "This task was generated for preview purposes."
+msgstr "Cette tâche a été générée à des fins de prévisualisation."
+
+msgid "To Arkindex"
+msgstr "Vers Arkindex"
+
+msgid ""
+"To activate your Callico account and complete your registration, please "
+"enter your email address at the link below:"
+msgstr ""
+"Pour activer votre compte Callico et compléter votre inscription, veuillez "
+"saisir votre adresse mail au lien ci-dessous :"
+
+msgid "To participate in collaborative annotation projects"
+msgstr "Pour participer à des projets d'annotation collaborative"
+
+msgid ""
+"To validate your email address and complete your registration, please follow "
+"the link below:"
+msgstr ""
+"Pour valider votre adresse mail et compléter votre inscription, veuillez "
+"suivre le lien ci-dessous :"
+
+msgid "Total elements"
+msgstr "Nombre total d'éléments"
+
+msgid "Total images"
+msgstr "Nombre total d'images"
+
+msgid "Transcription"
+msgstr "Transcription"
+
+msgid "Transcription next to the image"
+msgstr "Transcription à côté de l'image"
+
+msgid "Transcription only"
+msgstr "Transcription seule"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Type your comment here..."
+msgstr "Saisissez votre commentaire ici..."
+
+msgid "Type:"
+msgstr "Type :"
+
+msgid "Types"
+msgstr "Types"
+
+msgid "Unassign"
+msgstr "Désassigner"
+
+msgid "Unassign tasks on this campaign"
+msgstr "Désassigner des tâches de cette campagne"
+
+msgctxt "feminine"
+msgid "Uncertain"
+msgstr "Incertaine"
+
+msgid "Update password"
+msgstr "Mettre à jour le mot de passe"
+
+msgid "Updated"
+msgstr "Mis à jour"
+
+msgctxt "feminine"
+msgid "Updated"
+msgstr "Mise à jour"
+
+msgid "User"
+msgstr "Utilisateur"
+
+msgid "User has not yet annotated this task"
+msgstr "L'utilisateur n'a pas encore annoté cette tâche"
+
+#, python-format
+msgid "User is not member of the project %(project)s"
+msgstr "L'utilisateur n'est pas membre du projet %(project)s"
+
+msgid "User task"
+msgstr "Tâche utilisateur"
+
+msgid "User task details"
+msgstr "Détails de la tâche utilisateur"
+
+msgid "User task details for this campaign mode is not yet implemented"
+msgstr ""
+"L'affichage des détails de la tâche utilisateur pour ce mode de campagne "
+"n'est pas encore implémenté"
+
+msgid "User tasks"
+msgstr "Tâches utilisateur"
+
+msgid "Users"
+msgstr "Utilisateurs"
+
+msgid "Users feedback"
+msgstr "Retour des utilisateurs"
+
+msgid "Users must have a display name"
+msgstr "Les utilisateurs doivent avoir un nom d'affichage"
+
+msgid "Users must have an email address"
+msgstr "Les utilisateurs doivent avoir une adresse mail"
+
+msgid "Validate"
+msgstr "Valider"
+
+msgctxt "feminine"
+msgid "Validated"
+msgstr "Validée"
+
+msgid "Value"
+msgstr "Valeur"
+
+msgid "Value identifier in authority"
+msgstr "Identifiant de la valeur dans l'autorité"
+
+msgid "Version"
+msgstr "Version"
+
+#, python-format
+msgid "Version %(version)s"
+msgstr "Version %(version)s"
+
+#, python-format
+msgid "Version n°%(version)s - %(created)s"
+msgstr "Version n°%(version)s - %(created)s"
+
+msgid "Version:"
+msgstr "Version :"
+
+msgid "View IIIF image"
+msgstr "Afficher l'image IIIF"
+
+msgid "View details"
+msgstr "Voir les détails"
+
+#, python-format
+msgid "View on %(provider)s"
+msgstr "Afficher sur %(provider)s"
+
+msgid "View the filtered task list"
+msgstr "Afficher la liste des tâches filtrées"
+
+msgid "Want to contribute to public campaigns that need annotations? Please"
+msgstr ""
+"Vous souhaitez contribuer à des campagnes publiques qui nécessitent des "
+"annotations ? Veuillez vous"
+
+msgid "We're sorry, but the requested page could not be found"
+msgstr "Nous sommes désolés, mais la page demandée est introuvable"
+
+msgid "Website"
+msgstr "Site web"
+
+msgid "Welcome to Callico - Your account awaits activation"
+msgstr "Bienvenue sur Callico - Votre compte est en attente d'activation"
+
+msgid ""
+"When you are creating assigned tasks for contributors or generating a "
+"preview task, this field is required."
+msgstr ""
+"Ce champ est obligatoire lorsque vous créez des tâches pour des "
+"contributeurs ou que vous générez une tâche de prévisualisation."
+
+msgid ""
+"When you aren't creating unassigned tasks for volunteers or generating a "
+"preview task, this field is required."
+msgstr ""
+"Ce champ est obligatoire lorsque vous ne créez pas de tâches non assignées "
+"pour des volontaires ou que vous ne générez pas une tâche de "
+"prévisualisation."
+
+msgid "Width"
+msgstr "Largeur"
+
+msgid "With comments"
+msgstr "Avec des commentaires"
+
+msgid "With comments and marked as uncertain by the user"
+msgstr "Avec des commentaires et marquée comme incertaine par l'utilisateur"
+
+msgid "Without user"
+msgstr "Sans utilisateur"
+
+msgid "XLSX"
+msgstr "XLSX"
+
+msgid "XLSX export"
+msgstr "Export XLSX"
+
+msgid "You"
+msgstr "Vous"
+
+msgid "You already have pending tasks on this campaign"
+msgstr "Vous avez déjà des tâches en attente sur cette campagne"
+
+msgid "You already have tasks to annotate"
+msgstr "Vous avez déjà des tâches à annoter"
+
+msgid ""
+"You are about to start this Arkindex export, are you sure you want to do "
+"that?"
+msgstr ""
+"Vous êtes sur le point de démarrer cet export Arkindex, êtes-vous sûr de "
+"vouloir le faire ?"
+
+msgid ""
+"You are about to start this Arkindex import, are you sure you want to do "
+"that?"
+msgstr ""
+"Vous êtes sur le point de démarrer cet import Arkindex, êtes-vous sûr de "
+"vouloir le faire ?"
+
+#, python-format
+msgid "You are browsing all %(article)s tasks"
+msgstr "Vous êtes en train de parcourir toutes %(article)s tâches"
+
+msgid "You are not assigned to this task"
+msgstr "Vous n'êtes pas assigné à cette tâche"
+
+#, python-format
+msgid "You are now contributor on project %(name)s. "
+msgstr "Vous êtes désormais contributeur du projet %(name)s. "
+
+msgid ""
+"You can choose to accept this invitation and join the project as a "
+"contributor, or simply decline."
+msgstr ""
+"Vous pouvez choisir d'accepter cette invitation et de rejoindre le projet en "
+"tant que contributeur, ou simplement de la refuser."
+
+#, python-format
+msgid ""
+"You can see the details of the campaign by following this link: %(url)s. "
+"From here you can create new tasks for volunteers or unassign pending tasks "
+"that are assigned to inactive users."
+msgstr ""
+"Vous pouvez voir les détails de la campagne en suivant ce lien : %(url)s. À "
+"partir de là, vous pouvez créer de nouvelles tâches pour les volontaires ou "
+"désassigner les tâches en attente qui sont attribuées à des utilisateurs "
+"inactifs."
+
+#, python-format
+msgid "You can view them and start annotating by following this link: %(url)s."
+msgstr ""
+"Vous pouvez les visualiser et commencer à annoter en suivant ce lien : "
+"%(url)s."
+
+msgid "You can't browse children of a non-folder element"
+msgstr "Vous ne pouvez pas parcourir les enfants d'un élément non dossier"
+
+msgid ""
+"You can't create an Arkindex export process on a project for which the "
+"Arkindex provider doesn't have a worker run ID for publication in its extra "
+"information field"
+msgstr ""
+"Vous ne pouvez pas créer un processus d'export vers Arkindex sur un projet "
+"dont le fournisseur Arkindex n'a pas d'ID de worker run configuré pour la "
+"publication dans son champ informations supplémentaires"
+
+msgid ""
+"You can't create an Arkindex export process on a project that isn't linked "
+"to an Arkindex provider"
+msgstr ""
+"Vous ne pouvez pas créer un processus d'export vers Arkindex sur un projet "
+"qui n'est pas lié à un fournisseur Arkindex"
+
+msgid ""
+"You can't create an Arkindex import process on a project that isn't linked "
+"to an Arkindex provider"
+msgstr ""
+"Vous ne pouvez pas créer un processus d'import Arkindex sur un projet qui "
+"n'est pas lié à un fournisseur Arkindex"
+
+msgid "You can't view details of a folder element"
+msgstr "Vous ne pouvez pas voir les détails d'un élément dossier"
+
+msgid "You can:"
+msgstr "Vous pouvez :"
+
+#, python-format
+msgid "You cannot %(action)s a task for a campaign marked as %(state)s"
+msgstr ""
+"Vous ne pouvez pas %(action)s une tâche pour une campagne marquée comme "
+"%(state)s"
+
+#, python-format
+msgid "You cannot %(action)s on a campaign marked as %(state)s"
+msgstr "Vous ne pouvez pas %(action)s sur une campagne marquée comme %(state)s"
+
+#, python-format
+msgid "You cannot annotate a task marked as %(state)s"
+msgstr "Vous ne pouvez pas annoter une tâche marquée comme %(state)s"
+
+msgid "You cannot change a validated annotation"
+msgstr "Vous ne pouvez pas changer une annotation validée"
+
+#, python-format
+msgid "You cannot configure a campaign marked as %(state)s"
+msgstr "Vous ne pouvez pas configurer une campagne marquée comme %(state)s"
+
+msgid ""
+"You cannot create a task for an element that does not have an image on this "
+"type of campaign"
+msgstr ""
+"Vous ne pouvez pas créer une tâche pour un élément qui n'a pas d'image sur "
+"ce type de campagne"
+
+#, python-format
+msgid "You cannot create tasks for a campaign marked as %(state)s"
+msgstr ""
+"Vous ne pouvez pas créer des tâches pour une campagne marquée comme %(state)s"
+
+msgid "You cannot create tasks for a project that does not contain images"
+msgstr "Vous ne pouvez pas créer des tâches pour un projet qui n'a pas d'image"
+
+#, python-format
+msgid ""
+"You cannot export annotations to Arkindex for a campaign of type %(mode)s"
+msgstr ""
+"Vous ne pouvez pas exporter vers Arkindex les annotations d'une campagne de "
+"type %(mode)s"
+
+#, python-format
+msgid ""
+"You cannot export annotations to Arkindex from a campaign marked as %(state)s"
+msgstr ""
+"Vous ne pouvez pas exporter vers Arkindex les annotations d'une campagne "
+"marquée comme %(state)s"
+
+#, python-format
+msgid "You cannot export results as %(format)s for a campaign of type %(mode)s"
+msgstr ""
+"Vous ne pouvez pas exporter en %(format)s les résultats d'une campagne de "
+"type %(mode)s"
+
+#, python-format
+msgid ""
+"You cannot export results as %(format)s from a campaign marked as %(state)s"
+msgstr ""
+"Vous ne pouvez pas exporter en %(format)s les résultats d'une campagne "
+"marquée comme %(state)s"
+
+#, python-format
+msgid "You cannot list the tasks of a campaign marked as %(state)s"
+msgstr ""
+"Vous ne pouvez pas lister les tâches d'une campagne marquée comme %(state)s"
+
+#, python-format
+msgid "You cannot moderate a %(state)s annotation"
+msgstr "Vous ne pouvez pas modérer une annotation %(state)s"
+
+#, python-format
+msgid "You cannot publish draft tasks for a campaign marked as %(state)s"
+msgstr ""
+"Vous ne pouvez pas publier les tâches en ébauche pour une campagne marquée "
+"comme %(state)s"
+
+#, python-format
+msgid "You cannot request tasks from a campaign marked as %(state)s"
+msgstr ""
+"Vous ne pouvez pas demander des tâches venant d'une campagne marquée comme "
+"%(state)s"
+
+#, python-format
+msgid "You cannot unassign tasks on a campaign marked as %(state)s"
+msgstr ""
+"Vous ne pouvez pas désassigner les tâches d'une campagne marquée comme "
+"%(state)s"
+
+#, python-format
+msgid "You cannot update the state of a campaign marked as %(state)s"
+msgstr ""
+"Vous ne pouvez pas changer l'état d'une campagne marquée comme %(state)s"
+
+#, python-format
+msgid "You cannot view the details of a campaign marked as %(state)s"
+msgstr ""
+"Vous ne pouvez pas voir les détails d'une campagne marquée comme %(state)s"
+
+#, python-format
+msgid "You cannot view the instructions of a campaign marked as %(state)s"
+msgstr ""
+"Vous ne pouvez pas voir les instructions d'une campagne marquée comme "
+"%(state)s"
+
+msgid ""
+"You clicked on an invitation link to join this project but you already are "
+"one of its member."
+msgstr ""
+"Vous avez cliqué sur un lien d'invitation pour rejoindre ce projet mais vous "
+"êtes déjà un de ses membres."
+
+msgid "You don't have access to browse this project"
+msgstr "Vous n'avez pas d'accès pour parcourir ce projet"
+
+msgid ""
+"You don't have access to the project of this element and can't see its "
+"details"
+msgstr ""
+"Vous n'avez pas accès au projet contenant cet élément et vous ne pouvez pas "
+"voir ses détails"
+
+#, python-format
+msgid "You don't have access to this campaign and can't %(action)s"
+msgstr ""
+"Vous n'avez pas accès à cette campagne et vous ne pouvez pas %(action)s"
+
+msgid "You don't have access to this campaign and can't configure it"
+msgstr ""
+"Vous n'avez pas accès à cette campagne et vous ne pouvez pas la configurer"
+
+msgid ""
+"You don't have access to this campaign and can't export its annotations to "
+"Arkindex"
+msgstr ""
+"Vous n'avez pas accès à cette campagne et vous ne pouvez pas exporter ses "
+"annotations vers Arkindex"
+
+#, python-format
+msgid ""
+"You don't have access to this campaign and can't export its results as "
+"%(format)s"
+msgstr ""
+"Vous n'avez pas accès à cette campagne et vous ne pouvez pas exporter ses "
+"résultats en %(format)s"
+
+msgid ""
+"You don't have access to this campaign and can't publish draft tasks from it"
+msgstr ""
+"Vous n'avez pas accès à cette campagne et vous ne pouvez pas publier ses "
+"tâches en ébauche"
+
+msgid "You don't have access to this campaign and can't see its details"
+msgstr ""
+"Vous n'avez pas accès à cette campagne et vous ne pouvez pas voir ses détails"
+
+msgid "You don't have access to this campaign and can't update its state"
+msgstr ""
+"Vous n'avez pas accès à cette campagne et vous ne pouvez pas mettre à jour "
+"son état"
+
+msgid "You don't have access to this process and can't see its details"
+msgstr ""
+"Vous n'avez pas accès à ce processus et vous ne pouvez pas voir ses détails"
+
+msgid "You don't have access to this project"
+msgstr "Vous n'avez pas accès à ce projet"
+
+msgid "You don't have access to this project details"
+msgstr "Vous n'avez pas accès aux détails de ce projet"
+
+msgid "You don't have access to this user task"
+msgstr "Vous n'avez pas accès à cette tâche utilisateur"
+
+msgid "You don't have the required rights on this project to list its members"
+msgstr "Vous n'avez pas les droits requis pour lister les membres de ce projet"
+
+msgid "You don't have the required rights on this project to list processes"
+msgstr ""
+"Vous n'avez pas les droits requis pour lister les processus sur ce projet"
+
+msgid "You don't have the required rights on this project to list tasks"
+msgstr "Vous n'avez pas les droits requis pour lister les tâches sur ce projet"
+
+msgid ""
+"You don't have the required rights on this project to list your own tasks"
+msgstr ""
+"Vous n'avez pas les droits requis pour lister vos propres tâches sur ce "
+"projet"
+
+msgid ""
+"You don't have the required rights on this project to manage its invite token"
+msgstr ""
+"Vous n'avez pas les droits requis pour gérer le token d'invitation sur ce "
+"projet"
+
+msgid "You don't have the required rights on this project to moderate tasks"
+msgstr ""
+"Vous n'avez pas les droits requis pour modérer les tâches sur ce projet"
+
+#, python-format
+msgid "You don't have the required rights to %(action)s"
+msgstr "Vous n'avez pas les droits requis pour %(action)s"
+
+msgid "You don't have the required rights to comment on this task"
+msgstr "Vous n'avez pas les droits requis pour commenter sur cette tâche"
+
+msgid "You don't have the required rights to create a campaign on this project"
+msgstr ""
+"Vous n'avez pas les droits requis pour créer une campagne sur ce projet"
+
+msgid "You don't have the required rights to create a process on this project"
+msgstr ""
+"Vous n'avez pas les droits requis pour créer un processus sur ce projet"
+
+msgid "You don't have the required rights to create a project"
+msgstr "Vous n'avez pas les droits requis pour créer un projet"
+
+msgid "You don't have the required rights to create tasks on this project"
+msgstr "Vous n'avez pas les droits requis pour créer des tâches sur ce projet"
+
+msgid "You don't have the required rights to edit this project"
+msgstr "Vous n'avez pas les droits requis pour éditer ce projet"
+
+msgid "You don't have the required rights to unassign tasks on this project"
+msgstr ""
+"Vous n'avez pas les droits requis pour désassigner des tâches sur ce projet"
+
+#, python-format
+msgid ""
+"You have been invited to join the project <strong>%(project_name)s</strong>."
+msgstr ""
+"Vous avez été invité à rejoindre le projet <strong>%(project_name)s</strong>."
+
+msgid "You have joined the project as a contributor."
+msgstr "Vous avez rejoint le projet en tant que contributeur."
+
+#, python-format
+msgid "You have processed all %(article)s tasks for the campaign %(campaign)s"
+msgstr ""
+"Vous avez traité toutes %(article)s tâches pour la campagne %(campaign)s"
+
+#, python-format
+msgid ""
+"You have to annotate all <strong>%(type)s</strong> elements on this image."
+msgstr ""
+"Vous devez annoter tous les éléments de type <strong>%(type)s</strong> sur "
+"cette image."
+
+msgid "You marked this task as uncertain"
+msgstr "Vous avez marqué cette tâche comme incertaine"
+
+msgid "You must set at least one custom choice."
+msgstr "Vous devez saisir au moins un choix personnalisé."
+
+#, python-format
+msgid ""
+"You will then receive an email with a link to create your own password. "
+"After that, you will be able to log in with this email and this password on "
+"%(instance_url)s."
+msgstr ""
+"Vous recevrez alors un email contenant un lien pour saisir votre propre mot "
+"de passe. Ensuite, vous pourrez vous connecter avec votre adresse mail et ce "
+"mot de passe sur %(instance_url)s."
+
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+"Votre compte n'a pas le droit d'accéder à cette page. Pour continuer, "
+"veuillez vous connecter avec un compte ayant les permissions suffisantes."
+
+msgid "Your account has been confirmed."
+msgstr "Votre compte a été confirmé."
+
+msgid ""
+"Your account has been created, you'll receive a mail to confirm your email "
+"address in the near future."
+msgstr ""
+"Votre compte a été créé, vous recevrez prochainement un mail pour confirmer "
+"votre adresse email."
+
+msgid "Your annotation"
+msgstr "Votre annotation"
+
+#, python-format
+msgid ""
+"Your campaign is configured to allow <strong>%(nb_assignments)s</strong> "
+"assignment(s) per task."
+msgstr ""
+"Votre campagne est configurée pour autoriser <strong>%(nb_assignments)s</"
+"strong> assignation(s) par tâche."
+
+msgid ""
+"Your comment was well taken into account and an email was sent to the "
+"participants in this discussion"
+msgstr ""
+"Votre commentaire a bien été pris en compte et un email a été envoyé aux "
+"participants de cette discussion"
+
+msgid "Your password has been updated."
+msgstr "Votre mot de passe a été mis à jour."
+
+msgid "Your profile"
+msgstr "Votre profil"
+
+msgid "Your profile has been saved."
+msgstr "Votre profil a été mis à jour."
+
+#, python-format
+msgid "add a new %(object)s"
+msgstr "ajouter un nouveau %(object)s"
+
+#, python-format
+msgid "add a new %(object)s on it"
+msgstr "ajouter un nouveau %(object)s dessus"
+
+msgid "add a new member to this project"
+msgstr "ajouter un nouveau membre à ce projet"
+
+msgid "and"
+msgstr "et"
+
+msgctxt "plural"
+msgid "annotated"
+msgstr "annotées"
+
+msgid "by"
+msgstr "par"
+
+msgid "by deleting their membership"
+msgstr "en supprimant son adhésion"
+
+msgid "by updating their role"
+msgstr "en modifiant son rôle"
+
+#, python-format
+msgid "completed %(pending)s pending task(s)"
+msgstr "a complété %(pending)s tâche(s) en attente"
+
+#, python-format
+msgid "delete %(object)s"
+msgstr "supprimer des %(object)s"
+
+#, python-format
+msgid "delete its %(object)s"
+msgstr "supprimer ses %(object)s"
+
+msgid "delete this project's members"
+msgstr "supprimer les membres de ce projet"
+
+msgctxt "plural"
+msgid "draft"
+msgstr "en ébauche"
+
+msgid "e.g.: \"woman,man\" will result in [\"woman\", \"man\"]"
+msgstr "ex : \"femme,homme\" donnera [\"femme\", \"homme\"]"
+
+#, python-format
+msgid "edit %(object)s"
+msgstr "modifier des %(object)s"
+
+#, python-format
+msgid "edit its %(object)s"
+msgstr "modifier ses %(object)s"
+
+msgid "edit this project's members"
+msgstr "éditer les membres de ce projet"
+
+#, python-format
+msgid "edited %(edited)s already annotated task(s)"
+msgstr "a édité %(edited)s tâche(s) déjà annotée(s)"
+
+msgid "field"
+msgstr "champ"
+
+msgid "field group"
+msgstr "groupe de champs"
+
+msgid "field groups"
+msgstr "groupes de champs"
+
+msgid "fields"
+msgstr "champs"
+
+msgid "if you already have an account."
+msgstr "si vous avez déjà un compte."
+
+msgid ""
+"in total\n"
+"​"
+msgstr ""
+"au total\n"
+"​"
+
+msgid "log in"
+msgstr "connecter"
+
+msgid "on Callico or simply"
+msgstr "sur Callico ou simplement vous"
+
+msgctxt "plural"
+msgid "pending"
+msgstr "en attente"
+
+msgid "register"
+msgstr "inscrire"
+
+msgctxt "plural"
+msgid "rejected"
+msgstr "rejetées"
+
+msgctxt "plural"
+msgid "skipped"
+msgstr "ignorées"
+
+msgctxt "feminine"
+msgid "the"
+msgstr "la"
+
+msgctxt "plural"
+msgid "the"
+msgstr "les"
+
+msgctxt "plural"
+msgid "uncertain"
+msgstr "incertaines"
+
+msgctxt "plural"
+msgid "validated"
+msgstr "validées"
+
+msgid ""
+"with 1 completed\n"
+"assignment"
+msgstr ""
+"avec 1 assignation\n"
+"terminée"
+
+msgid ""
+"with 2 completed\n"
+"assignments"
+msgstr ""
+"avec 2 assignations\n"
+"terminées"
+
+msgid ""
+"with 2+ completed\n"
+"assignments"
+msgstr ""
+"avec +2 assignations\n"
+"terminées"
+
+msgid "with comments"
+msgstr "avec des commentaires"
+
+msgctxt "plural"
+msgid "with comments and uncertain"
+msgstr "avec des commentaires et incertaines"
+
+msgctxt "plural"
+msgid "with comments, uncertain"
+msgstr "avec des commentaires, incertaines"
+
+msgctxt "plural"
+msgid "without comments and not uncertain"
+msgstr "sans commentaire et non incertaines"
+
+msgctxt "plural"
+msgid "without comments, not uncertain"
+msgstr "sans commentaire, non incertaines"
+
+msgid ""
+"without completed\n"
+"assignment"
+msgstr ""
+"sans assignation\n"
+"terminée"
+
+msgid "your"
+msgstr "votre"
+
+msgctxt "plural"
+msgid "your"
+msgstr "vos"

@@ -1,0 +1,31 @@
+{% extends 'user_task_manage_base.html' %}
+{% load i18n %}
+
+{% block parent_form %}{% endblock parent_form %}
+
+{% block form %}
+  <div class="column is-three-fifths" id="classification-form">
+    {% for field in form %}
+      {% for key, value in field.field.choices %}
+        <div class="button-container mb-5">
+          <input class="button classification-button" index="{{ forloop.counter }}" type="submit" name="{{ key }}" value="{{ value }}" title="{{ value }}" />
+          {% if forloop.counter < 36 %}
+            <span class="tag is-rounded is-light ml-1" title="{% blocktranslate %}Press this key to annotate using class {{ value }}{% endblocktranslate %}"></span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+{% endblock form %}
+
+{% block buttons %}{% endblock buttons %}
+
+{% block script %}
+  {{ block.super }}
+
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootClassificationAnnotate()
+    })
+  </script>
+{% endblock script %}

@@ -1,0 +1,43 @@
+[#configure-a-transcription-campaign]
+= Configure a *Transcription* campaign
+
+You can create a *Transcription* campaign in order to transcribe your documents, or to correct existing transcriptions that were xref:../../projects/elements/import/arkindex.adoc#filter-the-transcriptions-to-import[imported from the project's provider].
+
+[#configuration-parameters]
+== Configuration parameters
+
+After having filled out the xref:./index.adoc[generic configuration parameters], you need to select the types of the elements to be transcribed.
+
+Available types are retrieved from the object your Callico project is linked to on its xref:projects/edit.adoc[external provider]. If your campaign's Callico project is linked to an Arkindex project, the available types to select from are all the element types available on that Arkindex project.
+
+image::campaigns/configure/transcription/configuration.png[Transcription campaign configuration]
+
+You can also check the *Group the transcription inputs for a lighter display during annotation* checkbox, which lightens the transcription interface and is particularly useful when only one element type is selected to be transcribed, as demonstrated in the images below, which first show the ungrouped then the grouped display.
+
+image::campaigns/configure/transcription/ungrouped_transcriptions.png[Ungrouped transcriptions]
+
+image::campaigns/configure/transcription/grouped_transcriptions.png[Grouped transcriptions]
+
+The *Confidence threshold* parameter is only relevant if your campaign is designed to correct xref:projects/elements/import/arkindex.adoc#filter-the-transcriptions-to-import[existing imported transcriptions]. If these transcriptions are associated to a confidence score (this may be the case if they were produced by a Machine Learning tool), by setting a *Confidence threshold* you can highlight the transcriptions whose confidence score is inferior to this threshold in red, signalling to the contributors that they probably need to be corrected.
+
+For example, if you set the *Confidence threshold* at `0.9`, all imported transcriptions, associated to the elements to transcribe, with a confidence score below `0.9` will be highlighted in red.
+
+image::campaigns/configure/transcription/confidence_threshold.png[Highlighted fields in transcription]
+
+[#task-creation-details]
+== Task creation details
+
+When xref:tasks/create.adoc#special-case-transcription-campaign[creating annotation tasks], the *Element type* you select to create them can be the same as the type you have selected during campaign configuration (the type of the elements to transcribe) or be a different element type.
+
+For example, in the images above, the type of the elements to transcribe is `text line` and the element type for task creation is `page`: each page displays its `text line` children to transcribe.
+
+With the same campaign configuration, but selecting `text line` as the element type during task creation, a contributor's task would look like this instead:
+
+image::campaigns/configure/transcription/single_element.png[Single element task]
+
+[NOTE]
+====
+If using the same element type to create tasks as the type of the elements to transcribe, there is no point in checking the *Grouped transcription inputs* checkbox, as each task will display a single element to transcribe.
+====
+
+Once your campaign is configured, you can xref:tasks/create.adoc[create tasks] to start gathering annotations on your documents.

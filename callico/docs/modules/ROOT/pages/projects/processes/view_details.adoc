@@ -1,0 +1,29 @@
+[#view-a-process-details]
+= View a process details
+
+[WARNING]
+====
+You must be a manager of the project to view the details of a specific process.
+====
+
+If you are a member with manager role, the `View details` button is displayed next to each process on the process list.
+
+image::projects/processes/list.png[List of processes]
+
+Project managers can view details of a process linked to a project through its details page, where you can see:
+
+* its name,
+* its mode,
+* the user who created it,
+* its status,
+* when it started, if it has started,
+* when it ended, if it has ended,
+* its logs, which are useful to debug any issue and summarize what happened during its execution.
+
+image::projects/processes/view_details.png[Process details page]
+
+In addition, if a process has just been created or is currently running, a `Stop` button is displayed next to its status, allowing you to terminate its execution.
+
+Please note, however, that stopping a process will not cancel any actions that have already been performed by that process.
+
+For example, if you stop an import process after it has already imported 3 *folder* elements out of 10, these 3 folders will not be deleted from your project.

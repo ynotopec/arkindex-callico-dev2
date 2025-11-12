@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n bulma_tags %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=campaign.project campaign=campaign %}
+{% endblock breadcrumb %}
+
+{% block title %}
+  {% blocktranslate with action=action object=obj %}{{ action }} a {{ object }}{% endblocktranslate %}
+{% endblock title %}
+
+{% block content %}
+  <a href="{% url 'campaign-update' pk=campaign.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+  <h1 class="title">{% blocktranslate with action=action object=obj %}{{ action }} a form {{ object }} on this campaign{% endblocktranslate %}</h1>
+
+  <form method="post">
+    {% csrf_token %}
+
+    <div>
+      {% blocktranslate with object=obj name=object %}Are you sure you want to delete the form {{ object }} <strong>{{ name }}</strong>?{% endblocktranslate %}
+    </div>
+
+    {{ form | bulma }}
+
+    <button class="button is-danger mt-3" type="submit">{% translate "Delete" %}</button>
+  </form>
+{% endblock %}

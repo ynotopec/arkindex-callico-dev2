@@ -1,0 +1,20 @@
+{% load i18n %}
+
+<input type="{{ widget.type }}" name="{{ widget.name }}" hidden {% include "django/forms/widgets/attrs.html" %}>
+
+{% if widget.is_initial %}
+  <div class="mr-5">
+    <div class="project-thumbnail-180 mb-3">
+      <a href="{{ widget.value.url }}" target="_blank" title="{% translate 'Open in a new tab' %}">
+        <div class="fitting-img" style='background-image: url("{{ widget.value.url }}")'></div>
+      </a>
+    </div>
+
+    {% if not widget.required %}
+      <label class="checkbox" for="{{ widget.checkbox_id }}">
+        <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}">
+        {{ widget.clear_checkbox_label }}
+      </label>
+    {% endif %}
+  </div>
+{% endif %}

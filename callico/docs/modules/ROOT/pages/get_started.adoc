@@ -1,0 +1,84 @@
+[#get-started]
+= Get started
+
+You are new to Callico and would like to *annotate a set of documents on a dedicated interface*? On this page you will find a detailed, *step-by-step tutorial to meet your needs*.
+
+[NOTE]
+====
+Links from this page will always open in a new tab so you can easily come back to this tutorial by closing each newly opened section.
+====
+
+[#prerequisites]
+== Prerequisites
+
+[#bring-your-data-online-with-arkindex]
+=== Bring your data online with Arkindex
+
+As Callico currently only supports the import of documents from Arkindex, we invite you to create an account on https://demo.arkindex.org/user/register[demo.arkindex.org], Teklia's document processing platform. xref:arkindex:ROOT:users/auth/index.adoc#register[Registration] on the public Arkindex demo instance is completely free, so you can start experimenting with Callico right away.
+
+With your newly created Arkindex account, you will be able to xref:arkindex:ROOT:howto/upload/index.adoc[upload your documents], whether they come from local files or from a IIIF server.
+
+[#register-on-callico]
+=== Register on Callico
+
+The last prerequisite prior to using Callico is to create an account on the instance of your choice. To register on Callico's main public instance maintained by Teklia, you can simply follow https://callico.teklia.com/users/signup[this link].
+
+[NOTE]
+====
+Authenticated users can create projects on instances where the xref:./deploy/settings.adoc[`PROJECT_CREATION_ALLOWED` setting] is set, this is the case on the https://demo.callico.eu/[Demonstration] instance managed by Teklia.
+
+Otherwise, you need to be a *staff* member to create projects on Callico. To do so, you will need:
+
+* to link:mailto:callico@teklia.com[contact us] to be promoted to this rank, when working on instances which are managed by Teklia as https://callico.teklia.com/[Callico],
+* or set the boolean `User.is_staff` to `True` on the relevant user account in your database if you are managing and working with your own instance.
+====
+
+'''
+
+Before you begin your Callico journey, we also recommend that you read the short sections that introduce Callico's key concepts and features: xref:./projects/index.adoc[Projects], xref:./projects/elements/index.adoc[Elements], xref:./projects/processes/index.adoc[Processes], xref:./campaigns/index.adoc[Campaigns] and xref:./tasks/index.adoc[Tasks].
+
+[#reach-your-goal-collect-annotations-on-your-documents]
+== Reach your goal - Collect annotations on your documents
+
+image:get_started.png[Diagram showing the steps to get started on Callico]
+
+[#setup-your-project-and-import-elements]
+=== Setup your project and import elements
+
+Once your data is ready on Arkindex and you have created your Callico account (see the link:./#prerequisites[prerequisites section]), you can xref:./projects/create.adoc[start your project].
+
+As soon as your project is created, it is time to xref:./projects/manage_members.adoc[invite your collaborators] to join you. You can invite contributors to annotate your documents, moderators to moderate their annotations, or other managers to help you manage your project.
+
+The next step is to import the documents for which you wish to collect annotations to Callico. This set of documents can be easily xref:./projects/elements/import/arkindex.adoc[imported from Arkindex]. You may also wish to xref:./projects/elements/browse.adoc[browse the imported documents] to check that the import went smoothly.
+
+[#create-and-configure-your-campaign]
+=== Create and configure your campaign
+
+Now that your project has been properly set up and your documents are available on Callico, you should take a moment to select the xref:./campaigns/index.adoc[campaign mode] that best suits your needs. Then, you can proceed with the xref:./campaigns/create.adoc[creation of an annotation campaign].
+
+With your campaign created, you can move on to its configuration:
+
+. xref:./campaigns/configure/index.adoc[define global parameters]
+. xref:./campaigns/configure/index.adoc#specific-configuration-for-each-campaign-mode[set up the parameters specific to your campaign mode]
+
+[#manage-the-annotation-tasks]
+=== Manage the annotation tasks
+
+Now that you have everything set up, all you need to do is define which parts of your documents you want to be annotated. To do this, you need to xref:./tasks/create.adoc[create annotation tasks] that you can xref:./tasks/create.adoc#create-unassigned-tasks[leave unassigned and available for volunteers] or xref:./tasks/create.adoc#users[assign directly to specific contributors]. Assigned tasks must then xref:./tasks/publish.adoc[be published] so they can be annotated.
+
+You can validate the configuration of your campaign and your tasks by xref:./tasks/create.adoc#preview-a-single-task[generating preview tasks]. If something does not work out, you can always xref:./tasks/unassign.adoc[unassign draft and pending tasks, and delete unassigned ones].
+
+Next, you will need to make room for your collaborators, by giving your contributors time to annotate the tasks available and/or assigned to them. Then, it will be your moderators' turn to xref:./tasks/moderate.adoc[validate or invalidate these annotations] if a moderation phase is necessary to clean up your final data.
+
+[#bonus-export-the-collected-annotations]
+=== *Bonus:* Export the collected annotations
+
+Once you have started collecting annotations, you can track the progress and the trend of your campaign by regularly exporting the results xref:./campaigns/export/csv.adoc[in CSV format] or xref:./campaigns/export/xlsx.adoc[in XLSX format].
+
+Eventually, when your campaign is complete, you will also be able to xref:./campaigns/export/arkindex.adoc[export all the annotations on your documents back to Arkindex].
+
+[NOTE]
+.Thank you for trying out Callico!
+====
+If you have any problems with the instructions above, please contact us at link:mailto:callico@teklia.com[callico@teklia.com]. We will be pleased to answer any questions you may have, and welcome suggestions to improve this documentation.
+====

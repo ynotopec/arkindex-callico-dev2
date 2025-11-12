@@ -1,0 +1,41 @@
+{% extends 'user_task_manage_base.html' %}
+
+{% load i18n basefilters bulma_tags %}
+
+{% block form %}
+  {{ form | bulma }}
+
+  <fieldset class="is-hidden">
+    {{ form.empty_form }}
+  </fieldset>
+
+  {% if carousel_element_ids == "[]" %}
+    <div class="message is-warning">
+      <div class="message-body">
+        {% translate "No carousel element was found from the configuration. Please contact a manager of this project." %}
+      </div>
+    </div>
+  {% else %}
+    <element-group-manager
+      class="mb-5 is-fullheight"
+      mode="create"
+      {% if group_type %}
+        type="{{ group_type }}"
+      {% endif %}
+    ></element-group-manager>
+  {% endif %}
+{% endblock form %}
+
+{% block script %}
+  {{ block.super }}
+
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootElementGroupAnnotate(
+        {{ user_task.id|stringformat:"s"|jsonify }},
+        {{ parent_id|stringformat:"s"|jsonify }},
+        {{ previous_groups|jsonify }},
+      )
+    })
+  </script>
+{% endblock script %}

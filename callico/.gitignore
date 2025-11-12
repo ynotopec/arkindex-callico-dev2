@@ -1,0 +1,14 @@
+*.pyc
+*.egg-info
+.eggs
+*.log
+.tox
+callico/base/local_settings.py
+callico/staticfiles
+callico/media
+.env
+front/node_modules
+front/dist
+celerybeat-schedule
+node_modules
+public

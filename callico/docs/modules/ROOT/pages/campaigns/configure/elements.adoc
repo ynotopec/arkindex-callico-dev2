@@ -1,0 +1,36 @@
+[#configure-an-elements-campaign]
+= Configure an *Elements* campaign
+
+You can create *Elements* campaigns in order to draw and create new elements of given types on your documents.
+
+[#configuration-parameters]
+== Configuration parameters
+
+After having filled out the xref:./index.adoc[generic configuration parameters], you need to select the element types that will be available for element creation.
+
+image::campaigns/configure/elements/element_types.png[Available element types]
+
+Available types are retrieved from the object your Callico project is linked to on its xref:projects/edit.adoc[external provider]. If your campaign's Callico project is linked to an Arkindex project, the available types to select from are all the element types available on that Arkindex project.
+
+[WARNING]
+.Correction of imported elements
+====
+If the purpose of your campaign is to correct existing imported elements then you need to select the imported element types. Only the child elements for which the corresponding type has been checked in the campaign configuration will be available to be corrected by the contributors: the annotation task will be pre-filled with drawn elements on the image.
+====
+
+[#example-annotation-task]
+== Example annotation task
+
+If the campaign is configured as above, to use `text line` and `text zone` as the available element types, then for the contributors the tasks will look like the example below: they can select one of the element types, and then draw elements on the image.
+
+image::campaigns/configure/elements/task.png[Example task]
+
+[NOTE]
+.Polygon borders
+====
+In the screenshot above, you can see thin borders in a darker shade of green than the drawn polygons. These borders surround the polygons and *will therefore not be exported* at the same time as the drawn elements.
+
+To prevent your contributors from drawing polygons that will be too small, you can specify this information in your campaign instructions.
+====
+
+Once your campaign is configured, you can xref:tasks/create.adoc[create tasks] to start gathering annotations on your documents.

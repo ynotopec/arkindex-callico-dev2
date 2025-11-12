@@ -1,0 +1,34 @@
+site:
+  title: Callico
+  start_page: callico::index.adoc
+content:
+  sources:
+  - url: .
+    branches: HEAD
+    # (Optional) Use start_path when the docs content are in a subfolder of the repository.
+    start_path: ./docs
+
+  # Needed to reference some Arkindex documentation
+  - url: https://gitlab.teklia.com/arkindex/doc.git
+  - url: https://gitlab.teklia.com/arkindex/tutorial.git
+
+
+ui:
+  bundle:
+    url: https://gitlab.teklia.com/doc/antora-theme/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+antora:
+  extensions:
+  - '@doc/antora-redirections'
+  - '@antora/lunr-extension'
+  - '@doc/antora-lazy-img'
+
+  # Mermaid
+  # ONLY if you have mermaid content
+  - require: '@sntke/antora-mermaid-extension'
+    mermaid_library_url: https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs
+    script_stem: header-scripts
+    mermaid_initialize_options:
+      start_on_load: true
+output:
+  dir: public

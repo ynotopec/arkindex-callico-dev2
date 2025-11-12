@@ -1,0 +1,50 @@
+{% load i18n basefilters %}
+
+<tr class="field-row" group="{{ group_legend }}" group-idx="{{ group }}">
+  {% if group < 0 %}
+    <td>
+      <span class="icon is-grabbable-root">
+        <i class="fas fa-grip-vertical"></i>
+      </span>
+    </td>
+  {% endif %}
+  <td class="field-type" field-type="{{ current_field.entity_type }}">
+    {% if group >= 0 %}
+      ↳
+      <span class="icon is-grabbable-{{ group }} mr-3">
+        <i class="fas fa-grip-vertical"></i>
+      </span>
+    {% endif %}
+
+    {{ current_field.entity_type }}
+  </td>
+  <td class="field-label">
+    <a href="{% url 'entity-form-object-update' pk=campaign.id position=forloop.counter0 %}{% querystring mode='field' group=group %}">
+      {{ current_field.instruction }}
+    </a>
+  </td>
+  <td>
+    {% if current_field.from_authority %}
+      {{ authorities|get_item:current_field.from_authority }}
+    {% else %}
+      −
+    {% endif %}
+  </td>
+  <td>{{ current_field.predefined_choices|default:"−" }}</td>
+  <td>
+    <div class="is-flex">
+      <a href="{% url 'entity-form-object-update' pk=campaign.id position=forloop.counter0 %}{% querystring mode='field' group=group %}"
+         class="button is-small is-info" title="{% translate 'Edit' %}">
+        <span class="icon">
+          <i class="fas fa-pen"></i>
+        </span>
+      </a>
+      <a href="{% url 'entity-form-object-delete' pk=campaign.id position=forloop.counter0 %}{% querystring mode='field' group=group %}"
+         class="button is-small is-danger ml-2" title="{% translate 'Delete' %}">
+        <span class="icon">
+          <i class="fas fa-trash"></i>
+        </span>
+      </a>
+    </div>
+  </td>
+</tr>

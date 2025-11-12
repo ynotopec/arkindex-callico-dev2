@@ -1,0 +1,88 @@
+{% load basefilters i18n %}
+
+<h1 class="title">{% translate "Tasks" %}</h1>
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>{% translate "Mode" %}</th>
+      <th>{% translate "User" %}</th>
+      <th class="is-narrow">{% translate "Status" %}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task in element.tasks.all %}
+      {% with last_task=forloop.last %}
+        {% for user_task in task.user_tasks.all %}
+          <tr>
+            {% if forloop.first %}
+              <td {% if last_task %}class="no-bottom-border" {% endif %} rowspan="{{ task.user_tasks.count }}">
+                {{ task.campaign.get_mode_display }}
+              </td>
+            {% endif %}
+            <td class="truncate-long-words restricted-max-width-50" title="{{ user_task.user.email }}">
+              {{ user_task.user }}
+            </td>
+            <td>
+              <span class="is-small is-light tag {{ user_task.state | task_class }}">
+                {{ user_task.get_state_display }}
+              </span>
+            </td>
+            <td class="has-text-right">
+              {# We keep this button to allow a moderator/manager assigned to a preview task to access it #}
+              {% if user_task.user == user %}
+                <a
+                  class="button is-success"
+                  {% if user_task.task.campaign.is_closed %}
+                    disabled
+                    {% translate "Annotate" as action %}
+                    title="{% blocktranslate with action=action|lower state=user_task.task.campaign.get_state_display %}You cannot {{ action }} a task for a campaign marked as {{ state }}{% endblocktranslate %}"
+                  {% elif user_task.state == "validated" %}
+                    disabled
+                    title="{% translate 'You cannot change a validated annotation' %}"
+                  {% elif not user_task.annotate_url %}
+                    disabled
+                    title="{% translate 'Annotation for this campaign mode is not yet implemented' %}"
+                  {% else %}
+                    href="{{ user_task.annotate_url }}"
+                  {% endif %}
+                >
+                  {% if user_task.state == "pending" %}
+                    {% translate "Annotate" %}
+                  {% else %}
+                    {% translate "Change annotation" %}
+                  {% endif %}
+                </a>
+              {% else %}
+                <a
+                  class="button"
+                  {% if not user_task.details_url %}
+                    disabled
+                    title="{% translate 'User task details for this campaign mode is not yet implemented' %}"
+                  {% else %}
+                    href="{{ user_task.details_url }}"
+                  {% endif %}
+                >
+                  {% translate "View details" %}
+                </a>
+              {% endif %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td>{{ task.campaign.get_mode_display }}</td>
+            <td colspan="3">
+              <div class="notification is-info is-light">{% translate "No user is assigned to this task" %}</div>
+            </td>
+          </tr>
+        {% endfor %}
+      {% endwith %}
+    {% empty %}
+      <tr>
+        <td colspan="4">
+          <div class="notification is-info is-light">{% translate "No task available" %}</div>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,108 @@
+[#clean-and-maintainable-code-continuous-integration-and-documentation]
+= Clean and maintainable code: Continuous Integration and documentation
+
+In order for your code to be xref:./submit.adoc[merged into Callico's source code], and to ensure its quality and maintainability, it must fulfill a number of requirements:
+
+* You must write (or update) tests to cover your code, and it must not break any existing tests.
+* Your code must follow the linting rules enforced by a linter.
+* You must keep the translations (English-French) up to date. If you are not a native French speaker, you can ask us for help when submitting a patch.
+* You must update the documentation when you add a new feature, or update an existing one.
+
+Before xref:./submit.adoc#publish-your-work[pushing to GitLab], you can check that all the tests are passing link:./#tests[by running them locally using `tox`]. Similarly, you can use `pre-commit` to <<linting,check your code's linting>>. Running `pre-commit` can also automatically fix a lot of formatting issues.
+
+WARNING: - When you push your code to GitLab, https://docs.gitlab.com/ee/ci/[a CI pipeline] runs to check that (1) all the tests are successful, (2) the formatting / linting is OK, and (3) there are no missing translations. If any of these stages fails, *your code cannot be merged*. This is why you should run these checks locally _before_ submitting your code for reviewer approval on GitLab.
+
+When your code passes all the checks mentioned below, and is documented, you can xref:./submit.adoc[submit it on GitLab] to be approved by a reviewer, and eventually merged into Callico's source code.
+
+[#linting]
+== Linting
+
+Formatting rules are checked and applied using `pre-commit`.
+
+When developing code for Callico for the first time, you will first need to https://pre-commit.com/[install pre-commit] using `pip install pre-commit`, and then run the following command:
+
+----
+pre-commit install
+----
+
+This command https://pre-commit.com/#3-install-the-git-hook-scripts[adds the pre-commit hook] on `git commit`, which ensures that the linting checks will always run before any code can be committed.
+
+Pre-commit only checks files that have been added to https://docs.gitlab.com/ee/tutorials/make_first_git_commit/#commit-and-push-your-changes[Git's staging area] before they are committed. Therefore once your code is ready, you should first run `git add $PATH $PATH $PATH` for all the files you have created or modified, and then launch the `pre-commit run -a` command.
+
+Running `pre-commit` will automatically fix some formatting issues, but there can also be problems that you need to fix manually. Either way, once all the linting/formatting issues have been resolved you need to `git add` the updated files again before committing in order for these changes to be taken into account.
+
+[#tests]
+== Tests
+
+Tests are executed with `tox`, based on `pytest`. In order to be able to run these tests, you need to https://tox.wiki/en/4.15.0/[install tox] using `pip install tox`.
+
+The backend unit tests are run in the `unit` tox environment. Once initialized (the first time your run the tests), this environment will be reused to improve test execution time.
+
+You can reload a test's virtual environment by running `tox -e <env> --recreate` (for example if you have updated or added a dependency).
+
+You can run all the backend unit tests using the `tox -e unit` command.
+
+To run a single test module, use the following command:
+
+[,console]
+----
+tox -e unit -- <test_path>
+----
+
+Use this command to run a single test:
+
+[,console]
+----
+tox -e unit -- <test_path>::<test_function>
+----
+
+[#translations]
+== Translations
+
+When text is added to a template, new translations have to be generated using:
+
+[,console]
+----
+callico/manage.py makemessages -l fr --no-location
+----
+
+or using `make generate-translations`. `fr` is the default language for Callico.
+
+[NOTE]
+.msguniq
+====
+
+* If you encounter an error message about missing `msguniq` (like `CommandError: Can't find msguniq. Make sure you have GNU gettext tools 0.15 or newer installed.`), please setup https://www.gnu.org/software/gettext/[gettext] on your computer. On Debian & Ubuntu, this is done with `sudo apt install gettext`.
+====
+
+Messages with an empty translation can be edited using https://poedit.net/[Poedit].
+
+Poedit software usually saves a compiled version (`.mo` extension). Otherwise this compiled file can be generated using the
+
+[,console]
+----
+callico/manage.py compilemessages
+----
+
+command, or using `make compile-translations`.
+
+[#documentation]
+== Documentation
+
+Please keep the documentation updated when modifying or adding features.
+
+You must first install the documentation requirements:
+
+[,console]
+----
+npm install
+----
+
+You can then build the documentation locally using the following command:
+
+[,console]
+----
+make antora
+----
+
+As you write in Asciidoc in the relevant `docs/modules/ROOT/*.adoc` files, you can see a live output on the local file path mentioned by Antora.

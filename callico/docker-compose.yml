@@ -1,0 +1,141 @@
+---
+version: "3.8"
+services:
+
+  lb:
+    container_name: callico-lb
+    image: traefik:2.5
+    ports:
+      # No need to expose on 0.0.0.0 as other users would not resolve
+      # the .localhost domain on an external IP
+      - 127.0.0.1:80:80
+      - 127.0.0.1:443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik/config.toml:/traefik.toml
+      - ./traefik/certs:/certs
+    networks:
+      callico:
+        aliases:
+          # Required for the app to resolve this container using the public DNS
+          - minio.dev.localhost
+
+    labels:
+      # Expose traefik dashboard on traefik.localhost
+      traefik.enable: true
+      traefik.http.routers.traefik.rule: Host(`traefik.localhost`)
+      traefik.http.routers.traefik.service: api@internal
+      traefik.http.routers.traefik.tls: true
+
+  # Callico web application
+  callico:
+    container_name: callico-app
+    build: .
+    env_file:
+      - docker.env
+    restart: unless-stopped
+    depends_on:
+      - lb
+      - postgres
+    ports:
+      # For prometheus metrics only
+      - 3000:3000
+    volumes:
+      - ./traefik/certs/ca.pem:/usr/share/teklia/ca.pem:ro
+    networks:
+      - callico
+
+    labels:
+      traefik.enable: true
+      traefik.http.routers.callico.rule: Host(`callico.dev.localhost`)
+      traefik.http.routers.callico.tls: true
+
+  postgres:
+    container_name: callico-database
+    image: postgres:13-alpine
+    env_file:
+      - docker.env
+    volumes:
+      - database:/var/lib/postgresql/data
+    networks:
+      - callico
+    ports:
+      # Expose locally for Django development
+      - 127.0.0.1:5432:5432
+
+  # Redis
+  redis:
+    container_name: callico-redis
+    image: redis:alpine
+    networks:
+      - callico
+    ports:
+      - 6379:6379
+
+  # Celery worker
+  celery:
+    container_name: callico-celery
+    build: .
+    command: "celery -A callico.base worker -B -l INFO"
+    env_file:
+      - docker.env
+    depends_on:
+      - redis
+    volumes:
+      - ./traefik/certs/ca.pem:/usr/share/teklia/ca.pem:ro
+    networks:
+      - callico
+
+  # Flower, to monitor Celery
+  flower:
+    container_name: callico-flower
+    image: mher/flower
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    networks:
+      - callico
+    depends_on:
+      - lb
+
+    labels:
+      traefik.enable: true
+      traefik.http.routers.tasks.rule: Host(`flower.dev.localhost`)
+      traefik.http.routers.tasks.tls: true
+
+  # Minio, for media files storage
+  minio:
+    container_name: callico-minio
+    image: minio/minio:RELEASE.2022-12-12T19-27-27Z
+    command: server /data --console-address ":9001"
+    env_file:
+      - docker.env
+    restart: unless-stopped
+    volumes:
+      - minio:/data
+    expose:
+      - 9000
+      - 9001
+    networks:
+      - callico
+    labels:
+      traefik.enable: true
+      traefik.http.routers.minio.rule: Host(`minio.dev.localhost`)
+      traefik.http.routers.minio.tls: true
+      traefik.http.routers.minio.service:  minio-service
+      traefik.http.services.minio-service.loadbalancer.server.port: 9000
+      traefik.http.routers.minio-console.rule: Host(`minio-console.dev.localhost`)
+      traefik.http.routers.minio-console.tls: true
+      traefik.http.routers.minio-console.service:  minio-console-service
+      traefik.http.services.minio-console-service.loadbalancer.server.port: 9001
+    depends_on:
+      - lb
+
+volumes:
+  database:
+    driver: local
+  minio:
+    driver: local
+
+networks:
+  callico:
+    driver: bridge

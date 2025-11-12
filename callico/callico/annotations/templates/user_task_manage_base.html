@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+{% load i18n humanize basefilters bulma_tags %}
+
+{% block title %}
+  {% if moderate %}
+    {% translate "Task moderation" %}
+  {% else %}
+    {% translate "Task annotation" %}
+  {% endif %}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=user_task.task.campaign.project campaign=user_task.task.campaign can_admin=can_admin tasks=True has_pending_tasks=add_pending_filter %}
+{% endblock breadcrumb %}
+
+{% block content %}
+  <div class="columns mb-0 {% if display_carousel or light_display %}fill-height{% endif %}">
+    {% block image %}
+      <div class="column is-three-fifths">
+        {% block interactive_image %}
+          <interactive-image
+            class="fill-height{% if display_carousel %}-with-carousel{% else %} sticky-image{% endif %}"
+            element="{{ element }}"
+            children="{{ children }}"
+            campaign-id="{{ user_task.task.campaign.id }}"
+            {% if interactive_mode %}
+              mode="{{ interactive_mode }}"
+            {% endif %}
+          ></interactive-image>
+        {% endblock interactive_image %}
+
+        {% if display_carousel %}
+          <element-carousel
+            element-ids="{{ carousel_element_ids }}"
+            mode="select"
+            {% if carousel_type %}
+              type="{{ carousel_type }}"
+            {% endif %}
+          ></element-carousel>
+        {% endif %}
+      </div>
+    {% endblock image %}
+
+    <div class="column min-width-0 has-scrollable-content {% if display_carousel %}is-fullheight{% endif %}">
+
+      <div class="is-flex is-justify-content-space-between {% if not moderate %}mb-2{% endif %}">
+
+        <div class="min-width-0">
+          <div class="control">
+            <span class="mb-1 is-small is-light tag {{ user_task.state | task_class }}">{{ user_task.get_state_display }}</span>
+
+            {% if moderate %}
+              <p>
+                <span class="has-text-weight-bold">{% translate "Assigned to:" %}</span>
+                <span title="{{ user_task.user.email }}">{{ user_task.user }}</span>
+              </p>
+
+              <p>
+                <span class="has-text-weight-bold">{% translate "Moderated by:" %}</span>
+                <span title="{{ parent.moderator.email }}">{{ parent.moderator|default:"−" }}</span>
+              </p>
+
+              <p>
+                <span class="has-text-weight-bold">{% translate "Annotation created:" %}</span>
+                {% if parent %}
+                  <abbr title="{{ parent.created }}">{{ parent.created|naturaltime|capfirst }}</abbr>
+                {% else %}
+                  <span>−</span>
+                {% endif %}
+              </p>
+
+              <p>
+                <span class="has-text-weight-bold">{% translate "Version:" %}</span>
+                <span>{{ parent.version|default:"−" }}</span>
+              </p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="is-inline-flex has-text-right has-height-content">
+          {% comment %}Info notification{% endcomment %}
+          {% if display_image and help_text %}
+            <div class="dropdown is-hoverable is-right mr-2">
+              <div class="dropdown-trigger">
+                <button class="button is-info is-light is-rounded px-3">
+                  <i class="fas fa-info-circle"></i>
+                </button>
+              </div>
+              <div class="dropdown-menu" role="menu">
+                <div class="dropdown-content p-0">
+                  <div class="dropdown-item has-background-info-light has-text-info-dark break-word">
+                    {{ help_text }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          {% comment %}Preview notification{% endcomment %}
+          {% if user_task.is_preview %}
+            <div class="dropdown is-hoverable is-right mr-2">
+              <div class="dropdown-trigger">
+                <button class="button is-link is-light is-rounded px-3">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <div class="dropdown-menu" role="menu">
+                <div class="dropdown-content p-0">
+                  <div class="dropdown-item has-background-link-light has-text-link-dark">
+                    {% translate "This task was generated for preview purposes." %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          {% comment %}Filter information{% endcomment %}
+          {% if filter_text %}
+            <div class="dropdown is-hoverable is-right mr-2">
+              <div class="dropdown-trigger">
+                <button class="button is-light is-rounded px-3">
+                  <i class="fas fa-filter"></i>
+                </button>
+              </div>
+              <div class="dropdown-menu" role="menu">
+                <div class="dropdown-content p-0">
+                  <div class="dropdown-item has-background-light has-text-dark">
+                    {{ filter_text }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          {% comment %}Access discussion button{% endcomment %}
+          <a
+            class="button is-info is-light is-rounded px-3 mr-2"
+            target="_blank"
+            {% if user_task.task.campaign.is_closed %}
+              disabled
+              {% translate "Comment" context "verb" as action %}
+              title="{% blocktranslate with action=action|lower state=user_task.task.campaign.get_state_display %}You cannot {{ action }} a task for a campaign marked as {{ state }}{% endblocktranslate %}"
+            {% else %}
+              href="{% url 'task-discussion' pk=user_task.task.id %}"
+              title="{% translate 'Discuss this task' %}"
+            {% endif%}
+          >
+            <i class="fas fa-comments"></i>
+            <strong class="has-text-info-dark comments-count">
+              {{ user_task.task.comments.count }}
+            </strong>
+          </a>
+
+          {% comment %}Previous/Next buttons{% endcomment %}
+          <a
+            class="button px-3 mr-2"
+            {% if previous is None %}
+              disabled
+            {% else %}
+              href="{{ previous }}"
+              title="{% translate 'Go to previous task' %}"
+            {% endif %}
+          >
+            <i class="fas fa-chevron-left"></i>
+          </a>
+          <a
+            class="button px-3"
+            {% if next is None %}
+              disabled
+            {% else %}
+              href="{{ next }}"
+              title="{% translate 'Go to next task' %}"
+            {% endif %}
+          >
+            <i class="fas fa-chevron-right"></i>
+          </a>
+
+        </div>
+      </div>
+
+      {% if moderate %}
+        <hr />
+      {% endif %}
+
+      <div class="mb-2">
+        {% include "element_metadata.html" %}
+      </div>
+
+      <div class="notification is-warning is-light is-hidden">
+        {% if moderate %}
+          {% translate "The ongoing correction has not been validated." %}
+        {% else %}
+          {% translate "The ongoing annotation has not been submitted." %}
+        {% endif %}
+        <a class="is-size-7 is-pulled-right" href="{{ request.get_full_path }}">{% translate "Abandon my changes" %}</a>
+      </div>
+
+      {% block parent_form %}
+        {% if parent_form.parent_id.field.choices.queryset.exists %}
+          <form method="get" onchange="this.submit()">
+            {% comment %} Keep current GET parameters {% endcomment %}
+            {% if request.GET.state %}<input type="hidden" name="state" value="{{ request.GET.state }}">{% endif %}
+            {% if request.GET.user_id %}<input type="hidden" name="user_id" value="{{ request.GET.user_id }}">{% endif %}
+            {% if request.GET.user_feedback %}<input type="hidden" name="user_feedback" value="{{ request.GET.user_feedback }}">{% endif %}
+
+            {{ parent_form | bulma }}
+          </form>
+
+          <hr />
+        {% endif %}
+      {% endblock parent_form %}
+
+      <form method="post" class="annotation-form has-scrollable-content {% if display_carousel %}is-fullheight{% endif %}">
+        {% csrf_token %}
+
+        {% block form %}
+          {{ form | bulma }}
+        {% endblock form %}
+
+        <div>
+          {% if not moderate %}
+            <input class="button is-warning" type="submit" name="skip" value="{% translate 'Skip task' %}" />
+          {% endif %}
+
+          <input id="completion_time" hidden type="hidden" name="completion_time" />
+
+          {% block buttons %}
+            {% if moderate %}
+              <input class="button is-danger" type="submit" name="reject" value="{% translate 'Reject' %}" />
+            {% endif %}
+            <button class="button is-success is-pulled-right" type="submit">
+              {% if moderate %}
+                {% translate "Validate" %}
+              {% else %}
+                {% translate "Submit" %}
+              {% endif %}
+            </button>
+          {% endblock buttons %}
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <span id="certain-button-translated-title" class="is-hidden">{% translate "Mark as uncertain" %}</span>
+  <span id="uncertain-button-translated-title" class="is-hidden">{% translate "Remove the uncertainty marker" %}</span>
+{% endblock content %}
+
+{% block script %}
+  {% translate "The metadata value has been copied to your clipboard" as success_notification %}
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootVueComponents()
+      callico.bootCompletionTime()
+      callico.bootUserTaskAnnotationStorage(
+        {{ user_task.id|stringformat:"s"|jsonify }},
+        {{ parent_id|stringformat:"s"|jsonify }}
+      )
+      callico.cleanUserTaskAnnotationStorage({{ user_task.id|stringformat:"s"|jsonify }})
+
+      {% if display_carousel %}
+        callico.initCarouselLibraryEvents()
+      {% endif %}
+
+      // Boot the buttons to copy the metadata values
+      callico.bootCopyToClipboardButtons({{ success_notification|jsonify }}, ".metadata-value", "")
+    })
+  </script>
+{% endblock script %}

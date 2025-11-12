@@ -1,0 +1,67 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.3.7
+    hooks:
+      # Run the linter.
+      - id: ruff
+        args: [--fix]
+      # Run the formatter.
+      - id: ruff-format
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-ast
+      - id: check-docstring-first
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: debug-statements
+      - id: trailing-whitespace
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: mixed-line-ending
+      - id: name-tests-test
+        args: ['--django']
+      - id: check-json
+      - id: requirements-txt-fixer
+      - id: end-of-file-fixer
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        args: ['--write-changes']
+        exclude: >
+          (?x)^(
+            callico\/projects\/management\/commands\/fixtures\/.*|
+            traefik\/certs|
+            callico\/locale\/fr\/LC_MESSAGES\/django\.po|
+            front\/src\/js\/config\.js|
+            front\/package-lock\.json|
+            front\/public\/?[a-z_]*\/element\/.*|
+            package-lock\.json
+          )$
+  - repo: meta
+    hooks:
+      - id: check-useless-excludes
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.55.0
+    hooks:
+      - id: eslint
+        language: node
+        args: ['--fix', '--max-warnings', '0', '-c', './front/.eslintrc.yml']
+        files: \.(js|vue)$
+        types: [file]
+  - repo: https://github.com/rtts/djhtml
+    rev: 3.0.6
+    hooks:
+      - id: djhtml
+        args: ['--tabwidth', '2']
+      - id: djcss
+        args: ['--tabwidth', '2']
+  - repo: https://github.com/thibaudcolas/curlylint
+    rev: v0.13.1
+    hooks:
+    - id: curlylint
+      args: ['--quiet']
+      exclude: '^front\/public\/?[a-z_]*\/index\.html$'

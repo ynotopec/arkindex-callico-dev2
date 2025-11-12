@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load basefilters i18n humanize %}
+
+{% block title %}
+  {% translate "Process details" %}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=process.project processes=True %}
+{% endblock breadcrumb %}
+
+{% block content %}
+  <a href="{% url 'processes' pk=process.project.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+
+  <h1 class="title truncate-long-words pr-4" title="{{ process.name }}">
+    {% blocktranslate with name=process.name %}Process "{{ name }}"{% endblocktranslate %}
+  </h1>
+
+  <div class="columns">
+    <div class="column">
+      <label class="label">{% translate "Mode" %}</label>
+      <p>{{ process.get_mode_display }}</p>
+    </div>
+    <div class="column is-one-fifth">
+      <label class="label">{% translate "Creator" %}</label>
+      <p class="truncate-long-words" {% if process.creator %}title="{{ process.creator.email }}"{% endif %}>
+        {{ process.creator|default:"−" }}
+      </p>
+    </div>
+    <div class="column">
+      <label class="label">{% translate "Status" %}</label>
+      <span class="is-light tag {{ process | process_class }}">{{ process.get_state_display }}</span>
+      {% if process.state not in "error,completed" %}
+        <form method="post" action="{% url 'process-details' pk=process.id %}" class="is-inline-block">
+          {% csrf_token %}
+          <button class="button is-danger is-small ml-2" type="submit">{% translate "Stop" %}</button>
+        </form>
+      {% endif %}
+    </div>
+    <div class="column">
+      <label class="label">{% translate "Started" %}</label>
+      <abbr {% if process.started %}title="{{ process.started }}"{% endif %}>
+        {{ process.started|default:"−"|naturaltime|capfirst }}
+      </abbr>
+    </div>
+    <div class="column">
+      <label class="label">{% translate "Ended" %}</label>
+      <abbr {% if process.ended %}title="{{ process.ended }}"{% endif %}>
+        {{ process.ended|default:"−"|naturaltime|capfirst }}
+      </abbr>
+    </div>
+  </div>
+
+  <hr />
+
+  {% if process.parsed_logs %}
+    <div class="tabs is-medium">
+      <ul>
+        <li class="{% if not filtered_level %}is-active{% endif %}">
+          <a href="{% querystring level='' %}">
+            {% translate "All logs" %}
+            <span class="tag is-small is-light is-rounded ml-3">{{ process.parsed_logs | length }}</span>
+          </a>
+        </li>
+        {% for level, logs_stat in logs_stats.items %}
+          <li class="{% if filtered_level == level|stringformat:'s' %}is-active{% endif %}">
+            <a {% if logs_stat.count %}href="{% querystring level=level %}"{% else %}class="has-text-grey-light"{% endif %}>
+              {{ logs_stat.name }}
+              <span class="tag is-small {{ level | log_tag_class }} is-light is-rounded ml-3">{{ logs_stat.count }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="fill-height-for-logs">
+      <div class="has-scrollable-content notification">
+        {% for log in process.parsed_logs %}
+          {% if not filtered_level or filtered_level == log.level|stringformat:"s" %}
+            <p class="{{ log | log_class }}">{{ log.date }} - {{ log.content }}</p>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <div class="notification is-info is-light">{% translate "No log registered for this process" %}</div>
+  {% endif %}
+{% endblock content %}

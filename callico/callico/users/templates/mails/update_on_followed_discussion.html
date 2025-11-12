@@ -1,0 +1,16 @@
+{# fmt:off #}{% autoescape off %}{% load i18n %}
+{% translate "Hello," %}
+
+{% blocktranslate with user=user campaign=campaign_name project=project_name %}The user {{ user }} just commented on a task discussion from the campaign {{ campaign }} for project {{ project }}.{% endblocktranslate %}
+
+{% translate "---- Start of their comment ----" %}
+{{ comment }}
+{% translate "---- End of their comment ----" %}
+
+{% translate "You can:" %}{% if task_moderation %}
+{% blocktranslate with moderate_url=task_moderation %}  - view their task by following this link: {{ moderate_url }}{% endblocktranslate %}{% endif %}{% if task_annotation %}
+{% blocktranslate with annotate_url=task_annotation %}  - view your task by following this link: {{ annotate_url }}{% endblocktranslate %}{% endif %}
+{% blocktranslate with discuss_url=task_discussion %}  - access the discussion: {{ discuss_url }}{% endblocktranslate %}
+
+--
+{% translate "The Callico team" %}{% endautoescape %}{# fmt:on #}

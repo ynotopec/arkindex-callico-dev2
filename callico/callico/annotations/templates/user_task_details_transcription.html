@@ -1,0 +1,17 @@
+{% extends 'user_task_details_base.html' %}
+
+{% block answer %}
+  <div class="message" answer-element-id="{{ answer.element_id }}">
+    <div class="message-body break-lines break-word is-clickable {% if answer.rtl_oriented %}rtl-text{% endif %}">{{ answer.value }}</div>
+  </div>
+{% endblock answer %}
+
+{% block script %}
+  {{ block.super }}
+
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootTranscriptionUserTaskDetails()
+    })
+  </script>
+{% endblock script %}

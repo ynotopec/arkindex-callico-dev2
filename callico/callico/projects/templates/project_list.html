@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+  {% translate "Projects" %}
+{% endblock title %}
+
+{% block content %}
+  {% if request.user.is_anonymous %}
+    <div class="notification is-info">
+      {% translate "Want to contribute to public campaigns that need annotations? Please" %}
+      {% if SIGNUP_ENABLED %}
+        <a class="has-text-weight-bold" href="{% url 'signup' %}">{% translate "register" %}</a>
+        {% translate "on Callico or simply" %}
+      {% endif %}
+      <a class="has-text-weight-bold" href="{% url 'login' %}">{% translate "log in" %}</a>
+      {% translate "if you already have an account." %}
+    </div>
+  {% endif %}
+
+  {% if request.user.is_staff or PROJECT_CREATION_ALLOWED %}
+    <a href="{% url 'project-create' %}" class="button is-success is-pulled-right">
+      {% translate "Create a project" %}
+    </a>
+  {% endif %}
+
+  <h1 class="title">
+    {% translate "Projects" %}
+  </h1>
+
+  <div class="tabs is-medium">
+    <ul>
+      {% if not request.user.is_anonymous %}
+        <li class="{% if not request.GET.public %}is-active{% endif %}">
+          <a href=".">
+            {% translate "My projects" %}
+          </a>
+        </li>
+      {% endif %}
+      <li class="{% if request.GET.public or request.user.is_anonymous %}is-active{% endif %}">
+        <a href="{% if request.user.is_anonymous %}.{% else %}{% querystring public=True %}{% endif %}">
+          {% translate "Public projects" %}
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="mb-4">
+    {% include "pagination.html" %}
+  </div>
+
+  <div class="columns is-multiline">
+    {% for project in projects %}
+      <div class="column is-half is-one-third-widescreen">
+        <a href="{% url 'project-details' project_id=project.id %}">
+          <div class="card zoom p-1">
+            <div class="card-image has-text-centered project-thumbnail-300">
+              {% if project.illustration %}
+                <div class="fitting-img" style='background-image: url("{{ project.illustration.url }}")'></div>
+              {% else %}
+                <div class="no-preview has-background-grey-lighter is-size-5">
+                  {% translate "No preview" %}
+                </div>
+              {% endif %}
+            </div>
+            <div class="card-content p-3">
+              <div class="content has-text-centered">
+                <div class="is-size-4 truncate-long-words mx-3" title="{{ project.name }}">{{ project.name }}</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    {% empty %}
+      <div class="column">
+        <div class="notification is-info is-light">{% translate "No project available" %}</div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% include "pagination.html" %}
+{% endblock content %}

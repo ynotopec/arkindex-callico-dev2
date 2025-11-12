@@ -1,0 +1,97 @@
+{% load static i18n bulma_tags %}
+
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <meta charset="utf-8">
+    {% font_awesome %}
+    <link rel="stylesheet" href="{% static 'callico.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <meta name="api_base_url" content="/api/v1">
+    <title>Callico - {% block title %}{% translate "Website" %}{% endblock title %}</title>
+  </head>
+
+  <body class="has-navbar-fixed-top">
+    <nav class="navbar is-fixed-top has-background-grey-lighter" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'projects' %}">
+          <img src="{% static 'logo.png' %}">
+          <p class="title is-4 ml-2">Callico</p>
+        </a>
+      </div>
+
+      <div class="navbar-menu">
+        {% if user.is_authenticated %}
+          <div class="navbar-start">
+            <a
+              class="navbar-item{% if request.resolver_match.view_name == 'projects' %} is-active{% endif %}"
+              href="{% url 'projects' %}"
+            >
+              {% translate "Projects" %}
+            </a>
+            {% block breadcrumb %}{% endblock %}
+          </div>
+        {% endif %}
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <form action="{% url 'custom_set_language' %}" method="post">
+              {% csrf_token %}
+              {% if LANGUAGE_CODE != "en" %}
+                <button class="button has-background-grey-lighter" title='{% translate "Set language to English" %}' type="submit" name="language" value="en"><span class="icon is-size-4">🇬🇧</span></button>
+              {% endif %}
+              {% if LANGUAGE_CODE != "fr" %}
+                <button class="button has-background-grey-lighter" title='{% translate "Set language to French" %}' type="submit" name="language" value="fr"><span class="icon is-size-4">🇫🇷</span></button>
+              {% endif %}
+            </form>
+          </div>
+
+          {% if user.is_authenticated %}
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                <span class="truncate-long-words w-15" title="{{ user.email }}">
+                  {{ user }}
+                </span>
+              </a>
+              <div class="navbar-dropdown is-right">
+                <a class="navbar-item{% if request.resolver_match.view_name == 'user-update' %} is-active{% endif %}" href="{% url 'user-update' %}">
+                  {% translate "Preferences" %}
+                </a>
+                {% if user.is_superuser %}
+                  <a class="navbar-item" href="{% url 'admin:index' %}" target="_blank">{% translate "Admin panel" %}</a>
+                {% endif %}
+                <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button class="logout-button has-text-danger navbar-item" type="submit">{% translate "Logout" %}</button>
+                </form>
+              </div>
+            </div>
+          {% elif request.resolver_match.view_name != 'login' %}
+            <div class="navbar-item">
+              <a class="button is-info is-small" href="{% url 'login' %}">{% translate "Login" %}</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <div class="container {% if fluid_container %}is-fluid{% endif %} mt-5" id="app">
+      {% include "messages.html" %}
+
+      {% block content %}{% endblock content %}
+    </div>
+
+    {% include "footer.html" %}
+
+    <script type="text/javascript" src="{% static 'callico.umd.min.js' %}" ></script>
+    {% if SENTRY_DSN %}
+      <script type="text/javascript">
+        window.addEventListener('DOMContentLoaded', () => {
+          callico.bootSentry("{{ SENTRY_DSN }}", "{{ ENVIRONMENT }}")
+        })
+      </script>
+    {% endif %}
+    {% block script %}{% endblock %}
+  </body>
+</html>

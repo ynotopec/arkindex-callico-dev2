@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load i18n humanize %}
+
+{% block title %}
+  {% translate "Campaign tasks unassignment" %}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=campaign.project campaign=campaign %}
+{% endblock breadcrumb %}
+
+{% block content %}
+  <a href="{% url 'campaign-details' pk=campaign.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+
+  <h1 class="title">{% translate "Unassign tasks on this campaign" %}</h1>
+
+  {% if nb_unassigned_tasks %}
+    <form method="post" class="mb-4">
+      {% csrf_token %}
+      <input type="submit" class="button is-danger" name="unassigned" value="{% blocktranslate with count=nb_unassigned_tasks %}Delete {{ count }} unassigned tasks{% endblocktranslate %}"/>
+    </form>
+  {% endif %}
+
+  {% include "pagination.html" %}
+
+  <table class="table is-fullwidth">
+    <thead>
+      <tr>
+        <th>{% translate "User" %}</th>
+        <th>{% translate "Last login" %}</th>
+        <th>{% translate "Last annotation" %}</th>
+        <th>{% translate "Number of draft tasks" %}</th>
+        <th>{% translate "Number of pending tasks" %}</th>
+        <th class="is-narrow has-text-centered">{% translate "Unassign" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td class="truncate-long-words restricted-max-width-20" title="{{ user.email }}">
+            {{ user }}
+          </td>
+          <td>
+            <abbr {% if user.last_login %}title="{{ user.last_login }}"{% endif %}>{{ user.last_login|default:"−"|naturaltime|capfirst }}</abbr>
+          </td>
+          <td>
+            <abbr {% if user.last_annotation %}title="{{ user.last_annotation }}"{% endif %}>{{ user.last_annotation|default:"−"|naturaltime|capfirst }}</abbr>
+          </td>
+          <td>
+            <a href="{% url 'admin-campaign-task-list' pk=campaign.id %}{% querystring state='draft' user_id=user.id %}">
+              {{ user.draft_user_tasks_count }}
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'admin-campaign-task-list' pk=campaign.id %}{% querystring state='pending' user_id=user.id %}">
+              {{ user.pending_user_tasks_count }}
+            </a>
+          </td>
+          <td>
+            <form method="post">
+              {% csrf_token %}
+              <input name="user_id" type="text" value="{{ user.id }}" hidden>
+              <div class="is-flex is-justify-content-right">
+                {% if user.draft_user_tasks_count %}
+                  <input type="submit" class="button is-small mr-1" name="draft" value="{% translate 'Draft tasks' %}"/>
+                {% endif %}
+                {% if user.pending_user_tasks_count %}
+                  <input type="submit" class="button is-small is-warning" name="pending" value="{% translate 'Pending tasks' %}"/>
+                {% endif %}
+              </div>
+            </form>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6">
+            <div class="notification is-info is-light">{% translate "No user has draft or pending tasks for this campaign" %}</div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock content %}

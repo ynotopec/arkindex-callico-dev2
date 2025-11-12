@@ -1,0 +1,8 @@
+{# fmt:off #}{% autoescape off %}{% load i18n %}
+{% translate "Hello," %}
+
+{% blocktranslate with campaign=campaign_name project=project_name %}All tasks created for volunteers on campaign {{ campaign }} for project {{ project }} have been assigned.{% endblocktranslate %}
+{% blocktranslate with url=campaign_details_url %}You can see the details of the campaign by following this link: {{ url }}. From here you can create new tasks for volunteers or unassign pending tasks that are assigned to inactive users.{% endblocktranslate %}
+
+--
+{% translate "The Callico team" %}{% endautoescape %}{# fmt:on #}

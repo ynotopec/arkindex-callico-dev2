@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=element.project %}
+{% endblock breadcrumb %}
+
+{% block title %}
+  {% translate "Element details" %}
+{% endblock title %}
+
+{% block content %}
+  <a
+    class="button is-pulled-right"
+    href="{% if element.parent %}
+            {% if not element.parent.type.folder %}
+              {% url 'element-details' pk=element.parent.id %}
+            {% else %}
+              {% url 'project-browse' project_id=element.project.id element_id=element.parent.id %}
+            {% endif %}
+          {% else %}
+            {% url 'project-browse' project_id=element.project.id %}
+          {% endif %}"
+  >
+    {% translate "Back to parent" %}
+  </a>
+  <h1 class="title truncate-long-words pr-4" title="{{ element.name }}">
+    {% blocktranslate with name=element.name %}Element {{ name }}{% endblocktranslate %}
+  </h1>
+  <h1 class="subtitle truncate-long-words" title="{{ element.type }}">
+    {% translate "Type:" %} {{ element.type }}
+  </h1>
+
+  <div class="columns">
+    <div class="column">
+      <label class="label">{% translate "Provider URL" %}</label>
+      <a class="button" href="{{ element.provider_url }}" target="_blank">
+        {% blocktranslate with provider=element.provider.name %}View on {{ provider }}{% endblocktranslate %}
+      </a>
+    </div>
+    {% if element.image_id %}
+      <div class="column">
+        <label class="label">{% translate "IIIF URL" %}</label>
+        <a class="button" href="{{ element.image.iiif_url }}" target="_blank">
+          {% translate "View IIIF image" %}
+        </a>
+      </div>
+      <div class="column">
+        <label class="label">{% translate "Image width" %}</label>
+        <p>{{ element.image.width }}</p>
+      </div>
+      <div class="column">
+        <label class="label">{% translate "Image height" %}</label>
+        <p>{{ element.image.height }}</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <hr />
+
+  <div class="columns">
+    <div class="column is-three-fifths has-text-centered">
+      {% if not element.image_id %}
+        {% for child in element.children.all %}
+          {% if child.image_id %}
+            <img class="restrict-medium-thumbnail-height" src="{{ child.medium_thumbnail }}">
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <img class="restrict-medium-thumbnail-height" src="{{ element.medium_thumbnail }}">
+      {% endif %}
+    </div>
+    <div class="column">
+      {% include "element_task_list.html" %}
+    </div>
+  </div>
+
+{% endblock content %}

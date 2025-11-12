@@ -1,0 +1,26 @@
+---
+- name: Drop services
+  docker_swarm_service:
+    name: "{{ item }}"
+    state: absent
+  loop:
+    - "callico-db-migrate-{{ git_branch_name }}"
+    - "callico-worker-{{ git_branch_name }}"
+    - "callico-backend-{{ git_branch_name }}"
+    - "callico-redis-{{ git_branch_name }}"
+    - "callico-admin-{{ git_branch_name }}"
+    - "callico-fixtures-{{ git_branch_name }}"
+
+- name: Drop Postgres database
+  postgresql_db:
+    login_host: "{{ callico.db.host }}"
+    port: "{{ callico.db.port }}"
+    login_user: "{{ callico.db.user }}"
+    login_password: "{{ lookup('env','POSTGRES_ROOT_PASSWORD') }}"
+    name: "{{ callico.db.name }}-{{ git_branch_name }}"
+    state: absent
+
+- name: Clean up redis volume
+  docker_volume:
+    name: "callico_redis_{{ git_branch_name }}"
+    state: absent

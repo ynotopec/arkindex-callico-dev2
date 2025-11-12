@@ -1,0 +1,27 @@
+{% load basefilters i18n %}
+
+<a
+  class="button is-rounded is-small is-info ml-2"
+  {% if user_task.user == request.user %}
+    {% if user_task.task.campaign.is_closed %}
+      disabled
+      {% translate "Annotate" as action %}
+      title="{% blocktranslate with action=action|lower state=user_task.task.campaign.get_state_display %}You cannot {{ action }} a task for a campaign marked as {{ state }}{% endblocktranslate %}"
+    {% elif user_task.state == "validated" %}
+      disabled
+      title="{% translate "Can't annotate a validated preview task." %}"
+    {% elif not user_task.annotate_url %}
+      disabled
+      title="{% translate 'The annotation for the campaign mode of the preview task is not yet implemented.' %}"
+    {% else %}
+      href="{{ user_task.annotate_url }}{% querystring %}"
+      title="{% translate 'Click to go to this preview task annotation page.' %}"
+    {% endif %}
+  {% else %}
+    disabled
+    title="{% translate 'The preview task can only be annotated by the manager who created it.' %}"
+  {% endif %}
+>
+  {% translate "Preview task" %}
+  <i class="fas fa-eye ml-2"></i>
+</a>

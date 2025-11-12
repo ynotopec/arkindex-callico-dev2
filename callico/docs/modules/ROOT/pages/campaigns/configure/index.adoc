@@ -1,0 +1,82 @@
+[#configure-a-campaign]
+= Configure a campaign
+
+[WARNING]
+====
+
+* To configure a campaign, you must be a manager of its parent project.
+* A campaign cannot be configured if it is in a xref:campaigns/close_reopen_archive.adoc[`Closed` or `Archived` state].
+====
+
+If you are a member with manager role, the `Configure` action is displayed in the section named *Campaign* from the menu on the left of the campaign details page.
+
+You are also automatically redirected to the configuration page when you finish xref:campaigns/create.adoc[creating a campaign], but you can update an existing campaign's configuration at any time as long as it is still open.
+
+image::campaigns/details.png[Campaign details page]
+
+WARNING: Any update to the campaign's configuration is retroactive, and impacts existing tasks. For example, setting a new link:./#context-ancestor-type[ancestor element type] will change that context element type for the tasks that had been created before that change, as well as for all newly created tasks. Updating the campaign's configuration, however, will never destroy existing annotations.
+
+Properly configuring your campaign allows you to accurately target the elements that need to be annotated, provide your contributors with the information and context they will need to perform their annotation tasks, enable multiple inputs for tasks, and more.
+
+While a lot of parameters in the campaign configuration depend on that campaign's mode, there are some that are common and can be set for all campaigns.
+
+image::campaigns/configure.png[Campaign configuration form]
+
+[#name-and-description]
+== Name and Description
+
+From the configuration page, you can edit your campaign's name and description. The *Description* field can be used to explain the purpose of a campaign, give instructions to the campaign's contributors, provide examples, etc.
+
+[NOTE]
+====
+The campaign description supports https://www.markdownguide.org/[Markdown]. If you want to enhance your description by attaching images, you can easily do so by uploading them to an online hosting service like https://imgur.com/[imgur] and then https://www.markdownguide.org/basic-syntax/#images-1[including their link] in the description.
+====
+
+[#number-of-tasks-to-assign-per-volunteer]
+== Number of tasks to assign per volunteer
+
+If link:tasks/create.md/#create-unassigned-tasks[unassigned tasks] are created in an annotation campaign, these tasks are available to all contributors who have access to the campaign if your project is private. However, if it is public, all Callico users will have access to them.
+
+By clicking the `Request tasks` button, a user receives a number of tasks to complete. The *Number of tasks to assign per volunteer* is the number of tasks that are assigned to a user when they request available tasks in this manner.
+
+image::campaigns/configure/common/request_tasks.png[The "request tasks" button]
+
+If the *Number of tasks to assign per volunteer* is set to `0`, then the `Request tasks` button will never appear. However, contributors will still be able to request unassigned tasks one by one from the `Available` tab on link:tasks/list.md/#contributors[their task list].
+
+[#number-of-allowed-assignments-for-available-tasks]
+== Number of allowed assignments for available tasks
+
+By default, all xref:tasks/index.adoc[tasks] can only be assigned to and annotated by one contributor. However, if you want to gather multiple annotations on the same task, you can set the *Number of allowed assignments for available tasks* to a number greater than `1`.
+
+Any change to this parameter is retroactive, so if this parameter is set *higher* than it was, previously annotated tasks would become available to be annotated again by other contributors. However, changing this parameter will not delete any existing annotations, even if for example tasks have been annotated twice and the *Number of allowed assignments* per task is *lowered* to `1`.
+
+[#context-ancestor-type]
+== Context ancestor type
+
+This configuration parameter is optional, and is only available for the xref:./classification.adoc[*Classification*], xref:./entity.adoc[*Entity*] and xref:./entity_form.adoc[*Entity form*] campaign modes. You can use it to display the elements to annotate within the context of another (parent) element.
+
+For example, if the purpose of your *Entity form* annotation campaign is to annotate the `text line` elements of a table with multiple columns, in order to be able to input their annotations in the correct field, the contributors need to see the table header, not just the `text line` elements. Using the *Context ancestor type* parameter, you can specify that the `text line` elements to annotate will be displayed in the context of their first `table` parent element, if it exists.
+
+Below are screenshots illustrating how the tasks would look for the contributors following the use-case described above, with different ancestor configuration options.
+
+With no *Context ancestor type*, the table header is not visible for the contributor annotating a `text line` element.
+
+image::campaigns/configure/common/context_ancestor_type/no_ancestor.png[Annotation form without a defined context ancestor]
+
+With `table` as *Context ancestor type*, the contributor knows which field in the form to fill with the data, as they can see the table header while annotating the `text line` elements.
+
+image::campaigns/configure/common/context_ancestor_type/with_ancestor.png[Annotation form with a defined context ancestor]
+
+However, with `table` as *Context ancestor type*, if some of the `text line` elements are not children of any `table` element, then they will be displayed without context: the context element must be a parent of the annotated element for that element to be displayed in context.
+
+[#specific-configuration-for-each-campaign-mode]
+== Specific configuration for each campaign mode
+
+To learn how to configure specific campaign modes, visit their dedicated page:
+
+* xref:./transcription.adoc[*Transcription* campaign configuration]
+* xref:./entity.adoc[*Entity* campaign configuration]
+* xref:./entity_form.adoc[*Entity form* campaign configuration]
+* xref:./elements.adoc[*Elements* campaign configuration]
+* xref:./element_group.adoc[*Element group* campaign configuration]
+* xref:./classification.adoc[*Classification* campaign configuration]

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n bulma_tags %}
+
+{% block title %}
+  {% translate "Campaign creation" %}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=project %}
+{% endblock breadcrumb %}
+
+{% block content %}
+  <a href="{% url 'project-details' project_id=project.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+  <h1 class="title">{% translate "Create a new campaign" %}</h1>
+
+  <form method="post">
+    {% csrf_token %}
+
+    {{ form | bulma }}
+
+    <button class="button is-success" type="submit">{% translate "Create" %}</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,39 @@
+{
+  "name": "callico",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "watch": "vue-cli-service build --mode development --target lib --inline-vue src/lib.js --watch",
+    "build": "vue-cli-service build --mode development --target lib --inline-vue src/lib.js",
+    "production": "vue-cli-service build --mode production --target lib --inline-vue src/lib.js"
+  },
+  "dependencies": {
+    "@creativebulma/bulma-tagsinput": "^1.0.3",
+    "@sentry/browser": "7.107.0",
+    "@sentry/tracing": "7.107.0",
+    "@sentry/vue": "7.107.0",
+    "axios": "^1.6.8",
+    "bulma": "^0.9.4",
+    "core-js": "^3.36.0",
+    "lodash": "^4.17.21",
+    "mousetrap": "^1.6.5",
+    "sortablejs": "^1.15.2",
+    "vue": "^3.4.21",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^5.0.8",
+    "@vue/compiler-sfc": "^3.4.21",
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-vue": "^9.23.0",
+    "sass": "^1.72.0",
+    "sass-loader": "^14.1.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

@@ -1,0 +1,8 @@
+[#elements]
+= Elements
+
+The data to be annotated in Callico is represented in the form of elements which may or may not be linked to an image stored on a remote server. If linked to one, elements can refer to the whole image (e.g. a *picture of a cat*) or only to one of its sub-parts (e.g. a *single line* on a *novel page*).
+
+Thanks to a simple structure, Callico makes it possible to preserve the parentage between elements (e.g. the *single line* element would be a child of the *novel page* element) and to xref:./browse.adoc[browse them] effortlessly through a light interface.
+
+To add such elements to a project, you need to import them from a third party. For the moment only xref:./import/arkindex.adoc[importing elements from Arkindex] is supported.

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load basefilters i18n %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=campaign.project campaign=campaign can_admin=False tasks=True %}
+{% endblock breadcrumb %}
+
+{% block title %}
+  {% translate "My tasks" %}
+{% endblock title %}
+
+{% block content %}
+  <a href="{% url 'project-details' project_id=campaign.project.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+
+  <h1 class="title mb-3 truncate-long-words pr-4" title="{{ campaign.name }}">
+    {% if request.user.is_anonymous or not progression.total %}
+      {% blocktranslate with name=campaign.name %}The tasks on campaign "{{ name }}"{% endblocktranslate %}
+    {% else %}
+      {% blocktranslate with name=campaign.name %}My tasks on campaign "{{ name }}"{% endblocktranslate %}
+    {% endif %}
+  </h1>
+
+  {% if campaign.description %}
+    {% include "collapsable_description.html" with description=campaign.description extra_campaign_link=True %}
+  {% endif %}
+
+  {% include "progress_bar.html" %}
+
+  {% if progression %}
+    <div class="tabs is-centered is-medium">
+      <ul>
+        {% if progression.total %}
+          <li class="{% if not form.state.value and not form.user_feedback.value %}is-active{% endif %}">
+            <a href="{% querystring state='' %}">
+              {% translate "All status" %}
+              <span class="tag is-small is-light is-link is-rounded ml-3">{{ progression.total }}</span>
+            </a>
+          </li>
+        {% endif %}
+        {% for state_progress in progression.details reversed %}
+          {% if state_progress.nb_tasks %}
+            <li class="{% if form.state.value == state_progress.state or form.user_feedback.value == state_progress.state %}is-active{% endif %}">
+              <a href="?{{ state_progress.apply_filter }}={{ state_progress.state }}">
+                {{ state_progress.state.label }}
+                <span class="tag is-small {{ state_progress.state | task_class }} is-light is-rounded ml-3">{{ state_progress.nb_tasks }}</span>
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  {% include "pagination.html" %}
+
+  {% if tasks %}
+    <div class="columns is-multiline mt-1">
+      {% for task in tasks %}
+        {% if task.user_tasks.count %}
+          {# Thanks to the filtering done in the view and the database constraints, there will always be only one TaskUser in task.user_tasks.all #}
+          {% for my_user_task in task.user_tasks.all %}
+            {% include "task_card_assigned.html" %}
+          {% endfor %}
+        {% else %}
+          {% include "task_card_available.html" %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="notification is-info is-light">{% translate "No task available" %}</div>
+  {% endif %}
+{% endblock content %}
+
+{% block script %}
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.cleanUserTaskAnnotationStorage()
+    })
+  </script>
+{% endblock script %}

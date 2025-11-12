@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% load i18n basefilters %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=user_task.task.campaign.project campaign=user_task.task.campaign can_admin=True tasks=True %}
+{% endblock breadcrumb %}
+
+{% block title %}
+  {% translate "User task details" %}
+{% endblock title %}
+
+{% block content %}
+  <a href="{{ request.META.HTTP_REFERER }}" class="button is-pulled-right">{% translate "Go back" %}</a>
+
+  <h1 class="title">{% translate "User task" %}</h1>
+
+  <div class="columns">
+    <div class="column is-one-quarter">
+      <label class="label">
+        {% translate "Campaign" %}
+        <span class="is-small is-light tag {{ user_task.task.campaign | campaign_class }} ml-2">{{ user_task.task.campaign.get_state_display }}</span>
+      </label>
+      <p class="truncate-long-words" title="{{ user_task.task.campaign }}">{{ user_task.task.campaign }}</p>
+    </div>
+    <div class="column is-one-quarter">
+      <label class="label">{% translate "Element" %}</label>
+      <p class="truncate-long-words" title="{{ user_task.task.element }}">
+        <a href="
+                 {% if not user_task.task.element.type.folder %}
+                   {% url 'element-details' pk=user_task.task.element.id %}
+                 {% else %}
+                   {% url 'project-browse' project_id=user_task.task.element.project_id element_id=user_task.task.element.id %}
+                 {% endif %}
+                ">
+          {{ user_task.task.element|title }}
+        </a>
+      </p>
+    </div>
+    <div class="column is-one-quarter">
+      <label class="label">{% translate "User" %}</label>
+      <p class="truncate-long-words" title="{{ user_task.user.email }}">
+        {{ user_task.user }}
+        {% if user_task.is_preview %}
+          {% include "preview_task_button.html" %}
+        {% endif %}
+      </p>
+    </div>
+    <div class="column">
+      <label class="label">{% translate "Status" %}</label>
+      <span class="is-light tag {{ user_task.state | task_class }}">{{ user_task.get_state_display }}</span>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="columns">
+    {% block image %}
+      <div class="column {% if display_carousel %}has-height-content min-width-0 sticky-image{% endif %}">
+        {% block interactive_image %}
+          <interactive-image
+            class="fill-height{% if display_carousel %}-with-carousel{% else %} sticky-image{% endif %}"
+            element="{{ element }}"
+            children="{{ children }}"
+            {% if interactive_mode %}
+              mode="{{ interactive_mode }}"
+            {% endif %}
+          ></interactive-image>
+        {% endblock interactive_image %}
+
+        {% if display_carousel %}
+          <element-carousel
+            element-ids="{{ carousel_element_ids }}"
+            mode="select"
+            {% if carousel_type %}
+              type="{{ carousel_type }}"
+            {% endif %}
+          ></element-carousel>
+        {% endif %}
+      </div>
+    {% endblock image %}
+
+    <div class="column {% if display_image %}is-two-fifths{% else %}is-full{% endif %}">
+
+      <div class="is-flex is-justify-content-space-between mb-2">
+
+        <div class="min-width-0">
+          {% include "element_metadata.html" %}
+        </div>
+
+        <div class="is-inline-flex has-text-right has-height-content">
+          {% comment %}Info notification{% endcomment %}
+          {% if display_image and help_text %}
+            <div class="dropdown is-hoverable is-right ml-2 mr-2">
+              <div class="dropdown-trigger">
+                <button class="button is-info is-light is-rounded px-3">
+                  <i class="fas fa-info-circle"></i>
+                </button>
+              </div>
+              <div class="dropdown-menu" role="menu">
+                <div class="dropdown-content p-0">
+                  <div class="dropdown-item has-background-info-light has-text-info-dark break-word">
+                    {{ help_text }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          {% comment %}Access discussion button{% endcomment %}
+          <a
+            class="button is-info is-light is-rounded px-3"
+            target="_blank"
+            {% if user_task.task.campaign.is_closed %}
+              disabled
+              {% translate "Comment" context "verb" as action %}
+              title="{% blocktranslate with action=action|lower state=user_task.task.campaign.get_state_display %}You cannot {{ action }} a task for a campaign marked as {{ state }}{% endblocktranslate %}"
+            {% else %}
+              href="{% url 'task-discussion' pk=user_task.task.id %}"
+              title="{% translate 'Discuss this task' %}"
+            {% endif%}
+          >
+            <i class="fas fa-comments"></i>
+            <strong class="has-text-info-dark comments-count">
+              {{ user_task.task.comments.count }}
+            </strong>
+          </a>
+        </div>
+      </div>
+
+      <a
+        class="button is-pulled-right"
+        {% if user_task.task.campaign.is_closed %}
+          disabled
+          {% translate "Moderate" as action %}
+          title="{% blocktranslate with action=action|lower state=user_task.task.campaign.get_state_display %}You cannot {{ action }} a task for a campaign marked as {{ state }}{% endblocktranslate %}"
+        {% elif user_task.state == "draft" %}
+          disabled
+          title="{% blocktranslate with state=user_task.get_state_display|lower %}You cannot moderate a {{ state }} annotation{% endblocktranslate %}"
+        {% elif not user_task.moderate_url %}
+          disabled
+          title="{% translate 'Moderation for this campaign mode is not yet implemented' %}"
+        {% else %}
+          href="{{ user_task.moderate_url }}"
+        {% endif %}
+      >
+        {% translate "Moderate" %}
+      </a>
+
+      <h1 class="title">{% translate "Annotations" %}</h1>
+
+      {% block context %}{% endblock context %}
+
+      {% for annotation in annotations %}
+        <div class="dropdown-toggle mb-2">
+          <div class="dropdown-toggle-title is-flex is-align-items-center is-clickable">
+            <span class="icon mr-2 {% if forloop.first%}active{% endif %}">
+              <i class="fas fa-chevron-down"></i>
+            </span>
+            <h2 class="subtitle mb-1 mr-1">{% translate "Version" %} {{ annotation.version }}</h2>
+            <div>
+              {% if annotation.state %}
+                <span class="is-small is-light tag {{ annotation.state.value | annotation_class }}">{{ annotation.state.label }}</span>
+              {% endif %}
+              {% if annotation.moderator %}
+                {% translate "by" %} {{ annotation.moderator }} −
+              {% endif %}
+
+              {% if annotation.published %}
+                <span class="is-small is-light is-success tag">{% translate "Published" context "feminine" %}</span>
+              {% else %}
+                <span class="is-small is-light tag">{% translate "Not published" context "feminine" %}</span>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="dropdown-toggle-content mt-2 {% if not forloop.first%}is-hidden{% endif %}">
+            {% for answer in annotation.answers %}
+              {% block annotation %}
+                <label class="label break-word">
+                  {{ answer.label }}
+                  {% if answer.uncertain %}
+                    <span class="icon has-background-warning fa-xs ml-1" title="{% translate "Answer marked as uncertain" %}">
+                      <i class="fas fa-exclamation"></i>
+                    </span>
+                  {% endif %}
+                </label>
+                {% block answer %}
+                  <div class="message">
+                    <div class="message-body break-lines break-word {% if answer.rtl_oriented %}rtl-text{% endif %}">{{ answer.value }}</div>
+                  </div>
+                {% endblock answer %}
+              {% endblock annotation %}
+            {% endfor %}
+          </div>
+        </div>
+      {% empty %}
+        <div class="notification is-info is-light">{% translate "User has not yet annotated this task" %}</div>
+      {% endfor %}
+    </div>
+  </div>
+
+{% endblock content %}
+
+{% block script %}
+  {% translate "The metadata value has been copied to your clipboard" as success_notification %}
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootVueComponents()
+      callico.bootDropdowns()
+
+      {% if display_carousel %}
+        callico.initCarouselLibraryEvents()
+      {% endif %}
+
+      // Boot the buttons to copy the metadata values
+      callico.bootCopyToClipboardButtons({{ success_notification|jsonify }}, ".metadata-value", "")
+    })
+  </script>
+{% endblock script %}

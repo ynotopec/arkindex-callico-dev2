@@ -1,0 +1,34 @@
+[#browse-elements-in-a-project]
+= Browse elements in a project
+
+[WARNING]
+====
+You must be a moderator or a manager of the project to browse its elements.
+====
+
+If you are a member with moderator or manager role, the `Browse` action is displayed in the section named *Elements* from the menu on the left of the project details page.
+
+image::projects/details.png[Project details page]
+
+Once elements are imported from xref:./import/arkindex.adoc[Arkindex] the application offers a minimal navigation among them.
+
+While browsing *folder* elements, you can:
+
+* access their children,
+* list their associated tasks.
+
+image::projects/elements/browse_folder.png[Browsing a folder element associated to a task]
+
+While browsing *non-folder* elements, you can:
+
+* view their details,
+* list their associated tasks.
+
+image::projects/elements/browse_non-folder.png[Browsing a non-folder element associated to tasks]
+
+[NOTE]
+====
+
+* Elements which refer to an image sub-part (e.g. a *single line* on a *page*) are not visible or browsable from this interface.
+* If you try to access a contributor's annotation task (from a link), you will be redirected to the element details page.
+====

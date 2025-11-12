@@ -1,0 +1,156 @@
+[#configure-an-entity-form-campaign]
+= Configure an *Entity form* campaign
+
+You can create *Entity form* campaigns in order to annotate entities directly on documents, or to correct existing entities that were xref:../../projects/elements/import/arkindex.adoc#filter-the-transcription-entities-to-import[imported from the project's provider].
+
+For contributors, this campaign mode displays an image and next to it a form to fill out with data from the image.
+
+[#configuration-parameters-fields]
+== Configuration parameters - Fields
+
+After having filled out the xref:./index.adoc[generic configuration parameters], including the optional xref:./index.adoc#context-ancestor-type[*Context ancestor type*] parameter, you need to specify the entities to be annotated.
+
+image::campaigns/configure/entity_form/fields_table.png[Configured fields table]
+
+Each specified entity corresponds to a dedicated field in the annotation form, on the contributor's side.
+
+You can add, edit or remove such fields from your campaign's configuration by using respectively the `Add a field` button, the blue `pencil` button and the red `trash` button.
+
+image::campaigns/configure/entity_form/create_entity.png[Entities specification]
+
+[#required-parameters]
+=== Required parameters
+
+For each entity, you need to define:
+
+* the *Type* of the entity: for example `first name`, `last name`, `occupation`, etc.
+* an *Instruction* text that will be displayed to the contributor, as the field label.
+
+image::campaigns/configure/entity_form/field_labels.png[Type, instruction and help text for the contributor]
+
+The combination of *Entity type* and *Instruction* must be unique for each field in the form, allowing each entity to be clearly identified. However, the *Entity type* will not be displayed to the contributors when they annotate, they will only see the *Instruction* text.
+
+If your campaign's parent project is linked to an object from an xref:projects/edit.adoc[external provider], and entity types were imported from that provider, then these entity types will appear as hints when you fill the *Entity type* field. You can use these existing types and/or input new ones.
+
+[WARNING]
+.Correction of imported entities
+====
+If the purpose of your campaign is to correct existing imported entities (see the dedicated section in the xref:projects/elements/import/arkindex.adoc#filter-the-transcription-entities-to-import[import documentation]) then you need to use the imported entity types. Only the imported entities for which the corresponding type has been added in the campaign configuration will be available to be corrected by the contributors: the relevant fields in the annotation form will be pre-filled with their values.
+====
+
+[#optional-parameters]
+=== Optional parameters
+
+For each entity, you can also set:
+
+* optional *Further instructions* that will be displayed upon hovering over a "help" icon, to give additional indications to the contributor: link:./#required-parameters[see the screenshot above],
+* an optional *Group* to organize fields: link:./#configuration-parameters-field-groups[see details below],
+* an optional *Confidence threshold* for imported entities: link:./#confidence-threshold-to-highlight-imported-entities-needing-validation[see details below],
+* an optional *Regular expression* pattern to validate contributor inputs: link:./#regular-expression-to-use-to-validate-the-input[see details below],
+* an optional set of allowed annotations to restrain the contributor's input, either using an *Authority record* or a list of *Custom annotations*:  link:./#authority-record-or-list-of-custom-annotations[see details below].
+
+[NOTE]
+====
+You can drag the entity rows from the *Form fields* table up and down to *re-order* them, using the icon on their left. The order in which they are arranged in the campaign configuration form is the order in which the fields will be displayed to the contributors in the annotation form.
+====
+
+[#confidence-threshold-to-highlight-imported-entities-needing-validation]
+==== Confidence threshold to highlight imported entities needing validation
+
+The *Confidence threshold* parameter is only relevant if your campaign is designed to correct xref:projects/elements/import/arkindex.adoc#filter-the-transcription-entities-to-import[existing imported entities]. If these entities are associated to a confidence score (this may be the case if they were produced by a Machine Learning tool), by setting a *Confidence threshold* you can highlight the entities whose confidence score is inferior to this threshold in red, signalling to the contributors that they probably need to be corrected.
+
+For example, if you set the *Confidence threshold* at `0.6` for an entity field, all imported entities for that field with a confidence score below `0.6` will be highlighted in red.
+
+image::campaigns/configure/entity_form/confidence_threshold.png[Highlighted fields in entity form]
+
+[#regular-expression-to-use-to-validate-the-input]
+==== Regular expression to use to validate the input
+
+If you want to restrict what your contributors can input in a given field, you can use a *Regular expression*. When a contributor tries to submit their annotation with an invalid value, they will be prevented from doing so, and an error message will appear. You may want to use the *Further instructions* field to explain the expected format of the contributor input.
+
+image::campaigns/configure/entity_form/regex.png[Regex error message]
+
+For example, if you want contributors to input *dates in the DD/MM/YYYY format*, you can use the following regular expression: `+[0-9]{2}\/[0-9]{2}\/[0-9]{4}+`. This however does not prevent contributors from entering something that is shaped like a date, but is in fact incorrect. For example, `41/15/2598` would match this regular expression and be accepted. You can use a more complex regular expression to limit contributor input further: `+[0-3][0-9]\/[0-1][0-9]\/1[8-9][0-9]{2}+` would limit the contributors to year values ranging between 1800 and 1999, but would still validate aberrant value like `35/15/1989`. The following regular expression
+
+----
+^(0[1-9]|1\d|2\d|3[01])/(0[1-9]|1[0-2])/([1-9]\d{3})$
+----
+
+ensures that only valid dates in the DD/MM/YYYY format can be accepted by the field.
+
+Here are a few examples of simple regular expressions that can be useful for *Entity form* annotation campaigns:
+
+* `+^[A-Z][a-z]++$`: only accept a single capitalized word.
+* `+^[A-Z][a-z]+(-[A-Z][a-z]+)?$+`: only accept a single capitalized word, or a single hyphenated and capitalized word (e.g. `Ferdinand`, or `Franz-Ferdinand`).
+* `+^[0-9]++$`: only accept a sequence of numbers. You can use `^[0-9]\{i}$` to accept only a sequence of `i` numbers.
+
+You can use https://regex101.com/[an online validator] to write and test your regular expressions.
+
+[#authority-record-or-list-of-custom-annotations]
+==== Authority record or List of custom annotations
+
+image::campaigns/configure/entity_form/allowed_annotations.png[Allowed annotations for a field]
+
+You may want to restrain the contributor's input on several form fields, to do so, two configuration options are at your disposal:
+
+* the *Authority record to restrict allowed annotations* field allows you to pick one of the ingested authority record, only values from this authority will be configured as allowed annotations,
+* the *List of custom annotations for this field* field lets you customize which values are to be considered as allowed annotations.
+
+When allowed annotations are enforced using either of these two options, then the contributor cannot enter text freely into the corresponding field, and can *pick* one of the configured values.
+
+The *Authority record to restrict allowed annotations* and *List of custom annotations for this field* fields are mutually exclusive.
+
+[NOTE]
+====
+Authority records are to be ingested by an instance administrator. If you wish to use an authority that does not yet exist on Callico, you can provide them with a CSV file containing all your authority values.
+====
+
+[#configuration-parameters-field-groups]
+== Configuration parameters - Field groups
+
+As for simple form fields, groups can be added, edited and deleted.
+
+image::campaigns/configure/entity_form/field_groups_table.png[Configured fields table with a group]
+
+[#manage-groups]
+=== Manage groups
+
+To add a group, you can click on the `Add a field group` button displayed just below the *Form fields* table.
+
+You will be redirected to a new page where you will have to input a *Legend* for your new group.
+
+image::campaigns/configure/entity_form/create_group.png[Group specification]
+
+To edit or remove a group, you can respectively click on the outlined blue `pencil` button and the outlined red `trash` button. You can rest assured because removing a group will not delete the fields that it contains; they will simply be moved to the root of the form.
+
+[NOTE]
+====
+As for entity rows, group rows displayed in the *Form fields* table can be dragged up and down to *re-order* them, using the icon on their left. Entities which are part of a group can only be sorted inside their group.
+====
+
+[#organize-fields]
+=== Organize fields
+
+When adding or editing an entity in your configuration, you can specify the *Group* it will be part of.
+
+If the *Group* value is left unset, the field will be appended to the root of the form, outside any existing group.
+
+On the other hand, if the *Group* value is set to an existing group, like `Subject`, the field will be removed from its original location, to be added as the last field in the `Subject` group.
+
+While editing an entity, if the *Group* value remains unchanged at submission, the field will not move from its original location or shift position.
+
+[#resulting-display]
+=== Resulting display
+
+Entities appended to a group will be displayed in a delimited section on various pages for contributors, moderators and managers, below is an example of the moderation view:
+
+image::campaigns/configure/entity_form/field_group_display.png[Group display on a moderation task]
+
+[#example-annotation-task]
+== Example annotation task
+
+With the above campaign configuration, an annotation task on a table row would look like the image below. The form fields are in the same order as in the campaign configuration, and instead of a free input field there is a select, with a list of custom annotations, for the `last name` entity.
+
+image::campaigns/configure/entity_form/task.png[Example entity form annotation task]
+
+Once your campaign is configured, you can xref:tasks/create.adoc[create tasks] to start gathering annotations on your documents.

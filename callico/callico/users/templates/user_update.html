@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n basefilters bulma_tags %}
+
+{% block title %}
+  {% translate "Your profile" %}
+{% endblock title %}
+
+{% block content %}
+  <h1 class="title">{% translate "Edit your profile" %}</h1>
+
+  <form method="post">
+    {% csrf_token %}
+
+    {{ form | bulma }}
+
+    <button class="button is-success" type="submit">{% translate "Save" %}</button>
+  </form>
+{% endblock %}

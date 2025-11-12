@@ -1,0 +1,33 @@
+[#create-a-project]
+= Create a project
+
+[WARNING]
+====
+
+* Project creation is enabled for *all* authenticated users on instances where the xref:deploy/settings.adoc[`PROJECT_CREATION_ALLOWED` setting] is provided.
+* Otherwise, you must be a staff member to create a project.
+====
+
+If project creation is enabled for everyone or you are a staff user, the `Create a project` button is displayed in the top right corner on Callico's homepage (the page listing all projects).
+
+If this button does not appear and you wish to create a project, please contact an instance administrator.
+
+image::projects/list.png[List of projects with the create button]
+
+To create a project, you need to give it a name. You can also provide a description and an illustration. This name, description and illustration will be visible to all project members.
+
+If your project is linked to an external provider, you will also need to select that provider in a list, and fill in the identifier of the provider object the Callico project is linked to. For example, if your project is linked to an Arkindex provider, the *Object identifier in provider* must be the ID of an Arkindex project.
+
+image::projects/create.png[Project creation form]
+
+Once the project is created, you will be automatically added as a manager of this project and you will be redirected to its details page.
+
+You can xref:./edit.adoc[edit] your project's details at any time from its dedicated page.
+
+[NOTE]
+====
+
+* The project description supports https://www.markdownguide.org/[Markdown]. If you want to enhance your description by attaching images, you can easily do so by uploading them to an online hosting service like https://imgur.com/[imgur] and then https://www.markdownguide.org/basic-syntax/#images-1[including their link] in the description.
+* The project illustration is automatically resized to 600px*600px. It is better to avoid using very large images in order not to lose quality.
+* By default your project is private which means that only people who are members of your project will be able to see it. If you wish to make your project public and visible to everyone, please contact an instance administrator.
+====

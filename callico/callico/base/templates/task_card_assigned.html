@@ -1,0 +1,45 @@
+{% extends 'task_card_base.html' %}
+{% load basefilters i18n humanize %}
+
+{% block information %}
+  <div class="columns mb-0">
+    <div class="column">
+      <span class="is-small is-light tag {{ my_user_task.state | task_class }}">{{ my_user_task.get_state_display }}</span>
+      {% if my_user_task.state != "pending" %}
+        <abbr class="ml-1 is-size-7" title="{{ my_user_task.updated }}">{{ my_user_task.updated|naturaltime|capfirst }}</abbr>
+      {% endif %}
+    </div>
+    <div class="column is-narrow">
+      {% if my_user_task.has_uncertain_value %}
+        <span class="icon has-background-warning fa-xs" title="{% translate 'You marked this task as uncertain' %}">
+          <i class="fas fa-exclamation"></i>
+        </span>
+      {% endif %}
+    </div>
+  </div>
+{% endblock information %}
+
+{% block button %}
+  <a
+    class="button is-success"
+    {% if my_user_task.task.campaign.is_closed %}
+      disabled
+      {% translate "Annotate" as action %}
+      title="{% blocktranslate with action=action|lower state=my_user_task.task.campaign.get_state_display %}You cannot {{ action }} a task for a campaign marked as {{ state }}{% endblocktranslate %}"
+    {% elif my_user_task.state == "validated" %}
+      disabled
+      title="{% translate 'You cannot change a validated annotation' %}"
+    {% elif not my_user_task.annotate_url %}
+      disabled
+      title="{% translate 'Annotation for this campaign mode is not yet implemented' %}"
+    {% else %}
+      href="{{ my_user_task.annotate_url }}{% querystring %}"
+    {% endif %}
+  >
+    {% if my_user_task.state == "pending" %}
+      {% translate "Annotate" %}
+    {% else %}
+      {% translate "Change annotation" %}
+    {% endif %}
+  </a>
+{% endblock button %}

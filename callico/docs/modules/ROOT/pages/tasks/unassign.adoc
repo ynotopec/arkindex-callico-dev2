@@ -1,0 +1,15 @@
+[#unassign-tasks]
+= Unassign tasks
+
+[WARNING]
+====
+
+* You must be a manager of the project to unassign tasks.
+* Tasks cannot be unassigned if the campaign is in the `Archived` state.
+====
+
+If some tasks are unsuitable, or for example one of the contributors is not available, you can unassign tasks. You can only unassign tasks in a `Draft` or `Pending` state. It is not possible to unassign tasks that have already been worked on.
+
+From this page, you can also quickly delete all unassigned tasks that are available on your campaign.
+
+image::tasks/unassign.png[Unassign tasks]

@@ -1,0 +1,28 @@
+{% extends 'user_task_details_base.html' %}
+{% load i18n %}
+
+{% block answer %}
+  <div answer-groups="{{ answer.value }}">
+    <button class="button m-2">{% translate "Display this version" %}</button>
+    <div>
+      <element-group-manager
+        class="ml-2"
+        groups="{{ answer.value }}"
+        mode="display"
+        {% if group_type %}
+          type="{{ group_type }}"
+        {% endif %}
+      ></element-group-manager>
+    </div>
+  </div>
+{% endblock answer %}
+
+{% block script %}
+  {{ block.super }}
+
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootElementGroupUserTaskDetails()
+    })
+  </script>
+{% endblock script %}

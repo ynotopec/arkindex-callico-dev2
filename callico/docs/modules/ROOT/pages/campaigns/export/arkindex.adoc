@@ -1,0 +1,122 @@
+[#export-results-to-arkindex]
+= Export results to Arkindex
+
+[WARNING]
+====
+
+* The campaign's parent project must be xref:projects/edit.adoc[linked to an Arkindex provider] configured for publication.
+* The campaign must have started and no longer be in a `Created` state.
+* Results cannot be exported from a campaign in the `Archived` state.
+* You must be a manager of the campaign's parent project to export results to Arkindex.
+====
+
+If you are a member with manager role, the `To Arkindex` action is displayed in the section named *Export results* from the menu on the left of the campaign details page.
+
+If this button does not appear and you wish to export results to Arkindex, check that the campaign's parent project is correctly linked to an Arkindex provider. If it is, please contact an instance administrator to help you, they might need to update your project provider's `extra_information` attribute with a valid `worker_run_publication` identifier (UUID).
+
+image::campaigns/details.png[Campaign details page]
+
+Once on the Arkindex export page, you need to fill in a form providing the following information.
+
+image::campaigns/export/arkindex.png[Form to export annotation to Arkindex]
+
+[#process-name]
+== Process name
+
+First, you need to name your export process, which will be created upon link:./#start-the-export[form submission]. Naming the process makes it easily identifiable in the xref:projects/processes/list.adoc[process list] after its creation.
+
+[#status-of-tasks-to-be-exported]
+== Status of tasks to be exported
+
+You have to target the annotations to export by selecting one or more task status. For example, if there was a moderation phase on your campaign, you might want to only export annotations which come from `Validated` tasks.
+
+You can select multiple status by holding the `CTRL` key of your keyboard while selecting.
+
+[#force-the-republication-of-annotations]
+== Force the republication of annotations
+
+You might want to export your campaign results more than once. For example, if you accidentally exported only `Annotated` annotations instead of both `Annotated` and `Validated` ones. In order to do this, you need to check the *Force the republication of annotation* checkbox as once results are exported to Arkindex, the annotations are marked as `published` and can no longer be published again unless you explicitly set this option.
+
+Before using this option, be sure to delete any `WorkerResults` from Arkindex that were created by previous Callico exports if you want the publication to run cleanly.
+
+[#publish-each-annotation-separately]
+== Publish each annotation separately
+
+By default, annotations on the same element and with the same value are grouped together and published as one, along with a confidence score calculated according to the number of concurring and diverging annotations.
+
+For example, if three contributors annotate the same element with the following inputs:
+
+* Contributor 1 - "Hi, this is Stan!"
+* Contributor 2 - "Hi, this is Stan!"
+* Contributor 3 - "Hi, this is Stanley!"
+
+*Two results* will be published to Arkindex: a first result "Hi, this is Stan!" with a *confidence score of 66%* and a second result "Hi, this is Stanley!" with a *confidence score of 33%*.
+
+If you wish to publish all three results separately, you can check the *Publish each annotation separately* checkbox. This can be helpful to immediately see how many contributors annotated the same element, or to spot similar but not equal annotations, for example in the case of date or time annotations (same values but in a different format). With the example above, you would publish *three distinct results*: two "Hi, this is Stan!" and one "Hi, this is Stanley!", all with a *confidence score of 100%*.
+
+[#sort-the-entities-to-export-extra-field-for-entity-form-campaigns]
+== Sort the entities to export - Extra field for *Entity form* campaigns
+
+image::campaigns/export/sort_the_entities_to_export.png["Sort the entities to export" form field]
+
+For *Entity form* campaigns only, an additional field is displayed. This field, called *Sort the entities to export*, lets you define the order in which the entities will be exported to Arkindex. By default, this order is the same as xref:campaigns/configure/entity_form.adoc#configuration-parameters-fields[the one configured for the annotation].
+
+If you want the transcription entities, which are built from the annotations when exporting to Arkindex, to use a different order from the one defined in the campaign configuration, you can *re-order* the entities by dragging up or down the icon on their left.
+
+You might want to do this if, for example, on your documents, person names are written as "Camille Saint-Saëns", but in the campaign configuration the `last name` was put before the `first name`. This means that the contributors annotated first "Saint-Saëns" and then "Camille". When exporting to Arkindex, you want the text being built to reflect the actual order of the words as it is on the documents: by changing the entities order for the export you will create "Camille Saint-Saëns" transcriptions, not "Saint-Saëns Camille" ones.
+
+[NOTE]
+====
+This change of order does not impact your current xref:campaigns/configure/entity_form.adoc[campaign configuration]: it is only applied to your export, not to the contributors tasks.
+====
+
+[#also-export-entities-on-a-parent-extra-field-for-entity-form-campaigns]
+== Also export entities on a parent - Extra field for *Entity form* campaigns
+
+image::campaigns/export/also_export_entities_on_a_parent.png["Also export entities on a parent" form field]
+
+For *Entity form* campaigns only, an additional field is displayed. This field, called *Also export entities on a parent*, allows you to export the entities on an Arkindex parent element of the chosen type (if available). By default, entities are not exported on a parent.
+
+If this option is used, then for each element of the selected parent type, all the annotations on its children elements will be concatenated (with line breaks) into a new transcription, which will be published on that parent element, and linked with the relevant entities.
+
+For example, you could have the following element structure:
+
+* *Page* 1
+ ** *Paragraph* 1
+  *** *Line* 1
+  *** *Line* 2
+  *** *Line* 3
+
+Contributors are assigned to annotate *Line* elements. They provide the following annotations:
+
+* *Line* 1 - `first name` is "Jean", `last name` is "Dupont"
+* *Line* 2 - `first name` is "Jane", `last name` is "Doe"
+* *Line* 3 - `first name` is "John", `last name` is "Doe"
+
+You want to export entities not only at the *Line* level but also at the *Page* level. You can select the *Page* type on the *Also export entities on a parent* field. Entities will be exported on the *Line* elements, but also on their *Page* ancestor element in a concatenated transcription as follows:
+
+____
+Jean[`first name`] Dupont[`last name`]
+____
+
+____
+Jane[`first name`] Doe[`last name`]
+____
+
+____
+John[`first name`] Doe[`last name`]
+____
+
+[#start-the-export]
+== Start the export
+
+You can start the export of your campaign results to Arkindex by clicking on the `Start the export` button located at the bottom of the form. Upon clicking, a new asynchronous process will be created and you will be redirected to the xref:projects/processes/view_details.adoc[details page] of the associated process.
+
+From this page, you will be able to follow the completion of your export and its logs. Be aware that it may take a while to complete, depending on the number of results to be exported.
+
+[NOTE]
+====
+
+* For *Entity form* and *Transcription* campaigns, if some answers are marked as uncertain, the attached confidence score they are published with will be divided by two.
+* Annotations from the xref:tasks/create.adoc#preview-a-single-task[preview tasks] used by managers will be ignored.
+====

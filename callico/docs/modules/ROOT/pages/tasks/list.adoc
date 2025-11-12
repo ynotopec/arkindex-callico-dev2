@@ -1,0 +1,49 @@
+[#list-tasks]
+= List tasks
+
+[WARNING]
+====
+
+* The project must be public or you must be a member of the project to list the tasks.
+* Tasks cannot be listed from a campaign in the `Archived` state.
+====
+
+[#moderators-managers]
+== Moderators & Managers
+
+Project moderators and managers can see all the tasks that exist in a campaign.
+
+For each task, it is possible to see:
+
+* the element it concerns,
+* its creation date,
+* its number of comments,
+* the user it is assigned to,
+* a preview of the task if it is a preview task xref:./create.adoc#preview-a-single-task[created by the form], using the `Preview task` button,
+* its status,
+* the uncertain state with a small yellow exclamation mark, if a user has marked at least one value on their task as uncertain,
+* the annotations that have been made, using the `View details` button.
+
+The results can be filtered according to:
+
+* the task status,
+* the feedback provided by the contributors (with comments, uncertain, both, etc),
+* the assigned user.
+
+image::tasks/list_admin.png[List of tasks for moderators or managers]
+
+[#contributors]
+== Contributors
+
+Contributors can only see the tasks they are assigned to in a campaign.
+
+For each task, it is possible to:
+
+* see a preview of the element it concerns,
+* see its status,
+* see its uncertain state with a small yellow exclamation mark, if the contributor has marked at least one value on their task as uncertain,
+* annotate or change the annotation, using the `Annotate`/`Change annotation` button.
+
+The results can be filtered by task status and uncertain feedback using the tabs displayed above the task list.
+
+image::tasks/list_contributor.png[List of tasks for contributors]

@@ -1,0 +1,14 @@
+{% extends "error_page.html" %}
+{% load i18n %}
+
+{% block title %}
+  {% translate "Access forbidden" %}
+{% endblock title %}
+
+{% block error_title %}
+  403 - {% translate "Access forbidden" %}
+{% endblock %}
+
+{% block error_subtitle %}
+  {{ error_message }}
+{% endblock %}

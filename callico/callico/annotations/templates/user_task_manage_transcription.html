@@ -1,0 +1,37 @@
+{% extends 'user_task_manage_base.html' %}
+{% load i18n basefilters %}
+
+{% block form %}
+  {% if not form.forms|length %}
+    <div class="message is-warning">
+      <div class="message-body">
+        {% translate "No elements were found." %}
+      </div>
+    </div>
+  {% elif light_display %}
+    <div class="mb-5 has-scrollable-content">
+      <label class="label">{% translate "Annotate elements:" %}</label>
+      <div class="notification px-2 py-2 mb-4 has-background-white-bis has-scrollable-content">
+        {{ block.super }}
+      </div>
+      <p id="light-display-hint" class="ml-2 is-size-7 has-text-info-dark break-word"></p>
+    </div>
+  {% else %}
+    {{ block.super }}
+  {% endif %}
+{% endblock form %}
+
+{% block script %}
+  {{ block.super }}
+
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootTranscriptionAnnotate(
+        {{ user_task.id|stringformat:"s"|jsonify }},
+        {{ parent_id|stringformat:"s"|jsonify }},
+      )
+      callico.bootTextareaSizes()
+      callico.bootBidiText()
+    })
+  </script>
+{% endblock script %}

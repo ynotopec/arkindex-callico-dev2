@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load i18n basefilters bulma_tags %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=project members=True %}
+{% endblock breadcrumb %}
+
+{% block title %}
+  {% translate "Members management" %}
+{% endblock title %}
+
+{% block content %}
+  <a href="{% url 'project-details' project_id=project.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+  <h1 class="title">{% translate "Manage members in this project" %}</h1>
+
+  {% include "pagination.html" %}
+  <table class="table is-fullwidth">
+    <thead>
+      <tr>
+        <th>{% translate "Display name" %}</th>
+        <th>{% translate "Email" %}</th>
+        <th>{% translate "Role" %}</th>
+        <th class="is-narrow"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for membership in memberships %}
+        <tr>
+          <td class="truncate-long-words restricted-max-width-30" title="{{ membership.user.display_name }}">
+            {{ membership.user.display_name }}
+          </td>
+          <td class="truncate-long-words restricted-max-width-30" title="{{ membership.user.email }}">
+            {{ membership.user.email }}
+          </td>
+          <td><span class="tag is-light {{ membership.role | role_class }}">{{ membership.get_role_display }}</span></td>
+          <td>
+            <div class="is-flex">
+              <a {% if membership.user == request.user %}
+                   disabled
+                   title="{% translate 'For security reasons, you are not allowed to edit your own membership' %}"
+                 {% else %}
+                   href="{% url 'member-update' project_id=project.id pk=membership.id %}"
+                   title="{% translate 'Edit' %}"
+                 {% endif %}
+                 class="button is-small is-info">
+                <span class="icon">
+                  <i class="fas fa-pen"></i>
+                </span>
+              </a>
+              <a {% if membership.user == request.user %}
+                   disabled
+                   title="{% translate 'For security reasons, you are not allowed to delete your own membership' %}"
+                 {% else %}
+                   href="{% url 'member-delete' project_id=project.id pk=membership.id %}"
+                   title="{% translate 'Delete' %}"
+                 {% endif %}
+                 class="button is-small is-danger ml-2">
+                <span class="icon">
+                  <i class="fas fa-trash"></i>
+                </span>
+              </a>
+            </div>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">
+            <div class="notification is-info is-light">{% translate "No member available in this project" %}</div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{% url 'member-create' project_id=project.id %}" class="button is-success is-light">{% translate "Add a new member" %}</a>
+{% endblock %}

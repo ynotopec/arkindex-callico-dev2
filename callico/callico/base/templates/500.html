@@ -1,0 +1,14 @@
+{% extends "error_page.html" %}
+{% load i18n %}
+
+{% block title %}
+  {% translate "Server error" %}
+{% endblock title %}
+
+{% block error_title %}
+  500 - {% translate "Server error" %}
+{% endblock %}
+
+{% block error_subtitle %}
+  {% translate "The server encountered an internal error and was unable to complete your request" %}
+{% endblock %}

@@ -1,0 +1,7 @@
+---
+
+- import_tasks: deploy.yml
+  tags: deploy
+
+- import_tasks: cleanup.yml
+  tags: cleanup

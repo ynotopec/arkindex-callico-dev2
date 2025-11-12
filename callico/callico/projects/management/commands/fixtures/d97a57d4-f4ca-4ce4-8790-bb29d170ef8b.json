@@ -1,0 +1,2162 @@
+{
+    "name": "HORAE with users",
+    "arkindex_project_id": "d97a57d4-f4ca-4ce4-8790-bb29d170ef8b",
+    "public": true,
+    "users": true,
+    "element_types": [
+        {
+            "name": "folder",
+            "id": "132ed970-744d-470c-aa5c-1e5425007bf0"
+        },
+        {
+            "name": "page",
+            "id": "86cb9938-8a12-4384-a725-9c7d49d11b49"
+        },
+        {
+            "name": "text_line",
+            "id": "32777764-473c-46c6-9e54-d49b79515029"
+        },
+        {
+            "name": "text_zone",
+            "id": "c3436cb9-471f-49ca-a8f0-f75e6d790cd6"
+        },
+        {
+            "name": "word",
+            "id": "49fca558-8242-4ccc-8cae-eb0be09418cf"
+        },
+        {
+            "name": "paragraph",
+            "id": "ba61e8d9-a853-47d0-87f4-689ba3ab91a9"
+        }
+    ],
+    "ml_classes": [],
+    "folders": [
+        {
+            "id": "b99151bb-fb8e-4899-98a7-8a80d964c336",
+            "name": "\u00c9tats-Unis, New Haven, Yale University Library, Beinecke Rare Book and Manuscript Library, Beinecke MS 0482.123",
+            "type": "folder",
+            "pages": [
+                {
+                    "id": "4732e87d-12e5-4af7-a081-4fcc19223253",
+                    "name": "1r",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                        "width": 2328,
+                        "height": 3181
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3181
+                        ],
+                        [
+                            2328,
+                            3181
+                        ],
+                        [
+                            2328,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ],
+                    "children": [
+                        {
+                            "id": "9d6fa10e-4602-4d14-b61d-45ad198c2aac",
+                            "name": "1",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    646,
+                                    24
+                                ],
+                                [
+                                    646,
+                                    28
+                                ],
+                                [
+                                    919,
+                                    28
+                                ],
+                                [
+                                    919,
+                                    24
+                                ],
+                                [
+                                    646,
+                                    24
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "ca1a70e5-330b-4655-a00b-68d461341a01",
+                            "name": "2",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    451,
+                                    575
+                                ],
+                                [
+                                    1673,
+                                    600
+                                ],
+                                [
+                                    1677,
+                                    526
+                                ],
+                                [
+                                    455,
+                                    501
+                                ],
+                                [
+                                    451,
+                                    575
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "1d7fa146-df8a-4249-b24b-dada668cd98c",
+                            "name": "3",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    439,
+                                    691
+                                ],
+                                [
+                                    1623,
+                                    712
+                                ],
+                                [
+                                    1623,
+                                    642
+                                ],
+                                [
+                                    443,
+                                    621
+                                ],
+                                [
+                                    439,
+                                    691
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "9f067c8c-476d-4da9-98d5-8cdf5fee0c38",
+                            "name": "4",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    728,
+                                    803
+                                ],
+                                [
+                                    1590,
+                                    816
+                                ],
+                                [
+                                    1590,
+                                    745
+                                ],
+                                [
+                                    733,
+                                    737
+                                ],
+                                [
+                                    728,
+                                    803
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "4f0e7933-ac43-4bb4-ae78-c0d719a0974b",
+                            "name": "5",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    745,
+                                    907
+                                ],
+                                [
+                                    1582,
+                                    915
+                                ],
+                                [
+                                    1582,
+                                    845
+                                ],
+                                [
+                                    749,
+                                    840
+                                ],
+                                [
+                                    745,
+                                    907
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "2a7880ea-f029-4022-89cc-5b5b137700fd",
+                            "name": "6",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    447,
+                                    1006
+                                ],
+                                [
+                                    1536,
+                                    1019
+                                ],
+                                [
+                                    1536,
+                                    944
+                                ],
+                                [
+                                    451,
+                                    936
+                                ],
+                                [
+                                    447,
+                                    1006
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "5ec75ba6-af29-4a68-8c9f-a1f31d1ed2ef",
+                            "name": "7",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    455,
+                                    1118
+                                ],
+                                [
+                                    1665,
+                                    1130
+                                ],
+                                [
+                                    1669,
+                                    1052
+                                ],
+                                [
+                                    459,
+                                    1039
+                                ],
+                                [
+                                    455,
+                                    1118
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "ee5817ae-dfaf-4204-ac08-41e9bec96912",
+                            "name": "8",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    451,
+                                    1226
+                                ],
+                                [
+                                    1615,
+                                    1234
+                                ],
+                                [
+                                    1615,
+                                    1164
+                                ],
+                                [
+                                    455,
+                                    1155
+                                ],
+                                [
+                                    451,
+                                    1226
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "744fd259-c40c-4626-9d9b-a7fb8dccc754",
+                            "name": "9",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    447,
+                                    1333
+                                ],
+                                [
+                                    1611,
+                                    1342
+                                ],
+                                [
+                                    1611,
+                                    1267
+                                ],
+                                [
+                                    451,
+                                    1259
+                                ],
+                                [
+                                    447,
+                                    1333
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "76b8d112-fe50-48cb-99f8-d1e2ff5517a5",
+                            "name": "10",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    439,
+                                    1441
+                                ],
+                                [
+                                    1636,
+                                    1462
+                                ],
+                                [
+                                    1640,
+                                    1387
+                                ],
+                                [
+                                    443,
+                                    1366
+                                ],
+                                [
+                                    439,
+                                    1441
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "d787ec08-a97e-4159-9455-9cc496d8ef60",
+                            "name": "11",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    712,
+                                    1557
+                                ],
+                                [
+                                    1611,
+                                    1561
+                                ],
+                                [
+                                    1611,
+                                    1487
+                                ],
+                                [
+                                    716,
+                                    1482
+                                ],
+                                [
+                                    712,
+                                    1557
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "ecb61efc-ae6f-40d1-999e-b46765416950",
+                            "name": "12",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    443,
+                                    1574
+                                ],
+                                [
+                                    472,
+                                    1586
+                                ],
+                                [
+                                    492,
+                                    1553
+                                ],
+                                [
+                                    459,
+                                    1536
+                                ],
+                                [
+                                    443,
+                                    1574
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "d015000c-002b-4c6c-8eb0-189569697214",
+                            "name": "13",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    708,
+                                    1598
+                                ],
+                                [
+                                    708,
+                                    1648
+                                ],
+                                [
+                                    1565,
+                                    1648
+                                ],
+                                [
+                                    1565,
+                                    1598
+                                ],
+                                [
+                                    708,
+                                    1598
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "b203f222-3e32-4839-b36d-f609026793b9",
+                            "name": "14",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    439,
+                                    1760
+                                ],
+                                [
+                                    1619,
+                                    1768
+                                ],
+                                [
+                                    1619,
+                                    1698
+                                ],
+                                [
+                                    443,
+                                    1690
+                                ],
+                                [
+                                    439,
+                                    1760
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "561eb07c-81b9-4a86-b374-0c2f185b3899",
+                            "name": "15",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    443,
+                                    1864
+                                ],
+                                [
+                                    1582,
+                                    1876
+                                ],
+                                [
+                                    1582,
+                                    1806
+                                ],
+                                [
+                                    447,
+                                    1793
+                                ],
+                                [
+                                    443,
+                                    1864
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "09174fce-73f3-433f-9faf-0f65e0cc03bd",
+                            "name": "16",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    443,
+                                    1975
+                                ],
+                                [
+                                    1565,
+                                    1988
+                                ],
+                                [
+                                    1565,
+                                    1917
+                                ],
+                                [
+                                    447,
+                                    1905
+                                ],
+                                [
+                                    443,
+                                    1975
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "8f382e7e-01d0-4fc2-8c88-74e5779cfa97",
+                            "name": "17",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    439,
+                                    2091
+                                ],
+                                [
+                                    1619,
+                                    2100
+                                ],
+                                [
+                                    1619,
+                                    2025
+                                ],
+                                [
+                                    443,
+                                    2017
+                                ],
+                                [
+                                    439,
+                                    2091
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "a1ff7ae0-c627-4829-aed9-2ca6c704e3e7",
+                            "name": "18",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017402",
+                                "width": 2328,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    439,
+                                    2203
+                                ],
+                                [
+                                    1636,
+                                    2216
+                                ],
+                                [
+                                    1636,
+                                    2137
+                                ],
+                                [
+                                    443,
+                                    2125
+                                ],
+                                [
+                                    439,
+                                    2203
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "864b7340-cc8c-4b13-8215-8415b20348b5",
+                    "name": "1v",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://collections.library.yale.edu/iiif/2/1017403",
+                        "width": 2324,
+                        "height": 3178
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3178
+                        ],
+                        [
+                            2324,
+                            3178
+                        ],
+                        [
+                            2324,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "id": "8ece69e7-d609-4849-9153-d8aae0922bd6",
+                    "name": "2r",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://collections.library.yale.edu/iiif/2/1017404",
+                        "width": 2265,
+                        "height": 3165
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3165
+                        ],
+                        [
+                            2265,
+                            3165
+                        ],
+                        [
+                            2265,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "id": "941589b8-8e82-4ad0-b0ca-6e9649af9816",
+                    "name": "2v",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://collections.library.yale.edu/iiif/2/1017405",
+                        "width": 2271,
+                        "height": 3172
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3172
+                        ],
+                        [
+                            2271,
+                            3172
+                        ],
+                        [
+                            2271,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ],
+                    "children": [
+                        {
+                            "id": "af78cbe0-5a87-4943-8fdd-f7a9ce5021b9",
+                            "name": "1",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017405",
+                                "width": 2271,
+                                "height": 3172
+                            },
+                            "polygon": [
+                                [
+                                    458,
+                                    562
+                                ],
+                                [
+                                    1652,
+                                    570
+                                ],
+                                [
+                                    1652,
+                                    496
+                                ],
+                                [
+                                    462,
+                                    483
+                                ],
+                                [
+                                    458,
+                                    562
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "9afa618a-a2e4-429c-8457-cd268af97c44",
+                            "name": "2",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017405",
+                                "width": 2271,
+                                "height": 3172
+                            },
+                            "polygon": [
+                                [
+                                    450,
+                                    608
+                                ],
+                                [
+                                    450,
+                                    661
+                                ],
+                                [
+                                    1598,
+                                    661
+                                ],
+                                [
+                                    1598,
+                                    608
+                                ],
+                                [
+                                    450,
+                                    608
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "d8c4c208-2554-42ba-9ee2-bbad1428db8a",
+                            "name": "3",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017405",
+                                "width": 2271,
+                                "height": 3172
+                            },
+                            "polygon": [
+                                [
+                                    450,
+                                    715
+                                ],
+                                [
+                                    450,
+                                    769
+                                ],
+                                [
+                                    1569,
+                                    761
+                                ],
+                                [
+                                    1569,
+                                    711
+                                ],
+                                [
+                                    450,
+                                    715
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "13e029fa-48b9-4015-a72c-7ddc48295c99",
+                            "name": "4",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017405",
+                                "width": 2271,
+                                "height": 3172
+                            },
+                            "polygon": [
+                                [
+                                    441,
+                                    810
+                                ],
+                                [
+                                    441,
+                                    868
+                                ],
+                                [
+                                    1569,
+                                    868
+                                ],
+                                [
+                                    1569,
+                                    810
+                                ],
+                                [
+                                    441,
+                                    810
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "cff1147e-3bbd-4357-9f90-3bcbaba6b7b4",
+                            "name": "5",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017405",
+                                "width": 2271,
+                                "height": 3172
+                            },
+                            "polygon": [
+                                [
+                                    454,
+                                    988
+                                ],
+                                [
+                                    1561,
+                                    996
+                                ],
+                                [
+                                    1561,
+                                    918
+                                ],
+                                [
+                                    458,
+                                    910
+                                ],
+                                [
+                                    454,
+                                    988
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "f6194282-29e6-4406-b969-ac20bf70d791",
+                            "name": "6",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017405",
+                                "width": 2271,
+                                "height": 3172
+                            },
+                            "polygon": [
+                                [
+                                    446,
+                                    1096
+                                ],
+                                [
+                                    1557,
+                                    1108
+                                ],
+                                [
+                                    1557,
+                                    1034
+                                ],
+                                [
+                                    450,
+                                    1025
+                                ],
+                                [
+                                    446,
+                                    1096
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "750149ff-e71c-494f-9a52-e5eab4b8befc",
+                            "name": "7",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017405",
+                                "width": 2271,
+                                "height": 3172
+                            },
+                            "polygon": [
+                                [
+                                    446,
+                                    1199
+                                ],
+                                [
+                                    1515,
+                                    1212
+                                ],
+                                [
+                                    1515,
+                                    1141
+                                ],
+                                [
+                                    450,
+                                    1129
+                                ],
+                                [
+                                    446,
+                                    1199
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "343d8986-61bb-44c6-a2f1-d9736720e0e2",
+                            "name": "8",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017405",
+                                "width": 2271,
+                                "height": 3172
+                            },
+                            "polygon": [
+                                [
+                                    441,
+                                    1311
+                                ],
+                                [
+                                    1544,
+                                    1319
+                                ],
+                                [
+                                    1548,
+                                    1240
+                                ],
+                                [
+                                    446,
+                                    1232
+                                ],
+                                [
+                                    441,
+                                    1311
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "8e7591bd-063b-4ae5-ab78-2625fe4d8f6a",
+                            "name": "9",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017405",
+                                "width": 2271,
+                                "height": 3172
+                            },
+                            "polygon": [
+                                [
+                                    450,
+                                    1414
+                                ],
+                                [
+                                    1577,
+                                    1439
+                                ],
+                                [
+                                    1581,
+                                    1360
+                                ],
+                                [
+                                    454,
+                                    1340
+                                ],
+                                [
+                                    450,
+                                    1414
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "b54290b7-6d86-4066-87f5-b1fe375f8283",
+                            "name": "10",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017405",
+                                "width": 2271,
+                                "height": 3172
+                            },
+                            "polygon": [
+                                [
+                                    450,
+                                    1530
+                                ],
+                                [
+                                    1627,
+                                    1542
+                                ],
+                                [
+                                    1627,
+                                    1464
+                                ],
+                                [
+                                    454,
+                                    1451
+                                ],
+                                [
+                                    450,
+                                    1530
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "930ce03b-2263-47e7-9c6c-f8baba266cde",
+                            "name": "11",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017405",
+                                "width": 2271,
+                                "height": 3172
+                            },
+                            "polygon": [
+                                [
+                                    446,
+                                    1629
+                                ],
+                                [
+                                    1057,
+                                    1646
+                                ],
+                                [
+                                    1061,
+                                    1571
+                                ],
+                                [
+                                    450,
+                                    1555
+                                ],
+                                [
+                                    446,
+                                    1629
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "cac6a6aa-acfb-4d4f-92de-17528cb4ef78",
+                    "name": "3r",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                        "width": 2324,
+                        "height": 3181
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3181
+                        ],
+                        [
+                            2324,
+                            3181
+                        ],
+                        [
+                            2324,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ],
+                    "children": [
+                        {
+                            "id": "8b71c22b-1725-4644-94ff-32877b644ab5",
+                            "name": "1",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    505,
+                                    575
+                                ],
+                                [
+                                    1702,
+                                    584
+                                ],
+                                [
+                                    1702,
+                                    505
+                                ],
+                                [
+                                    509,
+                                    497
+                                ],
+                                [
+                                    505,
+                                    575
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "7a038726-a1a0-48d8-906d-dcb26b82d9c4",
+                            "name": "2",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    505,
+                                    687
+                                ],
+                                [
+                                    1640,
+                                    695
+                                ],
+                                [
+                                    1640,
+                                    625
+                                ],
+                                [
+                                    509,
+                                    617
+                                ],
+                                [
+                                    505,
+                                    687
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "46feee2f-1f90-4ea2-8ebb-dcd0acf64325",
+                            "name": "3",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    766,
+                                    745
+                                ],
+                                [
+                                    766,
+                                    799
+                                ],
+                                [
+                                    1681,
+                                    795
+                                ],
+                                [
+                                    1681,
+                                    741
+                                ],
+                                [
+                                    766,
+                                    745
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "cdf424e2-d27b-4c01-af04-74e63525bbb3",
+                            "name": "4",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    799,
+                                    845
+                                ],
+                                [
+                                    799,
+                                    898
+                                ],
+                                [
+                                    1660,
+                                    898
+                                ],
+                                [
+                                    1660,
+                                    845
+                                ],
+                                [
+                                    799,
+                                    845
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "b85964d6-ccea-4242-a39c-c2fe4fc09403",
+                            "name": "5",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    501,
+                                    952
+                                ],
+                                [
+                                    501,
+                                    1010
+                                ],
+                                [
+                                    1681,
+                                    1010
+                                ],
+                                [
+                                    1681,
+                                    952
+                                ],
+                                [
+                                    501,
+                                    952
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "87f2f110-955c-4d8c-9e64-dc74709e6158",
+                            "name": "6",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    501,
+                                    1060
+                                ],
+                                [
+                                    501,
+                                    1114
+                                ],
+                                [
+                                    1640,
+                                    1114
+                                ],
+                                [
+                                    1640,
+                                    1060
+                                ],
+                                [
+                                    501,
+                                    1060
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "0a7dd1e6-3b72-4407-a3cb-24bfdcae4ff2",
+                            "name": "7",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    509,
+                                    1164
+                                ],
+                                [
+                                    509,
+                                    1217
+                                ],
+                                [
+                                    1665,
+                                    1217
+                                ],
+                                [
+                                    1665,
+                                    1164
+                                ],
+                                [
+                                    509,
+                                    1164
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "f866da7f-4028-4750-8e46-32351cdcc58e",
+                            "name": "8",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    501,
+                                    1275
+                                ],
+                                [
+                                    501,
+                                    1333
+                                ],
+                                [
+                                    1615,
+                                    1329
+                                ],
+                                [
+                                    1615,
+                                    1271
+                                ],
+                                [
+                                    501,
+                                    1275
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "beb01c6f-915e-4655-912d-e033e4515b98",
+                            "name": "9",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    509,
+                                    1383
+                                ],
+                                [
+                                    509,
+                                    1441
+                                ],
+                                [
+                                    1640,
+                                    1437
+                                ],
+                                [
+                                    1640,
+                                    1379
+                                ],
+                                [
+                                    509,
+                                    1383
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "3e8575b5-c8c9-47bf-bcc7-ad1bfd7022e8",
+                            "name": "10",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    513,
+                                    1491
+                                ],
+                                [
+                                    513,
+                                    1549
+                                ],
+                                [
+                                    1714,
+                                    1549
+                                ],
+                                [
+                                    1714,
+                                    1491
+                                ],
+                                [
+                                    513,
+                                    1491
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "7403f7dd-75bc-4767-a8fd-99ffefa90446",
+                            "name": "11",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    505,
+                                    1603
+                                ],
+                                [
+                                    505,
+                                    1657
+                                ],
+                                [
+                                    1656,
+                                    1648
+                                ],
+                                [
+                                    1656,
+                                    1599
+                                ],
+                                [
+                                    505,
+                                    1603
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "47ee0d11-bcca-4374-84bd-71264d39b361",
+                            "name": "12",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    513,
+                                    1756
+                                ],
+                                [
+                                    1623,
+                                    1768
+                                ],
+                                [
+                                    1623,
+                                    1702
+                                ],
+                                [
+                                    517,
+                                    1690
+                                ],
+                                [
+                                    513,
+                                    1756
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "f546969e-0b82-4b12-ae53-cdb352afdd06",
+                            "name": "13",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    1134,
+                                    1814
+                                ],
+                                [
+                                    1134,
+                                    1860
+                                ],
+                                [
+                                    1602,
+                                    1860
+                                ],
+                                [
+                                    1602,
+                                    1814
+                                ],
+                                [
+                                    1134,
+                                    1814
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "8ea27a74-1a96-4ac2-adbc-f7d383911a21",
+                            "name": "14",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    1126,
+                                    1913
+                                ],
+                                [
+                                    1130,
+                                    1971
+                                ],
+                                [
+                                    1573,
+                                    1967
+                                ],
+                                [
+                                    1573,
+                                    1909
+                                ],
+                                [
+                                    1126,
+                                    1913
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "979a641f-5142-4d15-8c71-621eadbd3ecd",
+                            "name": "15",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    1134,
+                                    2021
+                                ],
+                                [
+                                    1134,
+                                    2083
+                                ],
+                                [
+                                    1598,
+                                    2083
+                                ],
+                                [
+                                    1598,
+                                    2021
+                                ],
+                                [
+                                    1134,
+                                    2021
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "571d6890-57e1-48dc-b8dd-3fe862add1a0",
+                            "name": "16",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    1130,
+                                    2137
+                                ],
+                                [
+                                    1130,
+                                    2191
+                                ],
+                                [
+                                    1648,
+                                    2191
+                                ],
+                                [
+                                    1648,
+                                    2137
+                                ],
+                                [
+                                    1130,
+                                    2137
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "1dd06b18-fcbe-4a67-a958-f2b25c203099",
+                            "name": "17",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017406",
+                                "width": 2324,
+                                "height": 3181
+                            },
+                            "polygon": [
+                                [
+                                    1511,
+                                    3082
+                                ],
+                                [
+                                    1511,
+                                    3127
+                                ],
+                                [
+                                    1851,
+                                    3127
+                                ],
+                                [
+                                    1851,
+                                    3082
+                                ],
+                                [
+                                    1511,
+                                    3082
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "a1769193-fd05-4849-9516-4858ddbdd7ed",
+                    "name": "3v",
+                    "type": "page",
+                    "image": {
+                        "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                        "width": 2309,
+                        "height": 3173
+                    },
+                    "polygon": [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            3173
+                        ],
+                        [
+                            2309,
+                            3173
+                        ],
+                        [
+                            2309,
+                            0
+                        ],
+                        [
+                            0,
+                            0
+                        ]
+                    ],
+                    "children": [
+                        {
+                            "id": "4970e691-04ff-4644-a7c1-2a13f5234196",
+                            "name": "1",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    648,
+                                    517
+                                ],
+                                [
+                                    648,
+                                    575
+                                ],
+                                [
+                                    1772,
+                                    575
+                                ],
+                                [
+                                    1772,
+                                    517
+                                ],
+                                [
+                                    648,
+                                    517
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "38016610-c659-48f0-b20f-02ccba182781",
+                            "name": "2",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    640,
+                                    633
+                                ],
+                                [
+                                    644,
+                                    691
+                                ],
+                                [
+                                    1776,
+                                    674
+                                ],
+                                [
+                                    1776,
+                                    620
+                                ],
+                                [
+                                    640,
+                                    633
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "1b8552d4-3067-45e2-a4d6-1df0e8a46170",
+                            "name": "3",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    632,
+                                    736
+                                ],
+                                [
+                                    636,
+                                    798
+                                ],
+                                [
+                                    1784,
+                                    777
+                                ],
+                                [
+                                    1784,
+                                    720
+                                ],
+                                [
+                                    632,
+                                    736
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "0b561571-19a6-4771-a734-1cf2b701a50a",
+                            "name": "4",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    648,
+                                    848
+                                ],
+                                [
+                                    652,
+                                    902
+                                ],
+                                [
+                                    1817,
+                                    885
+                                ],
+                                [
+                                    1813,
+                                    831
+                                ],
+                                [
+                                    648,
+                                    848
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "3308ea2d-1870-4921-aaba-c78246f0fda3",
+                            "name": "5",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    896,
+                                    951
+                                ],
+                                [
+                                    896,
+                                    1001
+                                ],
+                                [
+                                    1760,
+                                    1001
+                                ],
+                                [
+                                    1760,
+                                    951
+                                ],
+                                [
+                                    896,
+                                    951
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "a4f09186-a48f-4fbd-a141-14d4d9af8dce",
+                            "name": "6",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    656,
+                                    960
+                                ],
+                                [
+                                    656,
+                                    1009
+                                ],
+                                [
+                                    723,
+                                    1009
+                                ],
+                                [
+                                    723,
+                                    960
+                                ],
+                                [
+                                    656,
+                                    960
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "c570c236-ed10-4f38-8a92-ce25c6a24102",
+                            "name": "7",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    896,
+                                    1059
+                                ],
+                                [
+                                    896,
+                                    1113
+                                ],
+                                [
+                                    1809,
+                                    1108
+                                ],
+                                [
+                                    1809,
+                                    1055
+                                ],
+                                [
+                                    896,
+                                    1059
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "b89fdf22-bc29-442b-83b8-5d1b5fdd0feb",
+                            "name": "8",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    648,
+                                    1166
+                                ],
+                                [
+                                    648,
+                                    1228
+                                ],
+                                [
+                                    1821,
+                                    1224
+                                ],
+                                [
+                                    1821,
+                                    1162
+                                ],
+                                [
+                                    648,
+                                    1166
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "d144c9ee-6fa9-4a04-8cd6-551e426ad259",
+                            "name": "9",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    644,
+                                    1282
+                                ],
+                                [
+                                    648,
+                                    1344
+                                ],
+                                [
+                                    1801,
+                                    1332
+                                ],
+                                [
+                                    1801,
+                                    1274
+                                ],
+                                [
+                                    644,
+                                    1282
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "29571ade-4fcc-4987-82df-ad488cfe990b",
+                            "name": "10",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    648,
+                                    1394
+                                ],
+                                [
+                                    648,
+                                    1448
+                                ],
+                                [
+                                    1793,
+                                    1440
+                                ],
+                                [
+                                    1793,
+                                    1386
+                                ],
+                                [
+                                    648,
+                                    1394
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "c833b000-07b2-44fe-900b-9fe582835b53",
+                            "name": "11",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    648,
+                                    1497
+                                ],
+                                [
+                                    648,
+                                    1547
+                                ],
+                                [
+                                    1784,
+                                    1547
+                                ],
+                                [
+                                    1784,
+                                    1497
+                                ],
+                                [
+                                    648,
+                                    1497
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "299195f8-0c1c-408b-a5a0-3f014e1ff704",
+                            "name": "12",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    648,
+                                    1597
+                                ],
+                                [
+                                    648,
+                                    1659
+                                ],
+                                [
+                                    1875,
+                                    1651
+                                ],
+                                [
+                                    1875,
+                                    1588
+                                ],
+                                [
+                                    648,
+                                    1597
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "18e5f7f9-12a6-4132-81c9-2b781a53d877",
+                            "name": "13",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    648,
+                                    1708
+                                ],
+                                [
+                                    648,
+                                    1775
+                                ],
+                                [
+                                    1817,
+                                    1771
+                                ],
+                                [
+                                    1817,
+                                    1704
+                                ],
+                                [
+                                    648,
+                                    1708
+                                ]
+                            ]
+                        },
+                        {
+                            "id": "5aad26cb-eba2-4a90-a672-a3f0b85e74a3",
+                            "name": "14",
+                            "type": "text_line",
+                            "image": {
+                                "iiif_url": "https://collections.library.yale.edu/iiif/2/1017407",
+                                "width": 2309,
+                                "height": 3173
+                            },
+                            "polygon": [
+                                [
+                                    1185,
+                                    2002
+                                ],
+                                [
+                                    1206,
+                                    2023
+                                ],
+                                [
+                                    1239,
+                                    1990
+                                ],
+                                [
+                                    1214,
+                                    1969
+                                ],
+                                [
+                                    1185,
+                                    2002
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

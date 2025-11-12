@@ -1,0 +1,542 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+  width: 100%;
+}
+
+.logout-button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  width: 100%;
+}
+
+.logout-button:hover {
+  background-color: rgb(255, 237, 237);
+}
+
+.zoom {
+  transition: transform .2s;
+}
+
+.zoom:hover {
+  transform: scale(1.02);
+}
+
+.project-thumbnail-180 {
+  width: 180px;
+  height: 180px;
+}
+
+.project-thumbnail-300 {
+  width: 100%;
+  height: 300px;
+}
+
+[class*='project-thumbnail'] .fitting-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+[class*='project-thumbnail'] .no-preview {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-label {
+  align-items: center;
+  pointer-events: none;
+}
+
+.file-label * {
+  pointer-events: auto;
+}
+
+.file-label .file-name {
+  max-width: unset;
+}
+
+.min-width-0 {
+  /*
+   * Prevent using the "implied min size" of flex items, incorrectly displayed when containing nested children
+   * that can overflow their area. This case often happens with nested columns.
+   * https://stackoverflow.com/questions/26895349/how-can-i-get-ff-33-x-flexbox-behavior-in-ff-34-x#answer-26916542
+   */
+  min-width: 0;
+}
+
+.has-height-content {
+  height: fit-content;
+}
+
+.no-bottom-border {
+  border-bottom: 0px !important;
+}
+
+.sad-cat {
+  display: block;
+  font-size: 8rem !important;
+}
+
+.restrict-small-thumbnail-height {
+  max-height: 30vh;
+  width: auto !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.restrict-medium-thumbnail-height {
+  max-height: 70vh;
+  width: auto !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tasks-list-form .field {
+  margin-right: 1.5rem;
+}
+
+.truncate-long-words {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.w-15 {
+  max-width: 15vw;
+}
+
+.restricted-max-width-20 {
+  width: 20%;
+  max-width: 1px;
+}
+
+.restricted-max-width-30 {
+  width: 30%;
+  max-width: 1px;
+}
+
+.restricted-max-width-50 {
+  width: 50%;
+  max-width: 1px;
+}
+
+.restricted-max-width-100 {
+  width: 100%;
+  max-width: 1px;
+}
+
+.break-word {
+  word-break: break-word;
+}
+
+.input[type=number] {
+  width: auto;
+}
+
+.input[type=color] {
+  width: 7rem;
+}
+
+label.radio {
+  display: block;
+  margin-left: 0rem !important;
+  margin-top: 0.5rem;
+}
+
+label.radio input[type=checkbox] {
+  margin-right: 0.2rem;
+}
+
+.dropdown-toggle-title .icon {
+  transition: transform .3s;
+}
+
+.dropdown-toggle-title .icon:not(.active) {
+  transform: rotate(.5turn);
+}
+
+.indented-block {
+  border-left: solid lightgray;
+  padding-left: 1rem;
+}
+
+.object-description {
+  max-height: 8vh;
+  overflow-y: hidden;
+  padding-bottom: 0.5rem;
+  word-break: break-word;
+}
+
+/* Add a gradient overlay to semi-hide the description by default */
+.object-description:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(transparent 2vh, white);
+  pointer-events: none;
+}
+
+.description-container {
+  position: relative;
+}
+
+.description-container label {
+  position: absolute;
+  top: 100%;
+  margin-left: 10px;
+  margin-top: 5px;
+  font-weight: bold;
+  padding: 0px 10px !important;
+}
+
+#open-instructions {
+  position: absolute;
+  top: 100%;
+  right: 0%;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+#description-checkbox {
+  display: none;
+}
+
+#description-checkbox:checked ~ .object-description {
+  max-height: 100%;
+}
+
+#description-checkbox:checked ~ .object-description:before {
+  background: none;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.progress-bar-section {
+  height: 100%;
+  float: left;
+}
+
+.progress-bar-section:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.progress-bar-section:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.tags.has-addons {
+  flex-wrap: initial;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.break-lines, .break-lines * {
+  white-space: pre-line !important;
+}
+
+.break-lines .tag {
+  display: initial;
+}
+
+.break-lines .tag button {
+  vertical-align: middle;
+}
+
+.rtl-text {
+  direction: rtl;
+}
+
+#transcription-text div.tag {
+  /* To handle bidirectional text if necessary */
+  unicode-bidi: embed;
+}
+
+.light-input {
+  margin-top: -0.5rem;
+  padding: 4px 11px;
+}
+
+.light-input:focus {
+  box-shadow: none;
+  background-color: rgba(100, 148, 237, 0.5);
+}
+
+.annotation-form .field label {
+  margin-bottom: 0.25rem;
+}
+
+.annotation-form .field textarea {
+  padding: 7px;
+}
+
+.annotation-form label {
+  word-break: break-word;
+}
+
+.annotation-form .fieldset, .dropdown-toggle-content .fieldset {
+  border-radius: 6px;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
+  padding: 0.5rem 1.25rem 1.25rem;
+  border: 1px solid #ccc;
+}
+
+.annotation-form .fieldset > legend, .dropdown-toggle-content .fieldset > legend {
+  padding: 0 5px;
+  margin-bottom: 0px;
+}
+
+.dropdown-toggle-content .fieldset div:last-child {
+  margin-bottom: 0px !important;
+}
+
+.classification-button {
+  display: flow-root;
+  white-space: break-spaces;
+  height: auto;
+  max-width: -webkit-fill-available;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-link {
+  display: inline-block !important;
+  justify-content: left;
+  max-width: 15vw;
+}
+
+/* Brighten the highlight when a button is focused */
+.button.is-primary:focus:not(:active) {
+  box-shadow: inset 0 0 0 2px #fff, 0 0 0 0.125em rgb(0 209 178 / 25%) !important;
+}
+
+.button.is-link:focus:not(:active) {
+  box-shadow: inset 0 0 0 2px #fff, 0 0 0 0.125em rgb(72 95 199 / 25%) !important;
+}
+
+.button.is-info:focus:not(:active) {
+  box-shadow: inset 0 0 0 2px #fff, 0 0 0 0.125em rgb(62 142 208 / 25%) !important;
+}
+
+.button.is-success:focus:not(:active) {
+  box-shadow: inset 0 0 0 2px #fff, 0 0 0 0.125em rgb(72 199 142 / 25%) !important;
+}
+
+.button.is-warning:focus:not(:active) {
+  box-shadow: inset 0 0 0 2px #fff, 0 0 0 0.125em rgb(255 224 138 / 25%) !important;
+}
+
+.button.is-danger:focus:not(:active) {
+  box-shadow: inset 0 0 0 2px #fff, 0 0 0 0.125em rgb(241 70 104 / 25%) !important;
+}
+
+@keyframes hideAnimation {
+  from { opacity: 1; }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.notification.hide-after-delay {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  z-index: 100;
+  /* Wait 5s then completely hide the element in 1.5s */
+  animation: hideAnimation 1.5s ease-in 5s forwards;
+}
+
+.auto-width {
+  min-width: auto;
+  max-width: auto;
+}
+
+a.dropdown-item[disabled] {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+a.dropdown-item[disabled]:hover {
+  background-color: unset;
+  color: #4a4a4a;
+}
+
+button.dropdown-item.is-white {
+  border-radius: 0px;
+  background-color: unset;
+  color: #4a4a4a;
+}
+
+button.dropdown-item.is-white:hover {
+  background-color: #f5f5f5;
+  color: #0a0a0a;
+}
+
+.sticky-image {
+  position: sticky;
+  top: 76px;
+}
+
+/* Fill vertical space available under the headers */
+[class*='fill-height'] {
+  display: inline-block;
+  max-height: 100%;
+  width: 100%;
+}
+
+.fill-height {
+  height: calc(100vh - 10rem);
+}
+
+.fill-height-for-logs {
+  height: calc(100vh - 23rem);
+}
+
+.fill-height-with-carousel {
+  height: calc(100vh - 10rem - 180px);
+}
+
+[class*='fill-height'] .has-scrollable-content {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  height: fit-content;
+  overflow: auto;
+}
+
+.is-fullheight {
+  flex: 1;
+  height: initial !important;
+  overflow: auto;
+}
+
+.sortable-checkbox-span {
+  vertical-align: bottom !important;
+}
+
+form[class*='request-task'] span {
+  display: inline-block;
+  padding: calc(0.5em - 1px) 1rem;
+}
+
+form.request-tasks span {
+  white-space: nowrap;
+  height: 2.5em;
+  margin-right: 0.5em;
+}
+
+[class*='is-grabbable'] {
+  cursor: grab;
+  vertical-align: middle;
+}
+
+.is-absolute-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.menu-list a[disabled] {
+  opacity: .65;
+  cursor: default;
+}
+
+.menu-list a[disabled]:hover {
+  background-color: initial;
+}
+
+.label.is-required::after {
+  content: ' *';
+  color: red;
+}
+
+.comments-count {
+  position: absolute;
+  right: 11px;
+  top: 3px;
+  font-size: 0.8rem;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+/* Prettier colors for process logs */
+.has-text-warning-darker {
+  color: darkorange;
+}
+
+.is-warning-darker {
+  background-color: rgb(255, 243, 230) !important;
+  color: rgb(223, 122, 0) !important;
+}
+
+/*
+ * Multiple <tbody> are appended in this table,
+ * they need to mimic the style of <th> and <td>
+ */
+#entity-form-objects-table tbody {
+  border: 1px solid hsl(0deg, 0%, 86%);
+  border-width: 0 0 1px;
+}
+
+#entity-form-objects-table tbody:last-child {
+  border-bottom-width: 0;
+}
+
+/* Pretty border to distinguish field groups from simple fields */
+#entity-form-objects-table td[rowspan] {
+  background-color: white;
+  border-right: 1px dashed hsl(0deg, 0%, 86%);
+  border-bottom-width: 0;
+  vertical-align: middle;
+}
+
+.confidence-tag {
+  font-weight: normal;
+  vertical-align: bottom;
+}
+
+i.copy-to-clipboard {
+  padding-top: 0.2em;
+  margin-left: 5px;
+}
+
+.floating-confidence {
+  position: absolute;
+  top: -8px;
+  right: 36px;
+  z-index: 5;
+  opacity: 65%;
+}
+
+.floating-confidence span.tag {
+  margin-left: 0px !important;
+  line-height: 1em;
+  height: auto;
+  padding: 5px 7px;
+}

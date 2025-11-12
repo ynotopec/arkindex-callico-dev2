@@ -1,0 +1,51 @@
+* xref:get_started.adoc[Get started]
+* Projects
+** xref:projects/index.adoc[Overview]
+** xref:projects/create.adoc[Create]
+** xref:projects/edit.adoc[Edit]
+** xref:projects/manage_members.adoc[Manage members]
+** xref:projects/invite_users.adoc[Invite users]
+** Elements
+*** xref:projects/elements/index.adoc[Overview]
+*** Import
+**** xref:projects/elements/import/arkindex.adoc[From Arkindex]
+*** xref:projects/elements/browse.adoc[Browse]
+** Processes
+*** xref:projects/processes/index.adoc[Overview]
+*** xref:projects/processes/list.adoc[List]
+*** xref:projects/processes/view_details.adoc[View details]
+* Campaigns
+** xref:campaigns/index.adoc[Overview]
+** xref:campaigns/create.adoc[Create]
+** Configure
+*** xref:campaigns/configure/index.adoc[Overview]
+*** xref:campaigns/configure/transcription.adoc[Transcription]
+*** xref:campaigns/configure/entity.adoc[Entity]
+*** xref:campaigns/configure/entity_form.adoc[Entity form]
+*** xref:campaigns/configure/elements.adoc[Elements]
+*** xref:campaigns/configure/element_group.adoc[Element group]
+*** xref:campaigns/configure/classification.adoc[Classification]
+** Export results
+*** xref:campaigns/export/csv.adoc[As CSV]
+*** xref:campaigns/export/xlsx.adoc[As XLSX]
+*** xref:campaigns/export/arkindex.adoc[To Arkindex]
+** xref:campaigns/close_reopen_archive.adoc[Close/Reopen or Archive]
+* Tasks
+** xref:tasks/index.adoc[Overview]
+** xref:tasks/create.adoc[Create]
+** xref:tasks/publish.adoc[Publish]
+** xref:tasks/unassign.adoc[Unassign]
+** xref:tasks/list.adoc[List]
+** xref:tasks/moderate.adoc[Moderate]
+** xref:tasks/discuss.adoc[Discuss]
+* Contributing
+** xref:contributing/index.adoc[Overview]
+** xref:contributing/clone.adoc[Clone the source code]
+** xref:contributing/develop.adoc[Developer mode]
+** xref:contributing/validate.adoc[Continuous integration and documentation]
+** xref:contributing/submit.adoc[Submit your code]
+* Self-Hosting
+** xref:deploy/index.adoc[Overview]
+** xref:deploy/settings.adoc[Settings]
+* xref:languages.adoc[]
+* xref:releases.adoc[]

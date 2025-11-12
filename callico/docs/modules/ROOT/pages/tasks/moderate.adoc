@@ -1,0 +1,32 @@
+[#moderate-tasks]
+= Moderate tasks
+
+[WARNING]
+====
+
+* You must be a moderator or a manager of the project to moderate tasks.
+* You cannot moderate tasks in a campaign if that campaign is in a xref:campaigns/close_reopen_archive.adoc[`Closed` or `Archived` state].
+====
+
+If you are a member with moderator or manager role, the `Moderate` button is displayed for each task on the xref:./list.adoc[task list page].
+
+image::tasks/list_admin.png[List of tasks for moderators or managers]
+
+You can also find the `Moderate` button on the task details page.
+
+image::tasks/details.png[Task details page]
+
+For each task, you see the last annotation that was produced by the assigned user if it exists and you can:
+
+* reject it with the `Reject` button: the task will be marked as rejected and could be corrected by the assigned contributor, the moderators and managers or marked as validated if the moderation was erroneous,
+* validate it as is with the `Validate` button: the task will be marked as validated and will no longer be editable by the assigned contributor but the moderators and managers will be able to reject or correct it as before,
+* correct it, by modifying the desired fields and then using the `Validate` button: the task will be marked as validated upon submission of the correction that will be saved on the task as the new latest annotation.
+
+image::tasks/moderate.png[Task moderation]
+
+[NOTE]
+====
+
+* It is not possible to moderate unassigned tasks.
+* It is not possible to moderate tasks with a `Draft` state.
+====

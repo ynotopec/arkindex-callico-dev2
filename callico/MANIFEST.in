@@ -1,0 +1,9 @@
+include LICENSE
+include callico/VERSION
+include requirements.txt
+include tests-requirements.txt
+include callico/base/.env
+recursive-include callico/*/templates *.html
+recursive-include callico/base/static *.png *.ico *.css *.js
+recursive-include callico/locale *.po *.mo
+recursive-include callico/projects/management/commands/fixtures *.json

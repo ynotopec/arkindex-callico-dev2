@@ -1,0 +1,13 @@
+{% extends 'task_card_base.html' %}
+{% load i18n %}
+
+{% block button %}
+  <form class="request-task has-text-centered" method="post" action="{% url 'campaign-join' pk=campaign.id %}">
+    {% csrf_token %}
+
+    <input id="task_id" hidden type="hidden" name="task_id" value="{{ task.id }}" />
+
+    {% translate "Annotate" as title %}
+    {% include "request_tasks_button.html" with class="is-success" campaign=task.campaign has_available_tasks=True %}
+  </form>
+{% endblock button %}

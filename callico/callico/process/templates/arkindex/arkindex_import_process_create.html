@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load i18n basefilters bulma_tags %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=project %}
+{% endblock breadcrumb %}
+
+{% block title %}
+  {% translate "Arkindex elements import" %}
+{% endblock title %}
+
+{% block content %}
+  <a href="{% url 'project-details' project_id=project.id %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+  <h1 class="title">{% translate "Import elements from Arkindex" %}</h1>
+
+  <form id="arkindex-import-form" method="post">
+    {% csrf_token %}
+
+    {{ form | bulma }}
+
+    <button class="button is-success" type="submit">{% translate "Start the import" %}</button>
+  </form>
+
+  {% comment %}The custom widget for the elements_worker_run filter{% endcomment %}
+  <div id="elements_wr_widget" class="columns mb-1 is-hidden">
+    <div class="column is-narrow">
+      <label class="label is-size-7">{% translate "1) Select a type" %}</label>
+      <div class="select">
+        <select id="elements_wr_types_select" data-placeholder="{% translate 'Click to expand' %}">
+          {% for key, value in form.types.field.choices %}
+            <option value="{{ key }}">{{ value }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="column">
+      <label class="label is-size-7">{% translate "2) Select a worker run" %}</label>
+      <div class="select is-fullwidth">
+        <select id="elements_wr_worker_runs_select" data-placeholder="{% translate 'Click to expand' %}">
+          {% for key, value in form.transcriptions.field.choices %}
+            {% if forloop.counter > 1 %}
+              <option value="{{ key }}">{{ value }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="column is-narrow">
+      <label class="label is-size-7">{% translate "3) Save" %}</label>
+      <button id="elements_wr_worker_save_button" class="button is-info is-light is-rounded px-3" type="button" disabled>
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  {% translate "You are about to start this Arkindex import, are you sure you want to do that?" as confirm_modal %}
+  {% translate "OR" as or_span_text %}
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootArkindexImportForm({{ confirm_modal|jsonify }}, {{ or_span_text|jsonify }})
+    })
+  </script>
+{% endblock script %}

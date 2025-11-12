@@ -1,0 +1,53 @@
+{% extends 'user_task_manage_base.html' %}
+{% load i18n basefilters bulma_tags %}
+
+{% block image %}
+  {% if display_image %}
+    {{ block.super }}
+  {% elif user_task.task.element.transcription.text %}
+    <div class="column is-one-fifth">
+      {% include "labels.html" with annotation_mode=True %}
+    </div>
+  {% endif %}
+{% endblock image %}
+
+{% block form %}
+  {{ form | bulma }}
+
+  <fieldset class="is-hidden">
+    {{ form.empty_form }}
+  </fieldset>
+
+  {% if not user_task.task.element.transcription.text %}
+    <div class="message is-warning">
+      <div class="message-body">
+        {% translate "No transcription was found for this element." %}
+      </div>
+    </div>
+  {% else %}
+    {% if display_image %}
+      <div class="tags">
+        {% include "labels.html" with annotation_mode=True %}
+      </div>
+    {% endif %}
+
+    <div class="message has-scrollable-content">
+      <div id="transcription-text" class="break-lines message-body has-scrollable-content is-block {% if rtl_oriented_element %}rtl-text{% endif %}">{{ user_task.task.element.transcription.text }}</div>
+    </div>
+  {% endif %}
+{% endblock form %}
+
+{% block script %}
+  {{ block.super }}
+
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootEntitiesTranscriptionAnnotate(
+        {{ user_task.id|stringformat:"s"|jsonify }},
+        {{ parent_id|stringformat:"s"|jsonify }},
+        {{ previous_entities|jsonify }},
+        {{ full_word_selection }}
+      )
+    })
+  </script>
+{% endblock script %}

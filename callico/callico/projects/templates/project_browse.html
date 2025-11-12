@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=project %}
+{% endblock breadcrumb %}
+
+{% block title %}
+  {% translate "Browse elements" %}
+{% endblock title %}
+
+{% block content %}
+  {% if parent %}
+    <a
+      class="button is-pulled-right"
+      href="
+            {% if parent.parent %}
+              {% url 'project-browse' project_id=project.id element_id=parent.parent.id %}
+            {% else %}
+              {% url 'project-browse' project_id=project.id %}
+            {% endif %}
+           ">
+      {% translate "Back to parent" %}
+    </a>
+  {% else %}
+    <a class="button is-pulled-right" href="{% url 'project-details' project_id=project.id %}">{% translate "Go back" %}</a>
+  {% endif %}
+  <h1 class="title truncate-long-words pr-4" title="{{ project.name }}">
+    {% blocktranslate with name=project.name %}Browse elements in {{ name }}{% endblocktranslate %}
+  </h1>
+
+  {% if can_manage %}
+    <div class="tags mb-1">
+      <div class="tags has-addons mb-1 mr-2">
+        <span class="tag">
+          <p class="has-text-weight-bold">{% translate "Total images" %}</p>
+        </span>
+        <span class="tag is-info">{{ total_images }}</span>
+      </div>
+      <div class="tags has-addons mb-1 mr-2">
+        <span class="tag">
+          <p class="has-text-weight-bold">{% translate "Total elements" %}</p>
+        </span>
+        <span class="tag is-info">{{ total_elements }}</span>
+      </div>
+
+      {% for count in types_counts %}
+        <div class="tags has-addons mb-1 mr-2">
+          <span class="tag truncate-long-words" title="{{ count.type__name }}">
+            <p class="has-text-weight-bold truncate-long-words">{{ count.type__name }}</p>
+          </span>
+          <span class="tag is-info">{{ count.total }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="columns">
+    <div class="column">
+      {% include "pagination.html" %}
+      {% if elements %}
+        <div class="columns is-multiline mt-3">
+          {% for element in elements %}
+            <div class="column is-one-quarter is-one-fifth-widescreen">
+              <a href="
+                       {% if not element.type.folder %}
+                         {% url 'element-details' pk=element.id %}
+                       {% else %}
+                         {% url 'project-browse' project_id=element.project.id element_id=element.id %}
+                       {% endif %}
+                      ">
+                <div class="card zoom p-1">
+                  <div class="card-image has-text-centered">
+                    {% if element.image_id %}
+                      <figure class="image">
+                        <img class="restrict-small-thumbnail-height" src="{{ element.small_thumbnail }}">
+                      </figure>
+                    {% else %}
+                      <span class="icon is-size-1 has-text-grey mt-5">
+                        {% with icon=element.type.folder|yesno:"folder,image" %}
+                          <i class="fas fa-{{ icon }}"></i>
+                        {% endwith %}
+                      </span>
+                    {% endif %}
+                  </div>
+                  <div class="card-content">
+                    <div class="content">
+                      <p class="truncate-long-words mb-1 has-text-weight-bold" title="{{ element.name }}">
+                        {{ element.name }}
+                      </p>
+                      <p class="truncate-long-words" title="{{ element.type }}">
+                        {% translate "Type:" %} {{ element.type }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="notification is-info is-light mt-5">{% translate "No element available" %}</div>
+      {% endif %}
+    </div>
+    {% if parent.tasks.count %}
+      <div class="column is-two-fifths">
+        {% include "element_task_list.html" with element=parent %}
+      </div>
+    {% endif %}
+  </div>
+
+{% endblock content %}

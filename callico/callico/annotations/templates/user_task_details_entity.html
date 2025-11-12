@@ -1,0 +1,30 @@
+{% extends 'user_task_details_base.html' %}
+{% load i18n basefilters %}
+
+{% block image %}
+  {% if display_image %}
+    {{ block.super }}
+  {% endif %}
+{% endblock image %}
+
+{% block context %}
+  <div class="tags">
+    {% include "labels.html" with annotation_mode=False %}
+  </div>
+{% endblock context %}
+
+{% block answer %}
+  <div class="message" answer-entities="{{ answer.entities }}">
+    <div class="break-lines break-word message-body {% if answer.rtl_oriented %}rtl-text{% endif %}">{{ answer.value }}</div>
+  </div>
+{% endblock answer %}
+
+{% block script %}
+  {{ block.super }}
+
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      callico.bootEntitiesTranscriptionUserTaskDetails({{ user_task.task.element.id|stringformat:"s"|jsonify }})
+    })
+  </script>
+{% endblock script %}

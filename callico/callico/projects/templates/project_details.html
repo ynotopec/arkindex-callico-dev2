@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load i18n basefilters %}
+
+{% block breadcrumb %}
+  {% include "breadcrumb.html" with project=project %}
+{% endblock breadcrumb %}
+
+{% block title %}
+  {% translate "Project details" %}
+{% endblock title %}
+
+{% block content %}
+
+  <div class="columns">
+    {% comment %}No menu for contributors & anonymous users{% endcomment %}
+
+    {% comment %}Moderator menu - Browse elements only{% endcomment %}
+    {% if can_moderate %}
+      <div class="column is-2">
+        <aside class="menu">
+          <p class="menu-label">
+            {% translate "Elements" %}
+          </p>
+          <ul class="menu-list">
+            <li><a href="{% url 'project-browse' project_id=project.id %}">{% translate "Browse" %}</a></li>
+          </ul>
+        </aside>
+      </div>
+    {% endif %}
+
+    {% comment %}Manager menu{% endcomment %}
+    {% if can_manage %}
+      <div class="column is-2">
+        <aside class="menu">
+          <p class="menu-label">
+            {% translate "Project" %}
+          </p>
+          <ul class="menu-list">
+            <li><a href="{% url 'project-update' pk=project.id %}">{% translate "Edit" %}</a></li>
+          </ul>
+          <ul class="menu-list">
+            <li><a href="{% url 'members' project_id=project.id %}">{% translate "Manage members" %}</a></li>
+          </ul>
+          <ul class="menu-list">
+            <li><a href="{% url 'invite-link-management' project_id=project.id %}">{% translate "Invite users" %}</a></li>
+          </ul>
+          <p class="menu-label">
+            {% translate "Elements" %}
+          </p>
+          <ul class="menu-list">
+            <li><a href="{% url 'project-browse' project_id=project.id %}">{% translate "Browse" %}</a></li>
+            {% if project.provider.type == "arkindex" %}
+              <li><a href="{% url 'arkindex-import-create' pk=project.id %}">{% translate "Import from Arkindex" %}</a></li>
+            {% endif %}
+          </ul>
+          <p class="menu-label">
+            {% translate "Processes" %}
+          </p>
+          <ul class="menu-list">
+            <li><a href="{% url 'processes' pk=project.id %}">{% translate "List" %}</a></li>
+          </ul>
+          <p class="menu-label">
+            {% translate "Campaigns" %}
+          </p>
+          <ul class="menu-list">
+            <li><a href="{% url 'campaign-create' project_id=project.id %}">{% translate "Create" %}</a></li>
+          </ul>
+        </aside>
+      </div>
+    {% endif %}
+
+    <div class="column {% if can_manage or can_moderate %}is-10{% else %}is-full{% endif %}">
+      <div class="columns">
+        {% if project.illustration %}
+          <div class="column is-narrow">
+            <div class="project-thumbnail-180">
+              <div class="fitting-img" style='background-image: url("{{ project.illustration.url }}")'></div>
+            </div>
+          </div>
+        {% endif %}
+        <div class="column min-width-0">
+          <a href="{% url 'projects' %}" class="button is-pulled-right">{% translate "Go back" %}</a>
+
+          <h1 class="title mb-2 truncate-long-words pr-4" title="{{ project.name }}">
+            {% blocktranslate with name=project.name %}Project "{{ name }}"{% endblocktranslate %}
+          </h1>
+
+          <span class="subtitle">
+            {% blocktranslate with count=nb_contributors %}{{ count }} contributor(s){% endblocktranslate %}
+          </span>
+
+          {% if project.description %}
+            <div class="mt-2">
+              {% include "collapsable_description.html" with description=project.description %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <hr />
+
+      <h2 class="title is-4">{% translate "Attached campaigns" %}</h2>
+
+      <table class="table is-fullwidth is-hoverable">
+        <thead>
+          <tr>
+            <th>{% translate "Name" %}</th>
+            <th>{% translate "Status" %}</th>
+            <th>{% translate "Progress" %}</th>
+            <th class="is-narrow"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for campaign in campaigns %}
+            <tr>
+              <td class="truncate-long-words restricted-max-width-50" title="{{ campaign.name }}">
+                {% if can_manage or can_moderate %}
+                  <a href="{% url 'campaign-details' pk=campaign.id %}">{{ campaign.name }}</a>
+                {% else %}
+                  <span>{{ campaign.name }}</span>
+                {% endif %}
+              </td>
+              <td><span class="is-light tag {{ campaign | campaign_class }}">{{ campaign.get_state_display }}</span></td>
+              <td>
+                {% if campaign.total_tasks %}
+                  {% widthratio campaign.completed_tasks campaign.total_tasks 100 as completed_percentage %}
+                  {{ completed_percentage }}% ({{ campaign.completed_tasks }}/{{ campaign.total_tasks }})
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+              <td>
+                <div class="is-flex is-justify-content-right">
+                  {% comment %}
+                    Do only display the option to request tasks on campaigns with available tasks,
+                    for non members or contributors of a project
+                  {% endcomment %}
+                  {% if not can_manage and not can_moderate and campaign.nb_tasks_auto_assignment %}
+                    <form class="request-tasks" method="post" action="{% url 'campaign-join' pk=campaign.id %}">
+                      {% csrf_token %}
+
+                      {% translate "Request tasks" as title %}
+                      {% include "request_tasks_button.html" with campaign=campaign has_pending_tasks=campaign.has_pending_tasks has_available_tasks=campaign.has_available_tasks %}
+                    </form>
+                  {% endif %}
+
+                  {% if can_manage or can_moderate %}
+                    <a href="{% url 'admin-campaign-task-list' pk=campaign.id %}" class="button is-light is-info">{% translate "See tasks" %}</a>
+                  {% elif not campaign.is_closed %}
+                    {% if campaign.has_available_tasks or project.role and campaign.has_user_tasks %}
+                      {% firstof project.role|yesno:",available" campaign.has_pending_tasks|yesno:"pending," campaign.has_available_tasks|yesno:"available," as state %}
+                      <a class="button is-info" href="{% url 'contributor-campaign-task-list' pk=campaign.id %}{% querystring state=state %}">
+                        {% if not project.role %}
+                          {% translate "The tasks" %}
+                        {% else %}
+                          {% translate "My tasks" %}
+                        {% endif %}
+                      </a>
+                    {% endif %}
+                  {% endif %}
+                </div>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="4">
+                <div class="notification is-info is-light">{% translate "No campaign available" %}</div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock content %}
