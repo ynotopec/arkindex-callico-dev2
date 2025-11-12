@@ -27,7 +27,10 @@ logLevel = "DEBUG"
 [certificatesResolvers]
   [certificatesResolvers.le]
     [certificatesResolvers.le.acme]
-      email = "admin@example.com"
+      # Default to a non-reserved email domain so Let's Encrypt accepts the
+      # registration even if the deployer does not override the address via
+      # environment variables.
+      email = "admin@callico.dev"
       storage = "/letsencrypt/acme.json"
       caServer = "https://acme-v02.api.letsencrypt.org/directory"
 

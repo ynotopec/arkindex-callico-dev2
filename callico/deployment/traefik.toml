@@ -13,7 +13,9 @@ logLevel = "INFO"
 [certificatesResolvers]
   [certificatesResolvers.le]
     [certificatesResolvers.le.acme]
-      email = "admin@example.com"
+      # Use a valid-looking default email to avoid Let's Encrypt rejecting the
+      # ACME account creation when deployers forget to override it.
+      email = "admin@callico.dev"
       storage = "/letsencrypt/acme.json"
       caServer = "https://acme-v02.api.letsencrypt.org/directory"
 
