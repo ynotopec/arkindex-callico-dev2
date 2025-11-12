@@ -10,8 +10,9 @@ LETSENCRYPT_PRODUCTION_CA="https://acme-v02.api.letsencrypt.org/directory"
 LETSENCRYPT_STAGING_CA="https://acme-staging-v02.api.letsencrypt.org/directory"
 
 DEFAULT_CALICO_DOMAIN="callico.company.com"
-DEFAULT_MINIO_DOMAIN="minio.callico.company.com"
-DEFAULT_MINIO_CONSOLE_DOMAIN="minio-console.callico.company.com"
+DEFAULT_MINIO_DOMAIN="minio.company.com"
+DEFAULT_MINIO_CONSOLE_DOMAIN="minio-console.company.com"
+DEFAULT_BASE_DOMAIN="company.com"
 
 if [[ ! -d "$DEPLOY_DIR" ]]; then
   echo "Error: deployment directory '$DEPLOY_DIR' not found." >&2
@@ -83,21 +84,30 @@ prompt_for_value() {
 
 write_env_file() {
   cat >"$ENV_FILE" <<EOF
-CALICO_DOMAIN=$1
-MINIO_DOMAIN=$2
-MINIO_CONSOLE_DOMAIN=$3
-LETSENCRYPT_EMAIL=$4
-LETSENCRYPT_USE_STAGING=$5
+BASE_DOMAIN=$1
+CALICO_DOMAIN=$2
+MINIO_DOMAIN=$3
+MINIO_CONSOLE_DOMAIN=$4
+LETSENCRYPT_EMAIL=$5
+LETSENCRYPT_USE_STAGING=$6
 EOF
 }
 
 load_domain_configuration() {
-  local calico_domain_input="${CALICO_DOMAIN:-}" minio_domain_input="${MINIO_DOMAIN:-}" minio_console_domain_input="${MINIO_CONSOLE_DOMAIN:-}"
+  local base_domain_input="${BASE_DOMAIN:-}" calico_domain_input="${CALICO_DOMAIN:-}" minio_domain_input="${MINIO_DOMAIN:-}" minio_console_domain_input="${MINIO_CONSOLE_DOMAIN:-}"
   local letsencrypt_email_input="${LETSENCRYPT_EMAIL:-}" letsencrypt_staging_input="${LETSENCRYPT_USE_STAGING:-}"
   local reconfigure=0
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
+      --base-domain)
+        if [[ $# -lt 2 ]]; then
+          echo "Error: --base-domain requires a value." >&2
+          exit 1
+        fi
+        shift
+        base_domain_input="$1"
+        ;;
       --callico-domain)
         if [[ $# -lt 2 ]]; then
           echo "Error: --callico-domain requires a value." >&2
@@ -144,9 +154,10 @@ load_domain_configuration() {
 Usage: $(basename "$0") [options]
 
 Options:
-  --callico-domain DOMAIN         Set the public domain for the Callico web application
-  --minio-domain DOMAIN           Set the public domain for MinIO S3 endpoint (default: minio.<callico-domain>)
-  --minio-console-domain DOMAIN   Set the public domain for the MinIO Console (default: minio-console.<callico-domain>)
+  --base-domain DOMAIN            Set the root domain (default: company.com)
+  --callico-domain DOMAIN         Set the public domain for the Callico web application (default: callico.<root-domain>)
+  --minio-domain DOMAIN           Set the public domain for MinIO S3 endpoint (default: minio.<root-domain>)
+  --minio-console-domain DOMAIN   Set the public domain for the MinIO Console (default: minio-console.<root-domain>)
   --letsencrypt-email EMAIL       Email used for Let's Encrypt certificate notifications (default: admin@<callico-domain>)
   --letsencrypt-staging           Use Let's Encrypt staging environment for certificate requests
   --letsencrypt-production        Use Let's Encrypt production environment for certificate requests (default)
@@ -163,7 +174,7 @@ USAGE
     shift
   done
 
-  if [[ -n "$calico_domain_input" || -n "$minio_domain_input" || -n "$minio_console_domain_input" || -n "$letsencrypt_email_input" || -n "$letsencrypt_staging_input" ]]; then
+  if [[ -n "$base_domain_input" || -n "$calico_domain_input" || -n "$minio_domain_input" || -n "$minio_console_domain_input" || -n "$letsencrypt_email_input" || -n "$letsencrypt_staging_input" ]]; then
     reconfigure=1
   fi
 
@@ -173,6 +184,7 @@ USAGE
   current_minio_console="$(load_env_value MINIO_CONSOLE_DOMAIN || true)"
   current_le_email="$(load_env_value LETSENCRYPT_EMAIL || true)"
   current_le_staging="$(load_env_value LETSENCRYPT_USE_STAGING || true)"
+  current_base="$(load_env_value BASE_DOMAIN || true)"
 
   if [[ -f "$ENV_FILE" && $reconfigure -eq 0 && -z "$calico_domain_input" && -z "$minio_domain_input" && -z "$minio_console_domain_input" && -z "$letsencrypt_email_input" && -z "$letsencrypt_staging_input" ]]; then
     echo "Using existing domain configuration from '$ENV_FILE'."
@@ -182,13 +194,30 @@ USAGE
     local fallback_email="admin@${CALICO_DOMAIN}"
     export LETSENCRYPT_EMAIL="${current_le_email:-$fallback_email}"
     export LETSENCRYPT_USE_STAGING="${current_le_staging:-false}"
+    if [[ -n "${current_base:-}" ]]; then
+      export BASE_DOMAIN="$current_base"
+    elif [[ "$CALICO_DOMAIN" == callico.* ]]; then
+      export BASE_DOMAIN="${CALICO_DOMAIN#callico.}"
+    fi
     return
   fi
 
-  local calico_domain minio_domain minio_console_domain letsencrypt_email letsencrypt_use_staging
-  calico_domain="${calico_domain_input:-${current_calico:-$DEFAULT_CALICO_DOMAIN}}"
-  minio_domain="${minio_domain_input:-${current_minio:-minio.${calico_domain}}}"
-  minio_console_domain="${minio_console_domain_input:-${current_minio_console:-minio-console.${calico_domain}}}"
+  local base_domain calico_domain minio_domain minio_console_domain letsencrypt_email letsencrypt_use_staging
+  if [[ -n "$base_domain_input" ]]; then
+    base_domain="$base_domain_input"
+  elif [[ -n "${current_base:-}" ]]; then
+    base_domain="$current_base"
+  elif [[ -n "$calico_domain_input" && "$calico_domain_input" == callico.* ]]; then
+    base_domain="${calico_domain_input#callico.}"
+  elif [[ -n "${current_calico:-}" && "${current_calico}" == callico.* ]]; then
+    base_domain="${current_calico#callico.}"
+  else
+    base_domain="$DEFAULT_BASE_DOMAIN"
+  fi
+
+  calico_domain="${calico_domain_input:-${current_calico:-callico.${base_domain}}}"
+  minio_domain="${minio_domain_input:-${current_minio:-minio.${base_domain}}}"
+  minio_console_domain="${minio_console_domain_input:-${current_minio_console:-minio-console.${base_domain}}}"
   letsencrypt_email="${letsencrypt_email_input:-${current_le_email:-admin@${calico_domain}}}"
 
   if [[ -n "$letsencrypt_staging_input" ]]; then
@@ -200,19 +229,24 @@ USAGE
     letsencrypt_use_staging="${current_le_staging:-false}"
   fi
 
+  if [[ -z "$base_domain_input" ]]; then
+    base_domain="$(prompt_for_value "Root domain [$base_domain]: " "$base_domain")"
+  fi
+
   if [[ -z "$calico_domain_input" ]]; then
+    calico_domain="callico.${base_domain}"
     calico_domain="$(prompt_for_value "Callico domain [$calico_domain]: " "$calico_domain")"
   fi
 
   if [[ -z "$minio_domain_input" && ( -z "$current_minio" || $reconfigure -eq 1 ) ]]; then
-    minio_domain="minio.${calico_domain}"
+    minio_domain="minio.${base_domain}"
   fi
   if [[ -z "$minio_domain_input" ]]; then
     minio_domain="$(prompt_for_value "MinIO domain [$minio_domain]: " "$minio_domain")"
   fi
 
   if [[ -z "$minio_console_domain_input" && ( -z "$current_minio_console" || $reconfigure -eq 1 ) ]]; then
-    minio_console_domain="minio-console.${calico_domain}"
+    minio_console_domain="minio-console.${base_domain}"
   fi
   if [[ -z "$minio_console_domain_input" ]]; then
     minio_console_domain="$(prompt_for_value "MinIO console domain [$minio_console_domain]: " "$minio_console_domain")"
@@ -231,7 +265,12 @@ USAGE
     fi
   fi
 
-  for value in "$calico_domain" "$minio_domain" "$minio_console_domain"; do
+  if [[ -z "$base_domain" ]]; then
+    echo "Error: root domain cannot be empty." >&2
+    exit 1
+  fi
+
+  for value in "$base_domain" "$calico_domain" "$minio_domain" "$minio_console_domain"; do
     if [[ -z "$value" ]]; then
       echo "Error: domain values cannot be empty." >&2
       exit 1
@@ -251,8 +290,9 @@ USAGE
     exit 1
   fi
 
-  write_env_file "$calico_domain" "$minio_domain" "$minio_console_domain" "$letsencrypt_email" "$letsencrypt_use_staging"
+  write_env_file "$base_domain" "$calico_domain" "$minio_domain" "$minio_console_domain" "$letsencrypt_email" "$letsencrypt_use_staging"
 
+  export BASE_DOMAIN="$base_domain"
   export CALICO_DOMAIN="$calico_domain"
   export MINIO_DOMAIN="$minio_domain"
   export MINIO_CONSOLE_DOMAIN="$minio_console_domain"
