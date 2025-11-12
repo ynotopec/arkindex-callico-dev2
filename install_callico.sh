@@ -10,8 +10,8 @@ LETSENCRYPT_PRODUCTION_CA="https://acme-v02.api.letsencrypt.org/directory"
 LETSENCRYPT_STAGING_CA="https://acme-staging-v02.api.letsencrypt.org/directory"
 
 DEFAULT_CALICO_DOMAIN="callico.company.com"
-DEFAULT_MINIO_DOMAIN="minio.company.com"
-DEFAULT_MINIO_CONSOLE_DOMAIN="minio-console.company.com"
+DEFAULT_MINIO_DOMAIN="minio-callico.company.com"
+DEFAULT_MINIO_CONSOLE_DOMAIN="minio-console-callico.company.com"
 DEFAULT_BASE_DOMAIN="company.com"
 
 if [[ ! -d "$DEPLOY_DIR" ]]; then
@@ -156,8 +156,8 @@ Usage: $(basename "$0") [options]
 Options:
   --base-domain DOMAIN            Set the root domain (default: company.com)
   --callico-domain DOMAIN         Set the public domain for the Callico web application (default: callico.<root-domain>)
-  --minio-domain DOMAIN           Set the public domain for MinIO S3 endpoint (default: minio.<root-domain>)
-  --minio-console-domain DOMAIN   Set the public domain for the MinIO Console (default: minio-console.<root-domain>)
+  --minio-domain DOMAIN           Set the public domain for MinIO S3 endpoint (default: minio-callico.<root-domain>)
+  --minio-console-domain DOMAIN   Set the public domain for the MinIO Console (default: minio-console-callico.<root-domain>)
   --letsencrypt-email EMAIL       Email used for Let's Encrypt certificate notifications (default: admin@<callico-domain>)
   --letsencrypt-staging           Use Let's Encrypt staging environment for certificate requests
   --letsencrypt-production        Use Let's Encrypt production environment for certificate requests (default)
@@ -216,8 +216,8 @@ USAGE
   fi
 
   calico_domain="${calico_domain_input:-${current_calico:-callico.${base_domain}}}"
-  minio_domain="${minio_domain_input:-${current_minio:-minio.${base_domain}}}"
-  minio_console_domain="${minio_console_domain_input:-${current_minio_console:-minio-console.${base_domain}}}"
+  minio_domain="${minio_domain_input:-${current_minio:-minio-callico.${base_domain}}}"
+  minio_console_domain="${minio_console_domain_input:-${current_minio_console:-minio-console-callico.${base_domain}}}"
   letsencrypt_email="${letsencrypt_email_input:-${current_le_email:-admin@${calico_domain}}}"
 
   if [[ -n "$letsencrypt_staging_input" ]]; then
@@ -239,14 +239,14 @@ USAGE
   fi
 
   if [[ -z "$minio_domain_input" && ( -z "$current_minio" || $reconfigure -eq 1 ) ]]; then
-    minio_domain="minio.${base_domain}"
+    minio_domain="minio-callico.${base_domain}"
   fi
   if [[ -z "$minio_domain_input" ]]; then
     minio_domain="$(prompt_for_value "MinIO domain [$minio_domain]: " "$minio_domain")"
   fi
 
   if [[ -z "$minio_console_domain_input" && ( -z "$current_minio_console" || $reconfigure -eq 1 ) ]]; then
-    minio_console_domain="minio-console.${base_domain}"
+    minio_console_domain="minio-console-callico.${base_domain}"
   fi
   if [[ -z "$minio_console_domain_input" ]]; then
     minio_console_domain="$(prompt_for_value "MinIO console domain [$minio_console_domain]: " "$minio_console_domain")"
