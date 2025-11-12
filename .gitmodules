@@ -1,0 +1,3 @@
+[submodule "external/callico"]
+	path = external/callico
+	url = https://gitlab.teklia.com/callico/callico.git
