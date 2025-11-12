@@ -5,9 +5,15 @@ services:
   lb:
     container_name: callico-lb
     image: traefik:2.6
+    environment:
+      TRAEFIK_CERTIFICATESRESOLVERS_le_ACME_EMAIL: "${LETSENCRYPT_EMAIL:-}"
+      TRAEFIK_CERTIFICATESRESOLVERS_le_ACME_STORAGE: "/letsencrypt/acme.json"
+      TRAEFIK_CERTIFICATESRESOLVERS_le_ACME_HTTPCHALLENGE_ENTRYPOINT: "web"
+      TRAEFIK_CERTIFICATESRESOLVERS_le_ACME_CASERVER: "${LETSENCRYPT_CA_SERVER:-}"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.toml:/traefik.toml
+      - ./letsencrypt:/letsencrypt
     ports:
       # Only the load balancer is exposed publicly
       - 80:80
@@ -19,6 +25,11 @@ services:
     image: registry.gitlab.teklia.com/callico/callico:0.6.0
     env_file:
       - callico.env
+    environment:
+      INSTANCE_URL: "https://${CALICO_DOMAIN:-callico.company.com}"
+      ALLOWED_HOSTS: "${CALICO_DOMAIN:-callico.company.com}"
+      CSRF_TRUSTED_ORIGINS: "https://${CALICO_DOMAIN:-callico.company.com}"
+      STORAGE_ENDPOINT_URL: "https://${MINIO_DOMAIN:-minio.callico.company.com}"
     restart: unless-stopped
     depends_on:
       - lb
@@ -26,8 +37,9 @@ services:
 
     labels:
       traefik.enable: true
-      traefik.http.routers.callico.rule: Host(`callico.company.com`)
+      traefik.http.routers.callico.rule: Host(`${CALICO_DOMAIN:-callico.company.com}`)
       traefik.http.routers.callico.tls: true
+      traefik.http.routers.callico.tls.certresolver: le
 
   # Asynchronous worker
   worker:
@@ -36,6 +48,9 @@ services:
     command: "celery -A callico.base worker -B -l INFO"
     env_file:
       - callico.env
+    environment:
+      INSTANCE_URL: "https://${CALICO_DOMAIN:-callico.company.com}"
+      STORAGE_ENDPOINT_URL: "https://${MINIO_DOMAIN:-minio.callico.company.com}"
     depends_on:
       - redis
 
@@ -66,7 +81,7 @@ services:
       # Please update these settings on your own deployment!
       MINIO_ROOT_USER: callico-app
       MINIO_ROOT_PASSWORD: changeme
-      MINIO_BROWSER_REDIRECT_URL: https://minio-console.company.com
+      MINIO_BROWSER_REDIRECT_URL: "https://${MINIO_CONSOLE_DOMAIN:-minio-console.callico.company.com}"
     restart: unless-stopped
     volumes:
       - minio:/data
@@ -75,12 +90,14 @@ services:
       - 9001
     labels:
       traefik.enable: true
-      traefik.http.routers.minio.rule: Host(`minio.callico.company.com`)
+      traefik.http.routers.minio.rule: Host(`${MINIO_DOMAIN:-minio.callico.company.com}`)
       traefik.http.routers.minio.tls: true
+      traefik.http.routers.minio.tls.certresolver: le
       traefik.http.routers.minio.service:  minio-service
       traefik.http.services.minio-service.loadbalancer.server.port: 9000
-      traefik.http.routers.minio-console.rule: Host(`minio-console.callico.company.com`)
+      traefik.http.routers.minio-console.rule: Host(`${MINIO_CONSOLE_DOMAIN:-minio-console.callico.company.com}`)
       traefik.http.routers.minio-console.tls: true
+      traefik.http.routers.minio-console.tls.certresolver: le
       traefik.http.routers.minio-console.service:  minio-console-service
       traefik.http.services.minio-console-service.loadbalancer.server.port: 9001
     depends_on:
