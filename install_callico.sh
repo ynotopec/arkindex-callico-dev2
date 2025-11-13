@@ -17,6 +17,7 @@ DEFAULT_DB_USER="callico"
 DEFAULT_SHARED_PASSWORD="changeme"
 DEFAULT_MINIO_ROOT_USER="callico-app"
 DEFAULT_STORAGE_ACCESS_KEY="callico-app"
+DEFAULT_ADMIN_USERNAME="admin"
 
 if [[ ! -d "$DEPLOY_DIR" ]]; then
   echo "Error: deployment directory '$DEPLOY_DIR' not found." >&2
@@ -100,6 +101,9 @@ MINIO_ROOT_USER=$9
 MINIO_ROOT_PASSWORD=${10}
 CALICO_STORAGE_ACCESS_KEY=${11}
 CALICO_STORAGE_SECRET_KEY=${12}
+CALICO_ADMIN_USERNAME=${13}
+CALICO_ADMIN_EMAIL=${14}
+CALICO_ADMIN_PASSWORD=${15}
 EOF
 }
 
@@ -110,6 +114,9 @@ load_domain_configuration() {
   local minio_root_user_input="${MINIO_ROOT_USER:-}"
   local storage_access_key_input="${CALICO_STORAGE_ACCESS_KEY:-}"
   local shared_password_input="${CALICO_INSTALL_PASSWORD:-}"
+  local admin_username_input="${CALICO_ADMIN_USERNAME:-}"
+  local admin_email_input="${CALICO_ADMIN_EMAIL:-}"
+  local admin_password_input="${CALICO_ADMIN_PASSWORD:-}"
   local reconfigure=0
 
   while [[ $# -gt 0 ]]; do
@@ -184,6 +191,30 @@ load_domain_configuration() {
         shift
         storage_access_key_input="$1"
         ;;
+      --admin-username)
+        if [[ $# -lt 2 ]]; then
+          echo "Error: --admin-username requires a value." >&2
+          exit 1
+        fi
+        shift
+        admin_username_input="$1"
+        ;;
+      --admin-email)
+        if [[ $# -lt 2 ]]; then
+          echo "Error: --admin-email requires a value." >&2
+          exit 1
+        fi
+        shift
+        admin_email_input="$1"
+        ;;
+      --admin-password)
+        if [[ $# -lt 2 ]]; then
+          echo "Error: --admin-password requires a value." >&2
+          exit 1
+        fi
+        shift
+        admin_password_input="$1"
+        ;;
       --password)
         if [[ $# -lt 2 ]]; then
           echo "Error: --password requires a value." >&2
@@ -210,7 +241,10 @@ Options:
   --db-user USER                  Database login for the Callico Postgres instance (default: callico)
   --minio-root-user USER          MinIO root user (default: callico-app)
   --storage-access-key KEY        Access key ID used by Callico to reach MinIO (default: callico-app)
-  --password PASSWORD             Shared password applied to the database, MinIO root, and storage secret
+  --admin-username USER           Username for the initial Callico administrator (default: admin)
+  --admin-email EMAIL             Email for the initial Callico administrator (default: admin@<callico-domain>)
+  --admin-password PASSWORD       Password for the initial Callico administrator (default: shared password)
+  --password PASSWORD             Shared password applied to the database, MinIO root, storage secret, and admin (unless overridden)
   --reconfigure                   Prompt again for domain values even if a saved configuration exists
   -h, --help                      Show this help message
 USAGE
@@ -224,7 +258,7 @@ USAGE
     shift
   done
 
-  if [[ -n "$base_domain_input" || -n "$calico_domain_input" || -n "$minio_domain_input" || -n "$minio_console_domain_input" || -n "$letsencrypt_email_input" || -n "$letsencrypt_staging_input" || -n "$db_user_input" || -n "$minio_root_user_input" || -n "$storage_access_key_input" || -n "$shared_password_input" ]]; then
+  if [[ -n "$base_domain_input" || -n "$calico_domain_input" || -n "$minio_domain_input" || -n "$minio_console_domain_input" || -n "$letsencrypt_email_input" || -n "$letsencrypt_staging_input" || -n "$db_user_input" || -n "$minio_root_user_input" || -n "$storage_access_key_input" || -n "$shared_password_input" || -n "$admin_username_input" || -n "$admin_email_input" || -n "$admin_password_input" ]]; then
     reconfigure=1
   fi
 
@@ -236,15 +270,19 @@ USAGE
   current_le_staging="$(load_env_value LETSENCRYPT_USE_STAGING || true)"
   current_base="$(load_env_value BASE_DOMAIN || true)"
   local current_db_user current_db_password current_minio_root_user current_minio_root_password current_storage_access_key current_storage_secret_key
+  local current_admin_username current_admin_email current_admin_password
   current_db_user="$(load_env_value CALICO_DB_USER || true)"
   current_db_password="$(load_env_value CALICO_DB_PASSWORD || true)"
   current_minio_root_user="$(load_env_value MINIO_ROOT_USER || true)"
   current_minio_root_password="$(load_env_value MINIO_ROOT_PASSWORD || true)"
   current_storage_access_key="$(load_env_value CALICO_STORAGE_ACCESS_KEY || true)"
   current_storage_secret_key="$(load_env_value CALICO_STORAGE_SECRET_KEY || true)"
+  current_admin_username="$(load_env_value CALICO_ADMIN_USERNAME || true)"
+  current_admin_email="$(load_env_value CALICO_ADMIN_EMAIL || true)"
+  current_admin_password="$(load_env_value CALICO_ADMIN_PASSWORD || true)"
 
   local secrets_available=1
-  if [[ -z "${current_db_password:-}" || -z "${current_minio_root_password:-}" || -z "${current_storage_secret_key:-}" ]]; then
+  if [[ -z "${current_db_password:-}" || -z "${current_minio_root_password:-}" || -z "${current_storage_secret_key:-}" || -z "${current_admin_password:-}" ]]; then
     secrets_available=0
   fi
 
@@ -253,7 +291,7 @@ USAGE
     db_login_available=0
   fi
 
-  if [[ -f "$ENV_FILE" && $reconfigure -eq 0 && -z "$calico_domain_input" && -z "$minio_domain_input" && -z "$minio_console_domain_input" && -z "$letsencrypt_email_input" && -z "$letsencrypt_staging_input" && -z "$db_user_input" && -z "$minio_root_user_input" && -z "$storage_access_key_input" && -z "$shared_password_input" && $secrets_available -eq 1 && $db_login_available -eq 1 ]]; then
+  if [[ -f "$ENV_FILE" && $reconfigure -eq 0 && -z "$calico_domain_input" && -z "$minio_domain_input" && -z "$minio_console_domain_input" && -z "$letsencrypt_email_input" && -z "$letsencrypt_staging_input" && -z "$db_user_input" && -z "$minio_root_user_input" && -z "$storage_access_key_input" && -z "$shared_password_input" && -z "$admin_username_input" && -z "$admin_email_input" && -z "$admin_password_input" && $secrets_available -eq 1 && $db_login_available -eq 1 ]]; then
     echo "Using existing domain configuration from '$ENV_FILE'."
     export CALICO_DOMAIN="${current_calico:-$DEFAULT_CALICO_DOMAIN}"
     export MINIO_DOMAIN="${current_minio:-$DEFAULT_MINIO_DOMAIN}"
@@ -272,12 +310,16 @@ USAGE
     export MINIO_ROOT_PASSWORD="${current_minio_root_password:-$DEFAULT_SHARED_PASSWORD}"
     export CALICO_STORAGE_ACCESS_KEY="${current_storage_access_key:-$DEFAULT_STORAGE_ACCESS_KEY}"
     export CALICO_STORAGE_SECRET_KEY="${current_storage_secret_key:-$DEFAULT_SHARED_PASSWORD}"
+    export CALICO_ADMIN_USERNAME="${current_admin_username:-$DEFAULT_ADMIN_USERNAME}"
+    local default_admin_email="admin@${CALICO_DOMAIN}"
+    export CALICO_ADMIN_EMAIL="${current_admin_email:-$default_admin_email}"
+    export CALICO_ADMIN_PASSWORD="${current_admin_password:-$DEFAULT_SHARED_PASSWORD}"
     return
   fi
 
   if [[ -f "$ENV_FILE" ]]; then
     if [[ $secrets_available -eq 0 ]]; then
-      echo "Existing configuration is missing Callico service passwords. Re-entering setup prompts." >&2
+      echo "Existing configuration is missing Callico service or administrator passwords. Re-entering setup prompts." >&2
     fi
     if [[ $db_login_available -eq 0 ]]; then
       echo "Existing configuration is missing the Callico database login. Re-entering setup prompts." >&2
@@ -286,6 +328,7 @@ USAGE
 
   local base_domain calico_domain minio_domain minio_console_domain letsencrypt_email letsencrypt_use_staging
   local calico_db_user minio_root_user storage_access_key storage_secret_key shared_password
+  local admin_username admin_email admin_password
   if [[ -n "$base_domain_input" ]]; then
     base_domain="$base_domain_input"
   elif [[ -n "${current_base:-}" ]]; then
@@ -366,6 +409,43 @@ USAGE
   local minio_root_password="$shared_password"
   local storage_secret_key="$shared_password"
 
+  if [[ -n "$admin_username_input" ]]; then
+    admin_username="$admin_username_input"
+  elif [[ -n "${current_admin_username:-}" ]]; then
+    admin_username="$current_admin_username"
+  else
+    admin_username="$DEFAULT_ADMIN_USERNAME"
+  fi
+
+  local default_admin_email="admin@${calico_domain}"
+  if [[ -n "$admin_email_input" ]]; then
+    admin_email="$admin_email_input"
+  elif [[ -n "${current_admin_email:-}" ]]; then
+    admin_email="$current_admin_email"
+  else
+    admin_email="$default_admin_email"
+  fi
+
+  if [[ -n "$admin_password_input" ]]; then
+    admin_password="$admin_password_input"
+  elif [[ -n "${current_admin_password:-}" ]]; then
+    admin_password="$current_admin_password"
+  else
+    admin_password="$shared_password"
+  fi
+
+  if [[ -z "$admin_username_input" ]]; then
+    admin_username="$(prompt_for_value "Admin username [$admin_username]: " "$admin_username")"
+  fi
+
+  if [[ -z "$admin_email_input" ]]; then
+    admin_email="$(prompt_for_value "Admin email [$admin_email]: " "$admin_email")"
+  fi
+
+  if [[ -z "$admin_password_input" ]]; then
+    admin_password="$(prompt_for_value "Admin password [$admin_password]: " "$admin_password")"
+  fi
+
   if [[ -z "$letsencrypt_staging_input" ]]; then
     if ! letsencrypt_use_staging="$(normalize_boolean "$letsencrypt_use_staging")"; then
       echo "Error: invalid stored value for Let's Encrypt staging selection: '$letsencrypt_use_staging'." >&2
@@ -378,7 +458,7 @@ USAGE
     exit 1
   fi
 
-  for value in "$base_domain" "$calico_domain" "$minio_domain" "$minio_console_domain" "$calico_db_user" "$minio_root_user" "$storage_access_key"; do
+  for value in "$base_domain" "$calico_domain" "$minio_domain" "$minio_console_domain" "$calico_db_user" "$minio_root_user" "$storage_access_key" "$admin_username"; do
     if [[ -z "$value" ]]; then
       echo "Error: configuration values cannot be empty." >&2
       exit 1
@@ -389,7 +469,7 @@ USAGE
     fi
   done
 
-  for value in "$calico_db_password" "$minio_root_password" "$storage_secret_key"; do
+  for value in "$calico_db_password" "$minio_root_password" "$storage_secret_key" "$admin_password"; do
     if [[ -z "$value" ]]; then
       echo "Error: secret values cannot be empty." >&2
       exit 1
@@ -409,7 +489,12 @@ USAGE
     exit 1
   fi
 
-  write_env_file "$base_domain" "$calico_domain" "$minio_domain" "$minio_console_domain" "$letsencrypt_email" "$letsencrypt_use_staging" "$calico_db_user" "$calico_db_password" "$minio_root_user" "$minio_root_password" "$storage_access_key" "$storage_secret_key"
+  if [[ -z "$admin_email" || "$admin_email" != *"@"* ]]; then
+    echo "Error: admin email must contain '@': '$admin_email'" >&2
+    exit 1
+  fi
+
+  write_env_file "$base_domain" "$calico_domain" "$minio_domain" "$minio_console_domain" "$letsencrypt_email" "$letsencrypt_use_staging" "$calico_db_user" "$calico_db_password" "$minio_root_user" "$minio_root_password" "$storage_access_key" "$storage_secret_key" "$admin_username" "$admin_email" "$admin_password"
 
   export BASE_DOMAIN="$base_domain"
   export CALICO_DOMAIN="$calico_domain"
@@ -423,6 +508,9 @@ USAGE
   export MINIO_ROOT_PASSWORD="$minio_root_password"
   export CALICO_STORAGE_ACCESS_KEY="$storage_access_key"
   export CALICO_STORAGE_SECRET_KEY="$storage_secret_key"
+  export CALICO_ADMIN_USERNAME="$admin_username"
+  export CALICO_ADMIN_EMAIL="$admin_email"
+  export CALICO_ADMIN_PASSWORD="$admin_password"
 
   echo "Saved domain configuration to '$ENV_FILE'."
 }
@@ -481,8 +569,95 @@ else
   echo "Requesting trusted TLS certificates from Let's Encrypt production with email '$LETSENCRYPT_EMAIL'."
 fi
 
-pushd "$DEPLOY_DIR" >/dev/null
-"${COMPOSE_CMD[@]}" up -d
-popd >/dev/null
+compose_in_deploy() {
+  pushd "$DEPLOY_DIR" >/dev/null
+  "${COMPOSE_CMD[@]}" "$@"
+  local status=$?
+  popd >/dev/null
+  return $status
+}
+
+compose_in_deploy up -d
 
 echo "Callico deployment started."
+
+wait_for_postgres() {
+  echo "Waiting for PostgreSQL to become ready..."
+  local attempts=0
+  local max_attempts=30
+  while (( attempts < max_attempts )); do
+    if compose_in_deploy exec -T postgres pg_isready -U "$CALICO_DB_USER" -d callico >/dev/null 2>&1; then
+      echo "PostgreSQL is ready."
+      return 0
+    fi
+    sleep 2
+    attempts=$((attempts + 1))
+  done
+  echo "Error: PostgreSQL did not become ready in time." >&2
+  exit 1
+}
+
+run_django_admin() {
+  compose_in_deploy run --rm "$@"
+}
+
+run_database_migrations() {
+  echo "Applying database migrations..."
+  run_django_admin callico django-admin migrate
+  echo "Database migrations completed."
+}
+
+ensure_admin_account() {
+  echo "Ensuring administrator account '${CALICO_ADMIN_USERNAME}' exists..."
+  compose_in_deploy run --rm \
+    -e DJANGO_SETTINGS_MODULE=callico.base.settings \
+    -e CALICO_ADMIN_USERNAME \
+    -e CALICO_ADMIN_EMAIL \
+    -e CALICO_ADMIN_PASSWORD \
+    callico \
+    python - <<'PY'
+import os
+import django
+
+django.setup()
+
+from django.contrib.auth import get_user_model
+
+username = os.environ["CALICO_ADMIN_USERNAME"]
+email = os.environ["CALICO_ADMIN_EMAIL"]
+password = os.environ["CALICO_ADMIN_PASSWORD"]
+
+User = get_user_model()
+user, created = User.objects.get_or_create(
+    username=username,
+    defaults={"email": email, "is_superuser": True, "is_staff": True},
+)
+
+if not created:
+    updated = False
+    if user.email != email:
+        user.email = email
+        updated = True
+    if not user.is_superuser:
+        user.is_superuser = True
+        updated = True
+    if not user.is_staff:
+        user.is_staff = True
+        updated = True
+    if updated:
+        user.save(update_fields=["email", "is_superuser", "is_staff"])
+
+user.set_password(password)
+user.save()
+
+message = "Created" if created else "Updated"
+print(f"{message} administrator '{username}' with email '{email}'.")
+PY
+  echo "Administrator account ensured."
+}
+
+wait_for_postgres
+run_database_migrations
+ensure_admin_account
+
+echo "Callico installation finished. You can now log in as '${CALICO_ADMIN_USERNAME}'."
