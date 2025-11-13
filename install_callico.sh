@@ -367,10 +367,8 @@ USAGE
   local storage_secret_key="$shared_password"
 
   if [[ -z "$letsencrypt_staging_input" ]]; then
-    local staging_response
-    staging_response="$(prompt_for_value "Use Let's Encrypt staging environment? [$letsencrypt_use_staging]: " "$letsencrypt_use_staging")"
-    if ! letsencrypt_use_staging="$(normalize_boolean "$staging_response")"; then
-      echo "Error: invalid response for Let's Encrypt staging selection: '$staging_response'." >&2
+    if ! letsencrypt_use_staging="$(normalize_boolean "$letsencrypt_use_staging")"; then
+      echo "Error: invalid stored value for Let's Encrypt staging selection: '$letsencrypt_use_staging'." >&2
       exit 1
     fi
   fi
