@@ -4,10 +4,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$SCRIPT_DIR"
 DEPLOY_DIR="$REPO_ROOT/deployment"
-DEV_DIR="$REPO_ROOT/old/callico"
-COMPOSE_FILE="$DEV_DIR/docker-compose.yml"
+COMPOSE_FILE="$DEPLOY_DIR/docker-compose.yml"
 ENV_FILE="$DEPLOY_DIR/.callico-domains.env"
-DEV_ENV_FILE="$DEV_DIR/docker.env"
 ROOT_ENV_FILE="$REPO_ROOT/.env"
 LETSENCRYPT_PRODUCTION_CA="https://acme-v02.api.letsencrypt.org/directory"
 LETSENCRYPT_STAGING_CA="https://acme-staging-v02.api.letsencrypt.org/directory"
@@ -24,11 +22,6 @@ DEFAULT_ADMIN_DISPLAY_NAME="Admin"
 
 if [[ ! -d "$DEPLOY_DIR" ]]; then
   echo "Error: deployment directory '$DEPLOY_DIR' not found." >&2
-  exit 1
-fi
-
-if [[ ! -d "$DEV_DIR" ]]; then
-  echo "Error: development directory '$DEV_DIR' not found." >&2
   exit 1
 fi
 
@@ -69,16 +62,6 @@ fi
 
 if [[ ! -f "$COMPOSE_FILE" ]]; then
   echo "Error: docker compose file '$COMPOSE_FILE' not found." >&2
-  exit 1
-fi
-
-if [[ ! -f "$DEV_ENV_FILE" ]]; then
-  echo "Error: development environment file '$DEV_ENV_FILE' not found." >&2
-  exit 1
-fi
-
-if ! command -v python3 >/dev/null 2>&1; then
-  echo "Error: python3 is required to update the development environment configuration." >&2
   exit 1
 fi
 
@@ -632,7 +615,7 @@ ensure_letsencrypt_runtime() {
     export LETSENCRYPT_CA_SERVER="$LETSENCRYPT_PRODUCTION_CA"
   fi
 
-  local storage_dir="$DEV_DIR/traefik/letsencrypt"
+  local storage_dir="$DEPLOY_DIR/letsencrypt"
   local acme_file="$storage_dir/acme.json"
   mkdir -p "$storage_dir"
   if [[ ! -f "$acme_file" ]]; then
@@ -643,104 +626,31 @@ ensure_letsencrypt_runtime() {
 
 ensure_letsencrypt_runtime
 
-update_env_entry() {
-  local file="$1" key="$2" value="$3"
-  local escaped_value
-  escaped_value="$(escape_env_value "$value")"
-  python3 - "$file" "$key" "$escaped_value" <<'PY'
-import re
-import sys
-
-path, key, value = sys.argv[1:4]
-newline = f"{key}=\"{value}\"\n"
-
-try:
-    with open(path, "r", encoding="utf-8") as handle:
-        lines = handle.readlines()
-except FileNotFoundError:
-    lines = []
-
-pattern = re.compile(rf"^{re.escape(key)}=")
-
-for idx, line in enumerate(lines):
-    if pattern.match(line):
-        lines[idx] = newline
-        break
-else:
-    if lines and not lines[-1].endswith("\n"):
-        lines[-1] = lines[-1] + "\n"
-    lines.append(newline)
-
-with open(path, "w", encoding="utf-8") as handle:
-    handle.writelines(lines)
-PY
-}
-
-update_dev_env_file() {
-  local file="$DEV_ENV_FILE"
-  if [[ ! -f "$file" ]]; then
-    echo "Error: expected development environment file '$file' to exist." >&2
-    exit 1
-  fi
-
-  local database_url="postgres://${CALICO_DB_USER}:${CALICO_DB_PASSWORD}@postgres:5432/callico"
-  local instance_url="https://${CALICO_DOMAIN}"
-  local minio_endpoint="https://${MINIO_DOMAIN}"
-  local minio_console_url="https://${MINIO_CONSOLE_DOMAIN}"
-
-  update_env_entry "$file" "POSTGRES_USER" "$CALICO_DB_USER"
-  update_env_entry "$file" "POSTGRES_PASSWORD" "$CALICO_DB_PASSWORD"
-  update_env_entry "$file" "DATABASE_URL" "$database_url"
-  update_env_entry "$file" "INSTANCE_URL" "$instance_url"
-  update_env_entry "$file" "ALLOWED_HOSTS" "$CALICO_DOMAIN"
-  update_env_entry "$file" "CSRF_TRUSTED_ORIGINS" "$instance_url"
-  update_env_entry "$file" "MINIO_ROOT_USER" "$MINIO_ROOT_USER"
-  update_env_entry "$file" "MINIO_ROOT_PASSWORD" "$MINIO_ROOT_PASSWORD"
-  update_env_entry "$file" "MINIO_BROWSER_REDIRECT_URL" "$minio_console_url"
-  update_env_entry "$file" "STORAGE_ENDPOINT_URL" "$minio_endpoint"
-  update_env_entry "$file" "AWS_ACCESS_KEY_ID" "$CALICO_STORAGE_ACCESS_KEY"
-  update_env_entry "$file" "AWS_SECRET_ACCESS_KEY" "$CALICO_STORAGE_SECRET_KEY"
-}
-
-update_dev_env_file
-
-echo "Starting Callico development stack using ${COMPOSE_CMD[*]} in '$DEV_DIR' with domains: Callico='$CALICO_DOMAIN', MinIO='$MINIO_DOMAIN', Console='$MINIO_CONSOLE_DOMAIN'."
+echo "Starting Callico deployment using ${COMPOSE_CMD[*]} with domains: Callico='$CALICO_DOMAIN', MinIO='$MINIO_DOMAIN', Console='$MINIO_CONSOLE_DOMAIN'."
 if [[ "$LETSENCRYPT_USE_STAGING" == "true" ]]; then
   echo "Let's Encrypt will use the staging environment with email '$LETSENCRYPT_EMAIL'."
 else
   echo "Requesting trusted TLS certificates from Let's Encrypt production with email '$LETSENCRYPT_EMAIL'."
 fi
 
-compose_in_dev() {
-  pushd "$DEV_DIR" >/dev/null
+compose_in_deploy() {
+  pushd "$DEPLOY_DIR" >/dev/null
   "${COMPOSE_CMD[@]}" "$@"
   local status=$?
   popd >/dev/null
   return $status
 }
 
-run_django_admin() {
-  compose_in_dev run --rm "$@"
-}
+compose_in_deploy up -d
 
-start_initial_services() {
-  echo "Starting core Callico services (Traefik, PostgreSQL, Redis, MinIO)..."
-  compose_in_dev up --detach lb postgres redis minio
-  echo "Core services are running."
-}
-
-start_full_stack() {
-  echo "Starting remaining Callico services..."
-  compose_in_dev up --detach
-  echo "All Callico services are running."
-}
+echo "Callico deployment started."
 
 wait_for_postgres() {
   echo "Waiting for PostgreSQL to become ready..."
   local attempts=0
   local max_attempts=30
   while (( attempts < max_attempts )); do
-    if compose_in_dev exec -T postgres pg_isready -U "$CALICO_DB_USER" -d callico >/dev/null 2>&1; then
+    if compose_in_deploy exec -T postgres pg_isready -U "$CALICO_DB_USER" -d callico >/dev/null 2>&1; then
       echo "PostgreSQL is ready."
       return 0
     fi
@@ -751,6 +661,10 @@ wait_for_postgres() {
   exit 1
 }
 
+run_django_admin() {
+  compose_in_deploy run --rm "$@"
+}
+
 run_database_migrations() {
   echo "Applying database migrations..."
   run_django_admin callico django-admin migrate
@@ -759,7 +673,7 @@ run_database_migrations() {
 
 ensure_admin_account() {
   echo "Ensuring administrator account with email '${CALICO_ADMIN_EMAIL}' exists..."
-  compose_in_dev run --rm \
+  compose_in_deploy run --rm \
     -e DJANGO_SETTINGS_MODULE=callico.base.settings \
     -e CALICO_ADMIN_DISPLAY_NAME \
     -e CALICO_ADMIN_EMAIL \
@@ -839,21 +753,8 @@ PY
   echo "Administrator account ensured."
 }
 
-create_superuser_interactively() {
-  echo "Launching interactive superuser creation (press Ctrl+C to skip)."
-  if run_django_admin callico django-admin createsuperuser; then
-    echo "Superuser creation finished."
-  else
-    echo "Superuser creation was skipped or failed. You can rerun 'docker compose run callico django-admin createsuperuser' later." >&2
-  fi
-}
-
-start_initial_services
-
 wait_for_postgres
 run_database_migrations
 ensure_admin_account
-create_superuser_interactively
-start_full_stack
 
-echo "Callico development installation finished."
+echo "Callico installation finished. You can now log in using the administrator email '${CALICO_ADMIN_EMAIL}'."
