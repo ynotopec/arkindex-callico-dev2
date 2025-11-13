@@ -3,7 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$SCRIPT_DIR"
-DEPLOY_DIR="$REPO_ROOT/old/callico/deployment"
+DEPLOY_DIR="$REPO_ROOT/deployment"
 COMPOSE_FILE="$DEPLOY_DIR/docker-compose.yml"
 ENV_FILE="$DEPLOY_DIR/.callico-domains.env"
 ROOT_ENV_FILE="$REPO_ROOT/.env"
