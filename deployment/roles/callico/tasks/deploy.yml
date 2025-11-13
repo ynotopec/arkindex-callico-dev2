@@ -51,6 +51,7 @@
       REDIS_URL: "redis://callico-redis-{{ git_branch_name }}:6379/0"
       INSTANCE_URL: "https://{{ public_hostname }}"
       SIGNUP_ENABLED: "{% if callico.signups %}true{% else %}false{% endif %}"
+      PROJECT_CREATION_ALLOWED: "{% if callico.project_creation_allowed|default(true) %}true{% else %}false{% endif %}"
       STORAGE_ENDPOINT_URL: "{{ callico.storage.endpoint }}"
       STORAGE_BUCKET_NAME: "{{ callico.storage.bucket }}"
       AWS_ACCESS_KEY_ID: "{{ callico.storage.access_key }}"
@@ -67,6 +68,22 @@
         'traefik.http.routers.callico-' + git_branch_name + '.tls': 'true',
         'traefik.http.routers.callico-' + git_branch_name + '.tls.certresolver': 'le',
         'traefik.http.services.callico-' + git_branch_name + '.loadbalancer.server.port': '80'
+      }
+    }}"
+
+- name: Setup flower configuration
+  set_fact:
+    flower_env:
+      CELERY_BROKER_URL: "{{ callico_env['REDIS_URL'] }}"
+      FLOWER_BASIC_AUTH: "admin:{{ callico.flower_admin_password }}"
+    flower_labels: "{{
+      {
+        'traefik.enable': 'true',
+        'traefik.http.routers.flower-' + git_branch_name + '.rule': 'Host(`flower-{{ public_hostname }}`)',
+        'traefik.http.routers.flower-' + git_branch_name + '.entrypoints': 'websecure',
+        'traefik.http.routers.flower-' + git_branch_name + '.tls': 'true',
+        'traefik.http.routers.flower-' + git_branch_name + '.tls.certresolver': 'le',
+        'traefik.http.services.flower-' + git_branch_name + '.loadbalancer.server.port': '5555'
       }
     }}"
 
@@ -89,6 +106,16 @@
     env: "{{ callico_env }}"
     networks:
       - "{{ docker.swarm.network_services }}"
+
+- name: Run callico flower
+  docker_swarm_service:
+    name: "callico-flower-{{ git_branch_name }}"
+    image: "mher/flower"
+    replicas: 1
+    env: "{{ flower_env }}"
+    networks:
+      - "{{ docker.swarm.network_services }}"
+    labels: "{{ flower_labels }}"
 
 - name: Run callico migration
   docker_swarm_service:
