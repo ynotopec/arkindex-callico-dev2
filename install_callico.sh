@@ -686,25 +686,63 @@ import django
 django.setup()
 
 from django.contrib.auth import get_user_model
+from django.core.exceptions import FieldDoesNotExist
 
 display_name = os.environ["CALICO_ADMIN_DISPLAY_NAME"]
 email = os.environ["CALICO_ADMIN_EMAIL"]
 password = os.environ["CALICO_ADMIN_PASSWORD"]
 
 User = get_user_model()
+
+
+def field_exists(model, field_name):
+    try:
+        model._meta.get_field(field_name)
+    except FieldDoesNotExist:
+        return False
+    return True
+
+
+lookup = {}
+if field_exists(User, "email"):
+    lookup["email"] = email
+else:
+    lookup[User.USERNAME_FIELD] = display_name
+
+defaults = {}
+
+if field_exists(User, "display_name"):
+    defaults["display_name"] = display_name
+elif field_exists(User, "username"):
+    defaults["username"] = display_name
+
+if field_exists(User, "is_admin"):
+    defaults["is_admin"] = True
+
+if field_exists(User, "is_staff"):
+    defaults["is_staff"] = True
+
+if field_exists(User, "is_superuser"):
+    defaults["is_superuser"] = True
+
 user, created = User.objects.get_or_create(
-    email=email,
-    defaults={
-        "display_name": display_name,
-        "is_admin": True,
-        "is_staff": True,
-    },
+    defaults=defaults,
+    **lookup,
 )
 
-if not created:
+if field_exists(User, "display_name"):
     user.display_name = display_name
+elif field_exists(User, "username"):
+    user.username = display_name
+
+if field_exists(User, "is_admin"):
     user.is_admin = True
+
+if field_exists(User, "is_staff"):
     user.is_staff = True
+
+if field_exists(User, "is_superuser"):
+    user.is_superuser = True
 
 user.set_password(password)
 user.save()
