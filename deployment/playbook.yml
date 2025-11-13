@@ -1,7 +1,0 @@
----
-- hosts:
-    - staging
-
-  roles:
-    - role: callico
-      tags: callico
