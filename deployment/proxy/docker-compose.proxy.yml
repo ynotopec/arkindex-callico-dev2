@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  proxy:
+    image: caddy:2-alpine
+    container_name: callico-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./data:/data
+      - ./config:/config
