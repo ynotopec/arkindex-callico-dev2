@@ -6,7 +6,7 @@ This script will:
 - start the docker compose stack in ./callico
 - apply database migrations
 - ensure a Django superuser exists (the identifier defaults to `admin` and is applied to the project's `USERNAME_FIELD`)
-- configure a Caddy reverse proxy with Let's Encrypt TLS certificates and host-wide HTTP/HTTPS listeners
+- configure a Caddy reverse proxy with Let's Encrypt TLS certificates and host-wide HTTP/HTTPS listeners (the installer automatically chooses alternative free ports when 80/443 are busy, or you can override them explicitly with `--proxy-http-port` / `--proxy-https-port`)
 
 == uninstall ==
 ./uninstall.sh
