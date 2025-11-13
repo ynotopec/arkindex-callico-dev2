@@ -54,6 +54,22 @@ services:
     depends_on:
       - redis
 
+  flower:
+    container_name: callico-flower
+    image: mher/flower
+    environment:
+      CELERY_BROKER_URL: "redis://redis:6379/0"
+      FLOWER_BASIC_AUTH: "admin:${FLOWER_ADMIN_PASSWORD:-changeme}"
+    depends_on:
+      - lb
+      - redis
+    labels:
+      traefik.enable: true
+      traefik.http.routers.flower.rule: Host(`flower.${CALICO_DOMAIN:-callico.company.com}`)
+      traefik.http.routers.flower.tls: true
+      traefik.http.routers.flower.tls.certresolver: le
+      traefik.http.services.flower.loadbalancer.server.port: 5555
+
   postgres:
     container_name: callico-database
     image: postgres:15-alpine
