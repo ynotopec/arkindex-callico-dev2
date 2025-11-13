@@ -13,6 +13,8 @@ Optional arguments:
       --compose-file FILE Path to docker-compose file (default: callico/docker-compose.yml).
       --service NAME      Django service name in the compose file (default: callico).
       --app-port PORT     Container port exposed by the Django service (default: 8000).
+      --proxy-http-port P Host port for the HTTP reverse proxy (default: 80).
+      --proxy-https-port P Host port for the HTTPS reverse proxy (default: 443).
       --admin-user USER   Username for the Django superuser (default: admin).
       --admin-email MAIL  Email for the Django superuser (default: admin@<domain>).
       --admin-password PW Password for the Django superuser (default: auto-generated).
@@ -40,6 +42,8 @@ escape_sed() {
 COMPOSE_FILE="callico/docker-compose.yml"
 SERVICE_NAME="callico"
 APP_PORT="8000"
+PROXY_HTTP_PORT="80"
+PROXY_HTTPS_PORT="443"
 ADMIN_USER="admin"
 ADMIN_EMAIL=""
 ADMIN_PASSWORD=""
@@ -68,6 +72,14 @@ while [[ $# -gt 0 ]]; do
             ;;
         --app-port)
             APP_PORT="$2"
+            shift 2
+            ;;
+        --proxy-http-port)
+            PROXY_HTTP_PORT="$2"
+            shift 2
+            ;;
+        --proxy-https-port)
+            PROXY_HTTPS_PORT="$2"
             shift 2
             ;;
         --admin-user)
@@ -372,6 +384,16 @@ if [[ ! -f "${PROXY_TEMPLATE}" ]]; then
     exit 1
 fi
 
+if [[ -z "${PROXY_HTTP_PORT}" || -z "${PROXY_HTTPS_PORT}" ]]; then
+    echo "Error: proxy ports cannot be empty." >&2
+    exit 1
+fi
+
+if [[ ! "${PROXY_HTTP_PORT}" =~ ^[0-9]+$ || ! "${PROXY_HTTPS_PORT}" =~ ^[0-9]+$ ]]; then
+    echo "Error: proxy ports must be numeric values." >&2
+    exit 1
+fi
+
 mkdir -p "${PROXY_DIR}/data" "${PROXY_DIR}/config"
 sed \
     -e "s/__ACME_EMAIL__/$(escape_sed "${LETSENCRYPT_EMAIL}")/g" \
@@ -382,8 +404,71 @@ sed \
 
 PROXY_COMPOSE_CMD=(docker compose -f "${PROXY_COMPOSE_FILE}" --project-directory "${PROXY_DIR}")
 
+check_port_in_use() {
+    local port="$1"
+    local python_bin=""
+    if command_exists python3; then
+        python_bin="python3"
+    elif command_exists python; then
+        python_bin="python"
+    else
+        return 1
+    fi
+
+    "${python_bin}" - "$port" <<'PY'
+import socket
+import sys
+
+def is_port_in_use(port: int) -> bool:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        try:
+            sock.bind(("0.0.0.0", port))
+        except OSError:
+            return True
+    return False
+
+if is_port_in_use(int(sys.argv[1])):
+    sys.exit(0)
+sys.exit(1)
+PY
+}
+
+http_port_busy=false
+https_port_busy=false
+
+if check_port_in_use "${PROXY_HTTP_PORT}"; then
+    http_port_busy=true
+fi
+if check_port_in_use "${PROXY_HTTPS_PORT}"; then
+    https_port_busy=true
+fi
+
+if [[ "${http_port_busy}" == true || "${https_port_busy}" == true ]]; then
+    echo "Error: one or more proxy ports are already in use on the host." >&2
+    if [[ "${http_port_busy}" == true ]]; then
+        echo "  - HTTP port ${PROXY_HTTP_PORT} is not available." >&2
+    fi
+    if [[ "${https_port_busy}" == true ]]; then
+        echo "  - HTTPS port ${PROXY_HTTPS_PORT} is not available." >&2
+    fi
+    cat >&2 <<'HINT'
+Hint: Re-run install.sh with --proxy-http-port/--proxy-https-port to select free host ports.
+HINT
+    exit 1
+fi
+
 echo "\n==> Starting Caddy reverse proxy with automatic TLS"
-"${PROXY_COMPOSE_CMD[@]}" up -d
+echo "    - HTTP port:  ${PROXY_HTTP_PORT}"
+echo "    - HTTPS port: ${PROXY_HTTPS_PORT}"
+if ! env \
+        PROXY_HTTP_PORT="${PROXY_HTTP_PORT}" \
+        PROXY_HTTPS_PORT="${PROXY_HTTPS_PORT}" \
+        "${PROXY_COMPOSE_CMD[@]}" up -d; then
+    echo "Error: failed to start the Caddy reverse proxy." >&2
+    echo "You may need to free the ports above or provide alternative ones via --proxy-http-port/--proxy-https-port." >&2
+    exit 1
+fi
 
 cat <<INFO
 
